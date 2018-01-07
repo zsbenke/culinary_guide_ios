@@ -41,6 +41,9 @@
 		98F6266F20024ED800996A91 /* Restaurant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98F6266E20024ED800996A91 /* Restaurant.swift */; };
 		98F6267020024ED800996A91 /* Restaurant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98F6266E20024ED800996A91 /* Restaurant.swift */; };
 		98F6267120024ED800996A91 /* Restaurant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98F6266E20024ED800996A91 /* Restaurant.swift */; };
+		98F6267320026CED00996A91 /* RestaurantDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98F6267220026CED00996A91 /* RestaurantDetailViewController.swift */; };
+		98F6267420026CED00996A91 /* RestaurantDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98F6267220026CED00996A91 /* RestaurantDetailViewController.swift */; };
+		98F6267520026CED00996A91 /* RestaurantDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98F6267220026CED00996A91 /* RestaurantDetailViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -83,6 +86,7 @@
 		98F6266620024D3800996A91 /* APIRequestOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIRequestOperation.swift; sourceTree = "<group>"; };
 		98F6266A20024EC600996A91 /* PointOfInterest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PointOfInterest.swift; sourceTree = "<group>"; };
 		98F6266E20024ED800996A91 /* Restaurant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Restaurant.swift; sourceTree = "<group>"; };
+		98F6267220026CED00996A91 /* RestaurantDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantDetailViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -176,6 +180,7 @@
 			isa = PBXGroup;
 			children = (
 				98F626172002487600996A91 /* RestaurantsViewController.swift */,
+				98F6267220026CED00996A91 /* RestaurantDetailViewController.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -359,6 +364,7 @@
 				98F626182002487600996A91 /* RestaurantsViewController.swift in Sources */,
 				98F6266020024CA900996A91 /* APIResource.swift in Sources */,
 				98F6264B20024BA500996A91 /* API.swift in Sources */,
+				98F6267320026CED00996A91 /* RestaurantDetailViewController.swift in Sources */,
 				98F6266720024D3800996A91 /* APIRequestOperation.swift in Sources */,
 				98F6266F20024ED800996A91 /* Restaurant.swift in Sources */,
 				98F6265320024BFB00996A91 /* Router.swift in Sources */,
@@ -373,6 +379,7 @@
 			files = (
 				98F6267020024ED800996A91 /* Restaurant.swift in Sources */,
 				98F6266820024D3800996A91 /* APIRequestOperation.swift in Sources */,
+				98F6267420026CED00996A91 /* RestaurantDetailViewController.swift in Sources */,
 				98F6265420024BFB00996A91 /* Router.swift in Sources */,
 				98F6264C20024BA500996A91 /* API.swift in Sources */,
 				98F6265820024C2000996A91 /* RestaurantRouter.swift in Sources */,
@@ -390,6 +397,7 @@
 			files = (
 				98F6267120024ED800996A91 /* Restaurant.swift in Sources */,
 				98F6266920024D3800996A91 /* APIRequestOperation.swift in Sources */,
+				98F6267520026CED00996A91 /* RestaurantDetailViewController.swift in Sources */,
 				98F6265520024BFB00996A91 /* Router.swift in Sources */,
 				98F6264D20024BA500996A91 /* API.swift in Sources */,
 				98F6265920024C2000996A91 /* RestaurantRouter.swift in Sources */,

@@ -31,13 +31,14 @@ class RestaurantsViewController: UITableViewController {
     // MARK: - Segues
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//        if segue.identifier == "showDetail" {
-//            if let indexPath = tableView.indexPathForSelectedRow {
-//                let object = objects[indexPath.row] as! NSDate
-//                let controller = (segue.destination as! UINavigationController).topViewController as! DetailViewController
-//                controller.detailItem = object
-//            }
-//        }
+        if segue.identifier == "showRestaurant" {
+            if let indexPath = tableView.indexPathForSelectedRow {
+                if let restaurant = restaurants[indexPath.row] {
+                    let controller = segue.destination as! RestaurantDetailViewController
+                    controller.restaurantID = restaurant.id
+                }
+            }
+        }
     }
 
     // MARK: - Table View
