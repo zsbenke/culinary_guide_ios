@@ -39,7 +39,7 @@
                     <navigationItem key="navigationItem" title="Restaurants" id="Ujn-px-C5b">
                         <barButtonItem key="rightBarButtonItem" title="Filter" id="auR-vC-9sP">
                             <connections>
-                                <segue destination="CtN-Mf-ayT" kind="presentation" id="p9f-2Y-grL"/>
+                                <segue destination="CtN-Mf-ayT" kind="presentation" identifier="showFilter" id="p9f-2Y-grL"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -294,9 +294,9 @@
                         </sections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Filter" id="FTA-WL-ZzQ">
-                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="eYg-ux-KdM">
+                        <barButtonItem key="leftBarButtonItem" title="Reset" id="eYg-ux-KdM">
                             <connections>
-                                <action selector="dismiss:" destination="MYZ-lN-BUl" id="0AG-nn-yR4"/>
+                                <action selector="resetFilters:" destination="MYZ-lN-BUl" id="vmG-lY-s1o"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" style="done" systemItem="done" id="LsC-b3-6CJ">
