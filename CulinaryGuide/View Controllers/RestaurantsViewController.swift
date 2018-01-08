@@ -11,27 +11,47 @@ import UIKit
 
 class RestaurantsViewController: UITableViewController {
     let searchController = UISearchController(searchResultsController: nil)
-    var restaurants = [Restaurant?]()
+    var restaurants = [Restaurant?]() {
+        didSet {
+            DispatchQueue.main.async { self.tableView.reloadData() }
+        }
+    }
+    var cachedRestaurants = [Restaurant?]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        searchController.dimsBackgroundDuringPresentation = false
-        searchController.hidesNavigationBarDuringPresentation = false
         searchController.delegate = self
         searchController.searchBar.delegate = self
         self.navigationItem.searchController = searchController
 
-        Restaurant.index { (loadedRestaurants) in
-            self.restaurants = loadedRestaurants
-            DispatchQueue.main.async {
-                self.tableView.reloadData()
-            }
-        }
+        loadRestaurants()
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+
+    func loadRestaurants(query: String = "") {
+        if query.isEmpty {
+            Restaurant.index { restaurants in
+                self.restaurants = restaurants
+
+                if self.cachedRestaurants.isEmpty {
+                    self.cachedRestaurants = restaurants
+                }
+            }
+        } else {
+            let searchToken = URLQueryToken.init(column: "search", value: query)
+            Restaurant.index(search: [searchToken]) { restaurants in
+                self.restaurants = restaurants
+                self.searchController.dismiss(animated: true)
+
+                DispatchQueue.main.async {
+                    self.tableView.reloadData()
+                }
+            }
+        }
     }
 
     // MARK: - Segues
@@ -61,27 +81,31 @@ class RestaurantsViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
 
-        let restaurant = restaurants[indexPath.row] as! Restaurant
-        cell.textLabel!.text = restaurant.title
+        if let restaurant = restaurants[indexPath.row] {
+            cell.textLabel!.text = restaurant.title
+        }
         return cell
     }
 }
 
-extension RestaurantsViewController: UISearchControllerDelegate {
+// MARK: - Searching
 
+extension RestaurantsViewController: UISearchControllerDelegate {
+    func didDismissSearchController(_ searchController: UISearchController) {
+        self.restaurants = cachedRestaurants
+    }
 }
 
 extension RestaurantsViewController: UISearchBarDelegate {
-    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        let searchToken = URLQueryToken.init(column: "search", value: searchBar.text!)
-        Restaurant.index(search: [searchToken]) { restaurants in
-            self.restaurants = restaurants
-            self.searchController.dismiss(animated: true)
-
-            DispatchQueue.main.async {
-                self.tableView.reloadData()
-            }
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        if searchText.isEmpty {
+            self.restaurants = cachedRestaurants
         }
+    }
+
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        guard let searchText = searchBar.text else { return }
+        loadRestaurants(query: searchText)
     }
 }
 
