@@ -6,20 +6,27 @@
 //  Copyright © 2018. Benke Zsolt. All rights reserved.
 //
 
-import Foundation
 import UIKit
 
 class RestaurantsViewController: UITableViewController {
     let searchController = UISearchController(searchResultsController: nil)
     var restaurants = [Restaurant?]() {
         didSet {
-            DispatchQueue.main.async { self.tableView.reloadData() }
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
         }
     }
-    var cachedRestaurants = [Restaurant?]()
+
+    var queryTokens = [URLQueryToken]() {
+        didSet {
+            loadRestaurants()
+        }
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
         searchController.delegate = self
         searchController.searchBar.delegate = self
         self.navigationItem.searchController = searchController
@@ -32,26 +39,19 @@ class RestaurantsViewController: UITableViewController {
         // Dispose of any resources that can be recreated.
     }
 
-    func loadRestaurants(query: String = "") {
-        if query.isEmpty {
-            Restaurant.index { restaurants in
+    private func loadRestaurants() {
+        if self.queryTokens.isEmpty {
+            Restaurant.index() { restaurants in
                 self.restaurants = restaurants
-
-                if self.cachedRestaurants.isEmpty {
-                    self.cachedRestaurants = restaurants
-                }
             }
         } else {
-            let searchToken = URLQueryToken.init(column: "search", value: query)
-            Restaurant.index(search: [searchToken]) { restaurants in
+            Restaurant.index(search: queryTokens) { restaurants in
                 self.restaurants = restaurants
-                self.searchController.dismiss(animated: true)
 
-                DispatchQueue.main.async {
-                    self.tableView.reloadData()
-                }
+                self.searchController.dismiss(animated: true)
             }
         }
+
     }
 
     // MARK: - Segues
@@ -92,20 +92,21 @@ class RestaurantsViewController: UITableViewController {
 
 extension RestaurantsViewController: UISearchControllerDelegate {
     func didDismissSearchController(_ searchController: UISearchController) {
-        self.restaurants = cachedRestaurants
+        self.queryTokens = queryTokens.clearSearchTokens()
     }
 }
 
 extension RestaurantsViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         if searchText.isEmpty {
-            self.restaurants = cachedRestaurants
+            self.queryTokens = queryTokens.clearSearchTokens()
         }
     }
 
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         guard let searchText = searchBar.text else { return }
-        loadRestaurants(query: searchText)
+        var newTokens = queryTokens.clearSearchTokens()
+        newTokens.append(URLQueryToken.init(column: "search", value: searchText))
+        self.queryTokens = newTokens
     }
 }
-

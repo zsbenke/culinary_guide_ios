@@ -44,3 +44,21 @@ extension URLQueryToken: CustomStringConvertible {
         return ["\(columnItem)", "\(valueItem)"].joined(separator: "&")
     }
 }
+
+extension URLQueryToken: Hashable {
+    var hashValue: Int {
+        return self.column.hashValue
+    }
+
+    static func ==(lhs: URLQueryToken, rhs: URLQueryToken) -> Bool {
+        return lhs.column == rhs.column
+    }
+
+
+}
+
+extension Sequence where Iterator.Element == URLQueryToken {
+    func clearSearchTokens() -> [URLQueryToken] {
+        return filter { $0.column != "search" }
+    }
+}
