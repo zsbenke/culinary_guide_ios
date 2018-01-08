@@ -18,7 +18,7 @@ class RestaurantsViewController: UITableViewController {
         }
     }
 
-    var queryTokens = [URLQueryToken]() {
+    var queryTokens = Set<URLQueryToken>() {
         didSet {
             loadRestaurants()
         }
@@ -45,7 +45,7 @@ class RestaurantsViewController: UITableViewController {
                 self.restaurants = restaurants
             }
         } else {
-            Restaurant.index(search: queryTokens) { restaurants in
+            Restaurant.index(search: Array(queryTokens)) { restaurants in
                 self.restaurants = restaurants
 
                 self.searchController.dismiss(animated: true)
@@ -92,21 +92,22 @@ class RestaurantsViewController: UITableViewController {
 
 extension RestaurantsViewController: UISearchControllerDelegate {
     func didDismissSearchController(_ searchController: UISearchController) {
-        self.queryTokens = queryTokens.clearSearchTokens()
+        self.queryTokens.clearSearchTokens()
     }
 }
 
 extension RestaurantsViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         if searchText.isEmpty {
-            self.queryTokens = queryTokens.clearSearchTokens()
+            self.queryTokens.clearSearchTokens()
         }
     }
 
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         guard let searchText = searchBar.text else { return }
-        var newTokens = queryTokens.clearSearchTokens()
-        newTokens.append(URLQueryToken.init(column: "search", value: searchText))
+        var newTokens = queryTokens
+        newTokens.clearSearchTokens()
+        newTokens.insert(URLQueryToken.init(column: "search", value: searchText))
         self.queryTokens = newTokens
     }
 }

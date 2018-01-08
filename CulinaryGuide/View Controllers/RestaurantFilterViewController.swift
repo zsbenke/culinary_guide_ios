@@ -26,7 +26,6 @@ class RestaurantFilterViewController: UITableViewController {
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
 
     @IBAction func dismiss(_ sender: UIBarButtonItem) {
@@ -37,7 +36,13 @@ class RestaurantFilterViewController: UITableViewController {
         let restaurantsViewController = self.presentingViewController?.childViewControllers.first as! RestaurantsViewController
 
         dismiss(animated: true) {
-            restaurantsViewController.queryTokens = Array(self.queryTokens)
+            let searchQueryToken = restaurantsViewController.queryTokens.filter { $0.column == "search" }.first
+
+            if let searchQueryToken = searchQueryToken {
+                self.queryTokens.insert(searchQueryToken)
+            }
+
+            restaurantsViewController.queryTokens = self.queryTokens
         }
     }
 
