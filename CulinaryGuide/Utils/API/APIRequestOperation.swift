@@ -6,7 +6,7 @@
 //  Copyright © 2018. Benke Zsolt. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 class APIRequestOperation: AsyncOperation {
     let urlRequest: URLRequest
@@ -33,21 +33,35 @@ class APIRequestOperation: AsyncOperation {
         let dataTask = session.dataTask(with: apiRequest) { data, response, error in
             if (error != nil) {
                 guard let error = error else { return }
-                print(error.localizedDescription)
+                DispatchQueue.main.async {
+                    self.showAlert(message: error.localizedDescription)
+                }
             } else {
                 if let response = response as? HTTPURLResponse {
                     switch response.statusCode {
                     case 401:
-                        print("Not authorized")
+                        DispatchQueue.main.async {
+                            self.showAlert(message: "Not authorized")
+                        }
                     case 200:
                         print("Logged in")
                         completionHandler(data)
                     default:
-                        print("unknown status code")
+                        DispatchQueue.main.async {
+                            self.showAlert(message: "Unknown status code")
+                        }
                     }
                 }
             }
         }
         dataTask.resume()
+    }
+}
+
+extension APIRequestOperation: UIAlertViewDelegate {
+    private func showAlert(message: String) {
+        let alertView = UIAlertView(title: "Network Error", message: message, delegate: self, cancelButtonTitle: "OK")
+        alertView.alertViewStyle = .default
+        alertView.show()
     }
 }
