@@ -20,10 +20,6 @@ class RestaurantsViewController: UIViewController {
 
     var queryTokens = Set<URLQueryToken>() {
         didSet {
-            let restaurantsTableViewController = self.childViewControllers.first as! RestaurantsTableViewController
-
-            restaurantsTableViewController.loadRestaurants(animated: true)
-
             var filterTokens = queryTokens
             filterTokens.renameSearchTokens()
 
@@ -32,6 +28,8 @@ class RestaurantsViewController: UIViewController {
             } else {
                 filterBarButton.image = #imageLiteral(resourceName: "Toolbar Filter Icon Filled")
             }
+
+            loadRestaurants()
         }
     }
 
@@ -43,6 +41,8 @@ class RestaurantsViewController: UIViewController {
         self.navigationItem.searchController = searchController
 
         navigationItem.hidesSearchBarWhenScrolling = false
+
+        loadRestaurants()
     }
 
     override func didReceiveMemoryWarning() {
@@ -57,6 +57,36 @@ class RestaurantsViewController: UIViewController {
         } else {
             listContainerView.alpha = 0
             mapContainerView.alpha = 1
+        }
+    }
+
+    func loadRestaurants(completionHandler: @escaping () -> Void = { }) {
+        let restaurantsTableViewController = self.childViewControllers[0] as! RestaurantsTableViewController
+        let restaurantsMapViewController = self.childViewControllers[1] as! RestaurantsMapViewController
+
+        if queryTokens.isEmpty {
+            if initialRestaurants.isEmpty {
+                Restaurant.index() { restaurants in
+                    self.initialRestaurants = restaurants
+                    self.restaurants = self.initialRestaurants
+                    restaurantsTableViewController.restaurants = self.restaurants
+                    restaurantsMapViewController.restaurants = self.restaurants
+                    completionHandler()
+                }
+            } else {
+                self.restaurants = self.initialRestaurants
+                restaurantsTableViewController.restaurants = self.restaurants
+                restaurantsMapViewController.restaurants = self.restaurants
+                completionHandler()
+            }
+        } else {
+            searchController.dismiss(animated: true)
+            Restaurant.index(search: Array(queryTokens)) { restaurants in
+                self.restaurants = restaurants
+                restaurantsTableViewController.restaurants = self.restaurants
+                restaurantsMapViewController.restaurants = self.restaurants
+                completionHandler()
+            }
         }
     }
 

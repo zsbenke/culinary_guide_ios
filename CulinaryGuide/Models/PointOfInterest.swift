@@ -15,6 +15,4 @@ protocol PointOfInterest {
     var address: String? { get }
     var latitude: String? { get }
     var longitude: String? { get }
-
-    func toAnnotation() -> MKPointAnnotation?
 }

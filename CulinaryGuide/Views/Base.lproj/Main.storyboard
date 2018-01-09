@@ -421,10 +421,10 @@
             </objects>
             <point key="canvasLocation" x="-474" y="90"/>
         </scene>
-        <!--View Controller-->
+        <!--Restaurants Map View Controller-->
         <scene sceneID="ilV-MA-Eof">
             <objects>
-                <viewController id="TRT-C3-zCw" sceneMemberID="viewController">
+                <viewController id="TRT-C3-zCw" customClass="RestaurantsMapViewController" customModule="CulinaryGuide" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="MkG-gy-ELz">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -440,7 +440,11 @@
                             <constraint firstAttribute="bottom" secondItem="JC6-Ku-CB8" secondAttribute="bottom" id="QrP-Sp-qu5"/>
                             <constraint firstItem="JC6-Ku-CB8" firstAttribute="top" secondItem="MkG-gy-ELz" secondAttribute="top" id="ZSN-4e-sJn"/>
                         </constraints>
+                        <viewLayoutGuide key="safeArea" id="nCz-9k-DIM"/>
                     </view>
+                    <connections>
+                        <outlet property="mapView" destination="JC6-Ku-CB8" id="hqt-PX-l6e"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Rpd-1O-HmY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

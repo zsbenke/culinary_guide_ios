@@ -9,9 +9,13 @@
 import UIKit
 
 class RestaurantsTableViewController: UITableViewController {
-    var activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .gray)
-    var restaurants = [Restaurant?]()
-    var initialRestaurants = [Restaurant?]()
+    var restaurants = [Restaurant?]() {
+        didSet {
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
+        }
+    }
     var restaurantsViewController: RestaurantsViewController? = nil
 
     override func viewDidLoad() {
@@ -25,51 +29,6 @@ class RestaurantsTableViewController: UITableViewController {
 
     override func didMove(toParentViewController parent: UIViewController?) {
         self.restaurantsViewController = parent as? RestaurantsViewController
-
-        tableView.backgroundView = activityIndicator
-
-        loadRestaurants(animated: true)
-    }
-
-    func loadRestaurants(animated: Bool = false, completionHandler: @escaping () -> Void = { }) {
-        guard let restaurantsViewController = restaurantsViewController else { return }
-        let reloadTableView = {
-            DispatchQueue.main.async {
-                self.activityIndicator.stopAnimating()
-                self.tableView.separatorStyle = .singleLine
-                self.tableView.reloadData()
-                completionHandler()
-
-                print("Loaded \(self.restaurants.count) restaurants")
-            }
-        }
-
-        if animated {
-            self.restaurants = [Restaurant?]()
-
-            tableView.reloadData()
-            tableView.separatorStyle = .none
-            activityIndicator.startAnimating()
-        }
-
-        if restaurantsViewController.queryTokens.isEmpty {
-            if initialRestaurants.isEmpty {
-                Restaurant.index() { restaurants in
-                    self.initialRestaurants = restaurants
-                    self.restaurants = self.initialRestaurants
-                    reloadTableView()
-                }
-            } else {
-                self.restaurants = self.initialRestaurants
-                reloadTableView()
-            }
-        } else {
-            restaurantsViewController.searchController.dismiss(animated: true)
-            Restaurant.index(search: Array(restaurantsViewController.queryTokens)) { restaurants in
-                self.restaurants = restaurants
-                reloadTableView()
-            }
-        }
     }
 
     // MARK: - Segues
