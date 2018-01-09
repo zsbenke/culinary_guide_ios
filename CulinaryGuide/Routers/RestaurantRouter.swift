@@ -32,7 +32,10 @@ enum RestaurantRouter: Router, CustomStringConvertible {
                 path = "\(id)"
             }
 
-            var tokens: [URLQueryItem] = []
+            let localeTokens = [
+                URLQueryItem.init(name: "country", value: "hu")
+            ]
+            var tokens = [URLQueryItem]()
 
             switch self {
             case .search(let assignedTokens):
@@ -40,16 +43,21 @@ enum RestaurantRouter: Router, CustomStringConvertible {
                     tokens.append(token.columnItem)
                     tokens.append(token.valueItem)
                 }
+                tokens += localeTokens
             default:
-                tokens = []
+                tokens = localeTokens
             }
 
             var url = URL(string: RestaurantRouter.baseURLEndpoint)!
-            if let path = path { url.appendPathComponent(path) }
+            if let path = path {
+                url.appendPathComponent(path)
+            }
             var urlComponents = URLComponents.init(url: url, resolvingAgainstBaseURL: false)
             urlComponents?.queryItems = tokens
             return urlComponents!.url!
         }()
+
+        print(url)
 
         var request = URLRequest(url: url)
 
