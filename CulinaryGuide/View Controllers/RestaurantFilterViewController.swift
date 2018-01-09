@@ -82,7 +82,6 @@ class RestaurantFilterViewController: UITableViewController {
         if queryToken.value == "true" {
             queryTokens.insert(queryToken)
         }
-        print(queryTokens)
     }
 
     private func tokenColumn(uiSwitch: UISwitch) -> String? {

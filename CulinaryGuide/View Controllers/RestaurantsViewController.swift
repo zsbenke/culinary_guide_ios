@@ -10,17 +10,13 @@ import UIKit
 
 class RestaurantsViewController: UITableViewController {
     let searchController = UISearchController(searchResultsController: nil)
-    var restaurants = [Restaurant?]() {
-        didSet {
-            DispatchQueue.main.async {
-                self.tableView.reloadData()
-            }
-        }
-    }
+    var activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .gray)
+    var restaurants = [Restaurant?]()
+    var initialRestaurants = [Restaurant?]()
 
     var queryTokens = Set<URLQueryToken>() {
         didSet {
-            loadRestaurants()
+            loadRestaurants(animated: true)
         }
     }
 
@@ -29,9 +25,12 @@ class RestaurantsViewController: UITableViewController {
 
         searchController.delegate = self
         searchController.searchBar.delegate = self
+        self.navigationItem.hidesSearchBarWhenScrolling = false
         self.navigationItem.searchController = searchController
 
-        loadRestaurants()
+        tableView.backgroundView = activityIndicator
+
+        loadRestaurants(animated: true)
     }
 
     override func didReceiveMemoryWarning() {
@@ -39,16 +38,39 @@ class RestaurantsViewController: UITableViewController {
         // Dispose of any resources that can be recreated.
     }
 
-    private func loadRestaurants() {
+    private func loadRestaurants(animated: Bool = false) {
+        let reloadTableView = {
+            DispatchQueue.main.async {
+                self.activityIndicator.stopAnimating()
+                self.tableView.separatorStyle = .singleLine
+                self.tableView.reloadData()
+            }
+        }
+
+        if animated {
+            self.restaurants = [Restaurant?]()
+
+            tableView.reloadData()
+            tableView.separatorStyle = .none
+            activityIndicator.startAnimating()
+        }
+
         if self.queryTokens.isEmpty {
-            Restaurant.index() { restaurants in
-                self.restaurants = restaurants
+            if initialRestaurants.isEmpty {
+                Restaurant.index() { restaurants in
+                    self.initialRestaurants = restaurants
+                    self.restaurants = self.initialRestaurants
+                    reloadTableView()
+                }
+            } else {
+                self.restaurants = self.initialRestaurants
+                reloadTableView()
             }
         } else {
+            self.searchController.dismiss(animated: true)
             Restaurant.index(search: Array(queryTokens)) { restaurants in
                 self.restaurants = restaurants
-
-                self.searchController.dismiss(animated: true)
+                reloadTableView()
             }
         }
 
@@ -77,7 +99,6 @@ class RestaurantsViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        print(restaurants.count)
         return restaurants.count
     }
 
@@ -100,12 +121,6 @@ extension RestaurantsViewController: UISearchControllerDelegate {
 }
 
 extension RestaurantsViewController: UISearchBarDelegate {
-    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        if searchText.isEmpty {
-            self.queryTokens.clearSearchTokens()
-        }
-    }
-
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         guard let searchText = searchBar.text else { return }
         var newTokens = queryTokens

@@ -48,7 +48,6 @@ enum RestaurantRouter: Router, CustomStringConvertible {
             if let path = path { url.appendPathComponent(path) }
             var urlComponents = URLComponents.init(url: url, resolvingAgainstBaseURL: false)
             urlComponents?.queryItems = tokens
-            print(urlComponents!.url!)
             return urlComponents!.url!
         }()
 
