@@ -37,12 +37,15 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Restaurants" id="Ujn-px-C5b">
-                        <barButtonItem key="rightBarButtonItem" title="Filter" id="auR-vC-9sP">
+                        <barButtonItem key="rightBarButtonItem" title="Filter" image="Toolbar Filter Icon" id="auR-vC-9sP">
                             <connections>
                                 <segue destination="CtN-Mf-ayT" kind="presentation" identifier="showFilter" id="p9f-2Y-grL"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="filterBarButton" destination="auR-vC-9sP" id="Dg6-Er-THI"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Zwt-Xu-9f0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -353,4 +356,7 @@
             <point key="canvasLocation" x="-288" y="116"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="Toolbar Filter Icon" width="24" height="24"/>
+    </resources>
 </document>

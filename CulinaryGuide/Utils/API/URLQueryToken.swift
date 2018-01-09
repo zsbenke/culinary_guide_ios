@@ -56,7 +56,7 @@ extension URLQueryToken: Hashable {
 }
 
 extension Set where Iterator.Element == URLQueryToken {
-    mutating func clearSearchTokens() {
+    mutating func renameSearchTokens() {
         remove(URLQueryToken.init(column: "search", value: ""))
     }
 }

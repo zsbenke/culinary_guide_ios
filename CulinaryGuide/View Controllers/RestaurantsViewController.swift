@@ -1,5 +1,5 @@
 //
-//  MasterViewController.swift
+//  RestaurantsViewController.swift
 //  CulinaryGuide
 //
 //  Created by Benke Zsolt on 2018. 01. 07..
@@ -9,6 +9,7 @@
 import UIKit
 
 class RestaurantsViewController: UITableViewController {
+    @IBOutlet weak var filterBarButton: UIBarButtonItem!
     let searchController = UISearchController(searchResultsController: nil)
     var activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .gray)
     var restaurants = [Restaurant?]()
@@ -17,6 +18,15 @@ class RestaurantsViewController: UITableViewController {
     var queryTokens = Set<URLQueryToken>() {
         didSet {
             loadRestaurants(animated: true)
+
+            var filterTokens = queryTokens
+            filterTokens.renameSearchTokens()
+
+            if filterTokens.isEmpty {
+                filterBarButton.image = #imageLiteral(resourceName: "Toolbar Filter Icon")
+            } else {
+                filterBarButton.image = #imageLiteral(resourceName: "Toolbar Filter Icon Filled")
+            }
         }
     }
 
@@ -25,7 +35,6 @@ class RestaurantsViewController: UITableViewController {
 
         searchController.delegate = self
         searchController.searchBar.delegate = self
-        self.navigationItem.hidesSearchBarWhenScrolling = false
         self.navigationItem.searchController = searchController
 
         tableView.backgroundView = activityIndicator
@@ -38,12 +47,15 @@ class RestaurantsViewController: UITableViewController {
         // Dispose of any resources that can be recreated.
     }
 
-    private func loadRestaurants(animated: Bool = false) {
+    private func loadRestaurants(animated: Bool = false, completionHandler: @escaping () -> Void = { }) {
         let reloadTableView = {
             DispatchQueue.main.async {
                 self.activityIndicator.stopAnimating()
                 self.tableView.separatorStyle = .singleLine
                 self.tableView.reloadData()
+                completionHandler()
+
+                print("Loaded \(self.restaurants.count) restaurants")
             }
         }
 
@@ -116,7 +128,7 @@ class RestaurantsViewController: UITableViewController {
 
 extension RestaurantsViewController: UISearchControllerDelegate {
     func didDismissSearchController(_ searchController: UISearchController) {
-        self.queryTokens.clearSearchTokens()
+        self.queryTokens.renameSearchTokens()
     }
 }
 
@@ -124,7 +136,7 @@ extension RestaurantsViewController: UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         guard let searchText = searchBar.text else { return }
         var newTokens = queryTokens
-        newTokens.clearSearchTokens()
+        newTokens.renameSearchTokens()
         newTokens.insert(URLQueryToken.init(column: "search", value: searchText))
         self.queryTokens = newTokens
     }
