@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import MapKit
 
 struct Restaurant: PointOfInterest, Codable {
     let id: Int?
@@ -23,6 +24,20 @@ struct Restaurant: PointOfInterest, Codable {
         case latitude
         case longitude
         case rating
+    }
+
+    func toAnnotation() -> MKPointAnnotation? {
+        guard let latitude = latitude else { return nil }
+        guard let longitude = longitude else { return nil }
+
+        let locationLatitude = Double(latitude)
+        let locationLongitude = Double(longitude)
+
+        guard let lat = locationLatitude, let long = locationLongitude else { return nil }
+
+        let annotation = MKPointAnnotation()
+        annotation.coordinate = CLLocationCoordinate2D(latitude: lat, longitude: long)
+        return annotation
     }
 }
 

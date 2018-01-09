@@ -8,8 +8,11 @@
 
 import UIKit
 
-class RestaurantsViewController: UITableViewController {
+class RestaurantsViewController: UIViewController {
     @IBOutlet weak var filterBarButton: UIBarButtonItem!
+    @IBOutlet weak var listContainerView: UIView!
+    @IBOutlet weak var mapContainerView: UIView!
+
     let searchController = UISearchController(searchResultsController: nil)
     var activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .gray)
     var restaurants = [Restaurant?]()
@@ -17,7 +20,9 @@ class RestaurantsViewController: UITableViewController {
 
     var queryTokens = Set<URLQueryToken>() {
         didSet {
-            loadRestaurants(animated: true)
+            let restaurantsTableViewController = self.childViewControllers.first as! RestaurantsTableViewController
+
+            restaurantsTableViewController.loadRestaurants(animated: true)
 
             var filterTokens = queryTokens
             filterTokens.renameSearchTokens()
@@ -37,9 +42,7 @@ class RestaurantsViewController: UITableViewController {
         searchController.searchBar.delegate = self
         self.navigationItem.searchController = searchController
 
-        tableView.backgroundView = activityIndicator
-
-        loadRestaurants(animated: true)
+        navigationItem.hidesSearchBarWhenScrolling = false
     }
 
     override func didReceiveMemoryWarning() {
@@ -47,80 +50,23 @@ class RestaurantsViewController: UITableViewController {
         // Dispose of any resources that can be recreated.
     }
 
-    private func loadRestaurants(animated: Bool = false, completionHandler: @escaping () -> Void = { }) {
-        let reloadTableView = {
-            DispatchQueue.main.async {
-                self.activityIndicator.stopAnimating()
-                self.tableView.separatorStyle = .singleLine
-                self.tableView.reloadData()
-                completionHandler()
-
-                print("Loaded \(self.restaurants.count) restaurants")
-            }
-        }
-
-        if animated {
-            self.restaurants = [Restaurant?]()
-
-            tableView.reloadData()
-            tableView.separatorStyle = .none
-            activityIndicator.startAnimating()
-        }
-
-        if self.queryTokens.isEmpty {
-            if initialRestaurants.isEmpty {
-                Restaurant.index() { restaurants in
-                    self.initialRestaurants = restaurants
-                    self.restaurants = self.initialRestaurants
-                    reloadTableView()
-                }
-            } else {
-                self.restaurants = self.initialRestaurants
-                reloadTableView()
-            }
+    @IBAction func switchContainerViews(_ sender: UISegmentedControl) {
+        if sender.selectedSegmentIndex == 0 {
+            listContainerView.alpha = 1
+            mapContainerView.alpha = 0
         } else {
-            self.searchController.dismiss(animated: true)
-            Restaurant.index(search: Array(queryTokens)) { restaurants in
-                self.restaurants = restaurants
-                reloadTableView()
-            }
+            listContainerView.alpha = 0
+            mapContainerView.alpha = 1
         }
-
     }
 
     // MARK: - Segues
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "showRestaurant" {
-            if let indexPath = tableView.indexPathForSelectedRow {
-                if let restaurant = restaurants[indexPath.row] {
-                    let controller = segue.destination as! RestaurantDetailViewController
-                    controller.restaurantID = restaurant.id
-                }
-            }
-        } else if segue.identifier == "showFilter" {
+        if segue.identifier == "showFilter" {
             let controller = segue.destination.childViewControllers.first as! RestaurantFilterViewController
             controller.queryTokens = queryTokens
         }
-    }
-
-    // MARK: - Table View
-
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
-    }
-
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return restaurants.count
-    }
-
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
-
-        if let restaurant = restaurants[indexPath.row] {
-            cell.textLabel!.text = restaurant.title
-        }
-        return cell
     }
 }
 
