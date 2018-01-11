@@ -10,108 +10,108 @@ import Foundation
 import MapKit
 
 struct Restaurant: PointOfInterest, Codable {
-    let id: Int?
-    let title: String?
-    let address: String?
-    let latitude: String?
-    let longitude: String?
-    let rating: String?
+  let id: Int?
+  let title: String?
+  let address: String?
+  let latitude: String?
+  let longitude: String?
+  let rating: String?
 
-    enum CodingKeys: String, CodingKey {
-        case id
-        case title
-        case address = "full_address"
-        case latitude
-        case longitude
-        case rating
-    }
+  enum CodingKeys: String, CodingKey {
+    case id
+    case title
+    case address = "full_address"
+    case latitude
+    case longitude
+    case rating
+  }
 
-    func toAnnotation() -> RestaurantAnnotation? {
-        guard let title = title else { return nil }
-        guard let address = address else { return nil }
-        guard let coordinate = calculateCoordinate() else { return nil }
-        return RestaurantAnnotation.init(title: title, locationName: title, discipline: address, coordinate: coordinate)
-    }
+  func toAnnotation() -> RestaurantAnnotation? {
+    guard let title = title else { return nil }
+    guard let address = address else { return nil }
+    guard let coordinate = calculateCoordinate() else { return nil }
+    return RestaurantAnnotation.init(title: title, locationName: title, discipline: address, coordinate: coordinate)
+  }
 
-    private func calculateCoordinate() -> CLLocationCoordinate2D? {
-        guard let latitude = latitude else { return nil }
-        guard let longitude = longitude else { return nil }
+  private func calculateCoordinate() -> CLLocationCoordinate2D? {
+    guard let latitude = latitude else { return nil }
+    guard let longitude = longitude else { return nil }
 
-        let locationLatitude = Double(latitude)
-        let locationLongitude = Double(longitude)
+    let locationLatitude = Double(latitude)
+    let locationLongitude = Double(longitude)
 
-        guard let lat = locationLatitude, let long = locationLongitude else { return nil }
+    guard let lat = locationLatitude, let long = locationLongitude else { return nil }
 
-        return CLLocationCoordinate2D(latitude: lat, longitude: long)
-    }
+    return CLLocationCoordinate2D(latitude: lat, longitude: long)
+  }
 }
 
 extension Restaurant: APIResource {
-    internal static let router = RestaurantRouter.self
+  internal static let router = RestaurantRouter.self
 
-    static func index(completionHandler: @escaping (_ restaurants: [Restaurant?]) -> Void) {
-        let operationQueue = OperationQueue()
-        let requestOperation = APIRequestOperation(urlRequest: router.index.asURLRequest())
-        requestOperation.completionBlock = {
-            guard let data = requestOperation.data else { return }
-            do {
-                let restaurants = try JSONDecoder().decode([Restaurant].self, from: data)
-                completionHandler(restaurants)
-            } catch {
-                return
-            }
-        }
-        operationQueue.addOperation(requestOperation)
+  static func index(completionHandler: @escaping (_ restaurants: [Restaurant?]) -> Void) {
+    let operationQueue = OperationQueue()
+    let requestOperation = APIRequestOperation(urlRequest: router.index.asURLRequest())
+    requestOperation.completionBlock = {
+      guard let data = requestOperation.data else { return }
+      do {
+        let restaurants = try JSONDecoder().decode([Restaurant].self, from: data)
+        completionHandler(restaurants)
+      } catch {
+        return
+      }
     }
+    operationQueue.addOperation(requestOperation)
+  }
 
-    static func index(search tokens: [URLQueryToken], completionHandler: @escaping (_ restaurants: [Restaurant?]) -> Void) {
-        let operationQueue = OperationQueue()
-        let requestOperation = APIRequestOperation(urlRequest: router.search(tokens).asURLRequest())
-        requestOperation.completionBlock = {
-            guard let data = requestOperation.data else { return }
-            do {
-                let restaurants = try JSONDecoder().decode([Restaurant].self, from: data)
-                completionHandler(restaurants)
-            } catch {
-                return
-            }
-        }
-        operationQueue.addOperation(requestOperation)
+  static func index(search tokens: [URLQueryToken], completionHandler: @escaping (_ restaurants: [Restaurant?]) -> Void) {
+    let operationQueue = OperationQueue()
+    let requestOperation = APIRequestOperation(urlRequest: router.search(tokens).asURLRequest())
+    requestOperation.completionBlock = {
+      guard let data = requestOperation.data else { return }
+      do {
+        let restaurants = try JSONDecoder().decode([Restaurant].self, from: data)
+        completionHandler(restaurants)
+      } catch {
+        return
+      }
     }
+    operationQueue.addOperation(requestOperation)
+  }
 
-    static func show(_ id: Int, completionHandler: @escaping (_ restaurant: Restaurant?) -> Void) {
-        let operationQueue = OperationQueue()
-        let requestOperation = APIRequestOperation(urlRequest: router.show(id).asURLRequest())
-        requestOperation.completionBlock = {
-            guard let data = requestOperation.data else { return }
-            do {
-                let restaurant = try JSONDecoder().decode(Restaurant.self, from: data)
-                completionHandler(restaurant)
-            } catch {
-                return
-            }
+  static func show(_ id: Int, completionHandler: @escaping (_ restaurant: Restaurant?) -> Void) {
+    let operationQueue = OperationQueue()
+    let requestOperation = APIRequestOperation(urlRequest: router.show(id).asURLRequest())
+    requestOperation.completionBlock = {
+      guard let data = requestOperation.data else { return }
+      do {
+        let restaurant = try JSONDecoder().decode(Restaurant.self, from: data)
+        completionHandler(restaurant)
+      } catch {
+        return
+      }
 
-        }
-        operationQueue.addOperation(requestOperation)
     }
+    operationQueue.addOperation(requestOperation)
+  }
 }
 
 class RestaurantAnnotation: NSObject, MKAnnotation {
-    let title: String?
-    let locationName: String
-    let discipline: String
-    let coordinate: CLLocationCoordinate2D
+  let title: String?
+  let locationName: String
+  let discipline: String
+  let coordinate: CLLocationCoordinate2D
 
-    init(title: String, locationName: String, discipline: String, coordinate: CLLocationCoordinate2D) {
-        self.title = title
-        self.locationName = locationName
-        self.discipline = discipline
-        self.coordinate = coordinate
+  init(title: String, locationName: String, discipline: String, coordinate: CLLocationCoordinate2D) {
+    self.title = title
+    self.locationName = locationName
+    self.discipline = discipline
+    self.coordinate = coordinate
 
-        super.init()
-    }
+    super.init()
+  }
 
-    var subtitle: String? {
-        return locationName
-    }
+  var subtitle: String? {
+    return locationName
+  }
 }
