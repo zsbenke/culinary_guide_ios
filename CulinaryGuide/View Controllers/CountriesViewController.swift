@@ -9,12 +9,14 @@
 import UIKit
 
 class CountriesViewController: UITableViewController {
+  let defaults = UserDefaults.standard
   var countries: [Localization.Country] {
     return Array(Localization.Country.cases()).filter { $0 != Localization.Country.Unknown }
   }
 
   override func viewDidLoad() {
     super.viewDidLoad()
+    defaults.set("\(Localization.Country.Unknown)", forKey: "Country")
   }
 
   override func didReceiveMemoryWarning() {
@@ -27,7 +29,6 @@ class CountriesViewController: UITableViewController {
     if segue.identifier == "chooseCountry" {
       if let indexPath = tableView.indexPathForSelectedRow {
         let country = countries[indexPath.row]
-        let defaults = UserDefaults.standard
         defaults.set("\(country)", forKey: "Country")
       }
     }
