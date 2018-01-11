@@ -15,7 +15,7 @@ enum Environment {
 }
 
 struct API {
-  static var environment: Environment = .development
+  static var environment: Environment = .staging
   private static var domain: String {
     switch environment {
     case .development:
@@ -23,7 +23,7 @@ struct API {
     case .production:
       return "http://api.gaultmillau.eu"
     case .staging:
-      return "http://api.staging.gaultmillau.eu"
+      return "http://culinary-guide-api-staging.decoding.io"
     }
   }
 
