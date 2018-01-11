@@ -54,6 +54,38 @@
             </objects>
             <point key="canvasLocation" x="1495" y="-274"/>
         </scene>
+        <!--Countries-->
+        <scene sceneID="Msg-vR-IZI">
+            <objects>
+                <tableViewController id="4g2-h9-hOo" customClass="CountriesViewController" customModule="CulinaryGuide" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="2bR-aU-C3w">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="CountryCell" id="Tg3-YC-K2c">
+                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Tg3-YC-K2c" id="PsW-Rv-Mgw">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.666666666666664"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <segue destination="XGQ-ey-PNz" kind="show" identifier="chooseCountry" id="N6a-f0-fVj"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="4g2-h9-hOo" id="2mQ-do-a2W"/>
+                            <outlet property="delegate" destination="4g2-h9-hOo" id="1zr-eA-wox"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Countries" largeTitleDisplayMode="always" id="IKA-2Q-a6o"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="VFP-nR-XbU" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-194" y="89"/>
+        </scene>
         <!--Restaurants View Controller-->
         <scene sceneID="w03-xF-Ake">
             <objects>
@@ -88,7 +120,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="9GD-99-FwO"/>
                     </view>
-                    <navigationItem key="navigationItem" id="Zna-k9-7r8">
+                    <navigationItem key="navigationItem" largeTitleDisplayMode="never" id="Zna-k9-7r8">
                         <nil key="title"/>
                         <segmentedControl key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="QBV-aq-E1O">
                             <rect key="frame" x="146" y="7" width="83" height="30"/>
@@ -405,8 +437,8 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="zfw-OL-Amf" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="U3U-5e-rzO">
-                        <rect key="frame" x="0.0" y="44" width="375" height="44"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="U3U-5e-rzO">
+                        <rect key="frame" x="0.0" y="44" width="375" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -414,12 +446,12 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </toolbar>
                     <connections>
-                        <segue destination="XGQ-ey-PNz" kind="relationship" relationship="rootViewController" id="IYv-Zz-eZN"/>
+                        <segue destination="4g2-h9-hOo" kind="relationship" relationship="rootViewController" id="JmK-uQ-5Mi"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SmY-rE-2Mt" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-474" y="90"/>
+            <point key="canvasLocation" x="-1049" y="89"/>
         </scene>
         <!--Restaurants Map View Controller-->
         <scene sceneID="ilV-MA-Eof">

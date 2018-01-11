@@ -42,7 +42,9 @@ class RestaurantsViewController: UIViewController {
 
     navigationItem.hidesSearchBarWhenScrolling = false
 
-    loadRestaurants()
+    loadRestaurants {
+      print("Loaded \(self.restaurants.count) restaurants")
+    }
   }
 
   override func didReceiveMemoryWarning() {

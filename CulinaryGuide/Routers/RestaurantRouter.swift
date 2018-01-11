@@ -33,8 +33,8 @@ enum RestaurantRouter: Router, CustomStringConvertible {
       }
 
       let localeTokens = [
-        URLQueryItem.init(name: "country", value: "hu"),
-        URLQueryItem.init(name: "locale", value: Localization.current)
+        URLQueryItem.init(name: "country", value: "\(Localization.currentCountry)"),
+        URLQueryItem.init(name: "locale", value: "\(Localization.currentLocale)")
       ]
       var tokens = [URLQueryItem]()
 
