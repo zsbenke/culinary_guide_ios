@@ -40,7 +40,9 @@ class RestaurantFilterViewController: UITableViewController {
   }
   
   @IBAction func filter(_ sender: UIBarButtonItem) {
-    let restaurantsViewController = self.presentingViewController?.childViewControllers.first as! RestaurantsViewController
+    let restaurantsViewController = self.presentingViewController?.childViewControllers.filter {
+      $0 is RestaurantsViewController
+    }.first as! RestaurantsViewController
     
     dismiss(animated: true) {
       let searchQueryToken = restaurantsViewController.queryTokens.filter { $0.column == "search" }.first

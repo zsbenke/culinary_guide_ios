@@ -10,7 +10,7 @@ import UIKit
 
 class CountriesViewController: UITableViewController {
   var countries: [Localization.Country] {
-    return Array(Localization.Country.cases())
+    return Array(Localization.Country.cases()).filter { $0 != Localization.Country.Unknown }
   }
 
   override func viewDidLoad() {

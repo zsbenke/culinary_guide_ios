@@ -10,6 +10,7 @@ import Foundation
 
 struct Localization {
   enum Country: String, CustomStringConvertible, EnumCollection {
+    case Unknown = ""
     case CentralEurope = "all"
     case Hungary = "hu"
     case CzechRepublic = "cz"
@@ -48,7 +49,7 @@ struct Localization {
 
   static var currentCountry: Country {
     let defaults = UserDefaults.standard
-    guard let country = Country(rawValue: defaults.string(forKey: "Country") ?? "") else { return Country.CentralEurope }
+    guard let country = Country(rawValue: defaults.string(forKey: "Country") ?? "") else { return Country.Unknown }
     return country
   }
 

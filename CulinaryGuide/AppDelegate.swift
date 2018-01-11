@@ -17,6 +17,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
     // Override point for customization after application launch.
     self.window?.tintColor = UIColor(red: 0.75, green: 0.15, blue: 0.18, alpha: 1.0)
+
+    if Localization.currentCountry != Localization.Country.Unknown {
+      let storyboard = UIStoryboard(name: "Main", bundle: nil)
+      let restaurantsViewController = storyboard.instantiateViewController(withIdentifier: "RestaurantsViewController") as! RestaurantsViewController
+      let rootViewController = self.window!.rootViewController as! UINavigationController
+      rootViewController.pushViewController(restaurantsViewController, animated: false)
+    }
+
     return true
   }
 

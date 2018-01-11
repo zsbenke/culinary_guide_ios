@@ -80,7 +80,7 @@
                             <outlet property="delegate" destination="4g2-h9-hOo" id="1zr-eA-wox"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Countries" largeTitleDisplayMode="always" id="IKA-2Q-a6o"/>
+                    <navigationItem key="navigationItem" title="Countries" id="IKA-2Q-a6o"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VFP-nR-XbU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -89,7 +89,7 @@
         <!--Restaurants View Controller-->
         <scene sceneID="w03-xF-Ake">
             <objects>
-                <viewController id="XGQ-ey-PNz" customClass="RestaurantsViewController" customModule="CulinaryGuide" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="RestaurantsViewController" id="XGQ-ey-PNz" customClass="RestaurantsViewController" customModule="CulinaryGuide" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="t4l-t0-adp">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -437,8 +437,8 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="zfw-OL-Amf" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="U3U-5e-rzO">
-                        <rect key="frame" x="0.0" y="44" width="375" height="96"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="U3U-5e-rzO">
+                        <rect key="frame" x="0.0" y="44" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
