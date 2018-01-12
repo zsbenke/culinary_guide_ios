@@ -1,0 +1,17 @@
+/* 
+  Localizable.strings
+  CulinaryGuide
+
+  Created by Benke Zsolt on 2018. 01. 12..
+  Copyright © 2018. Benke Zsolt. All rights reserved.
+*/
+
+"all" = "Central Europe";
+"hu" = "Hungary";
+"cz" = "Czech Republic";
+"sk" = "Slovakia";
+"ro" = "Romania";
+"rs" = "Serbia";
+"hr" = "Croatia";
+"si" = "Slovenia";
+"ai" = "Austria";
