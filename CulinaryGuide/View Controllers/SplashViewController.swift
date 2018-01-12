@@ -9,46 +9,31 @@
 import UIKit
 
 class SplashViewController: UIViewController {
-  var loadRestaurantsForCountrySeguePerformed: Bool?
+  @IBOutlet weak var mapImageView: UIImageView!
   var partialModalDelegate = PartialModalTransitionDelegate()
 
   override func viewDidLoad() {
     super.viewDidLoad()
   }
 
-  override func viewWillAppear(_ animated: Bool) {
-    print("\(#function)")
-    self.navigationController?.isNavigationBarHidden = true
-    self.loadRestaurantsForCountrySeguePerformed = false
-    UserDefaults.standard.addObserver(self, forKeyPath: "Country", options: .new, context: nil)
-  }
-
-  override func viewWillDisappear(_ animated: Bool) {
-    print("\(#function)")
-    self.navigationController?.isNavigationBarHidden = false
-    self.loadRestaurantsForCountrySeguePerformed = false
-    UserDefaults.standard.removeObserver(self, forKeyPath: "Country")
-  }
-
   override func didReceiveMemoryWarning() {
     super.didReceiveMemoryWarning()
   }
 
-  // MARK: - Country settings change observer
-
-  override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
-    if keyPath == "Country" {
-      print("changed country")
-      guard let loadRestaurantsForCountrySeguePerformed = loadRestaurantsForCountrySeguePerformed else { return }
-      if !loadRestaurantsForCountrySeguePerformed {
-        performSegue(withIdentifier: "loadRestaurantsForCountry", sender: self)
-        self.loadRestaurantsForCountrySeguePerformed = true
-      }
-    }
+  override func viewWillAppear(_ animated: Bool) {
+    self.navigationController?.isNavigationBarHidden = true
   }
 
-  deinit {
-    UserDefaults.standard.removeObserver(self, forKeyPath: "Country")
+  override func viewWillDisappear(_ animated: Bool) {
+    self.navigationController?.isNavigationBarHidden = false
+  }
+
+  func updateMapImageView() {
+    print("updated map image view")
+  }
+
+  func loadRestaurantsForSelectedCountry() {
+    performSegue(withIdentifier: "loadRestaurantsForCountry", sender: self)
   }
 
   // MARK: - Segues

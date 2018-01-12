@@ -9,15 +9,20 @@
 import UIKit
 
 class CountriesViewController: UITableViewController {
+  var splashViewController: SplashViewController?
   let defaults = UserDefaults.standard
   var selectedIndexPath = IndexPath()
-  var selectedCountry = Localization.Country.Unknown
   var countries: [Localization.Country] {
     return Array(Localization.Country.cases()).filter { $0 != Localization.Country.Unknown }
   }
 
   override func viewDidLoad() {
     super.viewDidLoad()
+
+    self.splashViewController = presentingViewController?.childViewControllers.filter {
+      $0 is SplashViewController
+    }.first as? SplashViewController
+    defaults.set("\(Localization.Country.Unknown)", forKey: "Country")
   }
 
   override func didReceiveMemoryWarning() {
@@ -30,7 +35,8 @@ class CountriesViewController: UITableViewController {
 
   @IBAction func setCountry(_ sender: Any) {
     dismiss(animated: true) {
-      self.defaults.set("\(self.selectedCountry)", forKey: "Country")
+      guard let splashViewController = self.splashViewController else { return }
+      splashViewController.loadRestaurantsForSelectedCountry()
     }
   }
 
@@ -59,13 +65,18 @@ class CountriesViewController: UITableViewController {
   }
 
   override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    guard let splashViewController = self.splashViewController else { return }
+    self.selectedIndexPath = indexPath
+
+    let country = countries[indexPath.row]
+    defaults.set("\(country)", forKey: "Country")
+
     let cell = tableView.cellForRow(at: indexPath)
     cell?.accessoryType = .checkmark
-    self.selectedIndexPath = indexPath
-    self.selectedCountry = countries[indexPath.row]
-
     tableView.deselectRow(at: indexPath, animated: true)
     tableView.reloadData()
+
+    splashViewController.updateMapImageView()
   }
 
   override func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
