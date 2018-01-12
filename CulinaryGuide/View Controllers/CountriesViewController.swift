@@ -9,8 +9,8 @@
 import UIKit
 
 class CountriesViewController: UITableViewController {
-  var splashViewController: SplashViewController?
   let defaults = UserDefaults.standard
+  var splashViewController: SplashViewController?
   var selectedIndexPath = IndexPath()
   var countries: [Localization.Country] {
     return Array(Localization.Country.cases()).filter { $0 != Localization.Country.Unknown }
@@ -25,18 +25,46 @@ class CountriesViewController: UITableViewController {
     defaults.set("\(Localization.Country.Unknown)", forKey: "Country")
   }
 
+  override func viewWillAppear(_ animated: Bool) {
+    animateMapView(upward: true, delay: 0.05)
+  }
+
   override func didReceiveMemoryWarning() {
     super.didReceiveMemoryWarning()
   }
 
   @IBAction func cancel(_ sender: UIBarButtonItem) {
-    dismiss(animated: true, completion: nil)
+    guard let splashViewController = self.splashViewController else { return }
+    splashViewController.country = Localization.Country.Unknown
+    animateMapView(upward: false)
+    self.dismiss(animated: true, completion: nil)
   }
 
   @IBAction func setCountry(_ sender: Any) {
+    animateMapView(upward: false)
     dismiss(animated: true) {
       guard let splashViewController = self.splashViewController else { return }
       splashViewController.loadRestaurantsForSelectedCountry()
+    }
+  }
+
+  private func animateMapView(upward: Bool, delay: TimeInterval = 0.0, completion: (() -> Void)? = nil) {
+    guard let splashViewController = self.splashViewController else { return }
+
+    if upward {
+      UIView.animate(withDuration: 0.3, delay: delay, options: .curveEaseOut, animations: {
+        splashViewController.mapImageView.transform = CGAffineTransform.init(translationX: 0, y: -130)
+      }, completion: { finished in
+        guard let completion = completion else { return }
+        completion()
+      })
+    } else {
+      UIView.animate(withDuration: 0.3, delay: delay, options: .curveEaseOut, animations: {
+        splashViewController.mapImageView.transform = CGAffineTransform.identity
+      }, completion: { finished in
+        guard let completion = completion else { return }
+        completion()
+      })
     }
   }
 
@@ -70,13 +98,12 @@ class CountriesViewController: UITableViewController {
 
     let country = countries[indexPath.row]
     defaults.set("\(country)", forKey: "Country")
+    splashViewController.country = country
 
     let cell = tableView.cellForRow(at: indexPath)
     cell?.accessoryType = .checkmark
     tableView.deselectRow(at: indexPath, animated: true)
     tableView.reloadData()
-
-    splashViewController.updateMapImageView()
   }
 
   override func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {

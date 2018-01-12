@@ -9,6 +9,11 @@
 import UIKit
 
 class SplashViewController: UIViewController {
+  var country = Localization.currentCountry {
+    didSet {
+      updateMapImageView()
+    }
+  }
   @IBOutlet weak var mapImageView: UIImageView!
   var partialModalDelegate = PartialModalTransitionDelegate()
 
@@ -22,6 +27,7 @@ class SplashViewController: UIViewController {
 
   override func viewWillAppear(_ animated: Bool) {
     self.navigationController?.isNavigationBarHidden = true
+    self.country = Localization.Country.Unknown
   }
 
   override func viewWillDisappear(_ animated: Bool) {
@@ -29,7 +35,29 @@ class SplashViewController: UIViewController {
   }
 
   func updateMapImageView() {
-    print("updated map image view")
+    var mapImage: UIImage?
+    switch country {
+    case Localization.Country.CentralEurope:
+      mapImage = #imageLiteral(resourceName: "Splash View Background Central Europe")
+    case Localization.Country.Hungary:
+      mapImage = #imageLiteral(resourceName: "Splash View Background Hungary")
+    case Localization.Country.CzechRepublic:
+      mapImage = #imageLiteral(resourceName: "Splash View Background Czech Republic")
+    case Localization.Country.Slovakia:
+      mapImage = #imageLiteral(resourceName: "Splash View Background Slovakia")
+    case Localization.Country.Romania:
+      mapImage = #imageLiteral(resourceName: "Splash View Background Romania")
+    case Localization.Country.Serbia:
+      mapImage = #imageLiteral(resourceName: "Splash View Background Serbia")
+    case Localization.Country.Croatia:
+      mapImage = #imageLiteral(resourceName: "Splash View Background Croatia")
+    case Localization.Country.Slovenia:
+      mapImage = #imageLiteral(resourceName: "Splash View Background Slovenia")
+    default:
+      mapImage = #imageLiteral(resourceName: "Splash View Background")
+    }
+
+    mapImageView.image = mapImage
   }
 
   func loadRestaurantsForSelectedCountry() {
@@ -42,6 +70,7 @@ class SplashViewController: UIViewController {
     if segue.identifier == "chooseCountry" {
       let destinationController = segue.destination
       partialModalDelegate.modalHeight = 250
+
       destinationController.transitioningDelegate = partialModalDelegate
       destinationController.modalPresentationStyle = .custom
     }

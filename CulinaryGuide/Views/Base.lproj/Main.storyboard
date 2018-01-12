@@ -486,13 +486,21 @@
                                     <segue destination="XGQ-ey-PNz" kind="show" identifier="loadRestaurantsForCountry" id="rvF-hz-qmt"/>
                                 </connections>
                             </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="GM Logo" translatesAutoresizingMaskIntoConstraints="NO" id="LOi-4I-0mt">
+                                <rect key="frame" x="67" y="124" width="280" height="73"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="280" id="Fgt-yO-zmD"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" red="0.91194754840000003" green="0.72095465660000002" blue="0.24662077430000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <constraints>
                             <constraint firstItem="y8g-j8-bJT" firstAttribute="leading" secondItem="ck9-yY-my2" secondAttribute="leading" id="3qk-MF-0Ty"/>
                             <constraint firstAttribute="bottom" secondItem="y8g-j8-bJT" secondAttribute="bottom" id="Dl2-jE-9SX"/>
                             <constraint firstAttribute="trailing" secondItem="y8g-j8-bJT" secondAttribute="trailing" id="EMS-EQ-vkt"/>
                             <constraint firstItem="hHC-qC-JBN" firstAttribute="bottom" secondItem="m3p-oB-A1c" secondAttribute="bottom" constant="70" id="HGP-IN-pgZ"/>
+                            <constraint firstItem="LOi-4I-0mt" firstAttribute="top" secondItem="hHC-qC-JBN" secondAttribute="top" constant="60" id="Ir9-L6-Esv"/>
+                            <constraint firstItem="LOi-4I-0mt" firstAttribute="centerX" secondItem="ck9-yY-my2" secondAttribute="centerX" id="MXa-be-eyu"/>
                             <constraint firstItem="m3p-oB-A1c" firstAttribute="centerX" secondItem="ck9-yY-my2" secondAttribute="centerX" id="S8o-gl-fne"/>
                             <constraint firstItem="y8g-j8-bJT" firstAttribute="top" secondItem="ck9-yY-my2" secondAttribute="top" id="VJu-ey-3k1"/>
                             <constraint firstItem="m3p-oB-A1c" firstAttribute="top" secondItem="fTo-bK-QMG" secondAttribute="bottom" constant="10" id="jNl-hI-SeE"/>
@@ -507,7 +515,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W2Y-Se-37J" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-658.39999999999998" y="88.605697151424295"/>
+            <point key="canvasLocation" x="-659.4202898550725" y="88.043478260869577"/>
         </scene>
         <!--Restaurants Map View Controller-->
         <scene sceneID="ilV-MA-Eof">
@@ -558,6 +566,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="GM Logo" width="280" height="73"/>
         <image name="Splash View Background" width="414" height="812"/>
         <image name="Toolbar Filter Icon" width="24" height="24"/>
     </resources>

@@ -19,7 +19,6 @@ struct Localization {
     case Serbia = "rs"
     case Croatia = "hr"
     case Slovenia = "si"
-    case Austria = "ai"
 
     var description: String {
       return rawValue
