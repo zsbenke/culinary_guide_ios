@@ -27,6 +27,21 @@
 		98D869512007FA7300EC909F /* EnumCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98D869502007FA7300EC909F /* EnumCollection.swift */; };
 		98D869522007FA7300EC909F /* EnumCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98D869502007FA7300EC909F /* EnumCollection.swift */; };
 		98D869532007FA7300EC909F /* EnumCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98D869502007FA7300EC909F /* EnumCollection.swift */; };
+		98D869622008FBE300EC909F /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98D869612008FBE300EC909F /* SplashViewController.swift */; };
+		98D869632008FBE300EC909F /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98D869612008FBE300EC909F /* SplashViewController.swift */; };
+		98D869642008FBE300EC909F /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98D869612008FBE300EC909F /* SplashViewController.swift */; };
+		98D869692008FC4300EC909F /* PartialModalPresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98D869662008FC4200EC909F /* PartialModalPresentationController.swift */; };
+		98D8696A2008FC4300EC909F /* PartialModalPresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98D869662008FC4200EC909F /* PartialModalPresentationController.swift */; };
+		98D8696B2008FC4300EC909F /* PartialModalPresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98D869662008FC4200EC909F /* PartialModalPresentationController.swift */; };
+		98D8696C2008FC4300EC909F /* PartialModalPresentationAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98D869672008FC4300EC909F /* PartialModalPresentationAnimator.swift */; };
+		98D8696D2008FC4300EC909F /* PartialModalPresentationAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98D869672008FC4300EC909F /* PartialModalPresentationAnimator.swift */; };
+		98D8696E2008FC4300EC909F /* PartialModalPresentationAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98D869672008FC4300EC909F /* PartialModalPresentationAnimator.swift */; };
+		98D8696F2008FC4300EC909F /* PartialModalTransitionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98D869682008FC4300EC909F /* PartialModalTransitionDelegate.swift */; };
+		98D869702008FC4300EC909F /* PartialModalTransitionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98D869682008FC4300EC909F /* PartialModalTransitionDelegate.swift */; };
+		98D869712008FC4300EC909F /* PartialModalTransitionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98D869682008FC4300EC909F /* PartialModalTransitionDelegate.swift */; };
+		98D86973200901D800EC909F /* PartialModalDismissAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98D86972200901D800EC909F /* PartialModalDismissAnimator.swift */; };
+		98D86974200901D800EC909F /* PartialModalDismissAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98D86972200901D800EC909F /* PartialModalDismissAnimator.swift */; };
+		98D86975200901D800EC909F /* PartialModalDismissAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98D86972200901D800EC909F /* PartialModalDismissAnimator.swift */; };
 		98F626162002487600996A91 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98F626152002487600996A91 /* AppDelegate.swift */; };
 		98F626182002487600996A91 /* RestaurantsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98F626172002487600996A91 /* RestaurantsViewController.swift */; };
 		98F6261D2002487700996A91 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 98F6261B2002487700996A91 /* Main.storyboard */; };
@@ -106,6 +121,11 @@
 		98D869452007C8B600EC909F /* de-DE */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "de-DE"; path = "de-DE.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
 		98D8694C2007F9C900EC909F /* CountriesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountriesViewController.swift; sourceTree = "<group>"; };
 		98D869502007FA7300EC909F /* EnumCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnumCollection.swift; sourceTree = "<group>"; };
+		98D869612008FBE300EC909F /* SplashViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
+		98D869662008FC4200EC909F /* PartialModalPresentationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PartialModalPresentationController.swift; sourceTree = "<group>"; };
+		98D869672008FC4300EC909F /* PartialModalPresentationAnimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PartialModalPresentationAnimator.swift; sourceTree = "<group>"; };
+		98D869682008FC4300EC909F /* PartialModalTransitionDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PartialModalTransitionDelegate.swift; sourceTree = "<group>"; };
+		98D86972200901D800EC909F /* PartialModalDismissAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartialModalDismissAnimator.swift; sourceTree = "<group>"; };
 		98F626122002487600996A91 /* CulinaryGuide.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CulinaryGuide.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		98F626152002487600996A91 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		98F626172002487600996A91 /* RestaurantsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantsViewController.swift; sourceTree = "<group>"; };
@@ -156,6 +176,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		98D869652008FC3100EC909F /* Partial Modal Controller */ = {
+			isa = PBXGroup;
+			children = (
+				98D869682008FC4300EC909F /* PartialModalTransitionDelegate.swift */,
+				98D869662008FC4200EC909F /* PartialModalPresentationController.swift */,
+				98D869672008FC4300EC909F /* PartialModalPresentationAnimator.swift */,
+				98D86972200901D800EC909F /* PartialModalDismissAnimator.swift */,
+			);
+			path = "Partial Modal Controller";
+			sourceTree = "<group>";
+		};
 		98F626092002487600996A91 = {
 			isa = PBXGroup;
 			children = (
@@ -221,12 +252,13 @@
 		98F6264820024A3700996A91 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				98D869612008FBE300EC909F /* SplashViewController.swift */,
+				98D8694C2007F9C900EC909F /* CountriesViewController.swift */,
 				98F626172002487600996A91 /* RestaurantsViewController.swift */,
 				98135E322005477500AB64C4 /* RestaurantsTableViewController.swift */,
 				98F6267220026CED00996A91 /* RestaurantDetailViewController.swift */,
 				98C8DFB92003CE1D00BE568C /* RestaurantFilterViewController.swift */,
 				98135E362005592500AB64C4 /* RestaurantsMapViewController.swift */,
-				98D8694C2007F9C900EC909F /* CountriesViewController.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -234,6 +266,7 @@
 		98F6265A20024C5300996A91 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				98D869652008FC3100EC909F /* Partial Modal Controller */,
 				98F6265B20024C7100996A91 /* AsyncOperation.swift */,
 				98F6266320024CB600996A91 /* API */,
 				98D869322007C62B00EC909F /* Localization.swift */,
@@ -410,19 +443,24 @@
 				98F6266B20024EC600996A91 /* PointOfInterest.swift in Sources */,
 				98F6265720024C2000996A91 /* RestaurantRouter.swift in Sources */,
 				98F626182002487600996A91 /* RestaurantsViewController.swift in Sources */,
+				98D869692008FC4300EC909F /* PartialModalPresentationController.swift in Sources */,
 				98F6266020024CA900996A91 /* APIResource.swift in Sources */,
 				98F6264B20024BA500996A91 /* API.swift in Sources */,
 				98135E332005477500AB64C4 /* RestaurantsTableViewController.swift in Sources */,
+				98D8696F2008FC4300EC909F /* PartialModalTransitionDelegate.swift in Sources */,
+				98D86973200901D800EC909F /* PartialModalDismissAnimator.swift in Sources */,
 				98D869512007FA7300EC909F /* EnumCollection.swift in Sources */,
 				98D869332007C62B00EC909F /* Localization.swift in Sources */,
 				98135E372005592500AB64C4 /* RestaurantsMapViewController.swift in Sources */,
 				98F6267320026CED00996A91 /* RestaurantDetailViewController.swift in Sources */,
 				98F6266720024D3800996A91 /* APIRequestOperation.swift in Sources */,
 				98F6266F20024ED800996A91 /* Restaurant.swift in Sources */,
+				98D869622008FBE300EC909F /* SplashViewController.swift in Sources */,
 				98F6265320024BFB00996A91 /* Router.swift in Sources */,
 				98C8DFBA2003CE1D00BE568C /* RestaurantFilterViewController.swift in Sources */,
 				98F6265C20024C7100996A91 /* AsyncOperation.swift in Sources */,
 				98F626162002487600996A91 /* AppDelegate.swift in Sources */,
+				98D8696C2008FC4300EC909F /* PartialModalPresentationAnimator.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -435,19 +473,24 @@
 				98C8DFBB2003CE1D00BE568C /* RestaurantFilterViewController.swift in Sources */,
 				98F6266820024D3800996A91 /* APIRequestOperation.swift in Sources */,
 				98F6267420026CED00996A91 /* RestaurantDetailViewController.swift in Sources */,
+				98D8696A2008FC4300EC909F /* PartialModalPresentationController.swift in Sources */,
 				98F6265420024BFB00996A91 /* Router.swift in Sources */,
 				98F6264C20024BA500996A91 /* API.swift in Sources */,
 				98135E342005477500AB64C4 /* RestaurantsTableViewController.swift in Sources */,
+				98D869702008FC4300EC909F /* PartialModalTransitionDelegate.swift in Sources */,
+				98D86974200901D800EC909F /* PartialModalDismissAnimator.swift in Sources */,
 				98D869522007FA7300EC909F /* EnumCollection.swift in Sources */,
 				98D869342007C62B00EC909F /* Localization.swift in Sources */,
 				98135E382005592500AB64C4 /* RestaurantsMapViewController.swift in Sources */,
 				98F6265820024C2000996A91 /* RestaurantRouter.swift in Sources */,
 				98F6262D2002487700996A91 /* CulinaryGuideTests.swift in Sources */,
 				983A7FF02003E66C00512ED5 /* RestaurantsViewController.swift in Sources */,
+				98D869632008FBE300EC909F /* SplashViewController.swift in Sources */,
 				98F6266120024CA900996A91 /* APIResource.swift in Sources */,
 				98F6265D20024C7100996A91 /* AsyncOperation.swift in Sources */,
 				98F6266C20024EC600996A91 /* PointOfInterest.swift in Sources */,
 				98F6265020024BE400996A91 /* URLQueryToken.swift in Sources */,
+				98D8696D2008FC4300EC909F /* PartialModalPresentationAnimator.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -460,19 +503,24 @@
 				98C8DFBC2003CE1D00BE568C /* RestaurantFilterViewController.swift in Sources */,
 				98F6266920024D3800996A91 /* APIRequestOperation.swift in Sources */,
 				98F6267520026CED00996A91 /* RestaurantDetailViewController.swift in Sources */,
+				98D8696B2008FC4300EC909F /* PartialModalPresentationController.swift in Sources */,
 				98F6265520024BFB00996A91 /* Router.swift in Sources */,
 				98F6264D20024BA500996A91 /* API.swift in Sources */,
 				98135E352005477500AB64C4 /* RestaurantsTableViewController.swift in Sources */,
+				98D869712008FC4300EC909F /* PartialModalTransitionDelegate.swift in Sources */,
+				98D86975200901D800EC909F /* PartialModalDismissAnimator.swift in Sources */,
 				98D869532007FA7300EC909F /* EnumCollection.swift in Sources */,
 				98D869352007C62B00EC909F /* Localization.swift in Sources */,
 				98135E392005592500AB64C4 /* RestaurantsMapViewController.swift in Sources */,
 				98F6265920024C2000996A91 /* RestaurantRouter.swift in Sources */,
 				98F626382002487700996A91 /* CulinaryGuideUITests.swift in Sources */,
 				983A7FF12003E66C00512ED5 /* RestaurantsViewController.swift in Sources */,
+				98D869642008FBE300EC909F /* SplashViewController.swift in Sources */,
 				98F6266220024CA900996A91 /* APIResource.swift in Sources */,
 				98F6265E20024C7100996A91 /* AsyncOperation.swift in Sources */,
 				98F6266D20024EC600996A91 /* PointOfInterest.swift in Sources */,
 				98F6265120024BE400996A91 /* URLQueryToken.swift in Sources */,
+				98D8696E2008FC4300EC909F /* PartialModalPresentationAnimator.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

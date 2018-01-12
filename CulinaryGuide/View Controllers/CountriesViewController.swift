@@ -10,27 +10,27 @@ import UIKit
 
 class CountriesViewController: UITableViewController {
   let defaults = UserDefaults.standard
+  var selectedIndexPath = IndexPath()
+  var selectedCountry = Localization.Country.Unknown
   var countries: [Localization.Country] {
     return Array(Localization.Country.cases()).filter { $0 != Localization.Country.Unknown }
   }
 
   override func viewDidLoad() {
     super.viewDidLoad()
-    defaults.set("\(Localization.Country.Unknown)", forKey: "Country")
   }
 
   override func didReceiveMemoryWarning() {
     super.didReceiveMemoryWarning()
   }
 
-  // MARK: - Segues
+  @IBAction func cancel(_ sender: UIBarButtonItem) {
+    dismiss(animated: true, completion: nil)
+  }
 
-  override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-    if segue.identifier == "chooseCountry" {
-      if let indexPath = tableView.indexPathForSelectedRow {
-        let country = countries[indexPath.row]
-        defaults.set("\(country)", forKey: "Country")
-      }
+  @IBAction func setCountry(_ sender: Any) {
+    dismiss(animated: true) {
+      self.defaults.set("\(self.selectedCountry)", forKey: "Country")
     }
   }
 
@@ -41,7 +41,6 @@ class CountriesViewController: UITableViewController {
   }
 
   override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    print(countries)
     return countries.count
   }
 
@@ -50,6 +49,26 @@ class CountriesViewController: UITableViewController {
     let country = countries[indexPath.row]
     cell.textLabel!.text = "\(country)"
 
+    if indexPath == selectedIndexPath {
+      cell.accessoryType = .checkmark
+    } else {
+      cell.accessoryType = .none
+    }
+
     return cell
+  }
+
+  override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    let cell = tableView.cellForRow(at: indexPath)
+    cell?.accessoryType = .checkmark
+    self.selectedIndexPath = indexPath
+    self.selectedCountry = countries[indexPath.row]
+
+    tableView.deselectRow(at: indexPath, animated: true)
+    tableView.reloadData()
+  }
+
+  override func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
+    tableView.cellForRow(at: indexPath)?.accessoryType = .none
   }
 }
