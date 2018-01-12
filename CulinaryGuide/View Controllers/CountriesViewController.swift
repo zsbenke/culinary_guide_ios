@@ -9,7 +9,6 @@
 import UIKit
 
 class CountriesViewController: UITableViewController {
-  let defaults = UserDefaults.standard
   var splashViewController: SplashViewController?
   var selectedIndexPath = IndexPath()
   var countries: [Localization.Country] {
@@ -22,7 +21,7 @@ class CountriesViewController: UITableViewController {
     self.splashViewController = presentingViewController?.childViewControllers.filter {
       $0 is SplashViewController
     }.first as? SplashViewController
-    defaults.set("\(Localization.Country.Unknown)", forKey: "Country")
+    UserDefaults.standard.set("\(Localization.Country.Unknown)", forKey: "\(UserDefaultKey.country)")
   }
 
   override func viewWillAppear(_ animated: Bool) {
@@ -36,6 +35,7 @@ class CountriesViewController: UITableViewController {
   @IBAction func cancel(_ sender: UIBarButtonItem) {
     guard let splashViewController = self.splashViewController else { return }
     splashViewController.country = Localization.Country.Unknown
+    UserDefaults.standard.set("\(Localization.Country.Unknown)", forKey: "\(UserDefaultKey.country)")
     animateMapView(upward: false)
     self.dismiss(animated: true, completion: nil)
   }
@@ -53,7 +53,7 @@ class CountriesViewController: UITableViewController {
 
     if upward {
       UIView.animate(withDuration: 0.3, delay: delay, options: .curveEaseOut, animations: {
-        splashViewController.mapImageView.transform = CGAffineTransform.init(translationX: 0, y: -130)
+        splashViewController.mapImageView.transform = CGAffineTransform.init(translationX: 0, y: -110)
       }, completion: { finished in
         guard let completion = completion else { return }
         completion()
@@ -97,13 +97,15 @@ class CountriesViewController: UITableViewController {
     self.selectedIndexPath = indexPath
 
     let country = countries[indexPath.row]
-    defaults.set("\(country)", forKey: "Country")
+    UserDefaults.standard.set("\(country)", forKey: "\(UserDefaultKey.country)")
     splashViewController.country = country
 
     let cell = tableView.cellForRow(at: indexPath)
     cell?.accessoryType = .checkmark
     tableView.deselectRow(at: indexPath, animated: true)
     tableView.reloadData()
+
+    self.navigationItem.rightBarButtonItem?.isEnabled = true
   }
 
   override func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {

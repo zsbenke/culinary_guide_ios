@@ -14,11 +14,14 @@ class SplashViewController: UIViewController {
       updateMapImageView()
     }
   }
+  @IBOutlet weak var chooseCountryButton: UIButton!
   @IBOutlet weak var mapImageView: UIImageView!
   var partialModalDelegate = PartialModalTransitionDelegate()
 
   override func viewDidLoad() {
     super.viewDidLoad()
+
+    view.backgroundColor = UIColor.BrandColor.secondary
   }
 
   override func didReceiveMemoryWarning() {

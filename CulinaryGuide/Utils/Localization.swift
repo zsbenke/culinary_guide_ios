@@ -47,8 +47,7 @@ struct Localization {
   }
 
   static var currentCountry: Country {
-    let defaults = UserDefaults.standard
-    guard let country = Country(rawValue: defaults.string(forKey: "Country") ?? "") else { return Country.Unknown }
+    guard let country = Country(rawValue: UserDefaults.standard.string(forKey: "\(UserDefaultKey.country)") ?? "") else { return Country.Unknown }
     return country
   }
 
