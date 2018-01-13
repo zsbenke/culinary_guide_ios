@@ -21,7 +21,7 @@ class RestaurantsViewController: UIViewController {
   var queryTokens = Set<URLQueryToken>() {
     didSet {
       var filterTokens = queryTokens
-      filterTokens.renameSearchTokens()
+      filterTokens.removeSearchTokens()
 
       if filterTokens.isEmpty {
         filterBarButton.image = #imageLiteral(resourceName: "Toolbar Filter Icon")
@@ -36,15 +36,16 @@ class RestaurantsViewController: UIViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
 
+    // Setup searchBar
     searchController.delegate = self
     searchController.searchBar.delegate = self
-    self.navigationItem.searchController = searchController
-
+    navigationItem.searchController = searchController
     navigationItem.hidesSearchBarWhenScrolling = false
-
-    loadRestaurants {
-      print("Loaded \(self.restaurants.count) restaurants")
+    if let searchToken = queryTokens.searchToken() {
+      searchController.searchBar.text = searchToken.value
     }
+
+    loadRestaurants()
   }
 
   override func didReceiveMemoryWarning() {
@@ -63,30 +64,40 @@ class RestaurantsViewController: UIViewController {
   }
 
   func loadRestaurants(completionHandler: @escaping () -> Void = { }) {
-    let restaurantsTableViewController = self.childViewControllers[0] as! RestaurantsTableViewController
-    let restaurantsMapViewController = self.childViewControllers[1] as! RestaurantsMapViewController
+    let restaurantsTableViewController = childViewControllers.filter {
+      $0 is RestaurantsTableViewController
+      }.first as? RestaurantsTableViewController
+    let restaurantsMapViewController = childViewControllers.filter {
+      $0 is RestaurantsMapViewController
+    }.first as? RestaurantsMapViewController
+
+    let prepareRestaurantsToChildViewControllers: () -> Void = {
+      if let restaurantsTableViewController = restaurantsTableViewController {
+        restaurantsTableViewController.restaurants = self.restaurants
+      }
+      if let restaurantsMapViewController = restaurantsMapViewController {
+        restaurantsMapViewController.restaurants = self.restaurants
+      }
+    }
 
     if queryTokens.isEmpty {
       if initialRestaurants.isEmpty {
         Restaurant.index() { restaurants in
           self.initialRestaurants = restaurants
           self.restaurants = self.initialRestaurants
-          restaurantsTableViewController.restaurants = self.restaurants
-          restaurantsMapViewController.restaurants = self.restaurants
+          prepareRestaurantsToChildViewControllers()
           completionHandler()
         }
       } else {
         self.restaurants = self.initialRestaurants
-        restaurantsTableViewController.restaurants = self.restaurants
-        restaurantsMapViewController.restaurants = self.restaurants
+        prepareRestaurantsToChildViewControllers()
         completionHandler()
       }
     } else {
       searchController.dismiss(animated: true)
       Restaurant.index(search: Array(queryTokens)) { restaurants in
         self.restaurants = restaurants
-        restaurantsTableViewController.restaurants = self.restaurants
-        restaurantsMapViewController.restaurants = self.restaurants
+        prepareRestaurantsToChildViewControllers()
         completionHandler()
       }
     }
@@ -106,7 +117,7 @@ class RestaurantsViewController: UIViewController {
 
 extension RestaurantsViewController: UISearchControllerDelegate {
   func didDismissSearchController(_ searchController: UISearchController) {
-    self.queryTokens.renameSearchTokens()
+    self.queryTokens.removeSearchTokens()
   }
 }
 
@@ -114,7 +125,7 @@ extension RestaurantsViewController: UISearchBarDelegate {
   func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
     guard let searchText = searchBar.text else { return }
     var newTokens = queryTokens
-    newTokens.renameSearchTokens()
+    newTokens.removeSearchTokens()
     newTokens.insert(URLQueryToken.init(column: "search", value: searchText))
     self.queryTokens = newTokens
   }

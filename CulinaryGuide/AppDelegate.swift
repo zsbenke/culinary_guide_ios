@@ -18,12 +18,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     // Override point for customization after application launch.
     self.window?.tintColor = UIColor.BrandColor.primary
 
-    if Localization.currentCountry != Localization.Country.Unknown {
-      let storyboard = UIStoryboard(name: "Main", bundle: nil)
-      let restaurantsViewController = storyboard.instantiateViewController(withIdentifier: "RestaurantsViewController") as! RestaurantsViewController
-      let rootViewController = self.window!.rootViewController as! UINavigationController
-      rootViewController.pushViewController(restaurantsViewController, animated: false)
-    }
+//    if Localization.currentCountry != Localization.Country.Unknown {
+//      let storyboard = UIStoryboard(name: "Main", bundle: nil)
+//      let restaurantsViewController = storyboard.instantiateViewController(withIdentifier: "RestaurantsViewController") as! RestaurantsViewController
+//      let rootViewController = self.window!.rootViewController as! UINavigationController
+//      rootViewController.pushViewController(restaurantsViewController, animated: false)
+//    }
 
     return true
   }

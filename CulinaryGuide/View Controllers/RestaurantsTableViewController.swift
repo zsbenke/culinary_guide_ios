@@ -48,6 +48,10 @@ class RestaurantsTableViewController: UITableViewController {
       controller.queryTokens = restaurantsViewController.queryTokens
     }
   }
+
+  override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    performSegue(withIdentifier: "showRestaurant", sender: self)
+  }
   
   // MARK: - Table View
   
@@ -58,13 +62,25 @@ class RestaurantsTableViewController: UITableViewController {
   override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     return restaurants.count
   }
-  
+
+
+  override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+    return 65.0
+  }
+
   override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-    let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
-    
+    let tableCellNib = UINib(nibName: "RatingWithTitleTableViewCell", bundle: nil)
+    tableView.register(tableCellNib, forCellReuseIdentifier: "Cell")
+    let cell: RatingWithTitleTableViewCell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! RatingWithTitleTableViewCell
+
     if let restaurant = restaurants[indexPath.row] {
-      cell.textLabel!.text = restaurant.title
+      cell.titleLabel.text = restaurant.title
+      cell.detailLabel.text = restaurant.address
+      if let rating = restaurant.rating {
+        cell.ratingImageView.image = cell.image(forRating: rating)
+      }
     }
+
     return cell
   }
 }

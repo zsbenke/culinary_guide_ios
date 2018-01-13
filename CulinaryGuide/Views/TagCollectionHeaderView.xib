@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionReusableView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="8Yh-mc-jZm" customClass="TagCollectionHeaderView" customModule="CulinaryGuide" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="50"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pQp-KR-gJV">
+                    <rect key="frame" x="20" y="14" width="335" height="24"/>
+                    <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <constraints>
+                <constraint firstItem="pQp-KR-gJV" firstAttribute="leading" secondItem="fOS-zJ-cD4" secondAttribute="leading" constant="20" id="2zt-5F-dBb"/>
+                <constraint firstItem="fOS-zJ-cD4" firstAttribute="trailing" secondItem="pQp-KR-gJV" secondAttribute="trailing" constant="20" id="cnu-Kn-HZz"/>
+                <constraint firstItem="pQp-KR-gJV" firstAttribute="centerY" secondItem="8Yh-mc-jZm" secondAttribute="centerY" id="joY-LG-2tT"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="fOS-zJ-cD4"/>
+            <connections>
+                <outlet property="titleLabel" destination="pQp-KR-gJV" id="crO-d3-p9g"/>
+            </connections>
+            <point key="canvasLocation" x="-27" y="45"/>
+        </collectionReusableView>
+    </objects>
+</document>
