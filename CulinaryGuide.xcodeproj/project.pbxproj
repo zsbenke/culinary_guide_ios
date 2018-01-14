@@ -144,8 +144,6 @@
 		9847A711200BA5EC00A17247 /* UIBezierPath Tap.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = "UIBezierPath Tap.playground"; sourceTree = "<group>"; };
 		9847A71A200BA85700A17247 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		9847A71B200BA85700A17247 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		9847A71E200BB2BC00A17247 /* hu */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = hu; path = hu.lproj/Main.strings; sourceTree = "<group>"; };
-		9847A71F200BB2BC00A17247 /* hu */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = hu; path = hu.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		9892E80E2009530A007B7033 /* UIColor+BrandColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+BrandColor.swift"; sourceTree = "<group>"; };
 		9892E81220095728007B7033 /* UserDefault.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefault.swift; sourceTree = "<group>"; };
 		9892E81A200A3BC1007B7033 /* RatingWithTitleTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatingWithTitleTableViewCell.swift; sourceTree = "<group>"; };
@@ -624,7 +622,6 @@
 			isa = PBXVariantGroup;
 			children = (
 				9847A71A200BA85700A17247 /* Base */,
-				9847A71E200BB2BC00A17247 /* hu */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -633,7 +630,6 @@
 			isa = PBXVariantGroup;
 			children = (
 				9847A71B200BA85700A17247 /* Base */,
-				9847A71F200BB2BC00A17247 /* hu */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";

@@ -91,7 +91,7 @@
                                 <action selector="cancel:" destination="4g2-h9-hOo" id="brm-gA-VB2"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" enabled="NO" title="KIválasztás" style="done" id="gTz-9J-jrS">
+                        <barButtonItem key="rightBarButtonItem" enabled="NO" title="Kiválasztás" style="done" id="gTz-9J-jrS">
                             <attributedString key="userComments">
                                 <fragment content="Az Országválasztóban lévő országlista országválasztó gombja a címsorban">
                                     <attributes>

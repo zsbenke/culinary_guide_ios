@@ -41,8 +41,10 @@ struct Localization {
         return NSLocalizedString("Románia", comment: "országválasztó és toolbar cím")
       case .Serbia:
         return NSLocalizedString("Szerbia", comment: "országválasztó és toolbar cím")
-      default:
-        return unknownCountry
+      case .Croatia:
+        return NSLocalizedString("Horvátország", comment: "országválasztó és toolbar cím")
+      case .Slovenia:
+        return NSLocalizedString("Szlovénia", comment: "országválasztó és toolbar cím")
       }
     }
   }

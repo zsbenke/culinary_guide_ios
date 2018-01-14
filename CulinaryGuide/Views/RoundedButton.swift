@@ -13,8 +13,8 @@ class RoundedButton: UIButton {
     super.awakeFromNib()
 
     self.backgroundColor = UIColor.red
-    self.contentEdgeInsets = UIEdgeInsets(top: 15.0, left: 15.0, bottom: 15.0, right: 15.0)
-    self.layer.cornerRadius = 3
+    self.contentEdgeInsets = UIEdgeInsets(top: 15.0, left: 25.0, bottom: 15.0, right: 25.0)
+    self.layer.cornerRadius = 5
     self.layer.masksToBounds = true
     setTitleColor(UIColor.BrandColor.light, for: .normal)
     setTitleColor(UIColor.BrandColor.lightHighlighted, for: .highlighted)
