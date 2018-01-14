@@ -81,7 +81,7 @@ class CountriesViewController: UITableViewController {
   override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     let cell = tableView.dequeueReusableCell(withIdentifier: "CountryCell", for: indexPath)
     let country = countries[indexPath.row]
-    cell.textLabel!.text = NSLocalizedString("\(country)", comment: "")
+    cell.textLabel!.text = country.name
 
     if indexPath == selectedIndexPath {
       cell.accessoryType = .checkmark

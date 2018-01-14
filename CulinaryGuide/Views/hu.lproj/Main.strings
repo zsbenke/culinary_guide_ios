@@ -1,21 +1,24 @@
 
-/* Class = "UILabel"; text = "Open"; ObjectID = "5wZ-ZC-ONA"; */
-"5wZ-ZC-ONA.text" = "Open";
+/* Class = "UILabel"; text = "Nyitva éppen"; ObjectID = "5wZ-ZC-ONA"; */
+"5wZ-ZC-ONA.text" = "Nyitva éppen";
 
 /* Class = "UILabel"; text = " "; ObjectID = "5xz-IT-Yj4"; */
 "5xz-IT-Yj4.text" = " ";
 
-/* Class = "UINavigationItem"; title = "Filter"; ObjectID = "FTA-WL-ZzQ"; */
-"FTA-WL-ZzQ.title" = "Filter";
+/* Class = "UINavigationItem"; title = "Szűrés"; ObjectID = "FTA-WL-ZzQ"; */
+"FTA-WL-ZzQ.title" = "Szűrés";
+
+/* Class = "UINavigationItem"; title = "Országok"; ObjectID = "IKA-2Q-a6o"; */
+"IKA-2Q-a6o.title" = "Országok";
 
 /* Class = "UIBarButtonItem"; title = "Filter"; ObjectID = "JnI-41-CWe"; */
 "JnI-41-CWe.title" = "Filter";
 
-/* Class = "UISegmentedControl"; QBV-aq-E1O.segmentTitles[0] = "List"; ObjectID = "QBV-aq-E1O"; */
-"QBV-aq-E1O.segmentTitles[0]" = "List";
+/* Class = "UISegmentedControl"; QBV-aq-E1O.segmentTitles[0] = "Lista"; ObjectID = "QBV-aq-E1O"; */
+"QBV-aq-E1O.segmentTitles[0]" = "Lista";
 
-/* Class = "UISegmentedControl"; QBV-aq-E1O.segmentTitles[1] = "Map"; ObjectID = "QBV-aq-E1O"; */
-"QBV-aq-E1O.segmentTitles[1]" = "Map";
+/* Class = "UISegmentedControl"; QBV-aq-E1O.segmentTitles[1] = "Térkép"; ObjectID = "QBV-aq-E1O"; */
+"QBV-aq-E1O.segmentTitles[1]" = "Térkép";
 
 /* Class = "UISegmentedControl"; XmC-jJ-Z21.segmentTitles[0] = "First"; ObjectID = "XmC-jJ-Z21"; */
 "XmC-jJ-Z21.segmentTitles[0]" = "First";
@@ -26,29 +29,44 @@
 /* Class = "UIBarButtonItem"; title = "Filter"; ObjectID = "auR-vC-9sP"; */
 "auR-vC-9sP.title" = "Filter";
 
-/* Class = "UISegmentedControl"; dXY-sA-aac.segmentTitles[0] = "Necessary"; ObjectID = "dXY-sA-aac"; */
-"dXY-sA-aac.segmentTitles[0]" = "Necessary";
+/* Class = "UISegmentedControl"; dXY-sA-aac.segmentTitles[0] = "Szükséges"; ObjectID = "dXY-sA-aac"; */
+"dXY-sA-aac.segmentTitles[0]" = "Szükséges";
 
-/* Class = "UISegmentedControl"; dXY-sA-aac.segmentTitles[1] = "Not Necessary"; ObjectID = "dXY-sA-aac"; */
-"dXY-sA-aac.segmentTitles[1]" = "Not Necessary";
+/* Class = "UISegmentedControl"; dXY-sA-aac.segmentTitles[1] = "Nem szükséges"; ObjectID = "dXY-sA-aac"; */
+"dXY-sA-aac.segmentTitles[1]" = "Nem szükséges";
 
-/* Class = "UIBarButtonItem"; title = "Reset"; ObjectID = "eYg-ux-KdM"; */
-"eYg-ux-KdM.title" = "Reset";
+/* Class = "UIBarButtonItem"; title = "Alaphelyzet"; ObjectID = "eYg-ux-KdM"; */
+"eYg-ux-KdM.title" = "Alaphelyzet";
 
-/* Class = "UILabel"; text = "Address"; ObjectID = "gbH-A5-GEN"; */
-"gbH-A5-GEN.text" = "Address";
+/* Class = "UIButton"; normalTitle = "Folytatás"; ObjectID = "fTo-bK-QMG"; */
+"fTo-bK-QMG.normalTitle" = "Folytatás";
+
+/* Class = "UIBarButtonItem"; title = "KIválasztás"; ObjectID = "gTz-9J-jrS"; */
+"gTz-9J-jrS.title" = "KIválasztás";
+
+/* Class = "UILabel"; text = "Cím"; ObjectID = "gbH-A5-GEN"; */
+"gbH-A5-GEN.text" = "Cím";
 
 /* Class = "UILabel"; text = "Wi-Fi"; ObjectID = "jqQ-IV-nMs"; */
 "jqQ-IV-nMs.text" = "Wi-Fi";
 
-/* Class = "UITableViewSection"; headerTitle = "Regions"; ObjectID = "k1d-fp-I3Y"; */
-"k1d-fp-I3Y.headerTitle" = "Regions";
+/* Class = "UITableViewSection"; headerTitle = "Régiók"; ObjectID = "k1d-fp-I3Y"; */
+"k1d-fp-I3Y.headerTitle" = "Régiók";
 
-/* Class = "UILabel"; text = "Parking"; ObjectID = "qHA-cB-tkC"; */
-"qHA-cB-tkC.text" = "Parking";
+/* Class = "UIButton"; normalTitle = "A Gault&Millau-ról"; ObjectID = "lw2-iT-fTC"; */
+"lw2-iT-fTC.normalTitle" = "A Gault&Millau-ról";
 
-/* Class = "UILabel"; text = "Reservation"; ObjectID = "sfJ-3h-705"; */
-"sfJ-3h-705.text" = "Reservation";
+/* Class = "UIButton"; normalTitle = "Belépéshez válasszon egy országot"; ObjectID = "m3p-oB-A1c"; */
+"m3p-oB-A1c.normalTitle" = "Belépéshez válasszon egy országot";
+
+/* Class = "UILabel"; text = "Parkolás"; ObjectID = "qHA-cB-tkC"; */
+"qHA-cB-tkC.text" = "Parkolás";
+
+/* Class = "UILabel"; text = "Asztalfoglalás"; ObjectID = "sfJ-3h-705"; */
+"sfJ-3h-705.text" = "Asztalfoglalás";
+
+/* Class = "UINavigationItem"; title = "Országok"; ObjectID = "tYZ-gq-iYF"; */
+"tYZ-gq-iYF.title" = "Országok";
 
 /* Class = "UISegmentedControl"; w4I-Hd-EDP.segmentTitles[0] = "€"; ObjectID = "w4I-Hd-EDP"; */
 "w4I-Hd-EDP.segmentTitles[0]" = "€";
@@ -65,11 +83,14 @@
 /* Class = "UISegmentedControl"; w4I-Hd-EDP.segmentTitles[4] = "€€€€€"; ObjectID = "w4I-Hd-EDP"; */
 "w4I-Hd-EDP.segmentTitles[4]" = "€€€€€";
 
-/* Class = "UILabel"; text = "Credit Card"; ObjectID = "yPS-JB-DHB"; */
-"yPS-JB-DHB.text" = "Credit Card";
+/* Class = "UILabel"; text = "Bankkártyát elfogad"; ObjectID = "yPS-JB-DHB"; */
+"yPS-JB-DHB.text" = "Bankkártyát elfogad";
 
-/* Class = "UISegmentedControl"; zcf-aZ-ULb.segmentTitles[0] = "Available"; ObjectID = "zcf-aZ-ULb"; */
-"zcf-aZ-ULb.segmentTitles[0]" = "Available";
+/* Class = "UIBarButtonItem"; title = "Back"; ObjectID = "yax-xv-Lbs"; */
+"yax-xv-Lbs.title" = "Back";
 
-/* Class = "UISegmentedControl"; zcf-aZ-ULb.segmentTitles[1] = "Not Available"; ObjectID = "zcf-aZ-ULb"; */
-"zcf-aZ-ULb.segmentTitles[1]" = "Not Available";
+/* Class = "UISegmentedControl"; zcf-aZ-ULb.segmentTitles[0] = "Van"; ObjectID = "zcf-aZ-ULb"; */
+"zcf-aZ-ULb.segmentTitles[0]" = "Van";
+
+/* Class = "UISegmentedControl"; zcf-aZ-ULb.segmentTitles[1] = "Nincs"; ObjectID = "zcf-aZ-ULb"; */
+"zcf-aZ-ULb.segmentTitles[1]" = "Nincs";

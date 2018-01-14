@@ -33,7 +33,7 @@ class HomeCollectionViewController: UICollectionViewController {
     self.sizingCell = ((tagCollectionCellNib.instantiate(withOwner: nil, options: nil) as Array).first as! TagCollectionViewCell)
 
     self.navigationController?.navigationBar.prefersLargeTitles = true
-    let currentCountry = NSLocalizedString("\(Localization.currentCountry)", comment: "")
+    let currentCountry = Localization.currentCountry.name
     self.navigationItem.title = "\(currentCountry)"
 
     searchController.delegate = self

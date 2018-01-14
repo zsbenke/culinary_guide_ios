@@ -23,6 +23,28 @@ struct Localization {
     var description: String {
       return rawValue
     }
+
+    var name: String {
+      let unknownCountry = NSLocalizedString("Ismeretlen", comment: "Ismeretlen ország neve, nem jelenik meg a felhasználói felületben")
+      switch self {
+      case .Unknown:
+        return unknownCountry
+      case .CentralEurope:
+        return NSLocalizedString("Közép-Európa", comment: "országválasztó és toolbar cím")
+      case .Hungary:
+        return NSLocalizedString("Magyarország", comment: "országválasztó és toolbar cím")
+      case .CzechRepublic:
+        return NSLocalizedString("Csehország", comment: "országválasztó és toolbar cím")
+      case .Slovakia:
+        return NSLocalizedString("Szlovákia", comment: "országválasztó és toolbar cím")
+      case .Romania:
+        return NSLocalizedString("Románia", comment: "országválasztó és toolbar cím")
+      case .Serbia:
+        return NSLocalizedString("Szerbia", comment: "országválasztó és toolbar cím")
+      default:
+        return unknownCountry
+      }
+    }
   }
 
   enum Language: String, CustomStringConvertible {
