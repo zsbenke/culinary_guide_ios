@@ -36,7 +36,7 @@ class RatingWithTitleTableViewCell: UITableViewCell {
     case "pop":
       return #imageLiteral(resourceName: "Rating Pop")
     default:
-      return nil
+      return #imageLiteral(resourceName: "Rating Pop")
     }
   }
 }

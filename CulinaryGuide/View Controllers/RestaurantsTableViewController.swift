@@ -63,11 +63,6 @@ class RestaurantsTableViewController: UITableViewController {
     return restaurants.count
   }
 
-
-  override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-    return 65.0
-  }
-
   override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     let tableCellNib = UINib(nibName: "RatingWithTitleTableViewCell", bundle: nil)
     tableView.register(tableCellNib, forCellReuseIdentifier: "Cell")
