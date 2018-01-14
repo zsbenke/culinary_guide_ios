@@ -15,6 +15,7 @@ class RestaurantsViewController: UIViewController {
 
   let searchController = UISearchController(searchResultsController: nil)
   var activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .gray)
+  var focusSearchBarOnLoad = false
   var restaurants = [Restaurant?]()
   var initialRestaurants = [Restaurant?]()
 
@@ -40,7 +41,7 @@ class RestaurantsViewController: UIViewController {
     searchController.delegate = self
     searchController.searchBar.delegate = self
     navigationItem.searchController = searchController
-    navigationItem.hidesSearchBarWhenScrolling = false
+
     if let searchToken = queryTokens.searchToken() {
       searchController.searchBar.text = searchToken.value
     }
@@ -51,6 +52,22 @@ class RestaurantsViewController: UIViewController {
   override func didReceiveMemoryWarning() {
     super.didReceiveMemoryWarning()
     // Dispose of any resources that can be recreated.
+  }
+
+  override func viewWillAppear(_ animated: Bool) {
+    navigationItem.hidesSearchBarWhenScrolling = false
+  }
+
+  override func viewWillDisappear(_ animated: Bool) {
+    navigationItem.hidesSearchBarWhenScrolling = true
+  }
+
+  override func viewDidAppear(_ animated: Bool) {
+    super.viewDidAppear(animated)
+
+    if focusSearchBarOnLoad {
+      searchController.isActive = true
+    }
   }
 
   @IBAction func switchContainerViews(_ sender: UISegmentedControl) {
@@ -118,6 +135,14 @@ class RestaurantsViewController: UIViewController {
 extension RestaurantsViewController: UISearchControllerDelegate {
   func didDismissSearchController(_ searchController: UISearchController) {
     self.queryTokens.removeSearchTokens()
+  }
+
+  func didPresentSearchController(_ searchController: UISearchController) {
+    DispatchQueue.main.async {
+      if self.focusSearchBarOnLoad {
+        self.searchController.searchBar.becomeFirstResponder()
+      }
+    }
   }
 }
 

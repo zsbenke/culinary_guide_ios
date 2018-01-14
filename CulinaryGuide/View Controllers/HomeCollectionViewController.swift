@@ -20,7 +20,6 @@ class HomeCollectionViewController: UICollectionViewController {
     "Milyen?": ["ázsiai", "bisztró", "büfé", "delikát bolt", "erdélyi", "fine dining", "francia", "fúziós", "gyerekbarát", "horvát", "magyar", "mediterrán", "nemzetközi", "olasz", "román", "szerb", "szlovák", "szlovén", "újító", "vegetáriánus"]
   ]
   var sizingCell: TagCollectionViewCell?
-  let searchController = UISearchController(searchResultsController: nil)
 
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -32,15 +31,8 @@ class HomeCollectionViewController: UICollectionViewController {
 
     self.sizingCell = ((tagCollectionCellNib.instantiate(withOwner: nil, options: nil) as Array).first as! TagCollectionViewCell)
 
-    self.navigationController?.navigationBar.prefersLargeTitles = true
     let currentCountry = Localization.currentCountry.name
     self.navigationItem.title = "\(currentCountry)"
-
-    searchController.delegate = self
-    searchController.searchBar.delegate = self
-    self.navigationItem.searchController = searchController
-
-    navigationItem.hidesSearchBarWhenScrolling = false
 
     self.tagHeaderTitles = Array(tags.keys)
   }
@@ -56,6 +48,9 @@ class HomeCollectionViewController: UICollectionViewController {
     if segue.identifier == "searchRestaurants" {
       let restaurantsViewController = segue.destination as! RestaurantsViewController
       restaurantsViewController.queryTokens = selectedQueryTokens
+    } else if segue.identifier == "focusOnSearchBar" {
+      let restaurantsViewController = segue.destination as! RestaurantsViewController
+      restaurantsViewController.focusSearchBarOnLoad = true
     }
   }
 
@@ -111,20 +106,6 @@ class HomeCollectionViewController: UICollectionViewController {
     }
   }
 
-}
-
-// MARK: - Searching
-
-extension HomeCollectionViewController: UISearchControllerDelegate {
-  func didDismissSearchController(_ searchController: UISearchController) {
-    print("\(#function)")
-  }
-}
-
-extension HomeCollectionViewController: UISearchBarDelegate {
-  func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-    print("\(#function)")
-  }
 }
 
 extension HomeCollectionViewController: UICollectionViewDelegateFlowLayout {
