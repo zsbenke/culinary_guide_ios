@@ -9,15 +9,15 @@
 import UIKit
 
 class RatingView: UIView {
-    private struct DefaultRating: Classifiable {
+    private struct DefaultRating: Gradeable {
         var points = ""
         var image = #imageLiteral(resourceName: "Rating Pop")
         var color = UIColor.BrandColor.primary
     }
 
-    var rating: Classifiable
+    var rating: Gradeable
 
-    init(rating: Classifiable) {
+    init(rating: Gradeable) {
         self.rating = rating
 
         let frame = CGRect.init(x: 0.0, y: 0.0, width: 33, height: 29)

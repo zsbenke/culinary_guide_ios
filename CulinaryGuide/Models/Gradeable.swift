@@ -8,7 +8,7 @@
 
 import UIKit
 
-protocol Classifiable {
+protocol Gradeable {
     var points: String { get set }
     var image: UIImage { get }
     var color: UIColor { get }

@@ -50,9 +50,9 @@
 		989CE4AF200E8E0000BD42D7 /* RestaurantRating.swift in Sources */ = {isa = PBXBuildFile; fileRef = 989CE4AE200E8E0000BD42D7 /* RestaurantRating.swift */; };
 		989CE4B0200E8E0000BD42D7 /* RestaurantRating.swift in Sources */ = {isa = PBXBuildFile; fileRef = 989CE4AE200E8E0000BD42D7 /* RestaurantRating.swift */; };
 		989CE4B1200E901600BD42D7 /* RestaurantRating.swift in Sources */ = {isa = PBXBuildFile; fileRef = 989CE4AE200E8E0000BD42D7 /* RestaurantRating.swift */; };
-		989CE4B3200E932F00BD42D7 /* Classifiable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 989CE4B2200E932F00BD42D7 /* Classifiable.swift */; };
-		989CE4B4200E932F00BD42D7 /* Classifiable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 989CE4B2200E932F00BD42D7 /* Classifiable.swift */; };
-		989CE4B5200E932F00BD42D7 /* Classifiable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 989CE4B2200E932F00BD42D7 /* Classifiable.swift */; };
+		989CE4B3200E932F00BD42D7 /* Gradeable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 989CE4B2200E932F00BD42D7 /* Gradeable.swift */; };
+		989CE4B4200E932F00BD42D7 /* Gradeable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 989CE4B2200E932F00BD42D7 /* Gradeable.swift */; };
+		989CE4B5200E932F00BD42D7 /* Gradeable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 989CE4B2200E932F00BD42D7 /* Gradeable.swift */; };
 		98C8DFBA2003CE1D00BE568C /* RestaurantFilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98C8DFB92003CE1D00BE568C /* RestaurantFilterViewController.swift */; };
 		98C8DFBB2003CE1D00BE568C /* RestaurantFilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98C8DFB92003CE1D00BE568C /* RestaurantFilterViewController.swift */; };
 		98C8DFBC2003CE1D00BE568C /* RestaurantFilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98C8DFB92003CE1D00BE568C /* RestaurantFilterViewController.swift */; };
@@ -161,7 +161,7 @@
 		9892E81A200A3BC1007B7033 /* RatingWithTitleTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatingWithTitleTableViewCell.swift; sourceTree = "<group>"; };
 		9892E81E200A3CEE007B7033 /* RatingWithTitleTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RatingWithTitleTableViewCell.xib; sourceTree = "<group>"; };
 		989CE4AE200E8E0000BD42D7 /* RestaurantRating.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantRating.swift; sourceTree = "<group>"; };
-		989CE4B2200E932F00BD42D7 /* Classifiable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Classifiable.swift; sourceTree = "<group>"; };
+		989CE4B2200E932F00BD42D7 /* Gradeable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Gradeable.swift; sourceTree = "<group>"; };
 		98C8DFB92003CE1D00BE568C /* RestaurantFilterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantFilterViewController.swift; sourceTree = "<group>"; };
 		98D869322007C62B00EC909F /* Localization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Localization.swift; sourceTree = "<group>"; };
 		98D8694C2007F9C900EC909F /* CountriesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountriesViewController.swift; sourceTree = "<group>"; };
@@ -221,21 +221,29 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		984B7116200EA5A300822ADF /* Restaurants */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Restaurants;
+			sourceTree = "<group>";
+		};
 		986E8AD3200E6FA100BA57AA /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				984B7116200EA5A300822ADF /* Restaurants */,
 				986E8AD4200E6FBF00BA57AA /* RestaurantRatingTests.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
 		};
-		989CE4B6200E93A700BD42D7 /* Ratings */ = {
+		989CE4B6200E93A700BD42D7 /* Restaurants */ = {
 			isa = PBXGroup;
 			children = (
-				989CE4B2200E932F00BD42D7 /* Classifiable.swift */,
+				98F6266E20024ED800996A91 /* Restaurant.swift */,
 				989CE4AE200E8E0000BD42D7 /* RestaurantRating.swift */,
 			);
-			path = Ratings;
+			path = Restaurants;
 			sourceTree = "<group>";
 		};
 		98D869652008FC3100EC909F /* Partial Modal Controller */ = {
@@ -365,11 +373,11 @@
 		98F6266420024CCD00996A91 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				989CE4B6200E93A700BD42D7 /* Ratings */,
+				989CE4B2200E932F00BD42D7 /* Gradeable.swift */,
 				98F6266A20024EC600996A91 /* PointOfInterest.swift */,
-				98F6266E20024ED800996A91 /* Restaurant.swift */,
-				9892E80E2009530A007B7033 /* UIColor+BrandColor.swift */,
 				9892E81220095728007B7033 /* UserDefault.swift */,
+				9892E80E2009530A007B7033 /* UIColor+BrandColor.swift */,
+				989CE4B6200E93A700BD42D7 /* Restaurants */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -548,7 +556,7 @@
 				98F6266720024D3800996A91 /* APIRequestOperation.swift in Sources */,
 				986E8AD2200E6EA200BA57AA /* RatingView.swift in Sources */,
 				98F6266F20024ED800996A91 /* Restaurant.swift in Sources */,
-				989CE4B3200E932F00BD42D7 /* Classifiable.swift in Sources */,
+				989CE4B3200E932F00BD42D7 /* Gradeable.swift in Sources */,
 				98D869622008FBE300EC909F /* SplashViewController.swift in Sources */,
 				98F6265320024BFB00996A91 /* Router.swift in Sources */,
 				98D8697F20094D7200EC909F /* RoundedButton.swift in Sources */,
@@ -566,7 +574,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				986E8AD5200E6FBF00BA57AA /* RestaurantRatingTests.swift in Sources */,
-				989CE4B4200E932F00BD42D7 /* Classifiable.swift in Sources */,
+				989CE4B4200E932F00BD42D7 /* Gradeable.swift in Sources */,
 				98F6267020024ED800996A91 /* Restaurant.swift in Sources */,
 				98D8694E2007F9C900EC909F /* CountriesViewController.swift in Sources */,
 				98C8DFBB2003CE1D00BE568C /* RestaurantFilterViewController.swift in Sources */,
@@ -633,7 +641,7 @@
 				98F6265920024C2000996A91 /* RestaurantRouter.swift in Sources */,
 				98F626382002487700996A91 /* CulinaryGuideUITests.swift in Sources */,
 				983A7FF12003E66C00512ED5 /* RestaurantsViewController.swift in Sources */,
-				989CE4B5200E932F00BD42D7 /* Classifiable.swift in Sources */,
+				989CE4B5200E932F00BD42D7 /* Gradeable.swift in Sources */,
 				98D869642008FBE300EC909F /* SplashViewController.swift in Sources */,
 				98F6266220024CA900996A91 /* APIResource.swift in Sources */,
 				98D8698120094D7200EC909F /* RoundedButton.swift in Sources */,
