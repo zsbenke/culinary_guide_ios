@@ -2,17 +2,17 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "splashViewBackgroundSerbia.png",
+      "filename" : "Splash View Background Serbia.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "splashViewBackgroundSerbia@2x.png",
+      "filename" : "Splash View Background Serbia@2x.png",
       "scale" : "2x"
     },
     {
       "idiom" : "universal",
-      "filename" : "splashViewBackgroundSerbia@3x.png",
+      "filename" : "Splash View Background Serbia@3x.png",
       "scale" : "3x"
     }
   ],

@@ -39,7 +39,6 @@ class HomeCollectionViewController: UICollectionViewController {
 
   override func didReceiveMemoryWarning() {
     super.didReceiveMemoryWarning()
-    // Dispose of any resources that can be recreated.
   }
 
    // MARK: - Segues
@@ -105,7 +104,6 @@ class HomeCollectionViewController: UICollectionViewController {
       performSegue(withIdentifier: "searchRestaurants", sender: self)
     }
   }
-
 }
 
 extension HomeCollectionViewController: UICollectionViewDelegateFlowLayout {

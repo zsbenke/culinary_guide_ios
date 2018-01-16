@@ -53,7 +53,7 @@ class CountriesViewController: UITableViewController {
 
     if upward {
       UIView.animate(withDuration: 0.3, delay: delay, options: .curveEaseOut, animations: {
-        splashViewController.mapImageView.transform = CGAffineTransform.init(translationX: 0, y: -110)
+        splashViewController.mapImageView.transform = CGAffineTransform.init(translationX: 0, y: -90)
       }, completion: { finished in
         guard let completion = completion else { return }
         completion()
