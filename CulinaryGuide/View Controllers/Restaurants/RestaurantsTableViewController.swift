@@ -20,6 +20,9 @@ class RestaurantsTableViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        let tableCellNib = UINib(nibName: "IconTableViewCell", bundle: nil)
+        tableView.register(tableCellNib, forCellReuseIdentifier: "Cell")
     }
 
     override func didReceiveMemoryWarning() {
@@ -65,9 +68,7 @@ class RestaurantsTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let tableCellNib = UINib(nibName: "RatingWithTitleTableViewCell", bundle: nil)
-        tableView.register(tableCellNib, forCellReuseIdentifier: "Cell")
-        let cell: RatingWithTitleTableViewCell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! RatingWithTitleTableViewCell
+        let cell: IconTableViewCell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! IconTableViewCell
 
         if let restaurant = restaurants[indexPath.row] {
             cell.titleLabel.text = restaurant.title
@@ -75,7 +76,9 @@ class RestaurantsTableViewController: UITableViewController {
             if let rating = restaurant.rating {
                 let restaurantRating = RestaurantRating.init(points: rating)
                 let ratingView = RatingView.init(rating: restaurantRating)
-                cell.ratingView.addSubview(ratingView)
+                if cell.iconView.subviews.count == 0 {
+                    cell.iconView.addSubview(ratingView)
+                }
             }
         }
 

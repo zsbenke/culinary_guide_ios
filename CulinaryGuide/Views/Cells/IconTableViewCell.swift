@@ -8,8 +8,8 @@
 
 import UIKit
 
-class RatingWithTitleTableViewCell: UITableViewCell {
-    @IBOutlet weak var ratingView: UIView!
+class IconTableViewCell: UITableViewCell {
+    @IBOutlet weak var iconView: UIView!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var detailLabel: UILabel!
 
