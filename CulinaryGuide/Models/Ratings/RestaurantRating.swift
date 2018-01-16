@@ -8,19 +8,18 @@
 
 import UIKit
 
-struct Rating {
-    var rating: String
-    var tintColor: UIColor {
+struct RestaurantRating: Classifiable {
+    var points: String
+    var color: UIColor {
         if image == #imageLiteral(resourceName: "Rating Pop") {
             return UIColor.BrandColor.primary
         }
         return UIColor.BrandColor.secondary
     }
-
     var image: UIImage {
         var image = UIImage()
 
-        switch rating {
+        switch points {
         case "5":
             image = #imageLiteral(resourceName: "Rating 5")
         case "4":

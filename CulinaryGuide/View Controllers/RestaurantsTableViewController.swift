@@ -73,7 +73,8 @@ class RestaurantsTableViewController: UITableViewController {
             cell.titleLabel.text = restaurant.title
             cell.detailLabel.text = restaurant.address
             if let rating = restaurant.rating {
-                let ratingView = RatingView.init(rating: rating)
+                let restaurantRating = RestaurantRating.init(points: rating)
+                let ratingView = RatingView.init(rating: restaurantRating)
                 cell.ratingView.addSubview(ratingView)
             }
         }
