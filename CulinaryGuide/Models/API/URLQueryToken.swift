@@ -1,18 +1,9 @@
 import Foundation
 
 struct URLQueryToken {
-    enum TokenType: CustomStringConvertible {
-        case column, value
-        
-        public var description: String {
-            var tokenTypeDescription: String
-            
-            switch self {
-            case .column: tokenTypeDescription = "column"
-            case .value: tokenTypeDescription = "value"
-            }
-            return tokenTypeDescription
-        }
+    enum TokenType: String {
+        case column
+        case value
     }
     
     let column: String
@@ -43,16 +34,22 @@ extension URLQueryToken: Hashable {
     }
     
     static func ==(lhs: URLQueryToken, rhs: URLQueryToken) -> Bool {
-        return lhs.column == rhs.column
+        return lhs.column == rhs.column && lhs.value == rhs.value
     }
 }
 
 extension Set where Iterator.Element == URLQueryToken {
     mutating func removeSearchTokens() {
-        remove(URLQueryToken.init(column: "search", value: ""))
+        for token in searchTokens() {
+            remove(token)
+        }
     }
     
     func searchToken() -> URLQueryToken? {
-        return filter { $0.column == "search" }.first
+        return searchTokens().first
+    }
+
+    func searchTokens() -> Set<URLQueryToken> {
+        return filter { $0.column == "search" }
     }
 }

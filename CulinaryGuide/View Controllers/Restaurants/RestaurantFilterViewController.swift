@@ -5,7 +5,7 @@ class RestaurantFilterViewController: UITableViewController {
     @IBOutlet weak var creditCardSwitch: UISwitch!
     @IBOutlet weak var wifiSwitch: UISwitch!
     
-    var queryTokens = Set<URLQueryToken>()
+    var queryTokens: Set<URLQueryToken> = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -14,7 +14,7 @@ class RestaurantFilterViewController: UITableViewController {
         for uiSwitch in uiSwitches {
             uiSwitch.addTarget(self, action: #selector(self.switchDidChangeValue), for: .valueChanged)
         }
-        
+
         configureViewFromQueryTokens()
     }
     
@@ -42,7 +42,7 @@ class RestaurantFilterViewController: UITableViewController {
             if let searchQueryToken = searchQueryToken {
                 self.queryTokens.insert(searchQueryToken)
             }
-            
+
             restaurantsViewController.queryTokens = self.queryTokens
         }
     }
@@ -60,7 +60,10 @@ class RestaurantFilterViewController: UITableViewController {
             if uiSwitchDictionary.keys.contains(queryToken.column) {
                 if let uiSwitch = uiSwitchDictionary[queryToken.column] {
                     let uiSwitchState = (queryToken.value == "true")
-                    uiSwitch?.setOn(uiSwitchState, animated: true)
+                    if let uiSwitch = uiSwitch {
+                        uiSwitch.setOn(uiSwitchState, animated: true)
+                        switchDidChangeValue(sender: uiSwitch)
+                    }
                 }
             }
         }
@@ -70,9 +73,13 @@ class RestaurantFilterViewController: UITableViewController {
         guard let tokenColumn = tokenColumn(uiSwitch: sender) else { return }
         
         let queryToken = URLQueryToken.init(column: tokenColumn, value: "\(sender.isOn)")
-        
+        let oppositeQueryToken = URLQueryToken.init(column: tokenColumn, value: "\(!sender.isOn)")
+
+        // Clean up any query tokens either set to true or false
         queryTokens.remove(queryToken)
-        
+        queryTokens.remove(oppositeQueryToken)
+
+        // Insert a new query token if it's set to true
         if queryToken.value == "true" {
             queryTokens.insert(queryToken)
         }
