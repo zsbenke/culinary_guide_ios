@@ -45,6 +45,9 @@ class RestaurantFilterViewController: UITableViewController {
             if let searchQueryToken = searchQueryToken { self.queryTokens.insert(searchQueryToken) }
 
             restaurantsViewController.queryTokens = self.queryTokens
+
+            // TODO: fix searchBar focus on RestaurantsViewController
+            restaurantsViewController.focusSearchBarOnLoad = false
         }
     }
     
@@ -77,6 +80,73 @@ class RestaurantFilterViewController: UITableViewController {
                 }
             }
         }
+    }
+
+    // MARK: TableView Delegate
+
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        let regionSections = regionSectionsToHide().flatMap { $0 }
+
+        if regionSections.contains(section) {
+            return nil
+        }
+
+        return super.tableView(tableView, titleForHeaderInSection: section)
+    }
+
+    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        let regionSections = regionSectionsToHide().flatMap { $0 }
+
+        if regionSections.contains(section) {
+            return 0.1
+        }
+
+        return super.tableView(tableView, heightForHeaderInSection: section)
+    }
+
+    override func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        let regionSections = regionSectionsToHide().flatMap { $0 }
+
+        if regionSections.contains(section) {
+            return 0.1
+        }
+
+        return super.tableView(tableView, heightForHeaderInSection: section)
+    }
+
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        let regionSections = regionSectionsToHide().flatMap { $0 }
+
+        if regionSections.contains(section) {
+            return 0
+        }
+
+        return super.tableView(tableView, numberOfRowsInSection: section)
+    }
+
+    private func regionSectionsToHide() -> [Int?] {
+        var sections = [Int?]()
+
+        /*
+         Filters current country from an ordered list of countries. The country order is the same as
+         the region order in the RestaurantFilterViewController's storyboard. We offset sections
+         manually by adding the number of preceding TableViewSections.
+        */
+
+        if Localization.currentCountry == Localization.Country.CentralEurope {
+            return sections
+        }
+
+        var countries = Array(Localization.Country.cases())
+        countries.remove(Localization.Country.Unknown)
+        countries.remove(Localization.Country.CentralEurope)
+
+        for (index, country) in countries.enumerated() {
+            if country == Localization.currentCountry { continue }
+            sections.append(index + 2)
+        }
+
+        return sections
     }
 
     // MARK: Storyboard actions to set queryTokens
