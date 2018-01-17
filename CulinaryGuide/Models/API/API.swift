@@ -1,11 +1,5 @@
 import Foundation
 
-enum Environment {
-    case production
-    case staging
-    case development
-}
-
 struct API {
     static var environment: Environment = .staging
     private static var domain: String {
