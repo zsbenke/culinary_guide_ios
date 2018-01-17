@@ -4,16 +4,16 @@ class RestaurantFilterViewController: UITableViewController {
     @IBOutlet weak var openSwitch: UISwitch!
     @IBOutlet weak var creditCardSwitch: UISwitch!
     @IBOutlet weak var wifiSwitch: UISwitch!
-    
+
+    var filterControls = [UIView]()
     var queryTokens: Set<URLQueryToken> = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        let uiSwitches: [UISwitch] = [openSwitch, creditCardSwitch, wifiSwitch]
-        for uiSwitch in uiSwitches {
-            uiSwitch.addTarget(self, action: #selector(self.switchDidChangeValue), for: .valueChanged)
-        }
+
+        filterControls.append(openSwitch)
+        filterControls.append(creditCardSwitch)
+        filterControls.append(wifiSwitch)
 
         configureViewFromQueryTokens()
     }
@@ -23,55 +23,77 @@ class RestaurantFilterViewController: UITableViewController {
     }
     
     @IBAction func resetFilters(_ sender: UIBarButtonItem) {
-        self.queryTokens = [
-            URLQueryToken.init(column: "open", value: ""),
-            URLQueryToken.init(column: "credit_card", value: ""),
-            URLQueryToken.init(column: "wifi", value: "")
-        ]
+        queryTokens.removeAll()
+
+        for filterControl in filterControls {
+            if let column = filterControl.tokenColumn {
+                queryTokens.insert(URLQueryToken.init(column: column, value: ""))
+            }
+        }
+
         configureViewFromQueryTokens()
     }
     
     @IBAction func filter(_ sender: UIBarButtonItem) {
         let restaurantsViewController = self.presentingViewController?.childViewControllers.filter {
             $0 is RestaurantsViewController
-            }.first as! RestaurantsViewController
+        }.first as! RestaurantsViewController
         
         dismiss(animated: true) {
             let searchQueryToken = restaurantsViewController.queryTokens.filter { $0.column == "search" }.first
             
-            if let searchQueryToken = searchQueryToken {
-                self.queryTokens.insert(searchQueryToken)
-            }
+            if let searchQueryToken = searchQueryToken { self.queryTokens.insert(searchQueryToken) }
 
             restaurantsViewController.queryTokens = self.queryTokens
         }
     }
     
     private func configureViewFromQueryTokens() {
-        let uiSwitchDictionary = [
-            "open": openSwitch,
-            "credit_card": creditCardSwitch,
-            "wifi": wifiSwitch
-        ]
-        
+        let columnsFromFilterControls = filterControls.map { $0.tokenColumn }
+
         queryTokens.forEach { queryToken in
             queryTokens.remove(queryToken)
+
+            let tokenHasFilterableControl = columnsFromFilterControls.contains(where: { (columnName) -> Bool in
+                guard let columnName = columnName else { return false }
+                return columnName == queryToken.column
+            })
             
-            if uiSwitchDictionary.keys.contains(queryToken.column) {
-                if let uiSwitch = uiSwitchDictionary[queryToken.column] {
-                    let uiSwitchState = (queryToken.value == "true")
-                    if let uiSwitch = uiSwitch {
-                        uiSwitch.setOn(uiSwitchState, animated: true)
-                        switchDidChangeValue(sender: uiSwitch)
-                    }
+            if tokenHasFilterableControl {
+                guard let filterControl = filterControls.first(where: { (control) -> Bool in
+                    control.tokenColumn == queryToken.column
+                }) else { return }
+                guard let tokenColumn = filterControl.tokenColumn else { return }
+
+                switch tokenColumn {
+                case "wifi", "credit_card":
+                    let control = filterControl as! UISwitch
+                    let controlState = (queryToken.value == "true")
+
+                    control.setOn(controlState, animated: true)
+                    switchBooleanValue(sender: control)
+                default:
+                    return
                 }
             }
         }
     }
+
+    // MARK: Storyboard actions to set queryTokens
+
+    @IBAction func creditCardValueChanged(_ sender: UISwitch) {
+        switchBooleanValue(sender: sender)
+    }
+
+    @IBAction func wifiValueChanged(_ sender: UISwitch) {
+        switchBooleanValue(sender: sender)
+    }
+
+    // MARK: Manipulating queryTokens with the FilterableControls
     
-    @objc private func switchDidChangeValue(sender: UISwitch!) {
-        guard let tokenColumn = tokenColumn(uiSwitch: sender) else { return }
-        
+    private func switchBooleanValue(sender: UISwitch!) {
+        guard let tokenColumn = sender.tokenColumn else { return }
+
         let queryToken = URLQueryToken.init(column: tokenColumn, value: "\(sender.isOn)")
         let oppositeQueryToken = URLQueryToken.init(column: tokenColumn, value: "\(!sender.isOn)")
 
@@ -82,19 +104,6 @@ class RestaurantFilterViewController: UITableViewController {
         // Insert a new query token if it's set to true
         if queryToken.value == "true" {
             queryTokens.insert(queryToken)
-        }
-    }
-    
-    private func tokenColumn(uiSwitch: UISwitch) -> String? {
-        switch uiSwitch {
-        case openSwitch:
-            return "open"
-        case creditCardSwitch:
-            return "credit_card"
-        case wifiSwitch:
-            return "wifi"
-        default:
-            return nil
         }
     }
 }
