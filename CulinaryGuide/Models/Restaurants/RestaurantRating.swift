@@ -1,14 +1,6 @@
-//
-//  Rating.swift
-//  CulinaryGuide
-//
-//  Created by Benke Zsolt on 2018. 01. 16..
-//  Copyright © 2018. Benke Zsolt. All rights reserved.
-//
-
 import UIKit
 
-struct RestaurantRating: Gradeable {
+struct RestaurantRating: Rating {
     var points: String
     var color: UIColor {
         if image == #imageLiteral(resourceName: "Rating Pop") {

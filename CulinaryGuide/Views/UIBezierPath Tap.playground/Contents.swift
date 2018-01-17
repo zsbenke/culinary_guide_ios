@@ -27,7 +27,7 @@ class TestView: UIView {
     }
     
     override func draw(_ rect: CGRect) {
-        var path = customPath()
+        let path = customPath()
         
         var fillColor = UIColor.yellow
         

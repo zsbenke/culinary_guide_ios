@@ -1,23 +1,15 @@
-//
-//  RatingImage.swift
-//  CulinaryGuide
-//
-//  Created by Benke Zsolt on 2018. 01. 16..
-//  Copyright © 2018. Benke Zsolt. All rights reserved.
-//
-
 import UIKit
 
 class RatingView: UIView {
-    private struct DefaultRating: Gradeable {
+    private struct DefaultRating: Rating {
         var points = ""
         var image = #imageLiteral(resourceName: "Rating Pop")
         var color = UIColor.BrandColor.primary
     }
 
-    var rating: Gradeable
+    var rating: Rating
 
-    init(rating: Gradeable) {
+    init(rating: Rating) {
         self.rating = rating
 
         let frame = CGRect.init(x: 0.0, y: 0.0, width: 33, height: 29)
