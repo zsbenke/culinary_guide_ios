@@ -133,6 +133,7 @@ extension RestaurantsViewController: UISearchControllerDelegate {
         DispatchQueue.main.async {
             if self.focusSearchBarOnLoad {
                 self.searchController.searchBar.becomeFirstResponder()
+                self.focusSearchBarOnLoad = false
             }
         }
     }

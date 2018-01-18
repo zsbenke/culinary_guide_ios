@@ -45,9 +45,6 @@ class RestaurantFilterViewController: UITableViewController {
             if let searchQueryToken = searchQueryToken { self.queryTokens.insert(searchQueryToken) }
 
             restaurantsViewController.queryTokens = self.queryTokens
-
-            // TODO: fix searchBar focus on RestaurantsViewController
-            restaurantsViewController.focusSearchBarOnLoad = false
         }
     }
     
