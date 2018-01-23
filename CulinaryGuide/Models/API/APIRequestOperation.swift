@@ -33,14 +33,16 @@ class APIRequestOperation: AsyncOperation {
                     switch response.statusCode {
                     case 401:
                         DispatchQueue.main.async {
-                            self.showAlert(message: "Not authorized")
+                            let notAuthorizedMessage = NSLocalizedString("Not authorized", comment: "A hálózati hibát jelző alert szövege, amikor a felhasználó azonosítása sikertelen.")
+                            self.showAlert(message: notAuthorizedMessage)
                         }
                     case 200:
                         print("Logged in")
                         completionHandler(data)
                     default:
                         DispatchQueue.main.async {
-                            self.showAlert(message: "Unknown status code")
+                            let unknownStatusCodeMessage = NSLocalizedString("Unknown status code", comment: "A hálózati hibát jelző alert szövege, amikor ismeretlen HTTP státusz kóddal tér vissza az API (ajánlott fordítás: Ismeretlen HTTP státusz kód).")
+                            self.showAlert(message: unknownStatusCodeMessage)
                         }
                     }
                 }
@@ -52,8 +54,13 @@ class APIRequestOperation: AsyncOperation {
 
 extension APIRequestOperation: UIAlertViewDelegate {
     private func showAlert(message: String) {
-        let alertView = UIAlertView(title: "Network Error", message: message, delegate: self, cancelButtonTitle: "OK")
-        alertView.alertViewStyle = .default
-        alertView.show()
+        let alertControllerTitle = NSLocalizedString("Network Error", comment: "A hálózati hibát jelző alert címsorának szövege.")
+        let cancelActionTitle = NSLocalizedString("OK", comment: "A hálózati hibát jelző alert OK gombjának szövege.")
+        let alertController = UIAlertController.init(title: alertControllerTitle, message: message, preferredStyle: .alert)
+        let cancelAction = UIAlertAction.init(title: cancelActionTitle, style: .cancel, handler: nil)
+        alertController.addAction(cancelAction)
+
+        let viewController = UIApplication.shared.delegate?.window!?.rootViewController
+        viewController?.present(alertController, animated: true, completion: nil)
     }
 }

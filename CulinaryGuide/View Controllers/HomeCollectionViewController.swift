@@ -23,6 +23,7 @@ class HomeCollectionViewController: UICollectionViewController {
         
         let currentCountry = Localization.currentCountry.name
         self.navigationItem.title = "\(currentCountry)"
+        self.navigationController?.navigationBar.prefersLargeTitles = true
         
         self.tagHeaderTitles = Array(tags.keys)
     }

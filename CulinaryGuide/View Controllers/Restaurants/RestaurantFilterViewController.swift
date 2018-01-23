@@ -82,7 +82,7 @@ class RestaurantFilterViewController: UITableViewController {
     // MARK: TableView Delegate
 
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        let regionSections = regionSectionsToHide().flatMap { $0 }
+        let regionSections = regionsSections(forCountry: Localization.currentCountry, containment: .exclude).flatMap { $0 }
 
         if regionSections.contains(section) {
             return nil
@@ -92,7 +92,7 @@ class RestaurantFilterViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        let regionSections = regionSectionsToHide().flatMap { $0 }
+        let regionSections = regionsSections(forCountry: Localization.currentCountry, containment: .exclude).flatMap { $0 }
 
         if regionSections.contains(section) {
             return 0.1
@@ -102,7 +102,7 @@ class RestaurantFilterViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        let regionSections = regionSectionsToHide().flatMap { $0 }
+        let regionSections = regionsSections(forCountry: Localization.currentCountry, containment: .exclude).flatMap { $0 }
 
         if regionSections.contains(section) {
             return 0.1
@@ -112,7 +112,7 @@ class RestaurantFilterViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        let regionSections = regionSectionsToHide().flatMap { $0 }
+        let regionSections = regionsSections(forCountry: Localization.currentCountry, containment: .exclude).flatMap { $0 }
 
         if regionSections.contains(section) {
             return 0
@@ -121,7 +121,12 @@ class RestaurantFilterViewController: UITableViewController {
         return super.tableView(tableView, numberOfRowsInSection: section)
     }
 
-    private func regionSectionsToHide() -> [Int?] {
+    private enum ContainingMode {
+        case exclude
+        case include
+    }
+
+    private func regionsSections(forCountry aCountry: Localization.Country, containment: ContainingMode) -> [Int?] {
         var sections = [Int?]()
 
         /*
@@ -139,7 +144,13 @@ class RestaurantFilterViewController: UITableViewController {
         countries.remove(Localization.Country.CentralEurope)
 
         for (index, country) in countries.enumerated() {
-            if country == Localization.currentCountry { continue }
+            let isTheSameCountry = country == aCountry
+
+            if containment == .include && !isTheSameCountry ||
+               containment == .exclude &&  isTheSameCountry {
+                continue
+            }
+
             sections.append(index + 2)
         }
 
@@ -172,5 +183,9 @@ class RestaurantFilterViewController: UITableViewController {
         if queryToken.value == "true" {
             queryTokens.insert(queryToken)
         }
+    }
+
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        print(regionsSections(forCountry: Localization.currentCountry, containment: .include))
     }
 }
