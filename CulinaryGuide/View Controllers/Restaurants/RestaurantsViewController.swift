@@ -10,6 +10,7 @@ class RestaurantsViewController: UIViewController {
     var focusSearchBarOnLoad = false
     var restaurants = [Restaurant?]()
     var initialRestaurants = [Restaurant?]()
+    var searchBarText = ""
     
     var queryTokens = Set<URLQueryToken>() {
         didSet {
@@ -34,9 +35,7 @@ class RestaurantsViewController: UIViewController {
         searchController.searchBar.delegate = self
         navigationItem.searchController = searchController
         
-        if let searchToken = queryTokens.searchToken() {
-            searchController.searchBar.text = searchToken.value
-        }
+        setSearchBarText()
         
         loadRestaurants()
     }
@@ -125,10 +124,6 @@ class RestaurantsViewController: UIViewController {
 // MARK: - Searching
 
 extension RestaurantsViewController: UISearchControllerDelegate {
-    func didDismissSearchController(_ searchController: UISearchController) {
-        self.queryTokens.removeSearchTokens()
-    }
-    
     func didPresentSearchController(_ searchController: UISearchController) {
         DispatchQueue.main.async {
             if self.focusSearchBarOnLoad {
@@ -146,5 +141,25 @@ extension RestaurantsViewController: UISearchBarDelegate {
         newTokens.removeSearchTokens()
         newTokens.insert(URLQueryToken.init(column: "search", value: searchText))
         self.queryTokens = newTokens
+    }
+
+    func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
+        if searchBarText.isEmpty {
+            self.queryTokens.removeSearchTokens()
+        } else {
+            setSearchBarText()
+        }
+    }
+
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        guard let changedSearchBarText = searchBar.text else { return }
+        self.searchBarText = changedSearchBarText
+    }
+
+    func setSearchBarText() {
+        if let searchToken = queryTokens.searchToken() {
+            searchController.searchBar.text = searchToken.value
+            self.searchBarText = searchToken.value
+        }
     }
 }
