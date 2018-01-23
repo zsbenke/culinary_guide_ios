@@ -71,7 +71,13 @@ class RestaurantFilterViewController: UITableViewController {
                     let controlState = (queryToken.value == "true")
 
                     control.setOn(controlState, animated: true)
-                    switchBooleanValue(sender: control)
+                    switchBooleanValue(control)
+                case "open_at":
+                    let control = filterControl as! UISwitch
+                    let controlState = (queryToken.value != "")
+
+                    control.setOn(controlState, animated: true)
+                    openValueChanged(control)
                 default:
                     return
                 }
@@ -130,9 +136,9 @@ class RestaurantFilterViewController: UITableViewController {
         var sections = [Int?]()
 
         /*
-         Filters current country from an ordered list of countries. The country order is the same as
-         the region order in the RestaurantFilterViewController's storyboard. We offset sections
-         manually by adding the number of preceding TableViewSections.
+            Filters current country from an ordered list of countries. The country order is the same as
+            the region order in the RestaurantFilterViewController's storyboard. We offset sections
+            manually by adding the number of preceding TableViewSections.
         */
 
         if Localization.currentCountry == Localization.Country.CentralEurope {
@@ -159,17 +165,46 @@ class RestaurantFilterViewController: UITableViewController {
 
     // MARK: Storyboard actions to set queryTokens
 
+    @IBAction func openValueChanged(_ sender: UISwitch) {
+        guard let tokenColum = sender.tokenColumn else { return }
+
+        // Remove any old open_at token value
+        let removeOpenFromQueryTokens: () -> Void = {
+            guard let oldToken = self.queryTokens.first(where: { $0.column == tokenColum }) else { return }
+
+            self.queryTokens.remove(oldToken)
+        }
+
+        /*
+            When the switch is on, remove the old open_at token then add a new one to query tokens
+            with the current date. Otherwise just remove the old open_at token.
+        */
+        if sender.isOn {
+            let currentDate = Date()
+            let formatter = DateFormatter()
+            formatter.dateFormat = "yyyy-MM-dd HH:mm"
+            let queryTokenValue = formatter.string(from: currentDate)
+            let queryToken = URLQueryToken.init(column: tokenColum, value: queryTokenValue)
+
+            removeOpenFromQueryTokens()
+            queryTokens.insert(queryToken)
+        } else {
+            removeOpenFromQueryTokens()
+        }
+    }
+
+
     @IBAction func creditCardValueChanged(_ sender: UISwitch) {
-        switchBooleanValue(sender: sender)
+        switchBooleanValue(sender)
     }
 
     @IBAction func wifiValueChanged(_ sender: UISwitch) {
-        switchBooleanValue(sender: sender)
+        switchBooleanValue(sender)
     }
 
     // MARK: Manipulating queryTokens with the FilterableControls
     
-    private func switchBooleanValue(sender: UISwitch!) {
+    private func switchBooleanValue(_ sender: UISwitch!) {
         guard let tokenColumn = sender.tokenColumn else { return }
 
         let queryToken = URLQueryToken.init(column: tokenColumn, value: "\(sender.isOn)")

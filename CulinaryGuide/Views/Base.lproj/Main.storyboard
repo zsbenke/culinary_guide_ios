@@ -356,6 +356,12 @@
                                                 </label>
                                                 <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="yp1-NY-R1G">
                                                     <rect key="frame" x="316" y="6" width="51" height="31"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="layer.column" value="open_at"/>
+                                                    </userDefinedRuntimeAttributes>
+                                                    <connections>
+                                                        <action selector="openValueChanged:" destination="MYZ-lN-BUl" eventType="valueChanged" id="83m-7Q-oUY"/>
+                                                    </connections>
                                                 </switch>
                                             </subviews>
                                             <constraints>
