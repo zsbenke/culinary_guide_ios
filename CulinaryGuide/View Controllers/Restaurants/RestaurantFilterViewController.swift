@@ -5,17 +5,12 @@ class RestaurantFilterViewController: UITableViewController {
     @IBOutlet weak var creditCardSwitch: UISwitch!
     @IBOutlet weak var wifiSwitch: UISwitch!
 
-    var filterControls = [UIView]()
-    var queryTokens: Set<URLQueryToken> = []
+    var filterState = RestaurantFilterState.init(queryTokens: Set<URLQueryToken>())
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        filterControls.append(openSwitch)
-        filterControls.append(creditCardSwitch)
-        filterControls.append(wifiSwitch)
-
-        configureViewFromQueryTokens()
+        configureView()
     }
     
     override func didReceiveMemoryWarning() {
@@ -23,19 +18,8 @@ class RestaurantFilterViewController: UITableViewController {
     }
     
     @IBAction func resetFilters(_ sender: UIBarButtonItem) {
-        queryTokens.removeAll()
-
-        for filterControl in filterControls {
-            if let column = filterControl.tokenColumn {
-                queryTokens.insert(URLQueryToken.init(column: column, value: ""))
-            }
-        }
-
-        // Reset region table view sections separately
-        let regionSections = IndexSet(regionsSections(forCountry: Localization.currentCountry, containment: .include).flatMap({ $0 }))
-        tableView.reloadSections(regionSections, with: .none)
-
-        configureViewFromQueryTokens()
+        self.filterState = RestaurantFilterState.init(queryTokens: Set<URLQueryToken>())
+        configureView()
     }
     
     @IBAction func filter(_ sender: UIBarButtonItem) {
@@ -44,52 +28,17 @@ class RestaurantFilterViewController: UITableViewController {
         }.first as! RestaurantsViewController
         
         dismiss(animated: true) {
-            let searchQueryToken = restaurantsViewController.queryTokens.filter { $0.column == "search" }.first
-            
-            if let searchQueryToken = searchQueryToken { self.queryTokens.insert(searchQueryToken) }
-
-            restaurantsViewController.queryTokens = self.queryTokens
+            restaurantsViewController.queryTokens = self.filterState.queryTokens
         }
     }
     
-    private func configureViewFromQueryTokens() {
-        let columnsFromFilterControls = filterControls.map { $0.tokenColumn }
+    private func configureView() {
+        openSwitch.setOn(!filterState.openAt.isEmpty, animated: true)
+        creditCardSwitch.setOn(filterState.creditCard, animated: true)
+        wifiSwitch.setOn(filterState.wifi, animated: true)
 
-        queryTokens.forEach { queryToken in
-            // Region query tokens configured inserted and removed in tableView(_:cellForRowAt:) method
-            if queryToken.column != "region" {
-                queryTokens.remove(queryToken)
-            }
-
-            let tokenHasFilterableControl = columnsFromFilterControls.contains(where: { (columnName) -> Bool in
-                guard let columnName = columnName else { return false }
-                return columnName == queryToken.column
-            })
-            
-            if tokenHasFilterableControl {
-                guard let filterControl = filterControls.first(where: { (control) -> Bool in
-                    control.tokenColumn == queryToken.column
-                }) else { return }
-                guard let tokenColumn = filterControl.tokenColumn else { return }
-
-                switch tokenColumn {
-                case "wifi", "credit_card":
-                    let control = filterControl as! UISwitch
-                    let controlState = (queryToken.value == "true")
-
-                    control.setOn(controlState, animated: true)
-                    switchBooleanValue(control)
-                case "open_at":
-                    let control = filterControl as! UISwitch
-                    let controlState = (queryToken.value != "")
-
-                    control.setOn(controlState, animated: true)
-                    openValueChanged(control)
-                default:
-                    return
-                }
-            }
-        }
+        let regionSections = IndexSet(regionsSections(forCountry: Localization.currentCountry, containment: .include).flatMap({ $0 }))
+        tableView.reloadSections(regionSections, with: .none)
     }
 
     // MARK: TableView Delegate
@@ -139,8 +88,8 @@ class RestaurantFilterViewController: UITableViewController {
         if regionSections.contains(indexPath.section) {
             let cell = super.tableView(tableView, cellForRowAt: indexPath)
 
-            if let queryToken = regionQueryToken(forCell: cell) {
-                if queryTokens.contains(queryToken) {
+            if let regionValue = regionValue(forCell: cell) {
+                if filterState.regions.contains(regionValue) {
                     setRegionValue(filtering: true, cell: cell)
                 } else {
                     setRegionValue(filtering: false, cell: cell)
@@ -208,62 +157,28 @@ class RestaurantFilterViewController: UITableViewController {
     // MARK: Storyboard actions to set queryTokens
 
     @IBAction func openValueChanged(_ sender: UISwitch) {
-        guard let tokenColum = sender.tokenColumn else { return }
-
-        // Remove any old open_at token value
-        let removeOpenFromQueryTokens: () -> Void = {
-            guard let oldToken = self.queryTokens.first(where: { $0.column == tokenColum }) else { return }
-
-            self.queryTokens.remove(oldToken)
-        }
-
-        /*
-            When the switch is on, remove the old open_at token then add a new one to query tokens
-            with the current date. Otherwise just remove the old open_at token.
-        */
         if sender.isOn {
             let currentDate = Date()
             let formatter = DateFormatter()
             formatter.dateFormat = "yyyy-MM-dd HH:mm"
-            let queryTokenValue = formatter.string(from: currentDate)
-            let queryToken = URLQueryToken.init(column: tokenColum, value: queryTokenValue)
-
-            removeOpenFromQueryTokens()
-            queryTokens.insert(queryToken)
+            filterState.openAt = formatter.string(from: currentDate)
         } else {
-            removeOpenFromQueryTokens()
+            filterState.openAt = ""
         }
     }
 
-
     @IBAction func creditCardValueChanged(_ sender: UISwitch) {
-        switchBooleanValue(sender)
+        filterState.creditCard = sender.isOn
     }
 
     @IBAction func wifiValueChanged(_ sender: UISwitch) {
-        switchBooleanValue(sender)
-    }
-    
-    private func switchBooleanValue(_ sender: UISwitch!) {
-        guard let tokenColumn = sender.tokenColumn else { return }
-
-        let queryToken = URLQueryToken.init(column: tokenColumn, value: "\(sender.isOn)")
-        let oppositeQueryToken = URLQueryToken.init(column: tokenColumn, value: "\(!sender.isOn)")
-
-        // Clean up any query tokens either set to true or false
-        queryTokens.remove(queryToken)
-        queryTokens.remove(oppositeQueryToken)
-
-        // Insert a new query token if it's set to true
-        if queryToken.value == "true" {
-            queryTokens.insert(queryToken)
-        }
+        filterState.wifi = sender.isOn
     }
 
     private func toggleRegionValue(_ cell: UITableViewCell) {
-        guard let queryToken = regionQueryToken(forCell: cell) else { return }
+        guard let regionValue = regionValue(forCell: cell) else { return }
 
-        if queryTokens.contains(queryToken) {
+        if filterState.regions.contains(regionValue) {
             setRegionValue(filtering: false, cell: cell)
         } else {
             setRegionValue(filtering: true, cell: cell)
@@ -271,22 +186,19 @@ class RestaurantFilterViewController: UITableViewController {
     }
 
     private func setRegionValue(filtering: Bool, cell: UITableViewCell) {
-        guard let queryToken = regionQueryToken(forCell: cell) else { return }
+        guard let regionValue = regionValue(forCell: cell) else { return }
 
         if filtering {
             cell.accessoryType = .checkmark
-            queryTokens.insert(queryToken)
+            filterState.regions.insert(regionValue)
         } else {
             cell.accessoryType = .none
-            queryTokens.remove(queryToken)
+            filterState.regions.remove(regionValue)
         }
     }
 
-    private func regionQueryToken(forCell cell: UITableViewCell) -> URLQueryToken? {
-        guard let tokenColumn = cell.layer.value(forKey: "tokenColumn") as? String else { return nil }
-        guard let tokenValue = cell.layer.value(forKey: "tokenValue") as? String else { return nil }
-
-        let queryToken = URLQueryToken.init(column: tokenColumn, value: tokenValue)
-        return queryToken
+    private func regionValue(forCell cell: UITableViewCell) -> String? {
+        guard let value = cell.layer.value(forKey: "tokenValue") as? String else { return nil }
+        return value
     }
 }

@@ -116,7 +116,7 @@ class RestaurantsViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "showFilter" {
             let controller = segue.destination.childViewControllers.first as! RestaurantFilterViewController
-            controller.queryTokens = queryTokens
+            controller.filterState = RestaurantFilterState.init(queryTokens: queryTokens)
         }
     }
 }

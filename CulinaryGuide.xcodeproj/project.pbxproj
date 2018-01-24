@@ -56,6 +56,9 @@
 		984B7139200FAB8600822ADF /* UIViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 984B7138200FAB8600822ADF /* UIViewExtensions.swift */; };
 		984B713A200FAB8600822ADF /* UIViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 984B7138200FAB8600822ADF /* UIViewExtensions.swift */; };
 		984B713B200FAB8600822ADF /* UIViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 984B7138200FAB8600822ADF /* UIViewExtensions.swift */; };
+		98550AA8201928AC006F53A2 /* RestaurantFilterState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98550AA7201928AC006F53A2 /* RestaurantFilterState.swift */; };
+		98550AA9201928AC006F53A2 /* RestaurantFilterState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98550AA7201928AC006F53A2 /* RestaurantFilterState.swift */; };
+		98550AAA201928AC006F53A2 /* RestaurantFilterState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98550AA7201928AC006F53A2 /* RestaurantFilterState.swift */; };
 		986E8AD2200E6EA200BA57AA /* RatingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 986E8AD1200E6EA200BA57AA /* RatingView.swift */; };
 		986E8AD5200E6FBF00BA57AA /* RestaurantRatingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 986E8AD4200E6FBF00BA57AA /* RestaurantRatingTests.swift */; };
 		986E8AD6200E708400BA57AA /* RatingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 986E8AD1200E6EA200BA57AA /* RatingView.swift */; };
@@ -171,6 +174,7 @@
 		984B7128200F80A800822ADF /* Environment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Environment.swift; sourceTree = "<group>"; };
 		984B712C200F80DF00822ADF /* RestaurantRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantRouter.swift; sourceTree = "<group>"; };
 		984B7138200FAB8600822ADF /* UIViewExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtensions.swift; sourceTree = "<group>"; };
+		98550AA7201928AC006F53A2 /* RestaurantFilterState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = RestaurantFilterState.swift; path = CulinaryGuide/Models/Restaurants/RestaurantFilterState.swift; sourceTree = SOURCE_ROOT; };
 		986E8AD1200E6EA200BA57AA /* RatingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatingView.swift; sourceTree = "<group>"; };
 		986E8AD4200E6FBF00BA57AA /* RestaurantRatingTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantRatingTests.swift; sourceTree = "<group>"; };
 		9892E80E2009530A007B7033 /* BrandColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrandColor.swift; sourceTree = "<group>"; };
@@ -272,6 +276,7 @@
 				98F6266E20024ED800996A91 /* Restaurant.swift */,
 				989CE4AE200E8E0000BD42D7 /* RestaurantRating.swift */,
 				984B7124200F7F1A00822ADF /* RestaurantAnnotation.swift */,
+				98550AA7201928AC006F53A2 /* RestaurantFilterState.swift */,
 			);
 			path = Restaurants;
 			sourceTree = "<group>";
@@ -559,6 +564,7 @@
 				98F6266B20024EC600996A91 /* PointOfInterest.swift in Sources */,
 				98F6265720024C2000996A91 /* Router.swift in Sources */,
 				98F626182002487600996A91 /* RestaurantsViewController.swift in Sources */,
+				98550AA8201928AC006F53A2 /* RestaurantFilterState.swift in Sources */,
 				9847A6F4200A4E1200A17247 /* HomeCollectionViewController.swift in Sources */,
 				98D869692008FC4300EC909F /* PartialModalPresentationController.swift in Sources */,
 				98F6266020024CA900996A91 /* APIResource.swift in Sources */,
@@ -617,6 +623,7 @@
 				984B711B200F7D0F00822ADF /* UserDefault.swift in Sources */,
 				9847A70F200AB66300A17247 /* AlignedLeftFlowLayout.swift in Sources */,
 				984B713A200FAB8600822ADF /* UIViewExtensions.swift in Sources */,
+				98550AA9201928AC006F53A2 /* RestaurantFilterState.swift in Sources */,
 				98135E342005477500AB64C4 /* RestaurantsTableViewController.swift in Sources */,
 				98D869702008FC4300EC909F /* PartialModalTransitionDelegate.swift in Sources */,
 				98D86974200901D800EC909F /* PartialModalDismissAnimator.swift in Sources */,
@@ -652,6 +659,7 @@
 				984B711A200F7D0F00822ADF /* UserDefault.swift in Sources */,
 				989CE4B1200E901600BD42D7 /* RestaurantRating.swift in Sources */,
 				98C8DFBC2003CE1D00BE568C /* RestaurantFilterViewController.swift in Sources */,
+				98550AAA201928AC006F53A2 /* RestaurantFilterState.swift in Sources */,
 				98F6266920024D3800996A91 /* APIRequestOperation.swift in Sources */,
 				98F6267520026CED00996A91 /* RestaurantDetailViewController.swift in Sources */,
 				9847A6F6200A4E5600A17247 /* HomeCollectionViewController.swift in Sources */,

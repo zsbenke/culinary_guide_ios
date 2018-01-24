@@ -39,17 +39,41 @@ extension URLQueryToken: Hashable {
 }
 
 extension Set where Iterator.Element == URLQueryToken {
+    func filter(column: String) -> Set<URLQueryToken> {
+        return filter { $0.column == column }
+    }
+
+    func filter(column: String, value: String) -> Set<URLQueryToken> {
+        return filter { $0.column == column && $0.value == value }
+    }
+
+    func searchTokens() -> Set<URLQueryToken> {
+        return filter(column: "search")
+    }
+
+    func searchToken() -> URLQueryToken? {
+        return searchTokens().first
+    }
+
     mutating func removeSearchTokens() {
         for token in searchTokens() {
             remove(token)
         }
     }
-    
-    func searchToken() -> URLQueryToken? {
-        return searchTokens().first
+
+    mutating func insert(column: String, value: String) {
+        insert(URLQueryToken.init(column: column, value: value))
     }
 
-    func searchTokens() -> Set<URLQueryToken> {
-        return filter { $0.column == "search" }
+    mutating func removeAll(column: String) {
+        for token in filter(column: column) {
+            remove(token)
+        }
+    }
+
+    mutating func remove(column: String, value: String) {
+        for token in filter(column: column, value: value) {
+            remove(token)
+        }
     }
 }

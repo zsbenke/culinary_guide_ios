@@ -41,7 +41,7 @@ class RestaurantsTableViewController: UITableViewController {
             }
         } else if segue.identifier == "showFilter" {
             let controller = segue.destination.childViewControllers.first as! RestaurantFilterViewController
-            controller.queryTokens = restaurantsViewController.queryTokens
+            controller.filterState = RestaurantFilterState.init(queryTokens: restaurantsViewController.queryTokens)
         }
     }
 
