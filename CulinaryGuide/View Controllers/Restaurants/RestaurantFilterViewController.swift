@@ -31,6 +31,10 @@ class RestaurantFilterViewController: UITableViewController {
             }
         }
 
+        // Reset region table view sections separately
+        let regionSections = IndexSet(regionsSections(forCountry: Localization.currentCountry, containment: .include).flatMap({ $0 }))
+        tableView.reloadSections(regionSections, with: .none)
+
         configureViewFromQueryTokens()
     }
     
@@ -52,7 +56,10 @@ class RestaurantFilterViewController: UITableViewController {
         let columnsFromFilterControls = filterControls.map { $0.tokenColumn }
 
         queryTokens.forEach { queryToken in
-            queryTokens.remove(queryToken)
+            // Region query tokens configured inserted and removed in tableView(_:cellForRowAt:) method
+            if queryToken.column != "region" {
+                queryTokens.remove(queryToken)
+            }
 
             let tokenHasFilterableControl = columnsFromFilterControls.contains(where: { (columnName) -> Bool in
                 guard let columnName = columnName else { return false }
@@ -127,6 +134,35 @@ class RestaurantFilterViewController: UITableViewController {
         return super.tableView(tableView, numberOfRowsInSection: section)
     }
 
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let regionSections = regionsSections(forCountry: Localization.currentCountry, containment: .include).flatMap { $0 }
+        if regionSections.contains(indexPath.section) {
+            let cell = super.tableView(tableView, cellForRowAt: indexPath)
+
+            if let queryToken = regionQueryToken(forCell: cell) {
+                if queryTokens.contains(queryToken) {
+                    setRegionValue(filtering: true, cell: cell)
+                } else {
+                    setRegionValue(filtering: false, cell: cell)
+                }
+            }
+            return cell
+        }
+
+        return super.tableView(tableView, cellForRowAt: indexPath)
+    }
+
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let regionSections = regionsSections(forCountry: Localization.currentCountry, containment: .include).flatMap { $0 }
+        if regionSections.contains(indexPath.section) {
+            guard let cell = tableView.cellForRow(at: indexPath) else { return }
+
+            toggleRegionValue(cell)
+        }
+
+        tableView.deselectRow(at: indexPath, animated: true)
+    }
+
     private enum ContainingMode {
         case exclude
         case include
@@ -134,6 +170,10 @@ class RestaurantFilterViewController: UITableViewController {
 
     private func regionsSections(forCountry aCountry: Localization.Country, containment: ContainingMode) -> [Int?] {
         var sections = [Int?]()
+        var countries = Array(Localization.Country.cases())
+        let firstRegionSectionIndex = 2
+        countries.remove(Localization.Country.Unknown)
+        countries.remove(Localization.Country.CentralEurope)
 
         /*
             Filters current country from an ordered list of countries. The country order is the same as
@@ -142,12 +182,14 @@ class RestaurantFilterViewController: UITableViewController {
         */
 
         if Localization.currentCountry == Localization.Country.CentralEurope {
+           if containment == .include {
+                for (index, _) in countries.enumerated() {
+                    sections.append(index + firstRegionSectionIndex)
+                }
+            }
+
             return sections
         }
-
-        var countries = Array(Localization.Country.cases())
-        countries.remove(Localization.Country.Unknown)
-        countries.remove(Localization.Country.CentralEurope)
 
         for (index, country) in countries.enumerated() {
             let isTheSameCountry = country == aCountry
@@ -157,7 +199,7 @@ class RestaurantFilterViewController: UITableViewController {
                 continue
             }
 
-            sections.append(index + 2)
+            sections.append(index + firstRegionSectionIndex)
         }
 
         return sections
@@ -201,8 +243,6 @@ class RestaurantFilterViewController: UITableViewController {
     @IBAction func wifiValueChanged(_ sender: UISwitch) {
         switchBooleanValue(sender)
     }
-
-    // MARK: Manipulating queryTokens with the FilterableControls
     
     private func switchBooleanValue(_ sender: UISwitch!) {
         guard let tokenColumn = sender.tokenColumn else { return }
@@ -220,7 +260,33 @@ class RestaurantFilterViewController: UITableViewController {
         }
     }
 
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print(regionsSections(forCountry: Localization.currentCountry, containment: .include))
+    private func toggleRegionValue(_ cell: UITableViewCell) {
+        guard let queryToken = regionQueryToken(forCell: cell) else { return }
+
+        if queryTokens.contains(queryToken) {
+            setRegionValue(filtering: false, cell: cell)
+        } else {
+            setRegionValue(filtering: true, cell: cell)
+        }
+    }
+
+    private func setRegionValue(filtering: Bool, cell: UITableViewCell) {
+        guard let queryToken = regionQueryToken(forCell: cell) else { return }
+
+        if filtering {
+            cell.accessoryType = .checkmark
+            queryTokens.insert(queryToken)
+        } else {
+            cell.accessoryType = .none
+            queryTokens.remove(queryToken)
+        }
+    }
+
+    private func regionQueryToken(forCell cell: UITableViewCell) -> URLQueryToken? {
+        guard let tokenColumn = cell.layer.value(forKey: "tokenColumn") as? String else { return nil }
+        guard let tokenValue = cell.layer.value(forKey: "tokenValue") as? String else { return nil }
+
+        let queryToken = URLQueryToken.init(column: tokenColumn, value: tokenValue)
+        return queryToken
     }
 }

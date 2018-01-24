@@ -619,7 +619,7 @@
                                             </subviews>
                                         </tableViewCellContentView>
                                         <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="string" keyPath="layer.tokenValue" value="Észak-Magyarország"/>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="layer.tokenValue" value="Alföld"/>
                                             <userDefinedRuntimeAttribute type="string" keyPath="layer.tokenColumn" value="region"/>
                                         </userDefinedRuntimeAttributes>
                                     </tableViewCell>
@@ -683,6 +683,7 @@
                                         </tableViewCellContentView>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="string" keyPath="layer.tokenValue" value="Dél-Dunántúl"/>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="layer.tokenColumn" value="region"/>
                                         </userDefinedRuntimeAttributes>
                                     </tableViewCell>
                                 </cells>
