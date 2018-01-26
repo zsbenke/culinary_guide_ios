@@ -21,5 +21,21 @@ extension UIColor {
         static var lightHighlighted: UIColor {
             return UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 0.75)
         }
+
+        static var ratingFilterOff: UIColor {
+            return UIColor(red: 0.68, green: 0.74, blue :0.78, alpha: 1.0)
+        }
+
+        static var ratingFilterOffHighlighted: UIColor {
+            return UIColor(red: 0.53, green: 0.58, blue: 0.61, alpha: 1.0)
+        }
+
+        static var ratingFilterOn: UIColor {
+            return self.secondary
+        }
+
+        static var ratingFilterOnHighlighted: UIColor {
+            return UIColor(red: 0.71, green: 0.60, blue: 0.19, alpha: 1.0)
+        }
     }
 }

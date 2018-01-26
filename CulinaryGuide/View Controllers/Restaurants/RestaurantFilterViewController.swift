@@ -4,11 +4,45 @@ class RestaurantFilterViewController: UITableViewController {
     @IBOutlet weak var openSwitch: UISwitch!
     @IBOutlet weak var creditCardSwitch: UISwitch!
     @IBOutlet weak var wifiSwitch: UISwitch!
+    @IBOutlet weak var rating1FilterContainer: UIView!
+    @IBOutlet weak var rating2FilterContainer: UIView!
+    @IBOutlet weak var rating3FilterContainer: UIView!
+    @IBOutlet weak var rating4FilterContainer: UIView!
+    @IBOutlet weak var rating5FilterContainer: UIView!
+    @IBOutlet weak var rating6FilterContainer: UIView!
+
+    let rating5FilterButton = RatingFilterButton.init(rating: RestaurantRating(points: "5"))
+    let rating4FilterButton = RatingFilterButton.init(rating: RestaurantRating(points: "4"))
+    let rating2FilterButton = RatingFilterButton.init(rating: RestaurantRating(points: "2"))
+    let rating3FilterButton = RatingFilterButton.init(rating: RestaurantRating(points: "3"))
+    let rating1FilterButton = RatingFilterButton.init(rating: RestaurantRating(points: "1"))
+    let ratingPopFilterButton = RatingFilterButton.init(rating: RestaurantRating(points: "Pop"))
 
     var filterState = RestaurantFilterState.init(queryTokens: Set<URLQueryToken>())
     
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        rating1FilterContainer.backgroundColor = .white
+        rating2FilterContainer.backgroundColor = .white
+        rating3FilterContainer.backgroundColor = .white
+        rating4FilterContainer.backgroundColor = .white
+        rating5FilterContainer.backgroundColor = .white
+        rating6FilterContainer.backgroundColor = .white
+
+        rating5FilterButton.addTarget(self, action: #selector(self.ratingValueChanged(_:)), for: .valueChanged)
+        rating4FilterButton.addTarget(self, action: #selector(self.ratingValueChanged(_:)), for: .valueChanged)
+        rating3FilterButton.addTarget(self, action: #selector(self.ratingValueChanged(_:)), for: .valueChanged)
+        rating2FilterButton.addTarget(self, action: #selector(self.ratingValueChanged(_:)), for: .valueChanged)
+        rating1FilterButton.addTarget(self, action: #selector(self.ratingValueChanged(_:)), for: .valueChanged)
+        ratingPopFilterButton.addTarget(self, action: #selector(self.ratingValueChanged(_:)), for: .valueChanged)
+
+        rating1FilterContainer.addSubview(rating5FilterButton)
+        rating2FilterContainer.addSubview(rating4FilterButton)
+        rating3FilterContainer.addSubview(rating3FilterButton)
+        rating4FilterContainer.addSubview(rating2FilterButton)
+        rating5FilterContainer.addSubview(rating1FilterButton)
+        rating6FilterContainer.addSubview(ratingPopFilterButton)
 
         configureView()
     }
@@ -37,14 +71,21 @@ class RestaurantFilterViewController: UITableViewController {
         creditCardSwitch.setOn(filterState.creditCard, animated: true)
         wifiSwitch.setOn(filterState.wifi, animated: true)
 
-        let regionSections = IndexSet(regionsSections(forCountry: Localization.currentCountry, containment: .include).compactMap({ $0 }))
+        rating5FilterButton.isOn = filterState.ratings.contains(rating5FilterButton.rating.points)
+        rating4FilterButton.isOn = filterState.ratings.contains(rating4FilterButton.rating.points)
+        rating3FilterButton.isOn = filterState.ratings.contains(rating3FilterButton.rating.points)
+        rating2FilterButton.isOn = filterState.ratings.contains(rating2FilterButton.rating.points)
+        rating1FilterButton.isOn = filterState.ratings.contains(rating1FilterButton.rating.points)
+        ratingPopFilterButton.isOn = filterState.ratings.contains(ratingPopFilterButton.rating.points)
+
+        let regionSections = IndexSet(regionsSections(forCountry: Localization.currentCountry, containment: .include).flatMap({ $0 }))
         tableView.reloadSections(regionSections, with: .none)
     }
 
     // MARK: TableView Delegate
 
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        let regionSections = regionsSections(forCountry: Localization.currentCountry, containment: .exclude).compactMap { $0 }
+        let regionSections = regionsSections(forCountry: Localization.currentCountry, containment: .exclude).flatMap { $0 }
 
         if regionSections.contains(section) {
             return nil
@@ -54,7 +95,7 @@ class RestaurantFilterViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        let regionSections = regionsSections(forCountry: Localization.currentCountry, containment: .exclude).compactMap { $0 }
+        let regionSections = regionsSections(forCountry: Localization.currentCountry, containment: .exclude).flatMap { $0 }
 
         if regionSections.contains(section) {
             return 0.1
@@ -64,7 +105,7 @@ class RestaurantFilterViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        let regionSections = regionsSections(forCountry: Localization.currentCountry, containment: .exclude).compactMap { $0 }
+        let regionSections = regionsSections(forCountry: Localization.currentCountry, containment: .exclude).flatMap { $0 }
 
         if regionSections.contains(section) {
             return 0.1
@@ -74,7 +115,7 @@ class RestaurantFilterViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        let regionSections = regionsSections(forCountry: Localization.currentCountry, containment: .exclude).compactMap { $0 }
+        let regionSections = regionsSections(forCountry: Localization.currentCountry, containment: .exclude).flatMap { $0 }
 
         if regionSections.contains(section) {
             return 0
@@ -84,7 +125,7 @@ class RestaurantFilterViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let regionSections = regionsSections(forCountry: Localization.currentCountry, containment: .include).compactMap { $0 }
+        let regionSections = regionsSections(forCountry: Localization.currentCountry, containment: .include).flatMap { $0 }
         if regionSections.contains(indexPath.section) {
             let cell = super.tableView(tableView, cellForRowAt: indexPath)
 
@@ -102,7 +143,7 @@ class RestaurantFilterViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let regionSections = regionsSections(forCountry: Localization.currentCountry, containment: .include).compactMap { $0 }
+        let regionSections = regionsSections(forCountry: Localization.currentCountry, containment: .include).flatMap { $0 }
         if regionSections.contains(indexPath.section) {
             guard let cell = tableView.cellForRow(at: indexPath) else { return }
 
@@ -175,6 +216,12 @@ class RestaurantFilterViewController: UITableViewController {
         filterState.wifi = sender.isOn
     }
 
+    @objc func ratingValueChanged(_ sender: RatingFilterButton) {
+        setRating(value: sender.rating.points, filtering: sender.isOn)
+        print(filterState.ratings)
+        print(sender.isOn)
+    }
+
     private func toggleRegionValue(_ cell: UITableViewCell) {
         guard let regionValue = regionValue(forCell: cell) else { return }
 
@@ -200,5 +247,13 @@ class RestaurantFilterViewController: UITableViewController {
     private func regionValue(forCell cell: UITableViewCell) -> String? {
         guard let value = cell.layer.value(forKey: "tokenValue") as? String else { return nil }
         return value
+    }
+
+    private func setRating(value: String, filtering: Bool) {
+        if filtering {
+            filterState.ratings.insert(value)
+        } else {
+            filterState.ratings.remove(value)
+        }
     }
 }

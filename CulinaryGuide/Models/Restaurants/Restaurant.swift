@@ -15,7 +15,7 @@ struct Restaurant: PointOfInterest, Codable {
         case address = "full_address"
         case latitude
         case longitude
-        case rating = "final_rating"
+        case rating = "rating"
     }
 
     func toAnnotation() -> RestaurantAnnotation? {

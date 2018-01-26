@@ -56,6 +56,9 @@
 		984B7139200FAB8600822ADF /* UIViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 984B7138200FAB8600822ADF /* UIViewExtensions.swift */; };
 		984B713A200FAB8600822ADF /* UIViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 984B7138200FAB8600822ADF /* UIViewExtensions.swift */; };
 		984B713B200FAB8600822ADF /* UIViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 984B7138200FAB8600822ADF /* UIViewExtensions.swift */; };
+		985403B0201B96BA006F7103 /* RatingFilterButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 985403AF201B96BA006F7103 /* RatingFilterButton.swift */; };
+		985403B1201B96BA006F7103 /* RatingFilterButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 985403AF201B96BA006F7103 /* RatingFilterButton.swift */; };
+		985403B2201B96BA006F7103 /* RatingFilterButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 985403AF201B96BA006F7103 /* RatingFilterButton.swift */; };
 		98550AA8201928AC006F53A2 /* RestaurantFilterState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98550AA7201928AC006F53A2 /* RestaurantFilterState.swift */; };
 		98550AA9201928AC006F53A2 /* RestaurantFilterState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98550AA7201928AC006F53A2 /* RestaurantFilterState.swift */; };
 		98550AAA201928AC006F53A2 /* RestaurantFilterState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98550AA7201928AC006F53A2 /* RestaurantFilterState.swift */; };
@@ -174,6 +177,7 @@
 		984B7128200F80A800822ADF /* Environment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Environment.swift; sourceTree = "<group>"; };
 		984B712C200F80DF00822ADF /* RestaurantRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantRouter.swift; sourceTree = "<group>"; };
 		984B7138200FAB8600822ADF /* UIViewExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtensions.swift; sourceTree = "<group>"; };
+		985403AF201B96BA006F7103 /* RatingFilterButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatingFilterButton.swift; sourceTree = "<group>"; };
 		98550AA7201928AC006F53A2 /* RestaurantFilterState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = RestaurantFilterState.swift; path = CulinaryGuide/Models/Restaurants/RestaurantFilterState.swift; sourceTree = SOURCE_ROOT; };
 		986E8AD1200E6EA200BA57AA /* RatingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatingView.swift; sourceTree = "<group>"; };
 		986E8AD4200E6FBF00BA57AA /* RestaurantRatingTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantRatingTests.swift; sourceTree = "<group>"; };
@@ -358,6 +362,7 @@
 				9847A701200A99C400A17247 /* TagCollectionHeaderView.xib */,
 				9847A6FD200A99A400A17247 /* TagCollectionHeaderView.swift */,
 				986E8AD1200E6EA200BA57AA /* RatingView.swift */,
+				985403AF201B96BA006F7103 /* RatingFilterButton.swift */,
 				98D8697E20094D7200EC909F /* RoundedButton.swift */,
 				9847A70D200AB66300A17247 /* AlignedLeftFlowLayout.swift */,
 				9847A711200BA5EC00A17247 /* UIBezierPath Tap.playground */,
@@ -590,6 +595,7 @@
 				98F6266F20024ED800996A91 /* Restaurant.swift in Sources */,
 				989CE4B3200E932F00BD42D7 /* Rating.swift in Sources */,
 				98D869622008FBE300EC909F /* SplashViewController.swift in Sources */,
+				985403B0201B96BA006F7103 /* RatingFilterButton.swift in Sources */,
 				98363150200FD4E1002EBE01 /* ArrayExtensions.swift in Sources */,
 				98D8697F20094D7200EC909F /* RoundedButton.swift in Sources */,
 				98C8DFBA2003CE1D00BE568C /* RestaurantFilterViewController.swift in Sources */,
@@ -621,6 +627,7 @@
 				98D8698420094E2300EC909F /* UIImage+imageWithColor.swift in Sources */,
 				98F6264C20024BA500996A91 /* API.swift in Sources */,
 				984B711B200F7D0F00822ADF /* UserDefault.swift in Sources */,
+				985403B1201B96BA006F7103 /* RatingFilterButton.swift in Sources */,
 				9847A70F200AB66300A17247 /* AlignedLeftFlowLayout.swift in Sources */,
 				984B713A200FAB8600822ADF /* UIViewExtensions.swift in Sources */,
 				98550AA9201928AC006F53A2 /* RestaurantFilterState.swift in Sources */,
@@ -685,6 +692,7 @@
 				98F626382002487700996A91 /* CulinaryGuideUITests.swift in Sources */,
 				983A7FF12003E66C00512ED5 /* RestaurantsViewController.swift in Sources */,
 				98D869642008FBE300EC909F /* SplashViewController.swift in Sources */,
+				985403B2201B96BA006F7103 /* RatingFilterButton.swift in Sources */,
 				98363152200FD4E1002EBE01 /* ArrayExtensions.swift in Sources */,
 				984B7120200F7D1B00822ADF /* BrandColor.swift in Sources */,
 				98F6266220024CA900996A91 /* APIResource.swift in Sources */,

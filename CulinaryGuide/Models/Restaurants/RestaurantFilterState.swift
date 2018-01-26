@@ -9,6 +9,7 @@ struct RestaurantFilterState {
         static let wifi = "wifi"
         static let creditCard = "credit_card"
         static let search = "search"
+        static let rating = "rating"
     }
 
     var queryTokens: URLQueryTokens
@@ -25,6 +26,21 @@ struct RestaurantFilterState {
         set(newValue) {
             queryTokens.removeAll(column: Column.region)
             for region in newValue { queryTokens.insert(column: Column.region, value: region) }
+        }
+    }
+
+    var ratings: Set<String> {
+        get {
+            var filteredRatings = Set<String>()
+            for ratingToken in queryTokens.filter(column: Column.rating) {
+                filteredRatings.insert(ratingToken.value)
+            }
+            return filteredRatings
+        }
+
+        set(newValue) {
+            queryTokens.removeAll(column: Column.rating)
+            for rating in newValue { queryTokens.insert(column: Column.rating, value: rating) }
         }
     }
 
