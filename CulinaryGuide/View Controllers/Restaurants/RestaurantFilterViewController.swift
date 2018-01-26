@@ -50,6 +50,15 @@ class RestaurantFilterViewController: UITableViewController {
 
         configureView()
     }
+
+    override func viewDidLayoutSubviews() {
+        rating5FilterButton.frame = CGRect(x: 0, y: 0, width: rating1FilterContainer.frame.width, height: rating1FilterContainer.frame.height)
+        rating4FilterButton.frame = CGRect(x: 0, y: 0, width: rating2FilterContainer.frame.width, height: rating2FilterContainer.frame.height)
+        rating3FilterButton.frame = CGRect(x: 0, y: 0, width: rating3FilterContainer.frame.width, height: rating3FilterContainer.frame.height)
+        rating2FilterButton.frame = CGRect(x: 0, y: 0, width: rating4FilterContainer.frame.width, height: rating4FilterContainer.frame.height)
+        rating1FilterButton.frame = CGRect(x: 0, y: 0, width: rating5FilterContainer.frame.width, height: rating5FilterContainer.frame.height)
+        ratingPopFilterButton.frame = CGRect(x: 0, y: 0, width: rating6FilterContainer.frame.width, height: rating6FilterContainer.frame.height)
+    }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

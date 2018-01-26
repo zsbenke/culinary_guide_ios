@@ -31,11 +31,11 @@ extension UIColor {
         }
 
         static var ratingFilterOn: UIColor {
-            return self.secondary
+            return self.primary
         }
 
         static var ratingFilterOnHighlighted: UIColor {
-            return UIColor(red: 0.71, green: 0.60, blue: 0.19, alpha: 1.0)
+            return self.primary
         }
     }
 }
