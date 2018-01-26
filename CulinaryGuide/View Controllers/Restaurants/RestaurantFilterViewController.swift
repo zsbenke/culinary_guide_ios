@@ -11,6 +11,8 @@ class RestaurantFilterViewController: UITableViewController {
     @IBOutlet weak var rating5FilterContainer: UIView!
     @IBOutlet weak var rating6FilterContainer: UIView!
 
+    let generator = UINotificationFeedbackGenerator()
+
     let rating5FilterButton = RatingFilterButton.init(rating: RestaurantRating(points: "5"))
     let rating4FilterButton = RatingFilterButton.init(rating: RestaurantRating(points: "4"))
     let rating2FilterButton = RatingFilterButton.init(rating: RestaurantRating(points: "2"))
@@ -22,6 +24,8 @@ class RestaurantFilterViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        generator.prepare()
 
         rating1FilterContainer.backgroundColor = .white
         rating2FilterContainer.backgroundColor = .white
@@ -52,8 +56,15 @@ class RestaurantFilterViewController: UITableViewController {
     }
     
     @IBAction func resetFilters(_ sender: UIBarButtonItem) {
-        self.filterState = RestaurantFilterState.init(queryTokens: Set<URLQueryToken>())
+        var defaultQueryTokens = Set<URLQueryToken>()
+        if let searchToken = filterState.queryTokens.searchToken() {
+            defaultQueryTokens.insert(searchToken)
+        }
+        self.filterState = RestaurantFilterState.init(queryTokens: defaultQueryTokens)
+
         configureView()
+
+        generator.notificationOccurred(.success)
     }
     
     @IBAction func filter(_ sender: UIBarButtonItem) {

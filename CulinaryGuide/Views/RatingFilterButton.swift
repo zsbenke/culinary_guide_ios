@@ -2,12 +2,6 @@
 import UIKit
 
 final class RatingFilterButton: UIControl {
-    private struct DefaultRating: Rating {
-        var points = ""
-        var image = #imageLiteral(resourceName: "Rating Pop")
-        var color = UIColor.white
-    }
-
     var rating: Rating
     var isOn = false {
         didSet {
@@ -28,6 +22,13 @@ final class RatingFilterButton: UIControl {
         }
     }
 
+    private let generator = UIImpactFeedbackGenerator(style: .light)
+    private struct DefaultRating: Rating {
+        var points = ""
+        var image = #imageLiteral(resourceName: "Rating Pop")
+        var color = UIColor.white
+    }
+
     init(rating: Rating) {
         self.rating = rating
 
@@ -39,11 +40,13 @@ final class RatingFilterButton: UIControl {
         layer.cornerRadius = 5
         isUserInteractionEnabled = true
         isMultipleTouchEnabled = false
+        generator.prepare()
     }
 
     required init?(coder aDecoder: NSCoder) {
         self.rating = DefaultRating()
         super.init(coder: aDecoder)
+        generator.prepare()
     }
 
     override func draw(_ rect: CGRect) {
@@ -73,6 +76,8 @@ final class RatingFilterButton: UIControl {
         } else {
             isOn = true
         }
+
+        generator.impactOccurred()
 
         sendActions(for: .valueChanged)
     }
