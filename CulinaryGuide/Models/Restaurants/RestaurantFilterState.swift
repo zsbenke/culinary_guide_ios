@@ -96,6 +96,16 @@ struct RestaurantFilterState {
         }
     }
 
+    var hasParking: Bool? {
+        get {
+            return isOptionalBoolColumnPresent(Column.hasParking)
+        }
+
+        set(newValue) {
+            setOptionalColumnBool(column: Column.hasParking, value: newValue)
+        }
+    }
+
     var search: String {
         get {
             guard let searchQueryToken = queryTokens.filter(column: Column.search).first else { return "" }

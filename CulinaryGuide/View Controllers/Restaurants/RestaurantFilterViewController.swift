@@ -11,6 +11,7 @@ class RestaurantFilterViewController: UITableViewController {
     @IBOutlet weak var rating5FilterContainer: UIView!
     @IBOutlet weak var rating6FilterContainer: UIView!
     @IBOutlet weak var reserverationNeededSegmentedControl: UISegmentedControl!
+    @IBOutlet weak var hasParkingSegmentedControl: UISegmentedControl!
 
     let generator = UINotificationFeedbackGenerator()
 
@@ -190,6 +191,17 @@ class RestaurantFilterViewController: UITableViewController {
         }
     }
 
+    @IBAction func hasParkingValueChanged(_ sender: UISegmentedControl) {
+        switch sender.selectedSegmentIndex {
+        case 0:
+            filterState.hasParking = true
+        case 1:
+            filterState.hasParking = false
+        default:
+            filterState.hasParking = nil
+        }
+    }
+
     @objc func ratingValueChanged(_ sender: RatingFilterButton) {
         setRating(value: sender.rating.points, filtering: sender.isOn)
     }
@@ -202,15 +214,20 @@ private extension RestaurantFilterViewController {
     }
 
     func configureView() {
+        let configureBooleanSegmentedControls: (Bool?, UISegmentedControl) -> Void = { filterStateColumn, segmentedControl in
+            if filterStateColumn != nil, let filterStateColumn = filterStateColumn {
+                segmentedControl.selectedSegmentIndex = filterStateColumn ? 0 : 1
+            } else {
+                segmentedControl.selectedSegmentIndex = UISegmentedControlNoSegment
+            }
+        }
+
         openSwitch.setOn(!filterState.openAt.isEmpty, animated: true)
         creditCardSwitch.setOn(filterState.creditCard, animated: true)
         wifiSwitch.setOn(filterState.wifi, animated: true)
 
-        if filterState.reservationNeeded != nil, let reservationNeeded = filterState.reservationNeeded {
-            reserverationNeededSegmentedControl.selectedSegmentIndex = reservationNeeded ? 0 : 1
-        } else {
-            reserverationNeededSegmentedControl.selectedSegmentIndex = UISegmentedControlNoSegment
-        }
+        configureBooleanSegmentedControls(filterState.reservationNeeded, reserverationNeededSegmentedControl)
+        configureBooleanSegmentedControls(filterState.hasParking, hasParkingSegmentedControl)
 
         rating5FilterButton.isOn = filterState.ratings.contains(rating5FilterButton.rating.points)
         rating4FilterButton.isOn = filterState.ratings.contains(rating4FilterButton.rating.points)

@@ -623,6 +623,9 @@
                                                             </attributes>
                                                         </fragment>
                                                     </attributedString>
+                                                    <connections>
+                                                        <action selector="hasParkingValueChanged:" destination="MYZ-lN-BUl" eventType="valueChanged" id="cty-kh-pUL"/>
+                                                    </connections>
                                                 </segmentedControl>
                                             </subviews>
                                             <constraints>
@@ -1382,6 +1385,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="creditCardSwitch" destination="66H-ZA-xjt" id="Sd1-6s-FJd"/>
+                        <outlet property="hasParkingSegmentedControl" destination="zcf-aZ-ULb" id="Gin-O3-33S"/>
                         <outlet property="openSwitch" destination="yp1-NY-R1G" id="08C-RQ-ej5"/>
                         <outlet property="rating1FilterContainer" destination="OXW-pv-GKB" id="41c-bD-aNg"/>
                         <outlet property="rating2FilterContainer" destination="fpI-he-gZS" id="zZg-WY-aDu"/>
