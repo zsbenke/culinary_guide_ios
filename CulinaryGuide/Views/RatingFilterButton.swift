@@ -2,6 +2,7 @@
 import UIKit
 
 final class RatingFilterButton: UIControl {
+    private let generator = UIImpactFeedbackGenerator(style: .light)
     var rating: Rating
     var isOn = false {
         didSet {
@@ -20,13 +21,6 @@ final class RatingFilterButton: UIControl {
                 backgroundColor = UIColor.BrandColor.ratingFilterOffHighlighted
             }
         }
-    }
-
-    private let generator = UIImpactFeedbackGenerator(style: .light)
-    private struct DefaultRating: Rating {
-        var points = ""
-        var image = #imageLiteral(resourceName: "Rating Pop")
-        var color = UIColor.white
     }
 
     init(rating: Rating) {
@@ -80,5 +74,13 @@ final class RatingFilterButton: UIControl {
         generator.impactOccurred()
 
         sendActions(for: .valueChanged)
+    }
+}
+
+private extension RatingFilterButton {
+    struct DefaultRating: Rating {
+        var points = ""
+        var image = #imageLiteral(resourceName: "Rating Pop")
+        var color = UIColor.white
     }
 }

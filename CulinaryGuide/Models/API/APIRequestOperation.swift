@@ -15,13 +15,15 @@ class APIRequestOperation: AsyncOperation {
             self.state = .Finished
         }
     }
-    
-    private func request(_ apiRequest: URLRequest, completionHandler: @escaping (_ data: Data?) -> Void) {
+}
+
+private extension APIRequestOperation {
+    func request(_ apiRequest: URLRequest, completionHandler: @escaping (_ data: Data?) -> Void) {
         let authToken = "Token token=eyJhbGciOiJIUzI1NiJ9.eyJ1bmlxdWVfaGFzaCI6InRlc3QifQ.9RwhNNuROSt_DpadCdGhSICbp0HSceu6Nv1u3sn5q-E"
         let sessionConfiguration = URLSessionConfiguration.ephemeral
         sessionConfiguration.httpAdditionalHeaders = ["Authorization": authToken]
         let session = URLSession(configuration: sessionConfiguration)
-        
+
         let dataTask = session.dataTask(with: apiRequest) { data, response, error in
             if (error != nil) {
                 guard let error = error else { return }
@@ -50,10 +52,8 @@ class APIRequestOperation: AsyncOperation {
         }
         dataTask.resume()
     }
-}
 
-extension APIRequestOperation: UIAlertViewDelegate {
-    private func showAlert(message: String) {
+    func showAlert(message: String) {
         let alertControllerTitle = NSLocalizedString("Network Error", comment: "A hálózati hibát jelző alert címsorának szövege.")
         let cancelActionTitle = NSLocalizedString("OK", comment: "A hálózati hibát jelző alert OK gombjának szövege.")
         let alertController = UIAlertController.init(title: alertControllerTitle, message: message, preferredStyle: .alert)

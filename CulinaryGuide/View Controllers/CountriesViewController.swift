@@ -40,26 +40,6 @@ class CountriesViewController: UITableViewController {
         }
     }
 
-    private func animateMapView(upward: Bool, delay: TimeInterval = 0.0, completion: (() -> Void)? = nil) {
-        guard let splashViewController = self.splashViewController else { return }
-
-        if upward {
-            UIView.animate(withDuration: 0.3, delay: delay, options: .curveEaseOut, animations: {
-                splashViewController.mapImageView.transform = CGAffineTransform.init(translationX: 0, y: -90)
-            }, completion: { finished in
-                guard let completion = completion else { return }
-                completion()
-            })
-        } else {
-            UIView.animate(withDuration: 0.3, delay: delay, options: .curveEaseOut, animations: {
-                splashViewController.mapImageView.transform = CGAffineTransform.identity
-            }, completion: { finished in
-                guard let completion = completion else { return }
-                completion()
-            })
-        }
-    }
-
     // MARK: - Table View
 
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -102,5 +82,27 @@ class CountriesViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
         tableView.cellForRow(at: indexPath)?.accessoryType = .none
+    }
+}
+
+private extension CountriesViewController {
+    func animateMapView(upward: Bool, delay: TimeInterval = 0.0, completion: (() -> Void)? = nil) {
+        guard let splashViewController = self.splashViewController else { return }
+
+        if upward {
+            UIView.animate(withDuration: 0.3, delay: delay, options: .curveEaseOut, animations: {
+                splashViewController.mapImageView.transform = CGAffineTransform.init(translationX: 0, y: -90)
+            }, completion: { finished in
+                guard let completion = completion else { return }
+                completion()
+            })
+        } else {
+            UIView.animate(withDuration: 0.3, delay: delay, options: .curveEaseOut, animations: {
+                splashViewController.mapImageView.transform = CGAffineTransform.identity
+            }, completion: { finished in
+                guard let completion = completion else { return }
+                completion()
+            })
+        }
     }
 }

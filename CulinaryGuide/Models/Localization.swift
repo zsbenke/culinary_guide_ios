@@ -66,16 +66,18 @@ struct Localization {
         guard let country = Country(rawValue: UserDefaults.standard.string(forKey: "\(UserDefaultKey.country)") ?? "") else { return Country.Unknown }
         return country
     }
-    
-    private static func localizations() -> [Language] {
+}
+
+private extension Localization {
+    static func localizations() -> [Language] {
         let supportedLocalizations = normalize(localizations: Bundle.main.localizations as [String])
         let preferredLocalizations = normalize(localizations: NSLocale.preferredLanguages)
         let localizations = preferredLocalizations.filter { supportedLocalizations.contains($0) }
-        
+
         return localizations
     }
-    
-    private static func normalize(localizations: [String]) -> [Language] {
+
+    static func normalize(localizations: [String]) -> [Language] {
         var normalizedLocalizations = [Language]()
         for localization in localizations {
             let languageCode = String(localization.split(separator: "-")[0])
@@ -84,8 +86,8 @@ struct Localization {
         }
         return normalizedLocalizations
     }
-    
-    private static func normalize(localization: String) -> Language {
+
+    static func normalize(localization: String) -> Language {
         switch localization {
         case "Base":
             return Language.english

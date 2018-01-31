@@ -16,10 +16,6 @@ struct URLQueryToken {
     var valueItem: URLQueryItem {
         return URLQueryToken.initURLQueryItem(for: .value, value: value)
     }
-    
-    private static func initURLQueryItem(for tokenType: TokenType, value: String) -> URLQueryItem {
-        return URLQueryItem(name: "tokens[][\(tokenType)]", value: value)
-    }
 }
 
 extension URLQueryToken: CustomStringConvertible {
@@ -35,6 +31,12 @@ extension URLQueryToken: Hashable {
     
     static func ==(lhs: URLQueryToken, rhs: URLQueryToken) -> Bool {
         return lhs.column == rhs.column && lhs.value == rhs.value
+    }
+}
+
+private extension URLQueryToken {
+    static func initURLQueryItem(for tokenType: TokenType, value: String) -> URLQueryItem {
+        return URLQueryItem(name: "tokens[][\(tokenType)]", value: value)
     }
 }
 

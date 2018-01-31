@@ -1,12 +1,6 @@
 import UIKit
 
 class RatingView: UIView {
-    private struct DefaultRating: Rating {
-        var points = ""
-        var image = #imageLiteral(resourceName: "Rating Pop")
-        var color = UIColor.BrandColor.primary
-    }
-
     var rating: Rating
 
     init(rating: Rating) {
@@ -32,5 +26,13 @@ class RatingView: UIView {
         imageView.centerXAnchor.constraint(equalTo: self.centerXAnchor)
 
         addSubview(imageView)
+    }
+}
+
+private extension RatingView {
+    struct DefaultRating: Rating {
+        var points = ""
+        var image = #imageLiteral(resourceName: "Rating Pop")
+        var color = UIColor.BrandColor.primary
     }
 }

@@ -85,22 +85,6 @@ class RestaurantFilterViewController: UITableViewController {
             restaurantsViewController.queryTokens = self.filterState.queryTokens
         }
     }
-    
-    private func configureView() {
-        openSwitch.setOn(!filterState.openAt.isEmpty, animated: true)
-        creditCardSwitch.setOn(filterState.creditCard, animated: true)
-        wifiSwitch.setOn(filterState.wifi, animated: true)
-
-        rating5FilterButton.isOn = filterState.ratings.contains(rating5FilterButton.rating.points)
-        rating4FilterButton.isOn = filterState.ratings.contains(rating4FilterButton.rating.points)
-        rating3FilterButton.isOn = filterState.ratings.contains(rating3FilterButton.rating.points)
-        rating2FilterButton.isOn = filterState.ratings.contains(rating2FilterButton.rating.points)
-        rating1FilterButton.isOn = filterState.ratings.contains(rating1FilterButton.rating.points)
-        ratingPopFilterButton.isOn = filterState.ratings.contains(ratingPopFilterButton.rating.points)
-
-        let regionSections = IndexSet(regionsSections(forCountry: Localization.currentCountry, containment: .include).flatMap({ $0 }))
-        tableView.reloadSections(regionSections, with: .none)
-    }
 
     // MARK: TableView Delegate
 
@@ -173,48 +157,6 @@ class RestaurantFilterViewController: UITableViewController {
         tableView.deselectRow(at: indexPath, animated: true)
     }
 
-    private enum ContainingMode {
-        case exclude
-        case include
-    }
-
-    private func regionsSections(forCountry aCountry: Localization.Country, containment: ContainingMode) -> [Int?] {
-        var sections = [Int?]()
-        var countries = Array(Localization.Country.cases())
-        let firstRegionSectionIndex = 2
-        countries.remove(Localization.Country.Unknown)
-        countries.remove(Localization.Country.CentralEurope)
-
-        /*
-            Filters current country from an ordered list of countries. The country order is the same as
-            the region order in the RestaurantFilterViewController's storyboard. We offset sections
-            manually by adding the number of preceding TableViewSections.
-        */
-
-        if Localization.currentCountry == Localization.Country.CentralEurope {
-           if containment == .include {
-                for (index, _) in countries.enumerated() {
-                    sections.append(index + firstRegionSectionIndex)
-                }
-            }
-
-            return sections
-        }
-
-        for (index, country) in countries.enumerated() {
-            let isTheSameCountry = country == aCountry
-
-            if containment == .include && !isTheSameCountry ||
-               containment == .exclude &&  isTheSameCountry {
-                continue
-            }
-
-            sections.append(index + firstRegionSectionIndex)
-        }
-
-        return sections
-    }
-
     // MARK: Storyboard actions to set queryTokens
 
     @IBAction func openValueChanged(_ sender: UISwitch) {
@@ -241,8 +183,68 @@ class RestaurantFilterViewController: UITableViewController {
         print(filterState.ratings)
         print(sender.isOn)
     }
+}
 
-    private func toggleRegionValue(_ cell: UITableViewCell) {
+private extension RestaurantFilterViewController {
+    enum ContainingMode {
+        case exclude
+        case include
+    }
+
+    func configureView() {
+        openSwitch.setOn(!filterState.openAt.isEmpty, animated: true)
+        creditCardSwitch.setOn(filterState.creditCard, animated: true)
+        wifiSwitch.setOn(filterState.wifi, animated: true)
+
+        rating5FilterButton.isOn = filterState.ratings.contains(rating5FilterButton.rating.points)
+        rating4FilterButton.isOn = filterState.ratings.contains(rating4FilterButton.rating.points)
+        rating3FilterButton.isOn = filterState.ratings.contains(rating3FilterButton.rating.points)
+        rating2FilterButton.isOn = filterState.ratings.contains(rating2FilterButton.rating.points)
+        rating1FilterButton.isOn = filterState.ratings.contains(rating1FilterButton.rating.points)
+        ratingPopFilterButton.isOn = filterState.ratings.contains(ratingPopFilterButton.rating.points)
+
+        let regionSections = IndexSet(regionsSections(forCountry: Localization.currentCountry, containment: .include).flatMap({ $0 }))
+        tableView.reloadSections(regionSections, with: .none)
+    }
+
+    func regionsSections(forCountry aCountry: Localization.Country, containment: ContainingMode) -> [Int?] {
+        var sections = [Int?]()
+        var countries = Array(Localization.Country.cases())
+        let firstRegionSectionIndex = 2
+        countries.remove(Localization.Country.Unknown)
+        countries.remove(Localization.Country.CentralEurope)
+
+        /*
+         Filters current country from an ordered list of countries. The country order is the same as
+         the region order in the RestaurantFilterViewController's storyboard. We offset sections
+         manually by adding the number of preceding TableViewSections.
+         */
+
+        if Localization.currentCountry == Localization.Country.CentralEurope {
+            if containment == .include {
+                for (index, _) in countries.enumerated() {
+                    sections.append(index + firstRegionSectionIndex)
+                }
+            }
+
+            return sections
+        }
+
+        for (index, country) in countries.enumerated() {
+            let isTheSameCountry = country == aCountry
+
+            if containment == .include && !isTheSameCountry ||
+                containment == .exclude &&  isTheSameCountry {
+                continue
+            }
+
+            sections.append(index + firstRegionSectionIndex)
+        }
+
+        return sections
+    }
+
+    func toggleRegionValue(_ cell: UITableViewCell) {
         guard let regionValue = regionValue(forCell: cell) else { return }
 
         if filterState.regions.contains(regionValue) {
@@ -252,7 +254,7 @@ class RestaurantFilterViewController: UITableViewController {
         }
     }
 
-    private func setRegionValue(filtering: Bool, cell: UITableViewCell) {
+    func setRegionValue(filtering: Bool, cell: UITableViewCell) {
         guard let regionValue = regionValue(forCell: cell) else { return }
 
         if filtering {
@@ -264,12 +266,12 @@ class RestaurantFilterViewController: UITableViewController {
         }
     }
 
-    private func regionValue(forCell cell: UITableViewCell) -> String? {
+    func regionValue(forCell cell: UITableViewCell) -> String? {
         guard let value = cell.layer.value(forKey: "tokenValue") as? String else { return nil }
         return value
     }
 
-    private func setRating(value: String, filtering: Bool) {
+    func setRating(value: String, filtering: Bool) {
         if filtering {
             filterState.ratings.insert(value)
         } else {
