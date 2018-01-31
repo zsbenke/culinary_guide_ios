@@ -10,6 +10,7 @@ struct RestaurantFilterState {
         static let creditCard = "credit_card"
         static let search = "search"
         static let rating = "rating"
+        static let reservationNeeded = "reservation_needed"
     }
 
     var queryTokens: URLQueryTokens
@@ -80,6 +81,28 @@ struct RestaurantFilterState {
             queryTokens.removeAll(column: Column.creditCard)
             if newValue == true {
                 queryTokens.insert(column: Column.creditCard, value: "\(newValue)")
+            }
+        }
+    }
+
+    var reservationNeeded: Bool? {
+        get {
+            guard let reservationNeededQueryToken = queryTokens.filter(column: Column.reservationNeeded).first else { return nil }
+
+            switch reservationNeededQueryToken.value {
+            case "true":
+                return true
+            case "false":
+                return false
+            default:
+                return nil
+            }
+        }
+
+        set(newValue) {
+            queryTokens.removeAll(column: Column.reservationNeeded)
+            if let newValue = newValue {
+                queryTokens.insert(column: Column.reservationNeeded, value: "\(newValue)")
             }
         }
     }
