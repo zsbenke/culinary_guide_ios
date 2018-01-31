@@ -11,6 +11,7 @@ struct RestaurantFilterState {
         static let search = "search"
         static let rating = "rating"
         static let reservationNeeded = "reservation_needed"
+        static let hasParking = "has_parking"
     }
 
     var queryTokens: URLQueryTokens
@@ -87,23 +88,11 @@ struct RestaurantFilterState {
 
     var reservationNeeded: Bool? {
         get {
-            guard let reservationNeededQueryToken = queryTokens.filter(column: Column.reservationNeeded).first else { return nil }
-
-            switch reservationNeededQueryToken.value {
-            case "true":
-                return true
-            case "false":
-                return false
-            default:
-                return nil
-            }
+            return isOptionalBoolColumnPresent(Column.reservationNeeded)
         }
 
         set(newValue) {
-            queryTokens.removeAll(column: Column.reservationNeeded)
-            if let newValue = newValue {
-                queryTokens.insert(column: Column.reservationNeeded, value: "\(newValue)")
-            }
+            setOptionalColumnBool(column: Column.reservationNeeded, value: newValue)
         }
     }
 
@@ -121,5 +110,27 @@ struct RestaurantFilterState {
 
     init(queryTokens: URLQueryTokens) {
         self.queryTokens = queryTokens
+    }
+}
+
+private extension RestaurantFilterState {
+    func isOptionalBoolColumnPresent(_ column: String) -> Bool? {
+        guard let queryToken = queryTokens.filter(column: column).first else { return nil }
+
+        switch queryToken.value {
+        case "true":
+            return true
+        case "false":
+            return false
+        default:
+            return nil
+        }
+    }
+
+    mutating func setOptionalColumnBool(column: String, value: Bool?) {
+        queryTokens.removeAll(column: column)
+        if let value = value {
+            queryTokens.insert(column: column, value: "\(value)")
+        }
     }
 }
