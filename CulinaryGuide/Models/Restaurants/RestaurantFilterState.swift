@@ -12,6 +12,7 @@ struct RestaurantFilterState {
         static let rating = "rating"
         static let reservationNeeded = "reservation_needed"
         static let hasParking = "has_parking"
+        static let priceInformationRating = "price_information_rating"
     }
 
     var queryTokens: URLQueryTokens
@@ -103,6 +104,20 @@ struct RestaurantFilterState {
 
         set(newValue) {
             setOptionalColumnBool(column: Column.hasParking, value: newValue)
+        }
+    }
+    
+    var priceInformationRating: String? {
+        get {
+            guard let priceInformationRatingQueryToken = queryTokens.filter(column: Column.priceInformationRating).first else { return nil }
+            return priceInformationRatingQueryToken.value.isEmpty ? nil : priceInformationRatingQueryToken.value
+        }
+        
+        set(newValue) {
+            queryTokens.removeAll(column: Column.priceInformationRating)
+            if let value = newValue {
+                queryTokens.insert(column: Column.priceInformationRating, value: "\(value)")
+            }
         }
     }
 

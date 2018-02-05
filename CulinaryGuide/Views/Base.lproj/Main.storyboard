@@ -396,6 +396,9 @@
                                                         <segment title="€€€€"/>
                                                         <segment title="€€€€€"/>
                                                     </segments>
+                                                    <connections>
+                                                        <action selector="priceInformationRatingValueChanged:" destination="MYZ-lN-BUl" eventType="valueChanged" id="Rp8-Sy-xjA"/>
+                                                    </connections>
                                                 </segmentedControl>
                                             </subviews>
                                             <constraints>
@@ -1387,6 +1390,7 @@
                         <outlet property="creditCardSwitch" destination="66H-ZA-xjt" id="Sd1-6s-FJd"/>
                         <outlet property="hasParkingSegmentedControl" destination="zcf-aZ-ULb" id="Gin-O3-33S"/>
                         <outlet property="openSwitch" destination="yp1-NY-R1G" id="08C-RQ-ej5"/>
+                        <outlet property="priceInformationRatingSegmentedControl" destination="mwN-6n-EHZ" id="bi5-K8-D5U"/>
                         <outlet property="rating1FilterContainer" destination="OXW-pv-GKB" id="41c-bD-aNg"/>
                         <outlet property="rating2FilterContainer" destination="fpI-he-gZS" id="zZg-WY-aDu"/>
                         <outlet property="rating3FilterContainer" destination="J0H-r3-T0r" id="fKj-4h-a6K"/>

@@ -10,6 +10,7 @@ class RestaurantFilterViewController: UITableViewController {
     @IBOutlet weak var rating4FilterContainer: UIView!
     @IBOutlet weak var rating5FilterContainer: UIView!
     @IBOutlet weak var rating6FilterContainer: UIView!
+    @IBOutlet weak var priceInformationRatingSegmentedControl: UISegmentedControl!
     @IBOutlet weak var reserverationNeededSegmentedControl: UISegmentedControl!
     @IBOutlet weak var hasParkingSegmentedControl: UISegmentedControl!
 
@@ -172,6 +173,10 @@ class RestaurantFilterViewController: UITableViewController {
         }
     }
 
+    @IBAction func priceInformationRatingValueChanged(_ sender: UISegmentedControl) {
+        filterState.priceInformationRating = sender.titleForSegment(at: sender.selectedSegmentIndex)
+    }
+    
     @IBAction func creditCardValueChanged(_ sender: UISwitch) {
         filterState.creditCard = sender.isOn
     }
@@ -226,6 +231,25 @@ private extension RestaurantFilterViewController {
         creditCardSwitch.setOn(filterState.creditCard, animated: true)
         wifiSwitch.setOn(filterState.wifi, animated: true)
 
+        if filterState.priceInformationRating != nil, let priceInformationRating = filterState.priceInformationRating {
+            switch priceInformationRating {
+            case "€":
+                priceInformationRatingSegmentedControl.selectedSegmentIndex = 0
+            case "€€":
+                priceInformationRatingSegmentedControl.selectedSegmentIndex = 1
+            case "€€€":
+                priceInformationRatingSegmentedControl.selectedSegmentIndex = 2
+            case "€€€€":
+                priceInformationRatingSegmentedControl.selectedSegmentIndex = 3
+            case "€€€€€":
+                priceInformationRatingSegmentedControl.selectedSegmentIndex = 4
+            default:
+                priceInformationRatingSegmentedControl.selectedSegmentIndex = UISegmentedControlNoSegment
+            }
+        } else {
+            priceInformationRatingSegmentedControl.selectedSegmentIndex = UISegmentedControlNoSegment
+        }
+        
         configureBooleanSegmentedControls(filterState.reservationNeeded, reserverationNeededSegmentedControl)
         configureBooleanSegmentedControls(filterState.hasParking, hasParkingSegmentedControl)
 
