@@ -109,6 +109,9 @@
 		98D8698320094E2300EC909F /* UIImage+imageWithColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98D8698220094E2300EC909F /* UIImage+imageWithColor.swift */; };
 		98D8698420094E2300EC909F /* UIImage+imageWithColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98D8698220094E2300EC909F /* UIImage+imageWithColor.swift */; };
 		98D8698520094E2300EC909F /* UIImage+imageWithColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98D8698220094E2300EC909F /* UIImage+imageWithColor.swift */; };
+		98E2D1C62029F7CE00B6D480 /* CALayerExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98E2D1C52029F7CE00B6D480 /* CALayerExtensions.swift */; };
+		98E2D1C72029FA9100B6D480 /* CALayerExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98E2D1C52029F7CE00B6D480 /* CALayerExtensions.swift */; };
+		98E2D1C82029FA9200B6D480 /* CALayerExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98E2D1C52029F7CE00B6D480 /* CALayerExtensions.swift */; };
 		98F626162002487600996A91 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98F626152002487600996A91 /* AppDelegate.swift */; };
 		98F626182002487600996A91 /* RestaurantsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98F626172002487600996A91 /* RestaurantsViewController.swift */; };
 		98F6261D2002487700996A91 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 98F6261B2002487700996A91 /* Main.storyboard */; };
@@ -199,6 +202,7 @@
 		98D86972200901D800EC909F /* PartialModalDismissAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartialModalDismissAnimator.swift; sourceTree = "<group>"; };
 		98D8697E20094D7200EC909F /* RoundedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedButton.swift; sourceTree = "<group>"; };
 		98D8698220094E2300EC909F /* UIImage+imageWithColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+imageWithColor.swift"; sourceTree = "<group>"; };
+		98E2D1C52029F7CE00B6D480 /* CALayerExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CALayerExtensions.swift; sourceTree = "<group>"; };
 		98F626122002487600996A91 /* CulinaryGuide.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CulinaryGuide.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		98F626152002487600996A91 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		98F626172002487600996A91 /* RestaurantsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantsViewController.swift; sourceTree = "<group>"; };
@@ -389,6 +393,7 @@
 				98D869502007FA7300EC909F /* EnumCollection.swift */,
 				98D8698220094E2300EC909F /* UIImage+imageWithColor.swift */,
 				9836314F200FD4E1002EBE01 /* ArrayExtensions.swift */,
+				98E2D1C52029F7CE00B6D480 /* CALayerExtensions.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -564,6 +569,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				98F6264F20024BE400996A91 /* URLQueryToken.swift in Sources */,
+				98E2D1C62029F7CE00B6D480 /* CALayerExtensions.swift in Sources */,
 				98D8694D2007F9C900EC909F /* CountriesViewController.swift in Sources */,
 				989CE4AF200E8E0000BD42D7 /* RestaurantRating.swift in Sources */,
 				98F6266B20024EC600996A91 /* PointOfInterest.swift in Sources */,
@@ -631,6 +637,7 @@
 				9847A70F200AB66300A17247 /* AlignedLeftFlowLayout.swift in Sources */,
 				984B713A200FAB8600822ADF /* UIViewExtensions.swift in Sources */,
 				98550AA9201928AC006F53A2 /* RestaurantFilterState.swift in Sources */,
+				98E2D1C72029FA9100B6D480 /* CALayerExtensions.swift in Sources */,
 				98135E342005477500AB64C4 /* RestaurantsTableViewController.swift in Sources */,
 				98D869702008FC4300EC909F /* PartialModalTransitionDelegate.swift in Sources */,
 				98D86974200901D800EC909F /* PartialModalDismissAnimator.swift in Sources */,
@@ -661,6 +668,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				98F6267120024ED800996A91 /* Restaurant.swift in Sources */,
+				98E2D1C82029FA9200B6D480 /* CALayerExtensions.swift in Sources */,
 				98D8694F2007F9C900EC909F /* CountriesViewController.swift in Sources */,
 				984B711C200F7D1B00822ADF /* Localization.swift in Sources */,
 				984B711A200F7D0F00822ADF /* UserDefault.swift in Sources */,

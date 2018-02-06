@@ -10,6 +10,8 @@ class CountriesViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        navigationController?.navigationBar.layer.addBorder(edge: .top, color: UIColor(red: 0, green: 0, blue: 0, alpha: 0.2), thickness: 0.5)
+
         self.splashViewController = presentingViewController?.childViewControllers.filter {
             $0 is SplashViewController
             }.first as? SplashViewController

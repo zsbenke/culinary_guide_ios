@@ -3,7 +3,7 @@ import UIKit
 extension UIColor {
     enum BrandColor {
         static var primary: UIColor {
-            return UIColor(red: 0.75, green: 0.15, blue: 0.18, alpha: 1.0)
+            return UIColor(red: 0.89, green: 0.25, blue: 0.00, alpha: 1.00)
         }
         
         static var primaryHighlighted: UIColor {
@@ -12,6 +12,10 @@ extension UIColor {
         
         static var secondary: UIColor {
             return UIColor(red: 0.95, green: 0.71, blue: 0.00, alpha: 1.0)
+        }
+        
+        static var windowBackground: UIColor {
+            return UIColor(red: 0.91, green: 0.94, blue: 0.95, alpha: 1.00)
         }
         
         static var light: UIColor {
