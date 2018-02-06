@@ -3,10 +3,10 @@ import UIKit
 struct RestaurantRating: Rating {
     var points: String
     var color: UIColor {
-        if image == #imageLiteral(resourceName: "Rating Pop") {
-            return UIColor.BrandColor.primary
+        if isSecondary {
+            return UIColor.BrandColor.secondaryRating
         }
-        return UIColor.BrandColor.secondary
+        return UIColor.BrandColor.primaryRating
     }
     var image: UIImage {
         var image = UIImage()
@@ -29,5 +29,8 @@ struct RestaurantRating: Rating {
         }
 
         return image
+    }
+    var isSecondary: Bool {
+        return points == "pop"
     }
 }

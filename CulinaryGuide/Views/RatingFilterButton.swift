@@ -7,7 +7,12 @@ final class RatingFilterButton: UIControl {
     var isOn = false {
         didSet {
             if isOn {
-                backgroundColor = UIColor.BrandColor.ratingFilterOn
+                if rating.isSecondary {
+                    backgroundColor = UIColor.BrandColor.secondaryRatingFilterOn
+                } else {
+                    backgroundColor = UIColor.BrandColor.primaryRatingFilterOn
+                }
+
             } else {
                 backgroundColor = UIColor.BrandColor.ratingFilterOff
             }
@@ -16,7 +21,11 @@ final class RatingFilterButton: UIControl {
     override var isHighlighted: Bool {
         didSet {
             if isOn {
-                backgroundColor = UIColor.BrandColor.ratingFilterOnHighlighted
+                if rating.isSecondary {
+                    backgroundColor = UIColor.BrandColor.secondaryRatingFilterOnHighlighted
+                } else {
+                    backgroundColor = UIColor.BrandColor.primaryRatingFilterOnHighlighted
+                }
             } else {
                 backgroundColor = UIColor.BrandColor.ratingFilterOffHighlighted
             }
@@ -82,5 +91,6 @@ private extension RatingFilterButton {
         var points = ""
         var image = #imageLiteral(resourceName: "Rating Pop")
         var color = UIColor.white
+        var isSecondary = true
     }
 }

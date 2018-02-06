@@ -21,12 +21,14 @@ class RestaurantFilterViewController: UITableViewController {
     let rating2FilterButton = RatingFilterButton.init(rating: RestaurantRating(points: "2"))
     let rating3FilterButton = RatingFilterButton.init(rating: RestaurantRating(points: "3"))
     let rating1FilterButton = RatingFilterButton.init(rating: RestaurantRating(points: "1"))
-    let ratingPopFilterButton = RatingFilterButton.init(rating: RestaurantRating(points: "Pop"))
+    let ratingPopFilterButton = RatingFilterButton.init(rating: RestaurantRating(points: "pop"))
 
     var filterState = RestaurantFilterState.init(queryTokens: Set<URLQueryToken>())
     
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        tableView.backgroundColor = UIColor.BrandColor.windowBackground
 
         generator.prepare()
 
@@ -44,12 +46,12 @@ class RestaurantFilterViewController: UITableViewController {
         rating1FilterButton.addTarget(self, action: #selector(self.ratingValueChanged(_:)), for: .valueChanged)
         ratingPopFilterButton.addTarget(self, action: #selector(self.ratingValueChanged(_:)), for: .valueChanged)
 
-        rating1FilterContainer.addSubview(rating5FilterButton)
-        rating2FilterContainer.addSubview(rating4FilterButton)
-        rating3FilterContainer.addSubview(rating3FilterButton)
-        rating4FilterContainer.addSubview(rating2FilterButton)
-        rating5FilterContainer.addSubview(rating1FilterButton)
-        rating6FilterContainer.addSubview(ratingPopFilterButton)
+        rating1FilterContainer.addSubview(ratingPopFilterButton)
+        rating2FilterContainer.addSubview(rating1FilterButton)
+        rating3FilterContainer.addSubview(rating2FilterButton)
+        rating4FilterContainer.addSubview(rating3FilterButton)
+        rating5FilterContainer.addSubview(rating4FilterButton)
+        rating6FilterContainer.addSubview(rating5FilterButton)
 
         configureView()
     }

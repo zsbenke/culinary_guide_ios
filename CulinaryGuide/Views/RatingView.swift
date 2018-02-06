@@ -33,6 +33,7 @@ private extension RatingView {
     struct DefaultRating: Rating {
         var points = ""
         var image = #imageLiteral(resourceName: "Rating Pop")
-        var color = UIColor.BrandColor.primary
+        var color = UIColor.BrandColor.secondaryRating
+        var isSecondary = true
     }
 }
