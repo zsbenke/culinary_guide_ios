@@ -6,10 +6,12 @@ enum RestaurantRouter: Router, CustomStringConvertible {
     case index
     case search([URLQueryToken])
     case show(Int)
+    case facetIndex
+    case facetSearch(String)
 
     var method: String {
         switch self {
-        case .index, .search, .show:
+        case .index, .search, .show, .facetIndex, .facetSearch:
             return "GET"
         }
     }
@@ -22,11 +24,13 @@ enum RestaurantRouter: Router, CustomStringConvertible {
                 path = ""
             case .show(let id):
                 path = "\(id)"
+            case .facetIndex, .facetSearch:
+                path = "autocomplete"
             }
 
             let localeTokens = [
-                URLQueryItem.init(name: "country", value: "\(Localization.currentCountry)"),
-                URLQueryItem.init(name: "locale", value: "\(Localization.currentLocale)")
+                URLQueryItem(name: "country", value: "\(Localization.currentCountry)"),
+                URLQueryItem(name: "locale", value: "\(Localization.currentLocale)")
             ]
             var tokens = [URLQueryItem]()
 
@@ -36,6 +40,9 @@ enum RestaurantRouter: Router, CustomStringConvertible {
                     tokens.append(token.columnItem)
                     tokens.append(token.valueItem)
                 }
+                tokens += localeTokens
+            case .facetSearch(let searchText):
+                tokens.append(URLQueryItem(name: "search", value: searchText))
                 tokens += localeTokens
             default:
                 tokens = localeTokens
