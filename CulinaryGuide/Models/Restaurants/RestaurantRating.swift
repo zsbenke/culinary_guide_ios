@@ -31,6 +31,6 @@ struct RestaurantRating: Rating {
         return image
     }
     var isSecondary: Bool {
-        return points == "pop"
+        return points == "pop" || !["5", "4", "3", "2", "1"].contains(points)
     }
 }

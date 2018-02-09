@@ -1,7 +1,7 @@
 import XCTest
 
 class RestaurantRouterTests: XCTestCase {
-    func testbaseURLEndpoint() {
+    func testBaseURLEndpoint() {
         let baseURLEndpoint = "\(API.baseURL)/restaurants"
         XCTAssert(baseURLEndpoint == RestaurantRouter.baseURLEndpoint)
     }
