@@ -262,7 +262,7 @@ private extension RestaurantFilterViewController {
         rating1FilterButton.isOn = filterState.ratings.contains(rating1FilterButton.rating.points)
         ratingPopFilterButton.isOn = filterState.ratings.contains(ratingPopFilterButton.rating.points)
 
-        let regionSections = IndexSet(regionsSections(forCountry: Localization.currentCountry, containment: .include).flatMap({ $0 }))
+        let regionSections = IndexSet(regionsSections(forCountry: Localization.currentCountry, containment: .include).compactMap({ $0 }))
         tableView.reloadSections(regionSections, with: .none)
     }
 
