@@ -74,6 +74,36 @@ extension Restaurant: APIResource {
         }
         operationQueue.addOperation(requestOperation)
     }
+
+    static func facets(completionHandler: @escaping (_ restaurantFacets: [RestaurantFacet?]) -> Void) {
+        let operationQueue = OperationQueue()
+        let requestOperation = APIRequestOperation(urlRequest: router.facetIndex.asURLRequest())
+        requestOperation.completionBlock = {
+            guard let data = requestOperation.data else { return }
+            do {
+                let restaurantFacets = try JSONDecoder().decode([RestaurantFacet].self, from: data)
+                completionHandler(restaurantFacets)
+            } catch {
+                return
+            }
+        }
+        operationQueue.addOperation(requestOperation)
+    }
+
+    static func facets(search query: String, completionHandler: @escaping (_ restaurantFacets: [RestaurantFacet?]) -> Void) {
+        let operationQueue = OperationQueue()
+        let requestOperation = APIRequestOperation(urlRequest: router.facetSearch(query).asURLRequest())
+        requestOperation.completionBlock = {
+            guard let data = requestOperation.data else { return }
+            do {
+                let restaurantFacets = try JSONDecoder().decode([RestaurantFacet].self, from: data)
+                completionHandler(restaurantFacets)
+            } catch {
+                return
+            }
+        }
+        operationQueue.addOperation(requestOperation)
+    }
 }
 
 private extension Restaurant {

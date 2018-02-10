@@ -15,7 +15,27 @@ struct RestaurantFacet: Facet, Codable {
     var column: String?
     var value: String?
     var icon: UIImage? {
-        // TODO: setup custom icons based on the column property
+        if column == "region" && Localization.currentCountry == Localization.Country.Hungary {
+            return #imageLiteral(resourceName: "Facet Region Hungary")
+        }
+        if column == "city" || column == "region" {
+            return #imageLiteral(resourceName: "Facet Pin")
+        }
+        if column == "title" {
+            return #imageLiteral(resourceName: "Facet Restaurant")
+        }
+        if  ["open_on_sunday",
+             "open_on_monday",
+             "open_on_tuesday",
+             "open_on_wednesday",
+             "open_on_thursday",
+             "open_on_friday",
+             "open_on_saturday"].contains(column) {
+            return #imageLiteral(resourceName: "Facet Open")
+        }
+        if ["def_people_one_name", "def_people_two_name", "def_people_three_name"].contains(column) {
+            return #imageLiteral(resourceName: "Facet Chef")
+        }
         return #imageLiteral(resourceName: "Facet Magnifiying Glass")
     }
     var homeScreenSection: RestaurantHomeScreenSection {

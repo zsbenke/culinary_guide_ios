@@ -4,10 +4,11 @@ class RestaurantsViewController: UIViewController {
     @IBOutlet weak var filterBarButton: UIBarButtonItem!
     @IBOutlet weak var listContainerView: UIView!
     @IBOutlet weak var mapContainerView: UIView!
-    
-    let searchController = UISearchController(searchResultsController: nil)
-    var activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .gray)
+
+    let searchResultsController = UITableViewController.init()
+    var searchController: UISearchController?
     var focusSearchBarOnLoad = false
+    var restaurantFacets = [RestaurantFacet?]()
     var restaurants = [Restaurant?]()
     var initialRestaurants = [Restaurant?]()
     var searchBarText = ""
@@ -29,11 +30,18 @@ class RestaurantsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        definesPresentationContext = true
         
         // Setup searchBar
-        searchController.delegate = self
-        searchController.searchBar.delegate = self
+        searchController = UISearchController(searchResultsController: searchResultsController)
+        searchController?.searchResultsUpdater = self
+        searchController?.delegate = self
+        searchController?.searchBar.delegate = self
         navigationItem.searchController = searchController
+
+        searchResultsController.tableView.dataSource = self
+        searchResultsController.tableView.delegate = self
         
         setSearchBarText()
         
@@ -57,7 +65,7 @@ class RestaurantsViewController: UIViewController {
         super.viewDidAppear(animated)
         
         if focusSearchBarOnLoad {
-            searchController.isActive = true
+            searchController?.isActive = true
         }
     }
     
@@ -102,7 +110,7 @@ class RestaurantsViewController: UIViewController {
                 completionHandler()
             }
         } else {
-            searchController.dismiss(animated: true)
+            searchController?.dismiss(animated: true)
             Restaurant.index(search: Array(queryTokens)) { restaurants in
                 self.restaurants = restaurants
                 prepareRestaurantsToChildViewControllers()
@@ -127,8 +135,21 @@ extension RestaurantsViewController: UISearchControllerDelegate {
     func didPresentSearchController(_ searchController: UISearchController) {
         DispatchQueue.main.async {
             if self.focusSearchBarOnLoad {
-                self.searchController.searchBar.becomeFirstResponder()
+                self.searchController?.searchBar.becomeFirstResponder()
                 self.focusSearchBarOnLoad = false
+            }
+        }
+    }
+}
+
+extension RestaurantsViewController: UISearchResultsUpdating {
+    func updateSearchResults(for searchController: UISearchController) {
+        if let searchText = searchController.searchBar.text {
+            Restaurant.facets(search: searchText) { restaurantFacets in
+                self.restaurantFacets = restaurantFacets
+                DispatchQueue.main.async {
+                    self.searchResultsController.tableView.reloadData()
+                }
             }
         }
     }
@@ -137,10 +158,7 @@ extension RestaurantsViewController: UISearchControllerDelegate {
 extension RestaurantsViewController: UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         guard let searchText = searchBar.text else { return }
-        var newTokens = queryTokens
-        newTokens.removeSearchTokens()
-        newTokens.insert(URLQueryToken.init(column: "search", value: searchText))
-        self.queryTokens = newTokens
+        searchRestaurants(for: searchText)
     }
 
     func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
@@ -158,8 +176,40 @@ extension RestaurantsViewController: UISearchBarDelegate {
 
     func setSearchBarText() {
         if let searchToken = queryTokens.searchToken() {
-            searchController.searchBar.text = searchToken.value
+            searchController?.searchBar.text = searchToken.value
             self.searchBarText = searchToken.value
         }
+    }
+}
+
+extension RestaurantsViewController: UITableViewDelegate, UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return restaurantFacets.count
+    }
+
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = UITableViewCell(style: .default, reuseIdentifier: "FacetCell")
+        if let restaurantFacet = restaurantFacets[indexPath.row] {
+            cell.tintColor = .black
+            cell.textLabel?.text = restaurantFacet.value
+            cell.imageView?.image = restaurantFacet.icon
+        }
+        return cell
+    }
+
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if let restaurantFacet = restaurantFacets[indexPath.row] {
+            guard let searchText = restaurantFacet.value else { return }
+            searchRestaurants(for: searchText)
+        }
+    }
+}
+
+private extension RestaurantsViewController {
+    func searchRestaurants(for query: String) {
+        var newTokens = queryTokens
+        newTokens.removeSearchTokens()
+        newTokens.insert(URLQueryToken.init(column: "search", value: query))
+        self.queryTokens = newTokens
     }
 }
