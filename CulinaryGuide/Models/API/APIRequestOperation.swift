@@ -19,9 +19,11 @@ class APIRequestOperation: AsyncOperation {
 
 private extension APIRequestOperation {
     func request(_ apiRequest: URLRequest, completionHandler: @escaping (_ data: Data?) -> Void) {
-        let authToken = "Token token=eyJhbGciOiJIUzI1NiJ9.eyJ1bmlxdWVfaGFzaCI6InRlc3QifQ.9RwhNNuROSt_DpadCdGhSICbp0HSceu6Nv1u3sn5q-E"
+        // TODO: visszakapcsolni a felhasználói azonosítást
+        // Ez az auth token egy ideiglenes használt felhasználó JWT tokenje.
+        // let authToken = "Token token=eyJhbGciOiJIUzI1NiJ9.eyJ1bmlxdWVfaGFzaCI6InRlc3QifQ.9RwhNNuROSt_DpadCdGhSICbp0HSceu6Nv1u3sn5q-E"
         let sessionConfiguration = URLSessionConfiguration.ephemeral
-        sessionConfiguration.httpAdditionalHeaders = ["Authorization": authToken]
+        // sessionConfiguration.httpAdditionalHeaders = ["Authorization": authToken]
         let session = URLSession(configuration: sessionConfiguration)
 
         let dataTask = session.dataTask(with: apiRequest) { data, response, error in
@@ -39,7 +41,6 @@ private extension APIRequestOperation {
                             self.showAlert(message: notAuthorizedMessage)
                         }
                     case 200:
-                        print("Logged in")
                         completionHandler(data)
                     default:
                         DispatchQueue.main.async {
