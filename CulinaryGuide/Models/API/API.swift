@@ -1,7 +1,7 @@
 import Foundation
 
 struct API {
-    static var environment: Environment = .development
+    static var environment: Environment = .staging
     private static var domain: String {
         switch environment {
         case .development:
