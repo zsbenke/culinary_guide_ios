@@ -91,9 +91,13 @@ private extension CountriesViewController {
     func animateMapView(upward: Bool, delay: TimeInterval = 0.0, completion: (() -> Void)? = nil) {
         guard let splashViewController = self.splashViewController else { return }
 
+        let yTranslation = UIScreen.main.bounds.height / 9
+        print(UIScreen.main.bounds.height)
+        print(yTranslation)
+
         if upward {
             UIView.animate(withDuration: 0.3, delay: delay, options: .curveEaseOut, animations: {
-                splashViewController.mapImageView.transform = CGAffineTransform.init(translationX: 0, y: -90)
+                splashViewController.mapImageView.transform = CGAffineTransform.init(translationX: 0, y: -yTranslation)
             }, completion: { finished in
                 guard let completion = completion else { return }
                 completion()
