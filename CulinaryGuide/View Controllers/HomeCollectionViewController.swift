@@ -137,6 +137,7 @@ class HomeCollectionViewController: UICollectionViewController {
 
         switch headerTitle {
         case .all:
+            self.selectedQueryTokens.removeAll()
             performSegue(withIdentifier: "searchRestaurants", sender: self)
         case .what, .when, .where:
             guard let homeScreenSection = RestaurantFacet.RestaurantHomeScreenSection(rawValue: headerTitle.rawValue) else { break }
