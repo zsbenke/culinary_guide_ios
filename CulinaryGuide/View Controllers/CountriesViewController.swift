@@ -92,8 +92,6 @@ private extension CountriesViewController {
         guard let splashViewController = self.splashViewController else { return }
 
         let yTranslation = UIScreen.main.bounds.height / 9
-        print(UIScreen.main.bounds.height)
-        print(yTranslation)
 
         if upward {
             UIView.animate(withDuration: 0.3, delay: delay, options: .curveEaseOut, animations: {

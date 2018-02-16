@@ -7,10 +7,23 @@ class HomeCollectionViewController: UICollectionViewController {
         case when
         case `where`
 
+        func isEmpty(for facets: [RestaurantFacet?]) -> Bool {
+            switch self {
+                case .all:
+                    return true
+                case .what, .when, .where:
+                guard let homeScreenSection = RestaurantFacet.RestaurantHomeScreenSection(rawValue: self.rawValue) else { break }
+                let facetsInSection = facets.filter(homeScreenSection: homeScreenSection)
+                return facetsInSection.count == 0
+            }
+
+            return true
+        }
+
         func asLocalized() -> String {
             switch self {
             case .all:
-                return NSLocalizedString("Minden étterem", comment: "Az főscreenen megjelenő összes étterem szekció címe.")
+                return NSLocalizedString("Összes étterem…", comment: "Az főscreenen megjelenő összes étterem szekció címe.")
             case .what:
                 return NSLocalizedString("Mit?", comment: "A főscreenen megjelenő mit szekció címe.")
             case .when:
@@ -43,6 +56,7 @@ class HomeCollectionViewController: UICollectionViewController {
         Restaurant.facets { (facets) in
             self.restaurantFacets = facets
             DispatchQueue.main.async {
+                self.collectionView?.collectionViewLayout.invalidateLayout()
                 self.collectionView?.reloadData()
             }
         }
@@ -71,7 +85,8 @@ class HomeCollectionViewController: UICollectionViewController {
         let headerTitle = headerTitles[indexPath.section]
         switch headerTitle {
         case .all:
-            break
+            cell.labelView.text = headerTitle.asLocalized()
+            cell.labelView.textAlignment = .center
         case .what, .when, .where:
             guard let homeScreenSection = RestaurantFacet.RestaurantHomeScreenSection(rawValue: headerTitle.rawValue) else { break }
             let facetsInSection = restaurantFacets.filter(homeScreenSection: homeScreenSection)
@@ -90,7 +105,7 @@ class HomeCollectionViewController: UICollectionViewController {
         let headerTitle = headerTitles[section]
         switch headerTitle {
         case .all:
-            return 0
+            return 1
         case .what, .when, .where:
             guard let homeScreenSection = RestaurantFacet.RestaurantHomeScreenSection(rawValue: headerTitle.rawValue) else { return 0 }
             let facetsInSection = restaurantFacets.filter(homeScreenSection: homeScreenSection)
@@ -99,10 +114,15 @@ class HomeCollectionViewController: UICollectionViewController {
     }
     
     override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> TagCollectionHeaderView {
-        let tagHeaderCell = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "TagHeader", for: indexPath) as? TagCollectionHeaderView
+        let facetHeaderCell = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "TagHeader", for: indexPath) as? TagCollectionHeaderView
         let headerTitle = headerTitles[indexPath.section]
-        tagHeaderCell?.titleLabel.text = headerTitle.asLocalized()
-        return tagHeaderCell!
+        facetHeaderCell?.titleLabel.text = headerTitle.asLocalized()
+
+        if headerTitle.isEmpty(for: restaurantFacets) {
+            facetHeaderCell?.isHidden = true
+
+        }
+        return facetHeaderCell!
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -117,7 +137,7 @@ class HomeCollectionViewController: UICollectionViewController {
 
         switch headerTitle {
         case .all:
-            break
+            performSegue(withIdentifier: "searchRestaurants", sender: self)
         case .what, .when, .where:
             guard let homeScreenSection = RestaurantFacet.RestaurantHomeScreenSection(rawValue: headerTitle.rawValue) else { break }
             let facetsInSection = restaurantFacets.filter(homeScreenSection: homeScreenSection)
@@ -132,11 +152,50 @@ class HomeCollectionViewController: UICollectionViewController {
 
 extension HomeCollectionViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let headerTitle = headerTitles[indexPath.section]
         self.configureCell(cell: sizingCell!, forIndexPath: indexPath)
-        return sizingCell!.systemLayoutSizeFitting(UILayoutFittingCompressedSize)
+        switch headerTitle {
+        case .all:
+            var width = UIScreen.main.bounds.width
+            if let cellMaxWidth = sizingCell?.labelViewMaxWidthConstraint.constant {
+                width = cellMaxWidth
+            }
+
+            return CGSize(width: width, height: 44)
+        default:
+            return sizingCell!.systemLayoutSizeFitting(UILayoutFittingCompressedSize)
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
+        let headerTitle = headerTitles[section]
+
+        if headerTitle.isEmpty(for: restaurantFacets) {
+            return CGSize(width: UIScreen.main.bounds.width, height: 0)
+        }
+
         return CGSize(width: UIScreen.main.bounds.width, height: 50)
+    }
+
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        let headerTitle = headerTitles[section]
+
+        if headerTitle == .all {
+            return UIEdgeInsets(top: 16, left: 16, bottom: 16, right: 16)
+        }
+
+        if headerTitle.isEmpty(for: restaurantFacets) {
+            return UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+        }
+
+        return UIEdgeInsets(top: 8, left: 16, bottom: 16, right: 16)
+    }
+
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return 16
+    }
+
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        return 16
     }
 }

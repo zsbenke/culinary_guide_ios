@@ -69,5 +69,13 @@ extension UIColor {
         static var lightHighlighted: UIColor {
             return UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 0.75)
         }
+
+        static var facet: UIColor {
+            return UIColor(red: 0.88, green: 0.93, blue: 0.94, alpha: 1.0)
+        }
+
+        static var facetSelected: UIColor {
+            return UIColor(red: 0.76, green: 0.78, blue: 0.79, alpha: 1.0)
+        }
     }
 }
