@@ -56,3 +56,12 @@ struct RestaurantFacet: Facet, Codable {
         case homeScreenSectionRawValue = "home_screen_section"
     }
 }
+
+extension Array where Iterator.Element == RestaurantFacet? {
+    func filter(homeScreenSection: RestaurantFacet.RestaurantHomeScreenSection) -> [RestaurantFacet?] {
+        return filter { (facet) -> Bool in
+            guard let facet = facet else { return false }
+            return facet.homeScreenSection == homeScreenSection
+        }
+    }
+}

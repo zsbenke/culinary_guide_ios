@@ -1,15 +1,15 @@
 import Foundation
 
 struct API {
-    static var environment: Environment = .staging
+    static var environment: Environment = .production
     private static var domain: String {
         switch environment {
         case .development:
-            return "http://culinary-guide-api.test/"
+            return "http://culinary-guide-api.test"
         case .production:
-            return "http://api.gaultmillau.eu"
+            return "http://enfys.com"
         case .staging:
-            return "http://culinary-guide-api-staging.decoding.io"
+            return "http://enfys-staging.decoding.io"
         }
     }
     

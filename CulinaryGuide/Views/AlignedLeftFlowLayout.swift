@@ -15,14 +15,13 @@ class AlignedLeftFlowLayout: UICollectionViewFlowLayout {
                 
                 if (referenceAttributesSet.frame.origin.x == self.sectionInset.left) {
                     leftMargin = self.sectionInset.left
-                }
-                else {
+                } else {
                     var newLeftAlignedFrame = referenceAttributesSet.frame
                     newLeftAlignedFrame.origin.x = leftMargin
                     referenceAttributesSet.frame = newLeftAlignedFrame
                 }
                 
-                leftMargin += referenceAttributesSet.frame.size.width + 10
+                leftMargin += referenceAttributesSet.frame.size.width + 16
                 newLayoutAttributes.append(referenceAttributesSet)
                 
                 sectionsToAdd.add(layoutAttributesSet.indexPath.section)

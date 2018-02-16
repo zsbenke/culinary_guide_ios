@@ -1,14 +1,29 @@
 import UIKit
 
 class HomeCollectionViewController: UICollectionViewController {
+    enum HomeCollectionHeader: String, EnumCollection {
+        case all
+        case what
+        case when
+        case `where`
+
+        func asLocalized() -> String {
+            switch self {
+            case .all:
+                return NSLocalizedString("Minden étterem", comment: "Az főscreenen megjelenő összes étterem szekció címe.")
+            case .what:
+                return NSLocalizedString("Mit?", comment: "A főscreenen megjelenő mit szekció címe.")
+            case .when:
+                return NSLocalizedString("Mikor?", comment: "A főscreenen megjelenő mikor szekció címe.")
+            case .where:
+                return NSLocalizedString("Hol?", comment: "A főscreenen megjelenő mit szekció címe.")
+            }
+        }
+    }
+
     var selectedQueryTokens = Set<URLQueryToken>()
-    var tagHeaderTitles = [String]()
-    var tags = [
-        "Mit?": ["bbq", "bor", "grill", "hal", "pékség", "pizza", "seafood", "sör", "steak"],
-        "Mikor?": ["ebédmenü", "vasárnapi brunch"],
-        "Hol?": ["kerthelyiség", "terasz", "reggeli", "panorámás"],
-        "Milyen?": ["ázsiai", "bisztró", "büfé", "delikát bolt", "erdélyi", "fine dining", "francia", "fúziós", "gyerekbarát", "horvát", "magyar", "mediterrán", "nemzetközi", "olasz", "román", "szerb", "szlovák", "szlovén", "újító", "vegetáriánus"]
-    ]
+    var headerTitles = Array(HomeCollectionHeader.cases())
+    var restaurantFacets = [RestaurantFacet?]()
     var sizingCell: TagCollectionViewCell?
     
     override func viewDidLoad() {
@@ -24,8 +39,13 @@ class HomeCollectionViewController: UICollectionViewController {
         let currentCountry = Localization.currentCountry.name
         self.navigationItem.title = "\(currentCountry)"
         self.navigationController?.navigationBar.prefersLargeTitles = true
-        
-        self.tagHeaderTitles = Array(tags.keys)
+
+        Restaurant.facets { (facets) in
+            self.restaurantFacets = facets
+            DispatchQueue.main.async {
+                self.collectionView?.reloadData()
+            }
+        }
     }
     
     override func didReceiveMemoryWarning() {
@@ -48,33 +68,40 @@ class HomeCollectionViewController: UICollectionViewController {
     
     
     func configureCell(cell: TagCollectionViewCell, forIndexPath indexPath: IndexPath) {
-        let tagHeader = Array(tags.keys)[indexPath.section]
-        let tagsInSection = tags[tagHeader]
-        if let tagsInSection = tagsInSection {
-            let tag = tagsInSection[indexPath.row]
-            cell.labelView.text = tag
+        let headerTitle = headerTitles[indexPath.section]
+        switch headerTitle {
+        case .all:
+            break
+        case .what, .when, .where:
+            guard let homeScreenSection = RestaurantFacet.RestaurantHomeScreenSection(rawValue: headerTitle.rawValue) else { break }
+            let facetsInSection = restaurantFacets.filter(homeScreenSection: homeScreenSection)
+
+            guard let facet = facetsInSection[indexPath.row] else { break }
+            cell.labelView.text = facet.value
         }
     }
     
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return tagHeaderTitles.count
+        return headerTitles.count
     }
     
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        let tagHeader = Array(tags.keys)[section]
-        let tagsInSection = tags[tagHeader]
-        if let tagsInSection = tagsInSection {
-            return tagsInSection.count
-        } else {
+        let headerTitle = headerTitles[section]
+        switch headerTitle {
+        case .all:
             return 0
+        case .what, .when, .where:
+            guard let homeScreenSection = RestaurantFacet.RestaurantHomeScreenSection(rawValue: headerTitle.rawValue) else { return 0 }
+            let facetsInSection = restaurantFacets.filter(homeScreenSection: homeScreenSection)
+            return facetsInSection.count
         }
     }
     
     override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> TagCollectionHeaderView {
         let tagHeaderCell = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "TagHeader", for: indexPath) as? TagCollectionHeaderView
-        let tagHeader = tagHeaderTitles[indexPath.section]
-        tagHeaderCell?.titleLabel.text = tagHeader
+        let headerTitle = headerTitles[indexPath.section]
+        tagHeaderCell?.titleLabel.text = headerTitle.asLocalized()
         return tagHeaderCell!
     }
     
@@ -86,13 +113,19 @@ class HomeCollectionViewController: UICollectionViewController {
     }
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let tagHeader = Array(tags.keys)[indexPath.section]
-        let tagsInSection = tags[tagHeader]
-        if let tagsInSection = tagsInSection {
-            let tag = tagsInSection[indexPath.row]
-            let queryToken = URLQueryToken.init(column: "search", value: tag)
-            self.selectedQueryTokens = [queryToken]
-            performSegue(withIdentifier: "searchRestaurants", sender: self)
+        let headerTitle = headerTitles[indexPath.section]
+
+        switch headerTitle {
+        case .all:
+            break
+        case .what, .when, .where:
+            guard let homeScreenSection = RestaurantFacet.RestaurantHomeScreenSection(rawValue: headerTitle.rawValue) else { break }
+            let facetsInSection = restaurantFacets.filter(homeScreenSection: homeScreenSection)
+            if let facet = facetsInSection[indexPath.row], let facetValue = facet.value {
+                let queryToken = URLQueryToken.init(column: "search", value: facetValue)
+                self.selectedQueryTokens = [queryToken]
+                performSegue(withIdentifier: "searchRestaurants", sender: self)
+            }
         }
     }
 }
