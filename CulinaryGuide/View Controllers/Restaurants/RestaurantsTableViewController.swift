@@ -68,6 +68,7 @@ class RestaurantsTableViewController: UITableViewController {
             if let rating = restaurant.rating {
                 let restaurantRating = RestaurantRating.init(points: rating)
                 let ratingView = RatingView.init(rating: restaurantRating)
+
                 for view in cell.iconView.subviews {
                     view.removeFromSuperview()
                 }

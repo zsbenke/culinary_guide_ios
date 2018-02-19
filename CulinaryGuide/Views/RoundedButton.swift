@@ -10,8 +10,8 @@ class RoundedButton: UIButton {
         self.layer.masksToBounds = true
         setTitleColor(UIColor.BrandColor.light, for: .normal)
         setTitleColor(UIColor.BrandColor.lightHighlighted, for: .highlighted)
-        setBackgroundImage(UIImage.imageWithColor(color: UIColor.BrandColor.primary), for: .normal)
-        setBackgroundImage(UIImage.imageWithColor(color: UIColor.BrandColor.primaryHighlighted), for: .highlighted)
+        setBackgroundImage(UIImage.imageWithColor(color: UIColor.BrandColor.primarySplashScreen), for: .normal)
+        setBackgroundImage(UIImage.imageWithColor(color: UIColor.BrandColor.primarySplashScreenHighlighted), for: .highlighted)
         self.titleLabel?.font = UIFont.boldSystemFont(ofSize: UIFont.systemFontSize)
     }
 }

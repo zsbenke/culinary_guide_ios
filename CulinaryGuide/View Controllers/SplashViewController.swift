@@ -13,7 +13,8 @@ class SplashViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        view.backgroundColor = UIColor.BrandColor.windowBackground
+        view.tintColor = UIColor.BrandColor.primarySplashScreen
+        view.backgroundColor = UIColor.BrandColor.secondary
     }
 
     override func didReceiveMemoryWarning() {

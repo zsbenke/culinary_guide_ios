@@ -3,35 +3,43 @@ import UIKit
 extension UIColor {
     enum BrandColor {
         static var primary: UIColor {
-            return UIColor(red: 0.89, green: 0.25, blue: 0.00, alpha: 1.00)
+            return UIColor(red: 0.00, green: 0.53, blue: 0.89, alpha: 1.0)
         }
         
         static var primaryHighlighted: UIColor {
-            return UIColor(red: 0.51, green: 0.15, blue: 0.00, alpha: 1.00)
+            return UIColor(red: 0.00, green: 0.53, blue: 0.89, alpha: 1.0)
         }
         
         static var secondary: UIColor {
-            return UIColor(red: 0.02, green: 0.60, blue: 0.86, alpha: 1.00)
+            return UIColor(red: 0.99, green: 0.81, blue: 0.04, alpha: 1.0)
         }
 
         static var secondaryHighlighted: UIColor {
-            return UIColor(red: 0.01, green: 0.43, blue: 0.61, alpha: 1.00)
+            return UIColor(red: 0.99, green: 0.81, blue: 0.04, alpha: 1.0)
+        }
+
+        static var primarySplashScreenHighlighted: UIColor {
+            return UIColor(red: 0.00, green: 0.25, blue: 0.35, alpha: 1.0)
+        }
+
+        static var primarySplashScreen: UIColor {
+            return UIColor(red: 0.00, green: 0.25, blue: 0.35, alpha: 1.0)
         }
 
         static var primaryRating: UIColor {
-            return primary
-        }
-
-        static var primaryRatingHighlighted: UIColor {
-            return primaryHighlighted
-        }
-
-        static var secondaryRating: UIColor {
             return secondary
         }
 
-        static var secondaryRatingHighlighted: UIColor {
+        static var primaryRatingHighlighted: UIColor {
             return secondaryHighlighted
+        }
+
+        static var secondaryRating: UIColor {
+            return primary
+        }
+
+        static var secondaryRatingHighlighted: UIColor {
+            return primaryHighlighted
         }
 
         static var ratingFilterOff: UIColor {
