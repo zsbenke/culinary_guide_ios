@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14092" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14081.1"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -18,12 +18,11 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Launch Image Rating" translatesAutoresizingMaskIntoConstraints="NO" id="AyI-tQ-WPG">
-                                <rect key="frame" x="170.5" y="318.5" width="33" height="29"/>
-                                <color key="tintColor" red="0.81674760580062866" green="0.30728662014007568" blue="0.13694974780082703" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Launch Screen Icon" translatesAutoresizingMaskIntoConstraints="NO" id="AyI-tQ-WPG">
+                                <rect key="frame" x="152.5" y="304" width="69" height="58"/>
                             </imageView>
                         </subviews>
-                        <color key="backgroundColor" red="0.91330564022064209" green="0.94107276201248169" blue="0.94901686906814575" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <color key="backgroundColor" red="0.99215686274509807" green="0.81176470588235294" blue="0.039215686274509803" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <constraints>
                             <constraint firstItem="AyI-tQ-WPG" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="L9l-gz-9Rl"/>
                             <constraint firstItem="AyI-tQ-WPG" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="PtH-TR-AQQ"/>
@@ -37,6 +36,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="Launch Image Rating" width="33" height="29"/>
+        <image name="Launch Screen Icon" width="69" height="58"/>
     </resources>
 </document>
