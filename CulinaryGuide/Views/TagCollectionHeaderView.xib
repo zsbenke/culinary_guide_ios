@@ -17,19 +17,19 @@
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
                 <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="feu-0J-uvw">
-                    <rect key="frame" x="16" y="13.5" width="343" height="23"/>
+                    <rect key="frame" x="16" y="0.0" width="343" height="50"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pQp-KR-gJV">
-                            <rect key="frame" x="0.0" y="0.0" width="40.5" height="23"/>
+                            <rect key="frame" x="0.0" y="13.5" width="40.5" height="23"/>
                             <fontDescription key="fontDescription" type="boldSystem" pointSize="19"/>
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ORD-Cv-x3E">
-                            <rect key="frame" x="56.5" y="11" width="286.5" height="1"/>
+                            <rect key="frame" x="56.5" y="0.0" width="286.5" height="50"/>
                             <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
-                                <constraint firstAttribute="height" constant="1" id="cSQ-F8-o4s"/>
+                                <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="0.5" id="QsO-cE-1Hi"/>
                             </constraints>
                         </view>
                     </subviews>
@@ -42,6 +42,7 @@
             </constraints>
             <viewLayoutGuide key="safeArea" id="fOS-zJ-cD4"/>
             <connections>
+                <outlet property="separator" destination="ORD-Cv-x3E" id="9Gi-CC-HOo"/>
                 <outlet property="titleLabel" destination="pQp-KR-gJV" id="crO-d3-p9g"/>
             </connections>
             <point key="canvasLocation" x="-27.5" y="45"/>

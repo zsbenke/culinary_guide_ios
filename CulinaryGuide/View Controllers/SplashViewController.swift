@@ -7,6 +7,7 @@ class SplashViewController: UIViewController {
         }
     }
     @IBOutlet weak var chooseCountryButton: UIButton!
+    @IBOutlet weak var aboutButton: UIButton!
     @IBOutlet weak var mapImageView: UIImageView!
     var partialModalDelegate = PartialModalTransitionDelegate()
 
@@ -22,12 +23,17 @@ class SplashViewController: UIViewController {
     }
 
     override func viewWillAppear(_ animated: Bool) {
-        self.navigationController?.isNavigationBarHidden = true
-        self.country = Localization.Country.Unknown
+        navigationController?.isNavigationBarHidden = true
+        country = Localization.Country.Unknown
     }
 
     override func viewWillDisappear(_ animated: Bool) {
-        self.navigationController?.isNavigationBarHidden = false
+        navigationController?.isNavigationBarHidden = false
+    }
+
+    override func viewDidDisappear(_ animated: Bool) {
+        chooseCountryButton.isHidden = false
+        aboutButton.isHidden = false
     }
 
     func updateMapImageView() {

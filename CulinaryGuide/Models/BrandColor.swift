@@ -7,7 +7,7 @@ extension UIColor {
         }
         
         static var primaryHighlighted: UIColor {
-            return UIColor(red: 0.00, green: 0.53, blue: 0.89, alpha: 1.0)
+            return UIColor(red: 0.00, green: 0.38, blue: 0.64, alpha: 1.00)
         }
         
         static var secondary: UIColor {
@@ -15,15 +15,15 @@ extension UIColor {
         }
 
         static var secondaryHighlighted: UIColor {
-            return UIColor(red: 0.99, green: 0.81, blue: 0.04, alpha: 1.0)
-        }
-
-        static var primarySplashScreenHighlighted: UIColor {
-            return UIColor(red: 0.00, green: 0.25, blue: 0.35, alpha: 1.0)
+            return UIColor(red: 0.82, green: 0.63, blue: 0.00, alpha: 1.00)
         }
 
         static var primarySplashScreen: UIColor {
             return UIColor(red: 0.00, green: 0.25, blue: 0.35, alpha: 1.0)
+        }
+
+        static var primarySplashScreenHighlighted: UIColor {
+            return UIColor(red: 0.00, green: 0.17, blue: 0.23, alpha: 1.00)
         }
 
         static var primaryRating: UIColor {
@@ -79,11 +79,19 @@ extension UIColor {
         }
 
         static var facet: UIColor {
-            return UIColor(red: 0.88, green: 0.93, blue: 0.94, alpha: 1.0)
+            return UIColor(red: 0.91, green: 0.94, blue: 0.95, alpha: 1.0)
         }
 
         static var facetSelected: UIColor {
             return UIColor(red: 0.76, green: 0.78, blue: 0.79, alpha: 1.0)
+        }
+
+        static var facetText: UIColor {
+            return UIColor(red: 0.00, green: 0.25, blue: 0.35, alpha: 1.0)
+        }
+
+        static var facetSeparator: UIColor {
+            return UIColor(red: 0.00, green: 0.25, blue: 0.35, alpha: 0.5)
         }
     }
 }

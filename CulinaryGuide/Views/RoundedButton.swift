@@ -12,6 +12,6 @@ class RoundedButton: UIButton {
         setTitleColor(UIColor.BrandColor.lightHighlighted, for: .highlighted)
         setBackgroundImage(UIImage.imageWithColor(color: UIColor.BrandColor.primarySplashScreen), for: .normal)
         setBackgroundImage(UIImage.imageWithColor(color: UIColor.BrandColor.primarySplashScreenHighlighted), for: .highlighted)
-        self.titleLabel?.font = UIFont.boldSystemFont(ofSize: UIFont.systemFontSize)
+        self.titleLabel?.font = UIFont.boldSystemFont(ofSize: UIFont.labelFontSize)
     }
 }

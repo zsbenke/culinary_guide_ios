@@ -19,6 +19,7 @@ class TagCollectionViewCell: UICollectionViewCell {
 
         self.layer.cornerRadius = 5
         self.backgroundColor = UIColor.BrandColor.facet
+        self.labelView.textColor = UIColor.BrandColor.facetText
         self.labelViewMaxWidthConstraint.constant = UIScreen.main.bounds.width - 8 * 2 - 8 * 2
     }
 }

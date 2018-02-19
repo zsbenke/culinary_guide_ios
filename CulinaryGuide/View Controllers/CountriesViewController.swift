@@ -35,7 +35,7 @@ class CountriesViewController: UITableViewController {
     }
 
     @IBAction func setCountry(_ sender: Any) {
-        animateMapView(upward: false)
+        animateMapView(upward: false, hideCountryChooserButton: true)
         dismiss(animated: true) {
             guard let splashViewController = self.splashViewController else { return }
             splashViewController.loadRestaurantsForSelectedCountry()
@@ -88,8 +88,13 @@ class CountriesViewController: UITableViewController {
 }
 
 private extension CountriesViewController {
-    func animateMapView(upward: Bool, delay: TimeInterval = 0.0, completion: (() -> Void)? = nil) {
+    func animateMapView(upward: Bool, hideCountryChooserButton: Bool = false, delay: TimeInterval = 0.0, completion: (() -> Void)? = nil) {
         guard let splashViewController = self.splashViewController else { return }
+
+        if hideCountryChooserButton {
+            splashViewController.chooseCountryButton.isHidden = true
+            splashViewController.aboutButton.isHidden = true
+        }
 
         let yTranslation = UIScreen.main.bounds.height / 9
 

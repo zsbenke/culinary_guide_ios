@@ -1458,7 +1458,7 @@
                                 </connections>
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Enfys Logo Ceu" translatesAutoresizingMaskIntoConstraints="NO" id="LOi-4I-0mt">
-                                <rect key="frame" x="20" y="119" width="280" height="68"/>
+                                <rect key="frame" x="20" y="119" width="280" height="67"/>
                                 <constraints>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="176" id="Fgt-yO-zmD"/>
                                 </constraints>
@@ -1515,6 +1515,7 @@
                         </attributedString>
                     </navigationItem>
                     <connections>
+                        <outlet property="aboutButton" destination="lw2-iT-fTC" id="ao7-Sw-EMu"/>
                         <outlet property="chooseCountryButton" destination="m3p-oB-A1c" id="25F-Rw-Iuc"/>
                         <outlet property="mapImageView" destination="y8g-j8-bJT" id="Mve-D6-UYy"/>
                     </connections>
@@ -1572,7 +1573,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="Enfys Logo Ceu" width="176" height="68"/>
+        <image name="Enfys Logo Ceu" width="177" height="67"/>
         <image name="Splash View Background" width="414" height="812"/>
         <image name="Toolbar Dismiss Icon" width="24" height="24"/>
         <image name="Toolbar Filter Icon" width="24" height="24"/>
