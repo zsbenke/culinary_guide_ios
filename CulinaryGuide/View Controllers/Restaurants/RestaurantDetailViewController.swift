@@ -9,6 +9,8 @@ class RestaurantDetailViewController: UITableViewController {
     var restaurant: Restaurant?
     var restaurantValues = [Restaurant.RestaurantValue]()
     var restaurantSections = [Restaurant.RestaurantValue.RestaurantValueSection]()
+    var titleTableCell: DetailTitleTableViewCell?
+    var heroImageViewHeight: CGFloat?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -72,6 +74,9 @@ extension RestaurantDetailViewController {
                 let restaurantRating = RestaurantRating.init(points: rating)
                 let ratingView = RatingView.init(rating: restaurantRating)
                 cell.ratingView.addSubview(ratingView)
+
+                titleTableCell = cell
+                heroImageViewHeight = cell.heroImageView.frame.height
             }
 
             return cell
@@ -105,5 +110,26 @@ extension RestaurantDetailViewController {
 
     override func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         return 1
+    }
+}
+
+extension RestaurantDetailViewController {
+    override func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        guard let titleTableCell = titleTableCell else { return }
+        var yOffset = tableView.contentOffset.y
+        yOffset += UIApplication.shared.statusBarFrame.height
+        if let controller = navigationController {
+            yOffset += controller.navigationBar.frame.height
+        }
+
+        if yOffset < 0 {
+            guard let heroImageViewHeight = heroImageViewHeight else { return }
+
+            var frame = titleTableCell.heroImageView.frame
+            frame.size.height = heroImageViewHeight + abs(yOffset)
+            frame.origin.y = yOffset
+            titleTableCell.heroImageView.frame = frame
+            titleTableCell.clipsToBounds = false
+        }
     }
 }
