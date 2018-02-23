@@ -402,9 +402,9 @@
 				985403AF201B96BA006F7103 /* RatingFilterButton.swift */,
 				98D8697E20094D7200EC909F /* RoundedButton.swift */,
 				9847A70D200AB66300A17247 /* AlignedLeftFlowLayout.swift */,
-				9847A711200BA5EC00A17247 /* UIBezierPath Tap.playground */,
 				989936452040CD41003B94C2 /* DetailTitleTableViewCell.xib */,
 				9899364E2040CF0C003B94C2 /* DetailTitleTableViewCell.swift */,
+				9847A711200BA5EC00A17247 /* UIBezierPath Tap.playground */,
 			);
 			path = Views;
 			sourceTree = "<group>";

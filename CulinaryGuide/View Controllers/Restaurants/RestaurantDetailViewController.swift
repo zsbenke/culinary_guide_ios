@@ -65,8 +65,15 @@ extension RestaurantDetailViewController {
 
         if restaurantValue.column == .title {
             let cell = tableView.dequeueReusableCell(withIdentifier: "Title Cell") as! DetailTitleTableViewCell
-            cell.heroImageView.image = #imageLiteral(resourceName: "Hero Image Placeholder")
             cell.titleLabel.text = restaurant?.title
+            cell.yearLabel.text = restaurant?.year
+
+            if let rating = restaurant?.rating {
+                let restaurantRating = RestaurantRating.init(points: rating)
+                let ratingView = RatingView.init(rating: restaurantRating)
+                cell.ratingView.addSubview(ratingView)
+            }
+
             return cell
         } else {
             let cell = tableView.dequeueReusableCell(withIdentifier: "Value Cell")

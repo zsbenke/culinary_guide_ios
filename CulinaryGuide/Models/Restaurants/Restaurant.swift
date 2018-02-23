@@ -4,6 +4,7 @@ import MapKit
 struct Restaurant: PointOfInterest, Codable {
     let id: Int?
     let title: String?
+    let year: String?
     let address: String?
     let latitude: String?
     let longitude: String?
@@ -103,6 +104,7 @@ struct Restaurant: PointOfInterest, Codable {
     enum CodingKeys: String, CodingKey {
         case id
         case title
+        case year
         case address = "full_address"
         case latitude
         case longitude
@@ -136,6 +138,12 @@ struct Restaurant: PointOfInterest, Codable {
             title = try container.decode(String.self, forKey: .title)
         } catch {
             title = nil
+        }
+
+        do {
+            year = try container.decode(String.self, forKey: .year)
+        } catch {
+            year = nil
         }
 
         do {
