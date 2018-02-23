@@ -14,7 +14,10 @@ class RestaurantDetailViewController: UITableViewController {
         super.viewDidLoad()
         
         navigationItem.largeTitleDisplayMode = .never
-        
+
+        let tableCellNib = UINib(nibName: "DetailTitleTableViewCell", bundle: nil)
+        tableView.register(tableCellNib, forCellReuseIdentifier: "Title Cell")
+
         if restaurant != nil {
             configureView()
         }
@@ -56,17 +59,22 @@ extension RestaurantDetailViewController {
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "Value Cell")
-
         let section = restaurantSections[indexPath.section]
         let restaurantValueInSection = restaurantValues.filter { $0.section == section }
         let restaurantValue = restaurantValueInSection[indexPath.row]
 
-        cell?.textLabel?.text = restaurantValue.value
-        cell?.imageView?.image = restaurantValue.image
-        cell?.imageView?.tintColor = UIColor.BrandColor.primary
-
-        return cell!
+        if restaurantValue.column == .title {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "Title Cell") as! DetailTitleTableViewCell
+            cell.heroImageView.image = #imageLiteral(resourceName: "Hero Image Placeholder")
+            cell.titleLabel.text = restaurant?.title
+            return cell
+        } else {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "Value Cell")
+            cell?.textLabel?.text = restaurantValue.value
+            cell?.imageView?.image = restaurantValue.image
+            cell?.imageView?.tintColor = UIColor.BrandColor.primary
+            return cell!
+        }
     }
 
     override func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {

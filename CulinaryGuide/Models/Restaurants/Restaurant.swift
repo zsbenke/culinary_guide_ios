@@ -264,6 +264,7 @@ struct Restaurant: PointOfInterest, Codable {
 extension Restaurant {
     struct RestaurantValue {
         enum RestaurantValueSection: EnumCollection {
+            case hero
             case contact
             case people
             case websites
@@ -332,6 +333,7 @@ extension Restaurant {
             }
         }
 
+        appendValue(self.address, .title, .hero)
         appendValue(self.address, .address, .contact)
         appendValue(self.phone, .phone, .contact)
         appendValue(self.openResults, .openResults, .contact)
