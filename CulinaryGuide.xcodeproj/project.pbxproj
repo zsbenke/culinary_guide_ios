@@ -64,6 +64,9 @@
 		984B7139200FAB8600822ADF /* UIViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 984B7138200FAB8600822ADF /* UIViewExtensions.swift */; };
 		984B713A200FAB8600822ADF /* UIViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 984B7138200FAB8600822ADF /* UIViewExtensions.swift */; };
 		984B713B200FAB8600822ADF /* UIViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 984B7138200FAB8600822ADF /* UIViewExtensions.swift */; };
+		984DEA532040A2EC00E1A0EB /* Email.swift in Sources */ = {isa = PBXBuildFile; fileRef = 984DEA522040A2EC00E1A0EB /* Email.swift */; };
+		984DEA542040A2EC00E1A0EB /* Email.swift in Sources */ = {isa = PBXBuildFile; fileRef = 984DEA522040A2EC00E1A0EB /* Email.swift */; };
+		984DEA552040A2EC00E1A0EB /* Email.swift in Sources */ = {isa = PBXBuildFile; fileRef = 984DEA522040A2EC00E1A0EB /* Email.swift */; };
 		985403B0201B96BA006F7103 /* RatingFilterButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 985403AF201B96BA006F7103 /* RatingFilterButton.swift */; };
 		985403B1201B96BA006F7103 /* RatingFilterButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 985403AF201B96BA006F7103 /* RatingFilterButton.swift */; };
 		985403B2201B96BA006F7103 /* RatingFilterButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 985403AF201B96BA006F7103 /* RatingFilterButton.swift */; };
@@ -192,6 +195,7 @@
 		984B7128200F80A800822ADF /* Environment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Environment.swift; sourceTree = "<group>"; };
 		984B712C200F80DF00822ADF /* RestaurantRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantRouter.swift; sourceTree = "<group>"; };
 		984B7138200FAB8600822ADF /* UIViewExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtensions.swift; sourceTree = "<group>"; };
+		984DEA522040A2EC00E1A0EB /* Email.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Email.swift; sourceTree = "<group>"; };
 		985403AF201B96BA006F7103 /* RatingFilterButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatingFilterButton.swift; sourceTree = "<group>"; };
 		98550AA7201928AC006F53A2 /* RestaurantFilterState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = RestaurantFilterState.swift; path = CulinaryGuide/Models/Restaurants/RestaurantFilterState.swift; sourceTree = SOURCE_ROOT; };
 		986E8AD1200E6EA200BA57AA /* RatingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatingView.swift; sourceTree = "<group>"; };
@@ -417,6 +421,7 @@
 				98D8698220094E2300EC909F /* UIImage+imageWithColor.swift */,
 				9836314F200FD4E1002EBE01 /* ArrayExtensions.swift */,
 				98E2D1C52029F7CE00B6D480 /* CALayerExtensions.swift */,
+				984DEA522040A2EC00E1A0EB /* Email.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -633,6 +638,7 @@
 				9892E81320095728007B7033 /* UserDefault.swift in Sources */,
 				98F6265C20024C7100996A91 /* AsyncOperation.swift in Sources */,
 				9847CAE7202F35CA00FAC5B6 /* Facet.swift in Sources */,
+				984DEA532040A2EC00E1A0EB /* Email.swift in Sources */,
 				9847A6FA200A4FD100A17247 /* TagCollectionViewCell.swift in Sources */,
 				98F626162002487600996A91 /* AppDelegate.swift in Sources */,
 				98D8696C2008FC4300EC909F /* PartialModalPresentationAnimator.swift in Sources */,
@@ -657,6 +663,7 @@
 				9847A6F5200A4E5600A17247 /* HomeCollectionViewController.swift in Sources */,
 				984B7123200F7D1B00822ADF /* PointOfInterest.swift in Sources */,
 				98D8696A2008FC4300EC909F /* PartialModalPresentationController.swift in Sources */,
+				984DEA542040A2EC00E1A0EB /* Email.swift in Sources */,
 				9892E81C200A3BC1007B7033 /* IconTableViewCell.swift in Sources */,
 				98D8698420094E2300EC909F /* UIImage+imageWithColor.swift in Sources */,
 				98F6264C20024BA500996A91 /* API.swift in Sources */,
@@ -738,6 +745,7 @@
 				98F6266220024CA900996A91 /* APIResource.swift in Sources */,
 				98D8698120094D7200EC909F /* RoundedButton.swift in Sources */,
 				98F6265E20024C7100996A91 /* AsyncOperation.swift in Sources */,
+				984DEA552040A2EC00E1A0EB /* Email.swift in Sources */,
 				9847A6FC200A501D00A17247 /* TagCollectionViewCell.swift in Sources */,
 				98F6265120024BE400996A91 /* URLQueryToken.swift in Sources */,
 				98D8696E2008FC4300EC909F /* PartialModalPresentationAnimator.swift in Sources */,

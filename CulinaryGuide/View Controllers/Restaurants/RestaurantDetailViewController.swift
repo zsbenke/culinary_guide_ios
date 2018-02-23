@@ -7,27 +7,13 @@ class RestaurantDetailViewController: UITableViewController {
         }
     }
     var restaurant: Restaurant?
-    
-    @IBOutlet weak var restaurantTitleLabel: UILabel!
-    @IBOutlet weak var addressCell: UITableViewCell!
-    @IBOutlet weak var phoneCell: UITableViewCell!
-    @IBOutlet weak var openTimesCell: UITableViewCell!
-    @IBOutlet weak var defPeopleOneCell: UITableViewCell!
-    @IBOutlet weak var defPeopleTwoCell: UITableViewCell!
-    @IBOutlet weak var defPeopleThreeCell: UITableViewCell!
-    @IBOutlet weak var websiteCell: UITableViewCell!
-    @IBOutlet weak var emailCell: UITableViewCell!
-    @IBOutlet weak var facebookCell: UITableViewCell!
-    @IBOutlet weak var reservationsCell: UITableViewCell!
-    @IBOutlet weak var parkingCell: UITableViewCell!
-    @IBOutlet weak var menuPriceCell: UITableViewCell!
-    @IBOutlet weak var creditCardCell: UITableViewCell!
-    @IBOutlet weak var wifiCell: UITableViewCell!
+    var restaurantValues = [Restaurant.RestaurantValue]()
+    var restaurantSections = [Restaurant.RestaurantValue.RestaurantValueSection]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.navigationItem.largeTitleDisplayMode = .never
+        navigationItem.largeTitleDisplayMode = .never
         
         if restaurant != nil {
             configureView()
@@ -46,14 +32,43 @@ class RestaurantDetailViewController: UITableViewController {
             
             DispatchQueue.main.async {
                 guard let restaurant = self.restaurant else { return }
-                self.restaurantTitleLabel.text = restaurant.title
-                self.addressCell.textLabel?.text = restaurant.address
+                self.restaurantValues = restaurant.toDataSource()
+                self.restaurantSections = Array(Set(self.restaurantValues.map({ $0.section })))
+                self.restaurantSections = self.restaurantSections.sorted(by: { (lhs, rhs) -> Bool in
+                    let cases = Array(Restaurant.RestaurantValue.RestaurantValueSection.cases())
+
+                    return cases.index(of: lhs)! < cases.index(of: rhs)!
+                })
+                self.tableView.reloadData()
             }
         }
     }
 }
 
 extension RestaurantDetailViewController {
+    override func numberOfSections(in tableView: UITableView) -> Int {
+        return restaurantSections.count
+    }
+
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        let section = restaurantSections[section]
+        return restaurantValues.filter { $0.section == section }.count
+    }
+
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "Value Cell")
+
+        let section = restaurantSections[indexPath.section]
+        let restaurantValueInSection = restaurantValues.filter { $0.section == section }
+        let restaurantValue = restaurantValueInSection[indexPath.row]
+
+        cell?.textLabel?.text = restaurantValue.value
+        cell?.imageView?.image = restaurantValue.image
+        cell?.imageView?.tintColor = UIColor.BrandColor.primary
+
+        return cell!
+    }
+
     override func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
         let tableSectionFooterView = UIView()
         let tableViewSectionSeparator = CALayer()
@@ -62,7 +77,7 @@ extension RestaurantDetailViewController {
         tableViewSectionSeparator.frame = CGRect(x: 16.0, y: 0, width: UIScreen.main.bounds.width, height: 0.5)
         tableViewSectionSeparator.backgroundColor = UIColor.BrandColor.detailSeparator.cgColor
 
-        if numberOfSection != super.numberOfSections(in: tableView) {
+        if numberOfSection != restaurantSections.count {
             tableSectionFooterView.layer.addSublayer(tableViewSectionSeparator)
         }
 
@@ -74,6 +89,6 @@ extension RestaurantDetailViewController {
     }
 
     override func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        return 0.5
+        return 1
     }
 }
