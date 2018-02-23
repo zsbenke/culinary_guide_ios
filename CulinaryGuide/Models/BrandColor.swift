@@ -93,5 +93,9 @@ extension UIColor {
         static var facetSeparator: UIColor {
             return UIColor(red: 0.00, green: 0.25, blue: 0.35, alpha: 0.5)
         }
+
+        static var detailSeparator: UIColor {
+            return UIColor(red: 0.68, green: 0.74, blue: 0.78, alpha: 1.00)
+        }
     }
 }
