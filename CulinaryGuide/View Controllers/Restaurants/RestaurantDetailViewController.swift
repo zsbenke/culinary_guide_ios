@@ -128,7 +128,7 @@ private extension RestaurantDetailViewController {
 
                 if let rating = restaurant.rating {
                     let restaurantRating = RestaurantRating.init(points: rating)
-                    let ratingView = RatingView.init(rating: restaurantRating)
+                    let ratingView = RatingView.init(rating: restaurantRating, size: .badge)
                     self.headerView.ratingView.addSubview(ratingView)
                 }
 

@@ -2,12 +2,22 @@ import UIKit
 
 class RatingView: UIView {
     var rating: Rating
+    private var frameFromSize = CGRect.init(x: 0.0, y: 0.0, width: 33, height: 29)
 
-    init(rating: Rating) {
+    enum RatingViewSize {
+        case `default`
+        case badge
+    }
+
+    init(rating: Rating, size: RatingViewSize = .default) {
         self.rating = rating
 
-        let frame = CGRect.init(x: 0.0, y: 0.0, width: 33, height: 29)
-        super.init(frame: frame)
+        if size == .badge {
+            frameFromSize.size.width = 52
+            frameFromSize.size.height = 46
+        }
+
+        super.init(frame: frameFromSize)
 
         self.backgroundColor = .white
     }
@@ -22,6 +32,7 @@ class RatingView: UIView {
         imageView.backgroundColor = .white
         imageView.tintColor = rating.color
         imageView.contentMode = .scaleAspectFit
+        imageView.frame = frameFromSize
         imageView.centerYAnchor.constraint(equalTo: self.centerYAnchor)
         imageView.centerXAnchor.constraint(equalTo: self.centerXAnchor)
 

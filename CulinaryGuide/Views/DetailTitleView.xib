@@ -24,32 +24,32 @@
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="LZi-k1-Exk">
-            <rect key="frame" x="0.0" y="0.0" width="454" height="381"/>
+            <rect key="frame" x="0.0" y="0.0" width="454" height="389"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Hero Image Placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="Z9E-hB-e9P">
-                    <rect key="frame" x="0.0" y="0.0" width="454" height="281"/>
+                    <rect key="frame" x="0.0" y="0.0" width="454" height="279"/>
                     <constraints>
                         <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="180" id="XgQ-fo-bpw"/>
                     </constraints>
                 </imageView>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Hero Image Gradient" translatesAutoresizingMaskIntoConstraints="NO" id="nwa-vW-wJg">
-                    <rect key="frame" x="0.0" y="0.0" width="454" height="281"/>
+                    <rect key="frame" x="0.0" y="0.0" width="454" height="279"/>
                     <constraints>
                         <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="180" id="LJ2-u4-z0k"/>
                     </constraints>
                 </imageView>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="osB-rK-ymF">
-                    <rect key="frame" x="190" y="240" width="74" height="82"/>
+                    <rect key="frame" x="190" y="238" width="74" height="82"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jtU-qG-kHE">
                             <rect key="frame" x="0.0" y="0.0" width="74" height="58"/>
                             <subviews>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZQk-IB-ks2">
-                                    <rect key="frame" x="20" y="12" width="33" height="33"/>
+                                    <rect key="frame" x="9.5" y="5" width="54" height="47"/>
                                     <constraints>
-                                        <constraint firstAttribute="height" constant="33" id="N7Z-Ri-ndR"/>
-                                        <constraint firstAttribute="width" constant="33" id="O89-R2-UmW"/>
+                                        <constraint firstAttribute="height" constant="47" id="N7Z-Ri-ndR"/>
+                                        <constraint firstAttribute="width" constant="54" id="O89-R2-UmW"/>
                                     </constraints>
                                 </view>
                             </subviews>
@@ -101,20 +101,20 @@
                     </userDefinedRuntimeAttributes>
                 </view>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dyt-Is-pmh">
-                    <rect key="frame" x="16" y="338.5" width="422" height="26.5"/>
-                    <fontDescription key="fontDescription" type="boldSystem" pointSize="22"/>
+                    <rect key="frame" x="16" y="337" width="422" height="36"/>
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="30"/>
                     <color key="textColor" name="Body Text"/>
                     <nil key="highlightedColor"/>
                 </label>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
-                <constraint firstAttribute="bottom" secondItem="nwa-vW-wJg" secondAttribute="bottom" constant="100" id="0tA-5e-git"/>
+                <constraint firstAttribute="bottom" secondItem="nwa-vW-wJg" secondAttribute="bottom" constant="110" id="0tA-5e-git"/>
                 <constraint firstItem="osB-rK-ymF" firstAttribute="top" secondItem="Z9E-hB-e9P" secondAttribute="bottom" constant="-41" id="0tO-NH-qGh"/>
                 <constraint firstItem="dyt-Is-pmh" firstAttribute="leading" secondItem="mPy-zU-UD5" secondAttribute="leading" constant="16" id="61V-eC-cgv"/>
                 <constraint firstItem="mPy-zU-UD5" firstAttribute="trailing" secondItem="dyt-Is-pmh" secondAttribute="trailing" constant="16" id="DZF-EC-Xpa"/>
                 <constraint firstItem="nwa-vW-wJg" firstAttribute="trailing" secondItem="LZi-k1-Exk" secondAttribute="trailing" id="Ena-ym-LTv"/>
-                <constraint firstAttribute="bottom" secondItem="Z9E-hB-e9P" secondAttribute="bottom" constant="100" id="HEY-K7-c1e"/>
+                <constraint firstAttribute="bottom" secondItem="Z9E-hB-e9P" secondAttribute="bottom" constant="110" id="HEY-K7-c1e"/>
                 <constraint firstItem="Z9E-hB-e9P" firstAttribute="leading" secondItem="LZi-k1-Exk" secondAttribute="leading" id="hnf-ik-vbj"/>
                 <constraint firstItem="Z9E-hB-e9P" firstAttribute="top" secondItem="LZi-k1-Exk" secondAttribute="top" id="kpu-pI-3nT"/>
                 <constraint firstItem="nwa-vW-wJg" firstAttribute="leading" secondItem="LZi-k1-Exk" secondAttribute="leading" id="kzv-FH-yaO"/>
@@ -127,7 +127,7 @@
             <nil key="simulatedBottomBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="mPy-zU-UD5"/>
-            <point key="canvasLocation" x="-472" y="-240.5"/>
+            <point key="canvasLocation" x="-472" y="-236.5"/>
         </view>
     </objects>
     <resources>
