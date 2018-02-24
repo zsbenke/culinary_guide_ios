@@ -341,7 +341,38 @@ extension Restaurant {
             }
         }
 
-        appendValue(self.address, .title, .hero)
+        appendValue(self.address, .address, .contact)
+        appendValue(self.phone, .phone, .contact)
+        appendValue(self.openResults, .openResults, .contact)
+
+        appendValue(self.firstDefiningPerson, .firstDefiningPerson, .people)
+        appendValue(self.secondDefiningPerson, .secondDefiningPerson, .people)
+        appendValue(self.thirdDefiningPerson, .thirdDefiningPerson, .people)
+
+        appendValue(self.website, .website, .websites)
+        appendValue(self.email, .email, .websites)
+        appendValue(self.facebookPage, .facebookPage, .websites)
+
+        appendValue(self.reservations, .reservations, .information)
+        appendValue(self.parking, .parking, .information)
+        appendValue(self.menuPrice, .menuPrice, .information)
+
+        appendValue(self.address, .address, .contact)
+        appendValue(self.phone, .phone, .contact)
+        appendValue(self.openResults, .openResults, .contact)
+
+        appendValue(self.firstDefiningPerson, .firstDefiningPerson, .people)
+        appendValue(self.secondDefiningPerson, .secondDefiningPerson, .people)
+        appendValue(self.thirdDefiningPerson, .thirdDefiningPerson, .people)
+
+        appendValue(self.website, .website, .websites)
+        appendValue(self.email, .email, .websites)
+        appendValue(self.facebookPage, .facebookPage, .websites)
+
+        appendValue(self.reservations, .reservations, .information)
+        appendValue(self.parking, .parking, .information)
+        appendValue(self.menuPrice, .menuPrice, .information)
+
         appendValue(self.address, .address, .contact)
         appendValue(self.phone, .phone, .contact)
         appendValue(self.openResults, .openResults, .contact)

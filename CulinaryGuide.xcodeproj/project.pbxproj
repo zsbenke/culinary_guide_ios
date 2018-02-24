@@ -13,6 +13,8 @@
 		98135E372005592500AB64C4 /* RestaurantsMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98135E362005592500AB64C4 /* RestaurantsMapViewController.swift */; };
 		98135E382005592500AB64C4 /* RestaurantsMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98135E362005592500AB64C4 /* RestaurantsMapViewController.swift */; };
 		98135E392005592500AB64C4 /* RestaurantsMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98135E362005592500AB64C4 /* RestaurantsMapViewController.swift */; };
+		981E84CB204211E400835C47 /* CAGradientLayerExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 981E84CA204211E400835C47 /* CAGradientLayerExtensions.swift */; };
+		981E84CD2042120C00835C47 /* UINavigationBarExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 981E84CC2042120C00835C47 /* UINavigationBarExtensions.swift */; };
 		98363150200FD4E1002EBE01 /* ArrayExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9836314F200FD4E1002EBE01 /* ArrayExtensions.swift */; };
 		98363151200FD4E1002EBE01 /* ArrayExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9836314F200FD4E1002EBE01 /* ArrayExtensions.swift */; };
 		98363152200FD4E1002EBE01 /* ArrayExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9836314F200FD4E1002EBE01 /* ArrayExtensions.swift */; };
@@ -83,10 +85,10 @@
 		9892E81F200A3CEE007B7033 /* IconTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9892E81E200A3CEE007B7033 /* IconTableViewCell.xib */; };
 		9892E820200A3CEE007B7033 /* IconTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9892E81E200A3CEE007B7033 /* IconTableViewCell.xib */; };
 		9892E821200A3CEE007B7033 /* IconTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9892E81E200A3CEE007B7033 /* IconTableViewCell.xib */; };
-		989936462040CD41003B94C2 /* DetailTitleTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 989936452040CD41003B94C2 /* DetailTitleTableViewCell.xib */; };
-		989936472040CD41003B94C2 /* DetailTitleTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 989936452040CD41003B94C2 /* DetailTitleTableViewCell.xib */; };
-		9899364F2040CF0C003B94C2 /* DetailTitleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9899364E2040CF0C003B94C2 /* DetailTitleTableViewCell.swift */; };
-		989936502040CF0C003B94C2 /* DetailTitleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9899364E2040CF0C003B94C2 /* DetailTitleTableViewCell.swift */; };
+		989936462040CD41003B94C2 /* DetailTitleView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 989936452040CD41003B94C2 /* DetailTitleView.xib */; };
+		989936472040CD41003B94C2 /* DetailTitleView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 989936452040CD41003B94C2 /* DetailTitleView.xib */; };
+		9899364F2040CF0C003B94C2 /* DetailTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9899364E2040CF0C003B94C2 /* DetailTitleView.swift */; };
+		989936502040CF0C003B94C2 /* DetailTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9899364E2040CF0C003B94C2 /* DetailTitleView.swift */; };
 		989CE4AF200E8E0000BD42D7 /* RestaurantRating.swift in Sources */ = {isa = PBXBuildFile; fileRef = 989CE4AE200E8E0000BD42D7 /* RestaurantRating.swift */; };
 		989CE4B0200E8E0000BD42D7 /* RestaurantRating.swift in Sources */ = {isa = PBXBuildFile; fileRef = 989CE4AE200E8E0000BD42D7 /* RestaurantRating.swift */; };
 		989CE4B1200E901600BD42D7 /* RestaurantRating.swift in Sources */ = {isa = PBXBuildFile; fileRef = 989CE4AE200E8E0000BD42D7 /* RestaurantRating.swift */; };
@@ -176,6 +178,8 @@
 /* Begin PBXFileReference section */
 		98135E322005477500AB64C4 /* RestaurantsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantsTableViewController.swift; sourceTree = "<group>"; };
 		98135E362005592500AB64C4 /* RestaurantsMapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantsMapViewController.swift; sourceTree = "<group>"; };
+		981E84CA204211E400835C47 /* CAGradientLayerExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CAGradientLayerExtensions.swift; sourceTree = "<group>"; };
+		981E84CC2042120C00835C47 /* UINavigationBarExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UINavigationBarExtensions.swift; sourceTree = "<group>"; };
 		9836314F200FD4E1002EBE01 /* ArrayExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArrayExtensions.swift; sourceTree = "<group>"; };
 		9847A6F3200A4E1200A17247 /* HomeCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCollectionViewController.swift; sourceTree = "<group>"; };
 		9847A6F7200A4F8300A17247 /* TagCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TagCollectionViewCell.xib; sourceTree = "<group>"; };
@@ -203,8 +207,8 @@
 		9892E81220095728007B7033 /* UserDefault.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefault.swift; sourceTree = "<group>"; };
 		9892E81A200A3BC1007B7033 /* IconTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconTableViewCell.swift; sourceTree = "<group>"; };
 		9892E81E200A3CEE007B7033 /* IconTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = IconTableViewCell.xib; sourceTree = "<group>"; };
-		989936452040CD41003B94C2 /* DetailTitleTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailTitleTableViewCell.xib; sourceTree = "<group>"; };
-		9899364E2040CF0C003B94C2 /* DetailTitleTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailTitleTableViewCell.swift; sourceTree = "<group>"; };
+		989936452040CD41003B94C2 /* DetailTitleView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailTitleView.xib; sourceTree = "<group>"; };
+		9899364E2040CF0C003B94C2 /* DetailTitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailTitleView.swift; sourceTree = "<group>"; };
 		989CE4AE200E8E0000BD42D7 /* RestaurantRating.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantRating.swift; sourceTree = "<group>"; };
 		989CE4B2200E932F00BD42D7 /* Rating.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Rating.swift; sourceTree = "<group>"; };
 		989EA00520178A9D00FB2A95 /* Playground.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; name = Playground.playground; path = CulinaryGuide/Playground.playground; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
@@ -395,8 +399,8 @@
 				986E8AD1200E6EA200BA57AA /* RatingView.swift */,
 				985403AF201B96BA006F7103 /* RatingFilterButton.swift */,
 				9847A70D200AB66300A17247 /* AlignedLeftFlowLayout.swift */,
-				989936452040CD41003B94C2 /* DetailTitleTableViewCell.xib */,
-				9899364E2040CF0C003B94C2 /* DetailTitleTableViewCell.swift */,
+				989936452040CD41003B94C2 /* DetailTitleView.xib */,
+				9899364E2040CF0C003B94C2 /* DetailTitleView.swift */,
 				9847A711200BA5EC00A17247 /* UIBezierPath Tap.playground */,
 			);
 			path = Views;
@@ -424,6 +428,8 @@
 				98E2D1C52029F7CE00B6D480 /* CALayerExtensions.swift */,
 				984DEA522040A2EC00E1A0EB /* Email.swift */,
 				9849816A2041BF98001B742F /* UIViewExtensions.swift */,
+				981E84CA204211E400835C47 /* CAGradientLayerExtensions.swift */,
+				981E84CC2042120C00835C47 /* UINavigationBarExtensions.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -569,7 +575,7 @@
 				98F626222002487700996A91 /* LaunchScreen.storyboard in Resources */,
 				98F6261F2002487700996A91 /* Assets.xcassets in Resources */,
 				9847A6F8200A4F8300A17247 /* TagCollectionViewCell.xib in Resources */,
-				989936462040CD41003B94C2 /* DetailTitleTableViewCell.xib in Resources */,
+				989936462040CD41003B94C2 /* DetailTitleView.xib in Resources */,
 				9847A702200A99C400A17247 /* TagCollectionHeaderView.xib in Resources */,
 				9892E81F200A3CEE007B7033 /* IconTableViewCell.xib in Resources */,
 				98F6261D2002487700996A91 /* Main.storyboard in Resources */,
@@ -591,7 +597,7 @@
 			files = (
 				9892E821200A3CEE007B7033 /* IconTableViewCell.xib in Resources */,
 				9847A704200A99C400A17247 /* TagCollectionHeaderView.xib in Resources */,
-				989936472040CD41003B94C2 /* DetailTitleTableViewCell.xib in Resources */,
+				989936472040CD41003B94C2 /* DetailTitleView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -602,6 +608,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				981E84CD2042120C00835C47 /* UINavigationBarExtensions.swift in Sources */,
 				9847CAE9202F36EA00FAC5B6 /* RestaurantFacet.swift in Sources */,
 				98F6264F20024BE400996A91 /* URLQueryToken.swift in Sources */,
 				98E2D1C62029F7CE00B6D480 /* CALayerExtensions.swift in Sources */,
@@ -617,7 +624,7 @@
 				98F6266020024CA900996A91 /* APIResource.swift in Sources */,
 				9892E81B200A3BC1007B7033 /* IconTableViewCell.swift in Sources */,
 				98D8698320094E2300EC909F /* UIImage+imageWithColor.swift in Sources */,
-				9899364F2040CF0C003B94C2 /* DetailTitleTableViewCell.swift in Sources */,
+				9899364F2040CF0C003B94C2 /* DetailTitleView.swift in Sources */,
 				98F6264B20024BA500996A91 /* API.swift in Sources */,
 				9847A70E200AB66300A17247 /* AlignedLeftFlowLayout.swift in Sources */,
 				984B7129200F80A800822ADF /* Environment.swift in Sources */,
@@ -647,6 +654,7 @@
 				9847A6FA200A4FD100A17247 /* TagCollectionViewCell.swift in Sources */,
 				98F626162002487600996A91 /* AppDelegate.swift in Sources */,
 				98D8696C2008FC4300EC909F /* PartialModalPresentationAnimator.swift in Sources */,
+				981E84CB204211E400835C47 /* CAGradientLayerExtensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -721,7 +729,7 @@
 				98D8696B2008FC4300EC909F /* PartialModalPresentationController.swift in Sources */,
 				9892E81D200A3BC1007B7033 /* IconTableViewCell.swift in Sources */,
 				98D8698520094E2300EC909F /* UIImage+imageWithColor.swift in Sources */,
-				989936502040CF0C003B94C2 /* DetailTitleTableViewCell.swift in Sources */,
+				989936502040CF0C003B94C2 /* DetailTitleView.swift in Sources */,
 				984B711E200F7D1B00822ADF /* Rating.swift in Sources */,
 				984B712B200F80A800822ADF /* Environment.swift in Sources */,
 				98F6264D20024BA500996A91 /* API.swift in Sources */,
