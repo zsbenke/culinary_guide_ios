@@ -84,7 +84,6 @@ extension RestaurantDetailViewController {
             let cell = tableView.dequeueReusableCell(withIdentifier: "Value Cell")
             cell?.textLabel?.text = restaurantValue.value
             cell?.imageView?.image = restaurantValue.image
-            cell?.imageView?.tintColor = UIColor.BrandColor.primary
             return cell!
         }
     }
@@ -94,8 +93,8 @@ extension RestaurantDetailViewController {
         let tableViewSectionSeparator = CALayer()
         let numberOfSection = section + 1
 
-        tableViewSectionSeparator.frame = CGRect(x: 16.0, y: 0, width: UIScreen.main.bounds.width, height: 0.5)
-        tableViewSectionSeparator.backgroundColor = UIColor.BrandColor.detailSeparator.cgColor
+        tableViewSectionSeparator.frame = CGRect(x: 16.0, y: 0, width: UIScreen.main.bounds.width, height: (1.0 / UIScreen.main.scale))
+        tableViewSectionSeparator.backgroundColor = UIColor.BrandColor.separator.cgColor
 
         if numberOfSection != restaurantSections.count {
             tableSectionFooterView.layer.addSublayer(tableViewSectionSeparator)

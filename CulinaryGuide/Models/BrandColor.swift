@@ -3,27 +3,35 @@ import UIKit
 extension UIColor {
     enum BrandColor {
         static var primary: UIColor {
-            return UIColor(red: 0.00, green: 0.53, blue: 0.89, alpha: 1.0)
+            return UIColor(named: "Primary")!
         }
         
         static var primaryHighlighted: UIColor {
-            return UIColor(red: 0.00, green: 0.38, blue: 0.64, alpha: 1.00)
+            return UIColor(named: "Primary Highlighted")!
         }
         
         static var secondary: UIColor {
-            return UIColor(red: 0.99, green: 0.81, blue: 0.04, alpha: 1.0)
+            return UIColor(named: "Secondary")!
         }
 
         static var secondaryHighlighted: UIColor {
-            return UIColor(red: 0.82, green: 0.63, blue: 0.00, alpha: 1.00)
+            return UIColor(named: "Secondary Highlighted")!
+        }
+
+        static var bodyText: UIColor {
+            return UIColor(named: "Body Text")!
+        }
+
+        static var separator: UIColor {
+            return UIColor(named: "Separator")!
         }
 
         static var primarySplashScreen: UIColor {
-            return UIColor(red: 0.00, green: 0.25, blue: 0.35, alpha: 1.0)
+            return UIColor(named: "Primary Splash Screen")!
         }
 
         static var primarySplashScreenHighlighted: UIColor {
-            return UIColor(red: 0.00, green: 0.17, blue: 0.23, alpha: 1.00)
+            return UIColor(named: "Primary Splash Screen Highlighted")!
         }
 
         static var primaryRating: UIColor {
@@ -43,11 +51,11 @@ extension UIColor {
         }
 
         static var ratingFilterOff: UIColor {
-            return UIColor(red: 0.68, green: 0.74, blue :0.78, alpha: 1.0)
+            return UIColor(named: "Rating Filter Off")!
         }
 
         static var ratingFilterOffHighlighted: UIColor {
-            return UIColor(red: 0.53, green: 0.58, blue: 0.61, alpha: 1.0)
+            return UIColor(named: "Rating Filter Off Highlighted")!
         }
 
         static var primaryRatingFilterOn: UIColor {
@@ -67,35 +75,60 @@ extension UIColor {
         }
 
         static var windowBackground: UIColor {
-            return UIColor(red: 0.91, green: 0.94, blue: 0.95, alpha: 1.00)
+            return UIColor(named: "Window Background")!
         }
 
         static var light: UIColor {
-            return .white
+            return UIColor(named: "Light")!
         }
 
         static var lightHighlighted: UIColor {
-            return UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 0.75)
+            return UIColor(named: "Light Highlighted")!
         }
 
         static var facet: UIColor {
-            return UIColor(red: 0.91, green: 0.94, blue: 0.95, alpha: 1.0)
+            return UIColor(named: "Facet")!
         }
 
         static var facetSelected: UIColor {
-            return UIColor(red: 0.76, green: 0.78, blue: 0.79, alpha: 1.0)
+            return UIColor(named: "Facet Selected")!
         }
 
         static var facetText: UIColor {
-            return UIColor(red: 0.00, green: 0.25, blue: 0.35, alpha: 1.0)
+            return bodyText
         }
 
         static var facetSeparator: UIColor {
-            return UIColor(red: 0.00, green: 0.25, blue: 0.35, alpha: 0.5)
+            return separator
+        }
+    }
+
+    // MARK: - Computed Properties
+
+    var toHex: String? {
+        return toHex()
+    }
+
+    // MARK: - From UIColor to String
+
+    func toHex(alpha: Bool = false) -> String? {
+        guard let components = cgColor.components, components.count >= 3 else {
+            return nil
         }
 
-        static var detailSeparator: UIColor {
-            return UIColor(red: 0.68, green: 0.74, blue: 0.78, alpha: 1.00)
+        let r = Float(components[0])
+        let g = Float(components[1])
+        let b = Float(components[2])
+        var a = Float(1.0)
+
+        if components.count >= 4 {
+            a = Float(components[3])
+        }
+
+        if alpha {
+            return String(format: "%02lX%02lX%02lX%02lX", lroundf(r * 255), lroundf(g * 255), lroundf(b * 255), lroundf(a * 255))
+        } else {
+            return String(format: "%02lX%02lX%02lX", lroundf(r * 255), lroundf(g * 255), lroundf(b * 255))
         }
     }
 }

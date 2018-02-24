@@ -7,6 +7,7 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14086"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -19,6 +20,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="separatorColor" name="Separator"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" id="QjV-UH-4Lb">
                                 <rect key="frame" x="0.0" y="28" width="320" height="44"/>
@@ -62,6 +64,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="separatorColor" name="Separator"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="CountryCell" id="Tg3-YC-K2c">
                                 <rect key="frame" x="0.0" y="28" width="320" height="44"/>
@@ -210,6 +213,7 @@
                                 <segment title="Lista"/>
                                 <segment title="Térkép"/>
                             </segments>
+                            <color key="tintColor" name="Primary"/>
                             <attributedString key="userComments">
                                 <fragment content="Nézetválasztó az étterem lista címsorában">
                                     <attributes>
@@ -270,11 +274,11 @@
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Value" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="ru8-Wf-hwG">
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Value" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="ru8-Wf-hwG">
                                             <rect key="frame" x="47" y="0.0" width="257" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <nil key="textColor"/>
+                                            <color key="textColor" name="Body Text"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" image="Facet Pin" id="vjm-lL-y5H">
@@ -299,7 +303,8 @@
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="do6-yK-yA6">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <color key="backgroundColor" name="Window Background"/>
+                        <color key="separatorColor" name="Separator"/>
                         <sections>
                             <tableViewSection id="wiI-Uh-vW8">
                                 <cells>
@@ -315,7 +320,7 @@
                                                     <subviews>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OXW-pv-GKB">
                                                             <rect key="frame" x="0.0" y="0.0" width="41.5" height="44"/>
-                                                            <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            <color key="backgroundColor" name="Rating Filter Off"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="22" id="HH1-eK-eWw"/>
                                                                 <constraint firstAttribute="height" constant="44" id="u7T-Ge-up8"/>
@@ -323,7 +328,7 @@
                                                         </view>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fpI-he-gZS">
                                                             <rect key="frame" x="49.5" y="0.0" width="41" height="44"/>
-                                                            <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            <color key="backgroundColor" name="Rating Filter Off"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="44" id="Ggm-fI-ZDz"/>
                                                                 <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="22" id="Gq8-ne-q37"/>
@@ -331,7 +336,7 @@
                                                         </view>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="J0H-r3-T0r">
                                                             <rect key="frame" x="98.5" y="0.0" width="41.5" height="44"/>
-                                                            <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            <color key="backgroundColor" name="Rating Filter Off"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="44" id="HLJ-Te-oTe"/>
                                                                 <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="22" id="k8G-Hx-UiC"/>
@@ -339,7 +344,7 @@
                                                         </view>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="J4V-ET-4pv">
                                                             <rect key="frame" x="148" y="0.0" width="41.5" height="44"/>
-                                                            <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            <color key="backgroundColor" name="Rating Filter Off"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="22" id="8oD-N2-jmS"/>
                                                                 <constraint firstAttribute="height" constant="44" id="IeD-w4-Fi8"/>
@@ -347,7 +352,7 @@
                                                         </view>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ty0-FW-2L1">
                                                             <rect key="frame" x="197.5" y="0.0" width="41" height="44"/>
-                                                            <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            <color key="backgroundColor" name="Rating Filter Off"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="44" id="Oym-X7-AbJ"/>
                                                                 <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="22" id="eVq-jh-4JV"/>
@@ -355,7 +360,7 @@
                                                         </view>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="epj-Lu-4Ek">
                                                             <rect key="frame" x="246.5" y="0.0" width="41.5" height="44"/>
-                                                            <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            <color key="backgroundColor" name="Rating Filter Off"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="44" id="2gP-pq-2Ue"/>
                                                                 <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="22" id="PNz-GW-4Zi"/>
@@ -1440,10 +1445,19 @@
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Splash View Background" translatesAutoresizingMaskIntoConstraints="NO" id="y8g-j8-bJT">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <color key="backgroundColor" name="Secondary"/>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="m3p-oB-A1c" customClass="RoundedButton" customModule="CulinaryGuide" customModuleProvider="target">
-                                <rect key="frame" x="16" y="464" width="288" height="34"/>
-                                <state key="normal" title="Belépéshez válasszon egy országot"/>
+                            <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="m3p-oB-A1c">
+                                <rect key="frame" x="10" y="448" width="300" height="50"/>
+                                <color key="backgroundColor" name="Primary Splash Screen"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
+                                <inset key="contentEdgeInsets" minX="25" minY="15" maxX="25" maxY="15"/>
+                                <state key="normal" title="Belépéshez válasszon egy országot">
+                                    <color key="titleColor" name="Light"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" name="Light Highlighted"/>
+                                </state>
                                 <attributedString key="userComments">
                                     <fragment content="Az Országválasztó közepén lévő nagy gomb, ami az országlistát tölti be">
                                         <attributes>
@@ -1452,6 +1466,11 @@
                                         </attributes>
                                     </fragment>
                                 </attributedString>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="5"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                                 <connections>
                                     <segue destination="cAZ-QB-lHa" kind="presentation" identifier="chooseCountry" id="CKm-be-186"/>
                                 </connections>
@@ -1483,6 +1502,7 @@
                             </button>
                         </subviews>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <color key="tintColor" name="Primary Splash Screen"/>
                         <constraints>
                             <constraint firstItem="lw2-iT-fTC" firstAttribute="top" secondItem="m3p-oB-A1c" secondAttribute="bottom" constant="20" id="2jh-7M-hQq"/>
                             <constraint firstItem="y8g-j8-bJT" firstAttribute="leading" secondItem="ck9-yY-my2" secondAttribute="leading" id="3qk-MF-0Ty"/>
@@ -1577,8 +1597,36 @@
         <image name="Splash View Background" width="414" height="812"/>
         <image name="Toolbar Dismiss Icon" width="24" height="24"/>
         <image name="Toolbar Filter Icon" width="24" height="24"/>
+        <namedColor name="Body Text">
+            <color red="0.0" green="0.25098039215686274" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="Light">
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="Light Highlighted">
+            <color red="1" green="1" blue="1" alpha="0.75" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="Primary">
+            <color red="0.0" green="0.52941176470588236" blue="0.89411764705882357" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="Primary Splash Screen">
+            <color red="0.0" green="0.25098039215686274" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="Rating Filter Off">
+            <color red="0.67843137254901964" green="0.74117647058823533" blue="0.7803921568627451" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="Secondary">
+            <color red="0.99215686274509807" green="0.81176470588235294" blue="0.039215686274509803" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="Separator">
+            <color red="0.67843137254901964" green="0.74117647058823533" blue="0.7803921568627451" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="Window Background">
+            <color red="0.90980392156862744" green="0.94117647058823528" blue="0.94901960784313721" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="w4D-ht-9Jv"/>
     </inferredMetricsTieBreakers>
+    <color key="tintColor" name="Primary"/>
 </document>

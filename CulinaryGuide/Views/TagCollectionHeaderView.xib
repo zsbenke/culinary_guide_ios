@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14092" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14101" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14081.1"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14086"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -17,19 +18,19 @@
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
                 <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="feu-0J-uvw">
-                    <rect key="frame" x="16" y="0.0" width="343" height="50"/>
+                    <rect key="frame" x="16" y="13.5" width="343" height="23"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pQp-KR-gJV">
-                            <rect key="frame" x="0.0" y="13.5" width="40.5" height="23"/>
+                            <rect key="frame" x="0.0" y="0.0" width="40.5" height="23"/>
                             <fontDescription key="fontDescription" type="boldSystem" pointSize="19"/>
-                            <nil key="textColor"/>
+                            <color key="textColor" name="Body Text"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ORD-Cv-x3E">
-                            <rect key="frame" x="56.5" y="0.0" width="286.5" height="50"/>
-                            <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <rect key="frame" x="56.5" y="11.5" width="286.5" height="0.5"/>
+                            <color key="backgroundColor" name="Separator"/>
                             <constraints>
-                                <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="0.5" id="QsO-cE-1Hi"/>
+                                <constraint firstAttribute="height" constant="1" id="QsO-cE-1Hi"/>
                             </constraints>
                         </view>
                     </subviews>
@@ -43,9 +44,18 @@
             <viewLayoutGuide key="safeArea" id="fOS-zJ-cD4"/>
             <connections>
                 <outlet property="separator" destination="ORD-Cv-x3E" id="9Gi-CC-HOo"/>
+                <outlet property="separatorHeightConstraint" destination="QsO-cE-1Hi" id="4OJ-jb-3it"/>
                 <outlet property="titleLabel" destination="pQp-KR-gJV" id="crO-d3-p9g"/>
             </connections>
             <point key="canvasLocation" x="-27.5" y="45"/>
         </collectionReusableView>
     </objects>
+    <resources>
+        <namedColor name="Body Text">
+            <color red="0.0" green="0.25098039215686274" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="Separator">
+            <color red="0.67843137254901964" green="0.74117647058823533" blue="0.7803921568627451" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
 </document>

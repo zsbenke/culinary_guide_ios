@@ -28,8 +28,6 @@ class RestaurantFilterViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        tableView.backgroundColor = UIColor.BrandColor.windowBackground
-
         generator.prepare()
 
         rating1FilterContainer.backgroundColor = .white

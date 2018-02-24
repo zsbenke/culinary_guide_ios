@@ -16,18 +16,15 @@ class DetailTitleTableViewCell: UITableViewCell {
     @IBOutlet weak var titleLabel: UILabel!
 
     override func awakeFromNib() {
+        let maskPath = UIBezierPath.init(roundedRect: yearLabel.bounds, byRoundingCorners:[.bottomLeft, .bottomRight], cornerRadii: CGSize.init(width: 5, height: 5))
+        let maskLayer = CAShapeLayer()
+        maskLayer.frame = yearLabel.bounds
+        maskLayer.path = maskPath.cgPath
+        yearLabel.layer.mask = maskLayer
+
         super.awakeFromNib()
-
-        ratingContainerView.layer.cornerRadius = 5
-        ratingContainerView.clipsToBounds = true
-        ratingContainerView.layer.borderColor = UIColor.gray.cgColor
-        ratingContainerView.layer.borderWidth = 0.5
-        ratingView.backgroundColor = .white
-
-        yearLabel.backgroundColor = UIColor.BrandColor.primary
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
     }
-
 }
