@@ -29,6 +29,12 @@ class RestaurantDetailViewController: UITableViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+
+    override func viewWillAppear(_ animated: Bool) {
+        if let navigationController = navigationController as? WhiteNavigationViewController {
+            navigationController.state = .transparent
+        }
+    }
 }
 
 extension RestaurantDetailViewController {
