@@ -1,0 +1,18 @@
+{
+  "Mac" : [
+
+  ],
+  "watchOS" : [
+
+  ],
+  "tvOS" : [
+
+  ],
+  "commitish" : "1.1.5",
+  "iOS" : [
+    {
+      "name" : "KMNavigationBarTransition",
+      "hash" : "cc33a277f547155a0652a6388138c4289c4ad98ccc46cc6cbbcba98a07ec0292"
+    }
+  ]
+}

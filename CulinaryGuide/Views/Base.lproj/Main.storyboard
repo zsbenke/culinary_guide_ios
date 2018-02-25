@@ -314,53 +314,83 @@
                                                 <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="jvE-rf-P15">
                                                     <rect key="frame" x="16" y="7" width="343" height="44"/>
                                                     <subviews>
-                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OXW-pv-GKB">
+                                                        <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OXW-pv-GKB">
                                                             <rect key="frame" x="0.0" y="0.0" width="50.666666666666664" height="44"/>
                                                             <color key="backgroundColor" name="Rating Filter Off"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="22" id="HH1-eK-eWw"/>
                                                                 <constraint firstAttribute="height" constant="44" id="u7T-Ge-up8"/>
                                                             </constraints>
+                                                            <userDefinedRuntimeAttributes>
+                                                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                                    <real key="value" value="5"/>
+                                                                </userDefinedRuntimeAttribute>
+                                                            </userDefinedRuntimeAttributes>
                                                         </view>
-                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fpI-he-gZS">
+                                                        <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fpI-he-gZS">
                                                             <rect key="frame" x="58.666666666666671" y="0.0" width="50.333333333333329" height="44"/>
                                                             <color key="backgroundColor" name="Rating Filter Off"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="44" id="Ggm-fI-ZDz"/>
                                                                 <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="22" id="Gq8-ne-q37"/>
                                                             </constraints>
+                                                            <userDefinedRuntimeAttributes>
+                                                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                                    <real key="value" value="5"/>
+                                                                </userDefinedRuntimeAttribute>
+                                                            </userDefinedRuntimeAttributes>
                                                         </view>
-                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="J0H-r3-T0r">
+                                                        <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="J0H-r3-T0r">
                                                             <rect key="frame" x="117.00000000000001" y="0.0" width="50.666666666666671" height="44"/>
                                                             <color key="backgroundColor" name="Rating Filter Off"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="44" id="HLJ-Te-oTe"/>
                                                                 <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="22" id="k8G-Hx-UiC"/>
                                                             </constraints>
+                                                            <userDefinedRuntimeAttributes>
+                                                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                                    <real key="value" value="5"/>
+                                                                </userDefinedRuntimeAttribute>
+                                                            </userDefinedRuntimeAttributes>
                                                         </view>
-                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="J4V-ET-4pv">
+                                                        <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="J4V-ET-4pv">
                                                             <rect key="frame" x="175.66666666666666" y="0.0" width="50.333333333333343" height="44"/>
                                                             <color key="backgroundColor" name="Rating Filter Off"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="22" id="8oD-N2-jmS"/>
                                                                 <constraint firstAttribute="height" constant="44" id="IeD-w4-Fi8"/>
                                                             </constraints>
+                                                            <userDefinedRuntimeAttributes>
+                                                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                                    <real key="value" value="5"/>
+                                                                </userDefinedRuntimeAttribute>
+                                                            </userDefinedRuntimeAttributes>
                                                         </view>
-                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ty0-FW-2L1">
+                                                        <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ty0-FW-2L1">
                                                             <rect key="frame" x="233.99999999999997" y="0.0" width="50.666666666666657" height="44"/>
                                                             <color key="backgroundColor" name="Rating Filter Off"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="44" id="Oym-X7-AbJ"/>
                                                                 <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="22" id="eVq-jh-4JV"/>
                                                             </constraints>
+                                                            <userDefinedRuntimeAttributes>
+                                                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                                    <real key="value" value="5"/>
+                                                                </userDefinedRuntimeAttribute>
+                                                            </userDefinedRuntimeAttributes>
                                                         </view>
-                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="epj-Lu-4Ek">
+                                                        <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="epj-Lu-4Ek">
                                                             <rect key="frame" x="292.66666666666669" y="0.0" width="50.333333333333314" height="44"/>
                                                             <color key="backgroundColor" name="Rating Filter Off"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="44" id="2gP-pq-2Ue"/>
                                                                 <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="22" id="PNz-GW-4Zi"/>
                                                             </constraints>
+                                                            <userDefinedRuntimeAttributes>
+                                                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                                    <real key="value" value="5"/>
+                                                                </userDefinedRuntimeAttribute>
+                                                            </userDefinedRuntimeAttributes>
                                                         </view>
                                                     </subviews>
                                                     <constraints>
@@ -1394,10 +1424,10 @@
             </objects>
             <point key="canvasLocation" x="2356" y="1196"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--White Navigation View Controller-->
         <scene sceneID="eoY-xA-TxD">
             <objects>
-                <navigationController id="CtN-Mf-ayT" sceneMemberID="viewController">
+                <navigationController id="CtN-Mf-ayT" customClass="WhiteNavigationViewController" customModule="CulinaryGuide" customModuleProvider="target" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="pis-eG-iCs">
                         <rect key="frame" x="0.0" y="44" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -1568,10 +1598,10 @@
             </objects>
             <point key="canvasLocation" x="2482" y="444"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--White Navigation View Controller-->
         <scene sceneID="b7S-3c-tiZ">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="cAZ-QB-lHa" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="cAZ-QB-lHa" customClass="WhiteNavigationViewController" customModule="CulinaryGuide" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="PLf-Wr-BbE">
                         <rect key="frame" x="0.0" y="44" width="375" height="44"/>
