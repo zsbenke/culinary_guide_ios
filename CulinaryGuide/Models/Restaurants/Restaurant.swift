@@ -183,13 +183,23 @@ struct Restaurant: PointOfInterest, Codable {
         }
 
         do {
-            website = try container.decode(URL.self, forKey: .website)
+            let rawURL = try container.decode(URL.self, forKey: .website)
+            if rawURL.absoluteString.hasPrefix("http://") || rawURL.absoluteString.hasPrefix("https://") {
+                website = rawURL
+            } else {
+                website = URL(string: "http://\(rawURL)")
+            }
         } catch {
             website = nil
         }
 
         do {
-            facebookPage = try container.decode(URL.self, forKey: .facebookPage)
+            let rawURL = try container.decode(URL.self, forKey: .facebookPage)
+            if rawURL.absoluteString.hasPrefix("http://") || rawURL.absoluteString.hasPrefix("https://") {
+                facebookPage = rawURL
+            } else {
+                facebookPage = URL(string: "http://\(rawURL)")
+            }
         } catch {
             facebookPage = nil
         }
@@ -336,8 +346,17 @@ extension Restaurant {
 
         let appendValue: (CustomStringConvertible?, RestaurantValue.RestaurantColumn, RestaurantValue.RestaurantValueSection) -> Void = { value, column, section in
             if let value = value {
-                let restaurantValue = RestaurantValue(column: column, value: "\(value)", section: section)
-                values.append(restaurantValue)
+                var restaurantValue: RestaurantValue?
+
+                if let newValue = (value as? URL)?.stringWithoutScheme() {
+                    restaurantValue = RestaurantValue(column: column, value: "\(newValue)", section: section)
+                } else {
+                    restaurantValue = RestaurantValue(column: column, value: "\(value)", section: section)
+                }
+
+                if let finalRestaurantValue = restaurantValue {
+                    values.append(finalRestaurantValue)
+                }
             }
         }
 

@@ -10,8 +10,12 @@ class RestaurantDetailViewController: UITableViewController {
     private var restaurant: Restaurant?
     private var restaurantValues = [Restaurant.RestaurantValue]()
     private var restaurantSections = [Restaurant.RestaurantValue.RestaurantValueSection]()
+    private var headerImage: UIImage?
     private var headerView: DetailTitleView!
-    private var headerViewHeight: CGFloat = 320.0
+    private var headerViewHeight: CGFloat {
+        guard let headerImage = headerImage else { return 220.0 }
+        return 320.0
+    }
     private let navigationBarAnimation = CATransition()
 
     override func viewDidLoad() {
@@ -28,12 +32,6 @@ class RestaurantDetailViewController: UITableViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
-    }
-
-    override func viewWillAppear(_ animated: Bool) {
-        if let navigationController = navigationController as? WhiteNavigationViewController {
-            navigationController.state = .transparent
-        }
     }
 }
 
@@ -52,10 +50,37 @@ extension RestaurantDetailViewController {
         let restaurantValueInSection = restaurantValues.filter { $0.section == section }
         let restaurantValue = restaurantValueInSection[indexPath.row]
 
-        let cell = tableView.dequeueReusableCell(withIdentifier: "Value Cell")
+        let cell = dequeueResuableCell(for: restaurantValue)
         cell?.textLabel?.text = restaurantValue.value
         cell?.imageView?.image = restaurantValue.image
+
         return cell!
+    }
+
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let section = restaurantSections[indexPath.section]
+        let restaurantValueInSection = restaurantValues.filter { $0.section == section }
+        let restaurantValue = restaurantValueInSection[indexPath.row]
+
+        if restaurantValue.column == .website {
+            guard let website = restaurant?.website else { return }
+            UIApplication.shared.open(website, options: [:], completionHandler: nil)
+        }
+
+        if restaurantValue.column == .facebookPage {
+            guard let facebookPage = restaurant?.facebookPage else { return }
+            UIApplication.shared.open(facebookPage, options: [:], completionHandler: nil)
+        }
+
+        if restaurantValue.column == .email {
+            guard let email = restaurant?.email else { return }
+            guard let mailtoURL = URL(string: "mailto:\(email)") else { return }
+            UIApplication.shared.open(mailtoURL, options: [:], completionHandler: nil)
+        }
+
+        let cell = tableView.cellForRow(at: indexPath)
+
+        cell?.setSelected(false, animated: true)
     }
 
     override func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
@@ -111,6 +136,14 @@ private extension RestaurantDetailViewController {
 
                 let headerViewFrame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.size.width, height: self.headerViewHeight)
                 self.headerView = DetailTitleView.init(frame: headerViewFrame)
+
+                if self.headerImage != nil {
+                    // TODO: étterem hero image beállítása
+                } else {
+                    self.headerView.heroImageView.alpha = 0
+                    self.headerView.heroImageGradient.alpha = 0
+                }
+
                 self.headerView.titleLabel.text = restaurant.title
                 self.headerView.yearLabel.text = restaurant.year
 
@@ -140,11 +173,13 @@ private extension RestaurantDetailViewController {
             headerViewFrame.origin.y = tableView.contentOffset.y
             headerViewFrame.size.height = -tableView.contentOffset.y
 
-            let heroGradientAlpha = (420 + tableView.contentOffset.y) / 100
+            if headerImage != nil {
+                let heroGradientAlpha = (420 + tableView.contentOffset.y) / 100
 
-            if heroGradientAlpha >= 0 {
-                headerView.heroImageGradient.alpha = heroGradientAlpha
-                self.navigationController?.navigationBar.tintColor = UIColor(red: 1, green: 1, blue: 1, alpha: heroGradientAlpha)
+                if heroGradientAlpha >= 0 {
+                    headerView.heroImageGradient.alpha = heroGradientAlpha
+                    self.navigationController?.navigationBar.tintColor = UIColor(red: 1, green: 1, blue: 1, alpha: heroGradientAlpha)
+                }
             }
         } else if tableView.contentOffset.y < -70 {
             switchNavigationBarAppearance(to: .transparent, updateTitle: true)
@@ -174,7 +209,9 @@ private extension RestaurantDetailViewController {
             navigationController?.navigationBar.layer.add(navigationBarAnimation, forKey: nil)
             UIView.animate(withDuration: 0.4, animations: {
                 if let navigationController = self.navigationController as? WhiteNavigationViewController {
-                    navigationController.state = .transparent
+                    if self.headerImage != nil {
+                        navigationController.state = .transparent
+                    }
 
                     if updateTitle {
                         navigationController.navigationBar.topItem?.title = ""
@@ -182,5 +219,14 @@ private extension RestaurantDetailViewController {
                 }
             }, completion: nil)
         }
+    }
+
+    func dequeueResuableCell(for restaurantValue: Restaurant.RestaurantValue) -> UITableViewCell? {
+        let actionColumns: [Restaurant.RestaurantValue.RestaurantColumn] = [.website, .address, .phone, .email, .facebookPage]
+        if actionColumns.contains(restaurantValue.column) {
+            return tableView.dequeueReusableCell(withIdentifier: "Value Action Cell")
+        }
+
+        return tableView.dequeueReusableCell(withIdentifier: "Value Cell")
     }
 }

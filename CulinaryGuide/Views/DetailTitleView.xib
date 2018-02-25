@@ -30,13 +30,13 @@
                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Hero Image Placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="Z9E-hB-e9P">
                     <rect key="frame" x="0.0" y="0.0" width="454" height="279"/>
                     <constraints>
-                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="180" id="XgQ-fo-bpw"/>
+                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="60" id="XgQ-fo-bpw"/>
                     </constraints>
                 </imageView>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Hero Image Gradient" translatesAutoresizingMaskIntoConstraints="NO" id="nwa-vW-wJg">
                     <rect key="frame" x="0.0" y="0.0" width="454" height="279"/>
                     <constraints>
-                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="180" id="LJ2-u4-z0k"/>
+                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="60" id="LJ2-u4-z0k"/>
                     </constraints>
                 </imageView>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="osB-rK-ymF">
@@ -87,10 +87,10 @@
                             <real key="value" value="5"/>
                         </userDefinedRuntimeAttribute>
                         <userDefinedRuntimeAttribute type="size" keyPath="shadowOffset">
-                            <size key="value" width="0.0" height="2"/>
+                            <size key="value" width="0.0" height="1"/>
                         </userDefinedRuntimeAttribute>
                         <userDefinedRuntimeAttribute type="number" keyPath="shadowRadius">
-                            <real key="value" value="4"/>
+                            <real key="value" value="2"/>
                         </userDefinedRuntimeAttribute>
                         <userDefinedRuntimeAttribute type="color" keyPath="shadowColor">
                             <color key="value" white="0.0" alpha="0.14999999999999999" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -101,8 +101,8 @@
                     </userDefinedRuntimeAttributes>
                 </view>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dyt-Is-pmh">
-                    <rect key="frame" x="16" y="337" width="422" height="36"/>
-                    <fontDescription key="fontDescription" type="boldSystem" pointSize="30"/>
+                    <rect key="frame" x="16" y="345.5" width="422" height="31.5"/>
+                    <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
                     <color key="textColor" name="Body Text"/>
                     <nil key="highlightedColor"/>
                 </label>
@@ -110,7 +110,7 @@
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
                 <constraint firstAttribute="bottom" secondItem="nwa-vW-wJg" secondAttribute="bottom" constant="110" id="0tA-5e-git"/>
-                <constraint firstItem="osB-rK-ymF" firstAttribute="top" secondItem="Z9E-hB-e9P" secondAttribute="bottom" constant="-41" id="0tO-NH-qGh"/>
+                <constraint firstItem="osB-rK-ymF" firstAttribute="top" secondItem="mPy-zU-UD5" secondAttribute="bottom" constant="-151" id="0tO-NH-qGh"/>
                 <constraint firstItem="dyt-Is-pmh" firstAttribute="leading" secondItem="mPy-zU-UD5" secondAttribute="leading" constant="16" id="61V-eC-cgv"/>
                 <constraint firstItem="mPy-zU-UD5" firstAttribute="trailing" secondItem="dyt-Is-pmh" secondAttribute="trailing" constant="16" id="DZF-EC-Xpa"/>
                 <constraint firstItem="nwa-vW-wJg" firstAttribute="trailing" secondItem="LZi-k1-Exk" secondAttribute="trailing" id="Ena-ym-LTv"/>
@@ -121,7 +121,7 @@
                 <constraint firstItem="nwa-vW-wJg" firstAttribute="top" secondItem="LZi-k1-Exk" secondAttribute="top" id="puW-67-Ir3"/>
                 <constraint firstItem="osB-rK-ymF" firstAttribute="centerX" secondItem="LZi-k1-Exk" secondAttribute="centerX" id="s2L-vk-77T"/>
                 <constraint firstItem="Z9E-hB-e9P" firstAttribute="trailing" secondItem="LZi-k1-Exk" secondAttribute="trailing" id="w3q-9e-x0a"/>
-                <constraint firstItem="mPy-zU-UD5" firstAttribute="bottom" secondItem="dyt-Is-pmh" secondAttribute="bottom" constant="16" id="yc0-l3-D4Z"/>
+                <constraint firstItem="mPy-zU-UD5" firstAttribute="bottom" secondItem="dyt-Is-pmh" secondAttribute="bottom" constant="12" id="yc0-l3-D4Z"/>
             </constraints>
             <nil key="simulatedTopBarMetrics"/>
             <nil key="simulatedBottomBarMetrics"/>
