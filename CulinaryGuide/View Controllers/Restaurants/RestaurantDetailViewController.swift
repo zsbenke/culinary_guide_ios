@@ -12,7 +12,6 @@ class RestaurantDetailViewController: UITableViewController {
     private var restaurantSections = [Restaurant.RestaurantValue.RestaurantValueSection]()
     private var headerView: DetailTitleView!
     private var headerViewHeight: CGFloat = 320.0
-    private let emptyImage = UIImage()
     private let navigationBarAnimation = CATransition()
 
     override func viewDidLoad() {
@@ -24,23 +23,6 @@ class RestaurantDetailViewController: UITableViewController {
         navigationBarAnimation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
         navigationBarAnimation.type = kCATransitionFade
         navigationBarAnimation.duration = 0.5
-
-
-        if restaurant != nil {
-            configureView()
-        }
-    }
-
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-
-        switchNavigationBarAppearance(to: .transparent)
-    }
-
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-
-        switchNavigationBarAppearance(to: .default)
     }
     
     override func didReceiveMemoryWarning() {
@@ -159,9 +141,9 @@ private extension RestaurantDetailViewController {
                 self.navigationController?.navigationBar.tintColor = UIColor(red: 1, green: 1, blue: 1, alpha: heroGradientAlpha)
             }
         } else if tableView.contentOffset.y < -70 {
-            switchNavigationBarAppearance(to: .transparent)
+            switchNavigationBarAppearance(to: .transparent, updateTitle: true)
         } else {
-            switchNavigationBarAppearance(to: .default)
+            switchNavigationBarAppearance(to: .default, updateTitle: true)
         }
 
 
@@ -169,25 +151,29 @@ private extension RestaurantDetailViewController {
         headerView.frame = headerViewFrame
     }
 
-    func switchNavigationBarAppearance(to appearance: NavigationBarAppearance) {
+    func switchNavigationBarAppearance(to appearance: NavigationBarAppearance, updateTitle: Bool = false) {
         switch appearance {
         case .default:
             navigationController?.navigationBar.layer.add(navigationBarAnimation, forKey: nil)
             UIView.animate(withDuration: 0.4, animations: {
-                UIApplication.shared.statusBarStyle = .default
-                self.navigationController?.navigationBar.setBackgroundImage(nil, for: .default)
-                self.navigationController?.navigationBar.shadowImage = nil
-                self.navigationController?.navigationBar.tintColor = UIColor.BrandColor.primary
-                self.navigationController?.navigationBar.topItem?.title = self.restaurant?.title
+                if let navigationController = self.navigationController as? WhiteNavigationViewController {
+                    navigationController.state = .default
+
+                    if updateTitle {
+                        navigationController.navigationBar.topItem?.title = self.restaurant?.title
+                    }
+                }
             }, completion: nil)
         case .transparent:
             navigationController?.navigationBar.layer.add(navigationBarAnimation, forKey: nil)
             UIView.animate(withDuration: 0.4, animations: {
-                UIApplication.shared.statusBarStyle = .lightContent
-                self.navigationController?.navigationBar.setBackgroundImage(self.emptyImage, for: .default)
-                self.navigationController?.navigationBar.shadowImage = self.emptyImage
-                self.navigationController?.navigationBar.tintColor = .white
-                self.navigationController?.navigationBar.topItem?.title = ""
+                if let navigationController = self.navigationController as? WhiteNavigationViewController {
+                    navigationController.state = .transparent
+
+                    if updateTitle {
+                        navigationController.navigationBar.topItem?.title = ""
+                    }
+                }
             }, completion: nil)
         }
     }

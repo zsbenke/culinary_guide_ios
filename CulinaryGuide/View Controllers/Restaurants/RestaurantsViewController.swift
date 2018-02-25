@@ -38,6 +38,7 @@ class RestaurantsViewController: UIViewController {
         searchController?.searchResultsUpdater = self
         searchController?.delegate = self
         searchController?.searchBar.delegate = self
+
         navigationItem.searchController = searchController
 
         searchResultsController.tableView.dataSource = self
@@ -52,23 +53,21 @@ class RestaurantsViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
+
     override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+
         navigationItem.hidesSearchBarWhenScrolling = false
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        navigationItem.hidesSearchBarWhenScrolling = true
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        
+
         if focusSearchBarOnLoad {
             searchController?.isActive = true
         }
     }
-    
+
     @IBAction func switchContainerViews(_ sender: UISegmentedControl) {
         if sender.selectedSegmentIndex == 0 {
             listContainerView.alpha = 1

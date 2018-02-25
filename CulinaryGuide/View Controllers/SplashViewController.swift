@@ -6,13 +6,17 @@ class SplashViewController: UIViewController {
             updateMapImageView()
         }
     }
+
+    var partialModalDelegate = PartialModalTransitionDelegate()
+
     @IBOutlet weak var chooseCountryButton: UIButton!
     @IBOutlet weak var aboutButton: UIButton!
     @IBOutlet weak var mapImageView: UIImageView!
-    var partialModalDelegate = PartialModalTransitionDelegate()
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        navigationController?.navigationBar.topItem?.title = ""
     }
 
     override func didReceiveMemoryWarning() {
@@ -20,15 +24,14 @@ class SplashViewController: UIViewController {
     }
 
     override func viewWillAppear(_ animated: Bool) {
-        navigationController?.isNavigationBarHidden = true
+        super.viewWillAppear(animated)
+
         country = Localization.Country.Unknown
     }
 
-    override func viewWillDisappear(_ animated: Bool) {
-        navigationController?.isNavigationBarHidden = false
-    }
-
     override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+
         chooseCountryButton.isHidden = false
         aboutButton.isHidden = false
     }

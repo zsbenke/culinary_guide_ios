@@ -21,7 +21,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //      let rootViewController = self.window!.rootViewController as! UINavigationController
 //      rootViewController.pushViewController(restaurantsViewController, animated: false)
 //    }
-
     return true
   }
 
