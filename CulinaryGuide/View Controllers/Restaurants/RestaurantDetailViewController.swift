@@ -149,7 +149,7 @@ extension RestaurantDetailViewController: NSUserActivityDelegate {
         activity.userInfo = userInfo
 
         activity.contentAttributeSet?.supportsNavigation = true
-        activity.contentAttributeSet?.supportsPhoneCall = true
+        // activity.contentAttributeSet?.supportsPhoneCall = true
 
         super.updateUserActivityState(activity)
     }
@@ -298,9 +298,12 @@ private extension RestaurantDetailViewController {
         searchableItemAttributeSet.contentDescription = restaurant.address
         searchableItemAttributeSet.relatedUniqueIdentifier = uniqueIdentifier
 
-        if let phone = restaurant.phone {
-            searchableItemAttributeSet.supportsPhoneCall = true
-            searchableItemAttributeSet.phoneNumbers = [phone]
+        if let phone = restaurant.phone { searchableItemAttributeSet.phoneNumbers = [phone] }
+
+        if let coordinate = restaurant.calculateCoordinate() {
+            searchableItemAttributeSet.latitude = NSNumber(value: Double(coordinate.latitude))
+            searchableItemAttributeSet.longitude = NSNumber(value: Double(coordinate.longitude))
+            searchableItemAttributeSet.supportsNavigation = true
         }
 
         let searchableItem = CSSearchableItem(uniqueIdentifier: uniqueIdentifier, domainIdentifier: "restaurants", attributeSet: searchableItemAttributeSet)
