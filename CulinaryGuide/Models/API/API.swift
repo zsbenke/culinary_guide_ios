@@ -2,7 +2,7 @@ import Foundation
 
 struct API {
     static var environment: Environment = .production
-    private static var domain: String {
+    static var domain: String {
         switch environment {
         case .development:
             return "http://culinary-guide-api.test"

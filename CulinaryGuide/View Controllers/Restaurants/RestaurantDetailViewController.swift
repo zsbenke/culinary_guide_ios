@@ -1,4 +1,7 @@
 import UIKit
+import CoreSpotlight
+import MobileCoreServices
+import MapKit
 
 class RestaurantDetailViewController: UITableViewController {
     var restaurantID: Int? {
@@ -13,7 +16,7 @@ class RestaurantDetailViewController: UITableViewController {
     private var headerImage: UIImage?
     private var headerView: DetailTitleView!
     private var headerViewHeight: CGFloat {
-        guard let headerImage = headerImage else { return 220.0 }
+        guard headerImage != nil else { return 220.0 }
         return 320.0
     }
     private let navigationBarAnimation = CATransition()
@@ -67,9 +70,15 @@ extension RestaurantDetailViewController {
             cell?.setSelected(false, animated: true)
         }
 
+        if restaurantValue.column == .address {
+            guard let address = restaurant?.address?.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) else { return }
+            guard let mapsURL = URL(string: "http://maps.apple.com/?address=\(address)") else { return }
+            UIApplication.shared.open(mapsURL, options: [:], completionHandler: nil)
+        }
+
         if restaurantValue.column == .phone {
             guard let phone = restaurant?.phone?.filter({ "0123456789".contains($0) }) else { return }
-            guard let phoneURL = URL(string: "tel://\(phone)") else { return }
+            guard let phoneURL = URL(string: "tel:\(phone)") else { return }
             UIApplication.shared.open(phoneURL, options: [:], completionHandler: nil)
         }
 
@@ -120,6 +129,32 @@ extension RestaurantDetailViewController {
     }
 }
 
+extension RestaurantDetailViewController: NSUserActivityDelegate {
+    override func updateUserActivityState(_ activity: NSUserActivity) {
+        var userInfo = [String: AnyObject]()
+        userInfo["placemark"] = NSKeyedArchiver.archivedData(withRootObject: (activity.mapItem.placemark)) as AnyObject?
+
+        if let url = activity.mapItem.url {
+            userInfo["url"] = url as AnyObject?
+        }
+
+        if let phoneNumber = activity.mapItem.phoneNumber {
+            userInfo["phoneNumber"] = phoneNumber as AnyObject?
+        }
+
+        if let restaurant = restaurant, let restaurantID = restaurant.id {
+            userInfo["id"] = restaurantID as AnyObject?
+        }
+
+        activity.userInfo = userInfo
+
+        activity.contentAttributeSet?.supportsNavigation = true
+        activity.contentAttributeSet?.supportsPhoneCall = true
+
+        super.updateUserActivityState(activity)
+    }
+}
+
 private extension RestaurantDetailViewController {
     enum NavigationBarAppearance {
         case `default`
@@ -130,6 +165,8 @@ private extension RestaurantDetailViewController {
         guard let restaurantID = restaurantID else { return }
         Restaurant.show(restaurantID) { restaurant in
             self.restaurant = restaurant
+
+            self.prepareUserActivity()
 
             DispatchQueue.main.async {
                 guard let restaurant = self.restaurant else { return }
@@ -194,8 +231,6 @@ private extension RestaurantDetailViewController {
             switchNavigationBarAppearance(to: .default, updateTitle: true)
         }
 
-
-
         headerView.frame = headerViewFrame
     }
 
@@ -235,5 +270,52 @@ private extension RestaurantDetailViewController {
         }
 
         return tableView.dequeueReusableCell(withIdentifier: "Value Cell")
+    }
+
+    func prepareUserActivity() {
+        guard let restaurant = restaurant else { return }
+        guard let uniqueIdentifier = restaurant.uniqueIdentifier else { return }
+
+        if let coordinate = restaurant.calculateCoordinate() {
+            let points = [MKMapPointForCoordinate(coordinate)]
+            let mapRect = MKPolygon(points: points, count: 1).boundingMapRect
+            let region = MKCoordinateRegionForMapRect(mapRect)
+            let request = MKLocalSearchRequest()
+            request.naturalLanguageQuery = restaurant.address
+            request.region = region
+
+            let localSearch = MKLocalSearch(request: request)
+
+            localSearch.start { (response, error) in
+                guard error == nil else { return }
+                guard let response = response else { return }
+                guard let mapItem = response.mapItems.first else { return }
+
+                let activity = NSUserActivity(activityType: "com.enfys.Restaurants.Detail")
+
+                activity.isEligibleForHandoff = true
+                activity.isEligibleForSearch = true
+                activity.isEligibleForPublicIndexing = true
+
+                activity.title = restaurant.title
+                activity.contentAttributeSet?.relatedUniqueIdentifier = uniqueIdentifier
+
+                mapItem.phoneNumber = restaurant.phone
+                mapItem.name = restaurant.title
+                mapItem.url = restaurant.website
+                mapItem.phoneNumber = restaurant.phone
+                mapItem.url = restaurant.website
+                activity.mapItem = mapItem
+
+                activity.delegate = self
+
+                self.userActivity = activity
+                self.userActivity?.becomeCurrent()
+            }
+        }
+    }
+
+    func stopUserActivity() {
+        userActivity?.invalidate()
     }
 }

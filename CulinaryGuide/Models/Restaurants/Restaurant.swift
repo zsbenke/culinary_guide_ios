@@ -16,6 +16,11 @@ struct Restaurant: PointOfInterest, Codable {
     let reservations: String?
     let parking: String?
 
+    var uniqueIdentifier: String? {
+        guard let id = id  else { return nil }
+        return "\(id)"
+    }
+
     private let menuPriceInformation: String?
     private let menuPriceRating: Int?
     private let rawEmail: String?
@@ -277,6 +282,18 @@ struct Restaurant: PointOfInterest, Codable {
         guard let coordinate = calculateCoordinate() else { return nil }
         return RestaurantAnnotation.init(title: title, locationName: title, discipline: address, coordinate: coordinate)
     }
+
+    func calculateCoordinate() -> CLLocationCoordinate2D? {
+        guard let latitude = latitude else { return nil }
+        guard let longitude = longitude else { return nil }
+
+        let locationLatitude = Double(latitude)
+        let locationLongitude = Double(longitude)
+
+        guard let lat = locationLatitude, let long = locationLongitude else { return nil }
+
+        return CLLocationCoordinate2D(latitude: lat, longitude: long)
+    }
 }
 
 extension Restaurant {
@@ -457,19 +474,5 @@ extension Restaurant: APIResource {
             }
         }
         operationQueue.addOperation(requestOperation)
-    }
-}
-
-private extension Restaurant {
-    func calculateCoordinate() -> CLLocationCoordinate2D? {
-        guard let latitude = latitude else { return nil }
-        guard let longitude = longitude else { return nil }
-
-        let locationLatitude = Double(latitude)
-        let locationLongitude = Double(longitude)
-
-        guard let lat = locationLatitude, let long = locationLongitude else { return nil }
-
-        return CLLocationCoordinate2D(latitude: lat, longitude: long)
     }
 }

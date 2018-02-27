@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		98003FDF2045B2C200FD9F25 /* CoreSpotlight.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 98003FDE2045B2C200FD9F25 /* CoreSpotlight.framework */; };
 		98135E332005477500AB64C4 /* RestaurantsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98135E322005477500AB64C4 /* RestaurantsTableViewController.swift */; };
 		98135E342005477500AB64C4 /* RestaurantsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98135E322005477500AB64C4 /* RestaurantsTableViewController.swift */; };
 		98135E352005477500AB64C4 /* RestaurantsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98135E322005477500AB64C4 /* RestaurantsTableViewController.swift */; };
@@ -179,6 +180,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		98003FDE2045B2C200FD9F25 /* CoreSpotlight.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreSpotlight.framework; path = System/Library/Frameworks/CoreSpotlight.framework; sourceTree = SDKROOT; };
 		98135E322005477500AB64C4 /* RestaurantsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantsTableViewController.swift; sourceTree = "<group>"; };
 		98135E362005592500AB64C4 /* RestaurantsMapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantsMapViewController.swift; sourceTree = "<group>"; };
 		981E84CA204211E400835C47 /* CAGradientLayerExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CAGradientLayerExtensions.swift; sourceTree = "<group>"; };
@@ -255,6 +257,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				98003FDF2045B2C200FD9F25 /* CoreSpotlight.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -316,6 +319,7 @@
 		989628D52042E0F2004C233B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				98003FDE2045B2C200FD9F25 /* CoreSpotlight.framework */,
 				989628D62042E0F2004C233B /* KMNavigationBarTransition.framework */,
 			);
 			name = Frameworks;
