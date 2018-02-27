@@ -1,5 +1,7 @@
 import Foundation
 import MapKit
+import CoreSpotlight
+import MobileCoreServices
 
 struct Restaurant: PointOfInterest, Codable {
     let id: Int?
@@ -293,6 +295,49 @@ struct Restaurant: PointOfInterest, Codable {
         guard let lat = locationLatitude, let long = locationLongitude else { return nil }
 
         return CLLocationCoordinate2D(latitude: lat, longitude: long)
+    }
+
+    static func indexItems() {
+        let lastIndexedKey = "lastIndexedTimeIntervalFor\(Localization.currentCountry)"
+        let indexingInterval = Double(604800) // egy hét unix timestampben
+        let currentTime = Double(Date().timeIntervalSince1970)
+
+        let indexSearchableItems: () -> Void = {
+            var searchableItems = [CSSearchableItem]()
+
+            self.index(completionHandler: { restaurants in
+                for restaurant in restaurants {
+                    guard let restaurant = restaurant else { continue }
+                    let searchableItemAttributeSet = CSSearchableItemAttributeSet(itemContentType: kUTTypeText as String)
+                    searchableItemAttributeSet.title = restaurant.title
+                    searchableItemAttributeSet.contentDescription = restaurant.address
+
+                    if let phone = restaurant.phone {
+                        searchableItemAttributeSet.supportsPhoneCall = true
+                        searchableItemAttributeSet.phoneNumbers = [phone]
+                    }
+
+                    let searchableItem = CSSearchableItem(uniqueIdentifier: restaurant.uniqueIdentifier, domainIdentifier: "restaurants", attributeSet: searchableItemAttributeSet)
+                    searchableItems.append(searchableItem)
+                }
+
+                CSSearchableIndex.default().indexSearchableItems(searchableItems) { (error) in
+                    if error == nil {
+                        print("indexed \(searchableItems.count) restaurants for \(Localization.currentCountry) at \(currentTime)")
+                    }
+                }
+
+                UserDefaults.standard.set(currentTime, forKey: lastIndexedKey)
+            })
+        }
+
+        guard let lastIndexed = UserDefaults.standard.value(forKey: lastIndexedKey) as? Double else {
+            indexSearchableItems()
+            return
+        }
+        guard currentTime - indexingInterval > lastIndexed else { return }
+
+        indexSearchableItems()
     }
 }
 

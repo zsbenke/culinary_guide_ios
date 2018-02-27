@@ -124,7 +124,7 @@
         <!--Ország-->
         <scene sceneID="6pC-sf-yBI">
             <objects>
-                <collectionViewController id="L64-gi-ZnF" customClass="HomeCollectionViewController" customModule="CulinaryGuide" customModuleProvider="target" sceneMemberID="viewController">
+                <collectionViewController storyboardIdentifier="HomeCollectionViewController" id="L64-gi-ZnF" customClass="HomeCollectionViewController" customModule="CulinaryGuide" customModuleProvider="target" sceneMemberID="viewController">
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" id="krN-vb-Dqh">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

@@ -60,6 +60,8 @@ class HomeCollectionViewController: UICollectionViewController {
                 self.collectionView?.reloadData()
             }
         }
+
+        Restaurant.indexItems()
     }
     
     override func didReceiveMemoryWarning() {
