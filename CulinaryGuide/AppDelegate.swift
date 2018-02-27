@@ -1,4 +1,5 @@
 import UIKit
+import CoreSpotlight
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -39,24 +40,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func application(_ application: UIApplication, continue userActivity: NSUserActivity, restorationHandler: @escaping ([Any]?) -> Void) -> Bool {
-        if let userInfo = userActivity.userInfo {
-            if let restaurantID = userInfo["id"] as? Int {
-                if Localization.currentCountry != Localization.Country.Unknown {
-                    let rootViewController = self.window!.rootViewController as! UINavigationController
-
-                    if rootViewController.topViewController is RestaurantDetailViewController {
-                        guard let restaurantDetailViewController = rootViewController.topViewController as? RestaurantDetailViewController else { return true }
-                        if restaurantDetailViewController.restaurantID == restaurantID { return true }
-                        rootViewController.popViewController(animated: true)
-                    }
-
-                    let storyboard = UIStoryboard(name: "Main", bundle: nil)
-                    let restaurantDetailViewController = storyboard.instantiateViewController(withIdentifier: "RestaurantDetailViewController") as! RestaurantDetailViewController
-                    restaurantDetailViewController.restaurantID = restaurantID
-                    rootViewController.pushViewController(restaurantDetailViewController, animated: true)
-                }
-            }
+        guard Localization.currentCountry != Localization.Country.Unknown else { return true }
+        let rootViewController = self.window!.rootViewController as! UINavigationController
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let restaurantDetailViewController = storyboard.instantiateViewController(withIdentifier: "RestaurantDetailViewController") as! RestaurantDetailViewController
+        if rootViewController.topViewController is RestaurantDetailViewController {
+            rootViewController.popViewController(animated: false)
         }
+        rootViewController.pushViewController(restaurantDetailViewController, animated: true)
+        restaurantDetailViewController.restoreUserActivityState(userActivity)
+
         return true
     }
 }

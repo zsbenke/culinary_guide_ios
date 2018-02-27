@@ -153,6 +153,20 @@ extension RestaurantDetailViewController: NSUserActivityDelegate {
 
         super.updateUserActivityState(activity)
     }
+
+    override func restoreUserActivityState(_ activity: NSUserActivity) {
+        guard let userInfo = activity.userInfo else { return }
+
+        if activity.activityType == CSSearchableItemActionType {
+            if let selectedRestaurantID = userInfo[CSSearchableItemActivityIdentifier] as? String {
+                restaurantID = Int(selectedRestaurantID)
+            }
+        } else if activity.activityType == "com.enfys.Restaurants.Detail" {
+            if let selectedRstaurantID = userInfo["id"] as? Int {
+                restaurantID = selectedRstaurantID
+            }
+        }
+    }
 }
 
 private extension RestaurantDetailViewController {
@@ -276,6 +290,28 @@ private extension RestaurantDetailViewController {
         guard let restaurant = restaurant else { return }
         guard let uniqueIdentifier = restaurant.uniqueIdentifier else { return }
 
+        // Index with CoreSpotlight
+        var searchableItems = [CSSearchableItem]()
+
+        let searchableItemAttributeSet = CSSearchableItemAttributeSet(itemContentType: kUTTypeText as String)
+        searchableItemAttributeSet.title = restaurant.title
+        searchableItemAttributeSet.contentDescription = restaurant.address
+        searchableItemAttributeSet.relatedUniqueIdentifier = uniqueIdentifier
+
+        if let phone = restaurant.phone {
+            searchableItemAttributeSet.supportsPhoneCall = true
+            searchableItemAttributeSet.phoneNumbers = [phone]
+        }
+
+        let searchableItem = CSSearchableItem(uniqueIdentifier: uniqueIdentifier, domainIdentifier: "restaurants", attributeSet: searchableItemAttributeSet)
+        searchableItems.append(searchableItem)
+        CSSearchableIndex.default().indexSearchableItems(searchableItems) { (error) in
+            if error == nil {
+                print("indexed \(searchableItem.uniqueIdentifier)")
+            }
+        }
+
+        // Prepare NSUserActivity
         if let coordinate = restaurant.calculateCoordinate() {
             let points = [MKMapPointForCoordinate(coordinate)]
             let mapRect = MKPolygon(points: points, count: 1).boundingMapRect
@@ -298,13 +334,12 @@ private extension RestaurantDetailViewController {
                 activity.isEligibleForPublicIndexing = true
 
                 activity.title = restaurant.title
-                activity.contentAttributeSet?.relatedUniqueIdentifier = uniqueIdentifier
+                activity.contentAttributeSet = searchableItemAttributeSet
 
                 mapItem.phoneNumber = restaurant.phone
                 mapItem.name = restaurant.title
                 mapItem.url = restaurant.website
                 mapItem.phoneNumber = restaurant.phone
-                mapItem.url = restaurant.website
                 activity.mapItem = mapItem
 
                 activity.delegate = self
