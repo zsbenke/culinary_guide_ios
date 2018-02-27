@@ -62,6 +62,17 @@ extension RestaurantDetailViewController {
         let restaurantValueInSection = restaurantValues.filter { $0.section == section }
         let restaurantValue = restaurantValueInSection[indexPath.row]
 
+        defer {
+            let cell = tableView.cellForRow(at: indexPath)
+            cell?.setSelected(false, animated: true)
+        }
+
+        if restaurantValue.column == .phone {
+            guard let phone = restaurant?.phone?.filter({ "0123456789".contains($0) }) else { return }
+            guard let phoneURL = URL(string: "tel://\(phone)") else { return }
+            UIApplication.shared.open(phoneURL, options: [:], completionHandler: nil)
+        }
+
         if restaurantValue.column == .website {
             guard let website = restaurant?.website else { return }
             UIApplication.shared.open(website, options: [:], completionHandler: nil)
@@ -77,10 +88,6 @@ extension RestaurantDetailViewController {
             guard let mailtoURL = URL(string: "mailto:\(email)") else { return }
             UIApplication.shared.open(mailtoURL, options: [:], completionHandler: nil)
         }
-
-        let cell = tableView.cellForRow(at: indexPath)
-
-        cell?.setSelected(false, animated: true)
     }
 
     override func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {

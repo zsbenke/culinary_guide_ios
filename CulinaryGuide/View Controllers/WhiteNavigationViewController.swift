@@ -33,8 +33,6 @@ class WhiteNavigationViewController: UINavigationController {
                 navigationBar.barTintColor = .white
                 navigationBar.tintColor = nil
             }
-
-            print(state)
         }
     }
 
@@ -46,7 +44,6 @@ class WhiteNavigationViewController: UINavigationController {
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
 }
 extension WhiteNavigationViewController: UINavigationControllerDelegate {
