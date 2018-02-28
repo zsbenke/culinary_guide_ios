@@ -63,10 +63,6 @@ class RestaurantsViewController: UIViewController {
         }
     }
 
-    override func viewWillAppear(_ animated: Bool) {
-        navigationItem.searchController = searchController
-    }
-
     @IBAction func switchContainerViews(_ sender: UISegmentedControl) {
         if sender.selectedSegmentIndex == 0 {
             listContainerView.alpha = 1

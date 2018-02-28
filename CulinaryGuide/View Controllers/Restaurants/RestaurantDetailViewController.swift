@@ -16,8 +16,10 @@ class RestaurantDetailViewController: UITableViewController {
     private var headerImage: UIImage?
     private var headerView: DetailTitleView!
     private var headerViewHeight: CGFloat {
-        guard headerImage != nil else { return 220.0 }
-        return 320.0
+        let statusBarHeight = UIApplication.shared.statusBarFrame.height
+        let baseHeight: CGFloat = 320.0
+        guard statusBarHeight > 20 else { return baseHeight }
+        return baseHeight + statusBarHeight
     }
     private let navigationBarAnimation = CATransition()
 
@@ -26,6 +28,7 @@ class RestaurantDetailViewController: UITableViewController {
 
         navigationItem.largeTitleDisplayMode = .never
         tableView.contentInsetAdjustmentBehavior = .never
+        headerImage = #imageLiteral(resourceName: "Hero Image Placeholder")
 
         navigationBarAnimation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
         navigationBarAnimation.type = kCATransitionFade
@@ -35,6 +38,14 @@ class RestaurantDetailViewController: UITableViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+
+        if let navigationController = self.navigationController as? WhiteNavigationViewController {
+            navigationController.state = .transparent
+        }
     }
 }
 
@@ -195,13 +206,6 @@ private extension RestaurantDetailViewController {
                 let headerViewFrame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.size.width, height: self.headerViewHeight)
                 self.headerView = DetailTitleView.init(frame: headerViewFrame)
 
-                if self.headerImage != nil {
-                    // TODO: étterem hero image beállítása
-                } else {
-                    self.headerView.heroImageView.alpha = 0
-                    self.headerView.heroImageGradient.alpha = 0
-                }
-
                 self.headerView.titleLabel.text = restaurant.title
                 self.headerView.yearLabel.text = restaurant.year
 
@@ -265,9 +269,7 @@ private extension RestaurantDetailViewController {
             navigationController?.navigationBar.layer.add(navigationBarAnimation, forKey: nil)
             UIView.animate(withDuration: 0.4, animations: {
                 if let navigationController = self.navigationController as? WhiteNavigationViewController {
-                    if self.headerImage != nil {
-                        navigationController.state = .transparent
-                    }
+                    navigationController.state = .transparent
 
                     if updateTitle {
                         navigationController.navigationBar.topItem?.title = ""

@@ -30,8 +30,8 @@ class WhiteNavigationViewController: UINavigationController {
                 UIApplication.shared.statusBarStyle = .lightContent
                 navigationBar.setBackgroundImage(emptyImage, for: .default)
                 navigationBar.shadowImage = emptyImage
-                navigationBar.barTintColor = .white
-                navigationBar.tintColor = nil
+                navigationBar.barTintColor = nil
+                navigationBar.tintColor = .white
             }
         }
     }
@@ -61,6 +61,8 @@ private extension WhiteNavigationViewController {
         if viewController is SplashViewController {
             state = .transparent
             UIApplication.shared.statusBarStyle = .default
+        } else if viewController is RestaurantDetailViewController {
+            state = .transparent
         } else {
             state = .default
         }
