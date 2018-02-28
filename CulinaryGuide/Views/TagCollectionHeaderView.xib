@@ -18,16 +18,16 @@
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
                 <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="feu-0J-uvw">
-                    <rect key="frame" x="16" y="13.5" width="343" height="23"/>
+                    <rect key="frame" x="16" y="13.5" width="343" height="24"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pQp-KR-gJV">
-                            <rect key="frame" x="0.0" y="0.0" width="40.5" height="23"/>
-                            <fontDescription key="fontDescription" type="boldSystem" pointSize="19"/>
+                            <rect key="frame" x="0.0" y="0.0" width="37.5" height="24"/>
+                            <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
                             <color key="textColor" name="Body Text"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ORD-Cv-x3E">
-                            <rect key="frame" x="56.5" y="11.5" width="286.5" height="0.5"/>
+                            <rect key="frame" x="53.5" y="11.5" width="289.5" height="0.5"/>
                             <color key="backgroundColor" name="Separator"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="1" id="QsO-cE-1Hi"/>

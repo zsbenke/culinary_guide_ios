@@ -75,7 +75,7 @@ struct Restaurant: PointOfInterest, Codable {
     }
 
     var menuPrice: String? {
-        guard let menuPriceInformation = menuPriceInformation, let menuPriceRating = menuPriceRating else {
+        guard let menuPriceRating = menuPriceRating else {
             return nil
         }
 
