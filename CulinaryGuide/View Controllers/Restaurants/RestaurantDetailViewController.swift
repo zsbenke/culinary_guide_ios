@@ -17,11 +17,11 @@ class RestaurantDetailViewController: UITableViewController {
     private var headerView: DetailTitleView!
     private var headerViewHeight: CGFloat {
         let statusBarHeight = UIApplication.shared.statusBarFrame.height
-        let baseHeight: CGFloat = 320.0
+        let baseHeight: CGFloat = 340.0
         guard statusBarHeight > 20 else { return baseHeight }
         return baseHeight + statusBarHeight
     }
-    private let navigationBarAnimation = CATransition()
+    private let fadeAnimation = CATransition()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,9 +30,9 @@ class RestaurantDetailViewController: UITableViewController {
         tableView.contentInsetAdjustmentBehavior = .never
         headerImage = #imageLiteral(resourceName: "Hero Image Placeholder")
 
-        navigationBarAnimation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
-        navigationBarAnimation.type = kCATransitionFade
-        navigationBarAnimation.duration = 0.5
+        fadeAnimation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
+        fadeAnimation.type = kCATransitionFade
+        fadeAnimation.duration = 0.5
     }
     
     override func didReceiveMemoryWarning() {
@@ -65,9 +65,9 @@ extension RestaurantDetailViewController {
         let restaurantValue = restaurantValueInSection[indexPath.row]
 
         let cell = dequeueResuableCell(for: restaurantValue)
+
         cell?.textLabel?.text = restaurantValue.value
         cell?.imageView?.image = restaurantValue.image
-
         return cell!
     }
 
@@ -115,7 +115,7 @@ extension RestaurantDetailViewController {
         let tableViewSectionSeparator = CALayer()
         let numberOfSection = section + 1
 
-        tableViewSectionSeparator.frame = CGRect(x: 16.0, y: 0, width: UIScreen.main.bounds.width, height: (1.0 / UIScreen.main.scale))
+        tableViewSectionSeparator.frame = CGRect(x: 52, y: 0, width: UIScreen.main.bounds.width, height: (1.0 / UIScreen.main.scale))
         tableViewSectionSeparator.backgroundColor = UIColor.BrandColor.separator.cgColor
 
         if numberOfSection != restaurantSections.count {
@@ -224,6 +224,30 @@ private extension RestaurantDetailViewController {
                 self.updateHeaderView()
 
                 self.tableView.reloadData()
+
+                if let heroImageURL = restaurant.heroImageURL {
+                    let operationQueue = OperationQueue()
+                    let heroImageURLRequest = URLRequest(url: heroImageURL)
+                    let requestOperation = APIRequestOperation(urlRequest: heroImageURLRequest)
+                    requestOperation.completionBlock = {
+                        guard let data = requestOperation.data else { return }
+
+                        print("downloaded image data \(data)")
+
+                        DispatchQueue.main.async {
+                            let heroImage = UIImage(data: data)
+                            self.headerImage = heroImage
+                            self.headerView.layer.add(self.fadeAnimation, forKey: nil)
+
+                            UIView.animate(withDuration: 0.5, animations: {
+                                self.headerView.heroImageView.image = self.headerImage
+                                self.headerView.heroImageGradient.alpha = 1
+                            })
+                            self.updateHeaderView()
+                        }
+                    }
+                    operationQueue.addOperation(requestOperation)
+                }
             }
         }
     }
@@ -255,7 +279,7 @@ private extension RestaurantDetailViewController {
     func switchNavigationBarAppearance(to appearance: NavigationBarAppearance, updateTitle: Bool = false) {
         switch appearance {
         case .default:
-            navigationController?.navigationBar.layer.add(navigationBarAnimation, forKey: nil)
+            navigationController?.navigationBar.layer.add(fadeAnimation, forKey: nil)
             UIView.animate(withDuration: 0.4, animations: {
                 if let navigationController = self.navigationController as? WhiteNavigationViewController {
                     navigationController.state = .default
@@ -266,7 +290,7 @@ private extension RestaurantDetailViewController {
                 }
             }, completion: nil)
         case .transparent:
-            navigationController?.navigationBar.layer.add(navigationBarAnimation, forKey: nil)
+            navigationController?.navigationBar.layer.add(fadeAnimation, forKey: nil)
             UIView.animate(withDuration: 0.4, animations: {
                 if let navigationController = self.navigationController as? WhiteNavigationViewController {
                     navigationController.state = .transparent

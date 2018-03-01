@@ -18,10 +18,6 @@ extension UIColor {
             return UIColor(named: "Secondary Highlighted")!
         }
 
-        static var bodyText: UIColor {
-            return UIColor(named: "Body Text")!
-        }
-
         static var separator: UIColor {
             return UIColor(named: "Separator")!
         }
@@ -35,19 +31,19 @@ extension UIColor {
         }
 
         static var primaryRating: UIColor {
-            return secondary
+            return UIColor(named: "Primary Rating")!
         }
 
         static var primaryRatingHighlighted: UIColor {
-            return secondaryHighlighted
+            return UIColor(named: "Primary Rating Highlighted")!
         }
 
         static var secondaryRating: UIColor {
-            return primary
+            return UIColor(named: "Secondary Rating")!
         }
 
         static var secondaryRatingHighlighted: UIColor {
-            return primaryHighlighted
+            return UIColor(named: "Secondary Rating Highlighted")!
         }
 
         static var ratingFilterOff: UIColor {
@@ -71,7 +67,7 @@ extension UIColor {
         }
 
         static var secondaryRatingFilterOnHighlighted: UIColor {
-            return secondaryRatingHighlighted
+            return secondaryHighlighted
         }
 
         static var windowBackground: UIColor {
@@ -95,7 +91,7 @@ extension UIColor {
         }
 
         static var facetText: UIColor {
-            return bodyText
+            return primary
         }
 
         static var facetSeparator: UIColor {

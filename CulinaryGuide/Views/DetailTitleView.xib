@@ -27,8 +27,9 @@
             <rect key="frame" x="0.0" y="0.0" width="454" height="389"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
-                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Hero Image Placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="Z9E-hB-e9P">
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Z9E-hB-e9P">
                     <rect key="frame" x="0.0" y="0.0" width="454" height="279"/>
+                    <color key="backgroundColor" name="Body Text"/>
                     <constraints>
                         <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="60" id="XgQ-fo-bpw"/>
                     </constraints>
@@ -61,7 +62,7 @@
                         </view>
                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2016" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="w0H-uj-dMo">
                             <rect key="frame" x="0.0" y="58" width="74" height="24"/>
-                            <color key="backgroundColor" name="Primary"/>
+                            <color key="backgroundColor" name="Link Text"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="24" id="Uk3-wC-T8t"/>
                             </constraints>
@@ -100,10 +101,10 @@
                         </userDefinedRuntimeAttribute>
                     </userDefinedRuntimeAttributes>
                 </view>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dyt-Is-pmh">
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dyt-Is-pmh">
                     <rect key="frame" x="16" y="345.5" width="422" height="31.5"/>
-                    <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
-                    <color key="textColor" name="Body Text"/>
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="26"/>
+                    <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
             </subviews>
@@ -121,6 +122,7 @@
                 <constraint firstItem="nwa-vW-wJg" firstAttribute="top" secondItem="LZi-k1-Exk" secondAttribute="top" id="puW-67-Ir3"/>
                 <constraint firstItem="osB-rK-ymF" firstAttribute="centerX" secondItem="LZi-k1-Exk" secondAttribute="centerX" id="s2L-vk-77T"/>
                 <constraint firstItem="Z9E-hB-e9P" firstAttribute="trailing" secondItem="LZi-k1-Exk" secondAttribute="trailing" id="w3q-9e-x0a"/>
+                <constraint firstItem="dyt-Is-pmh" firstAttribute="top" relation="greaterThanOrEqual" secondItem="osB-rK-ymF" secondAttribute="bottom" constant="16" id="ybn-hf-VY4"/>
                 <constraint firstItem="mPy-zU-UD5" firstAttribute="bottom" secondItem="dyt-Is-pmh" secondAttribute="bottom" constant="12" id="yc0-l3-D4Z"/>
             </constraints>
             <nil key="simulatedTopBarMetrics"/>
@@ -132,11 +134,10 @@
     </objects>
     <resources>
         <image name="Hero Image Gradient" width="16" height="230"/>
-        <image name="Hero Image Placeholder" width="375" height="180"/>
         <namedColor name="Body Text">
             <color red="0.0" green="0.25098039215686274" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
-        <namedColor name="Primary">
+        <namedColor name="Link Text">
             <color red="0.0" green="0.52941176470588236" blue="0.89411764705882357" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
     </resources>
