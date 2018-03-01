@@ -27,6 +27,7 @@ class RestaurantDetailViewController: UITableViewController {
 
         let detailTableViewCellNib = UINib(nibName: "DetailTableViewCell", bundle: .main)
         tableView.register(detailTableViewCellNib, forCellReuseIdentifier: "Detail Table Cell")
+        tableView.separatorStyle = .none
 
         navigationItem.largeTitleDisplayMode = .never
         tableView.contentInsetAdjustmentBehavior = .never
@@ -65,9 +66,13 @@ extension RestaurantDetailViewController {
         let restaurantValue = restaurantValues[indexPath.row]
         let cell = tableView.dequeueReusableCell(withIdentifier: "Detail Table Cell") as? DetailTableViewCell
 
+        let paragraphStyle = NSMutableParagraphStyle()
+        paragraphStyle.lineHeightMultiple = 1.15
+        paragraphStyle.lineBreakMode = .byWordWrapping
+
         cell?.labelText.text = restaurantValue.column.rawValue
-        cell?.valueText.text = restaurantValue.value
         cell?.iconImageView.image = restaurantValue.image
+        cell?.valueText.attributedText = NSAttributedString(string: restaurantValue.value, attributes: [NSAttributedStringKey.paragraphStyle: paragraphStyle])
 
         if actionColumns.contains(restaurantValue.column) {
             cell?.valueText.textColor = UIColor.BrandColor.linkText
@@ -191,7 +196,8 @@ private extension RestaurantDetailViewController {
 
                 self.tableView.tableHeaderView = nil
                 self.tableView.addSubview(self.headerView)
-                self.tableView.tableFooterView = UIView()
+                self.tableView.tableFooterView = UIView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 180))
+                self.tableView.separatorStyle = .singleLine
 
                 self.tableView.contentInset = UIEdgeInsets(top: self.headerViewHeight, left: 0, bottom: 0, right: 0)
                 self.tableView.contentOffset = CGPoint(x: 0, y: -self.headerViewHeight)

@@ -73,6 +73,8 @@
 		98550AA8201928AC006F53A2 /* RestaurantFilterState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98550AA7201928AC006F53A2 /* RestaurantFilterState.swift */; };
 		98550AA9201928AC006F53A2 /* RestaurantFilterState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98550AA7201928AC006F53A2 /* RestaurantFilterState.swift */; };
 		98550AAA201928AC006F53A2 /* RestaurantFilterState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98550AA7201928AC006F53A2 /* RestaurantFilterState.swift */; };
+		986D146C2048A1AB007029CE /* KMNavigationBarTransition.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 986D146A2048A1A2007029CE /* KMNavigationBarTransition.framework */; };
+		986D146D2048A1AB007029CE /* KMNavigationBarTransition.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 986D146A2048A1A2007029CE /* KMNavigationBarTransition.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		986E8AD2200E6EA200BA57AA /* RatingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 986E8AD1200E6EA200BA57AA /* RatingView.swift */; };
 		986E8AD5200E6FBF00BA57AA /* RestaurantRatingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 986E8AD4200E6FBF00BA57AA /* RestaurantRatingTests.swift */; };
 		986E8AD6200E708400BA57AA /* RatingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 986E8AD1200E6EA200BA57AA /* RatingView.swift */; };
@@ -181,6 +183,20 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		986D146E2048A1AB007029CE /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				986D146D2048A1AB007029CE /* KMNavigationBarTransition.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		98003FDE2045B2C200FD9F25 /* CoreSpotlight.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreSpotlight.framework; path = System/Library/Frameworks/CoreSpotlight.framework; sourceTree = SDKROOT; };
 		98135E322005477500AB64C4 /* RestaurantsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantsTableViewController.swift; sourceTree = "<group>"; };
@@ -207,6 +223,7 @@
 		984DEA522040A2EC00E1A0EB /* Email.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Email.swift; sourceTree = "<group>"; };
 		985403AF201B96BA006F7103 /* RatingFilterButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatingFilterButton.swift; sourceTree = "<group>"; };
 		98550AA7201928AC006F53A2 /* RestaurantFilterState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = RestaurantFilterState.swift; path = CulinaryGuide/Models/Restaurants/RestaurantFilterState.swift; sourceTree = SOURCE_ROOT; };
+		986D146A2048A1A2007029CE /* KMNavigationBarTransition.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = KMNavigationBarTransition.framework; path = Carthage/Build/iOS/KMNavigationBarTransition.framework; sourceTree = "<group>"; };
 		986E8AD1200E6EA200BA57AA /* RatingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatingView.swift; sourceTree = "<group>"; };
 		986E8AD4200E6FBF00BA57AA /* RestaurantRatingTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantRatingTests.swift; sourceTree = "<group>"; };
 		988EC326204301EF0076178B /* WhiteNavigationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhiteNavigationViewController.swift; sourceTree = "<group>"; };
@@ -261,6 +278,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				98003FDF2045B2C200FD9F25 /* CoreSpotlight.framework in Frameworks */,
+				986D146C2048A1AB007029CE /* KMNavigationBarTransition.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -322,6 +340,7 @@
 		989628D52042E0F2004C233B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				986D146A2048A1A2007029CE /* KMNavigationBarTransition.framework */,
 				98003FDE2045B2C200FD9F25 /* CoreSpotlight.framework */,
 			);
 			name = Frameworks;
@@ -496,6 +515,7 @@
 				98F6260E2002487600996A91 /* Sources */,
 				98F6260F2002487600996A91 /* Frameworks */,
 				98F626102002487600996A91 /* Resources */,
+				986D146E2048A1AB007029CE /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
