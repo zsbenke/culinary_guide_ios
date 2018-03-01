@@ -66,8 +66,10 @@ extension RestaurantDetailViewController {
 
         let cell = dequeueResuableCell(for: restaurantValue)
 
+        let accessoryIconView = UIImageView(frame: CGRect(x: 0, y: 0, width: 24, height: 24))
+        accessoryIconView.image = restaurantValue.image
         cell?.textLabel?.text = restaurantValue.value
-        cell?.imageView?.image = restaurantValue.image
+        cell?.accessoryView = accessoryIconView
         return cell!
     }
 
@@ -108,29 +110,6 @@ extension RestaurantDetailViewController {
             guard let mailtoURL = URL(string: "mailto:\(email)") else { return }
             UIApplication.shared.open(mailtoURL, options: [:], completionHandler: nil)
         }
-    }
-
-    override func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
-        let tableSectionFooterView = UIView()
-        let tableViewSectionSeparator = CALayer()
-        let numberOfSection = section + 1
-
-        tableViewSectionSeparator.frame = CGRect(x: 52, y: 0, width: UIScreen.main.bounds.width, height: (1.0 / UIScreen.main.scale))
-        tableViewSectionSeparator.backgroundColor = UIColor.BrandColor.separator.cgColor
-
-        if numberOfSection != restaurantSections.count {
-            tableSectionFooterView.layer.addSublayer(tableViewSectionSeparator)
-        }
-
-        return tableSectionFooterView
-    }
-
-    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 0.1
-    }
-
-    override func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        return 1
     }
 }
 
