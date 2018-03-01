@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14101" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14086"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="115" id="KGk-i7-Jjw" customClass="DetailTableViewCell" customModule="CulinaryGuide" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="115"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="114.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" spacing="20" baselineRelativeArrangement="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vRE-E2-zzb">
+                        <rect key="frame" x="16" y="8" width="248" height="98.5"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="detail label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JEF-Fr-X5L">
+                                <rect key="frame" x="0.0" y="0.0" width="248" height="14.5"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
+                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" text="Multiline detail value Multiline detail value  Multiline detail value  Multiline detail value  Multiline detail value " textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JYj-yr-eXa">
+                                <rect key="frame" x="0.0" y="15.5" width="248" height="83"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                    </stackView>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="HTl-CU-naQ">
+                        <rect key="frame" x="280" y="45.5" width="24" height="24"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="24" id="5Nj-Nh-NYz"/>
+                            <constraint firstAttribute="height" constant="24" id="cvy-th-M3k"/>
+                        </constraints>
+                    </imageView>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="trailingMargin" secondItem="HTl-CU-naQ" secondAttribute="trailing" id="Dex-AC-xVO"/>
+                    <constraint firstAttribute="bottom" secondItem="vRE-E2-zzb" secondAttribute="bottom" constant="8" id="U0X-pU-uBT"/>
+                    <constraint firstItem="HTl-CU-naQ" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="X3j-8p-xJ3"/>
+                    <constraint firstItem="HTl-CU-naQ" firstAttribute="leading" secondItem="vRE-E2-zzb" secondAttribute="trailing" constant="16" id="aOa-a2-dhG"/>
+                    <constraint firstItem="vRE-E2-zzb" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="lpg-Xl-k3F"/>
+                    <constraint firstItem="vRE-E2-zzb" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="8" id="qry-OV-RmZ"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="iconImageView" destination="HTl-CU-naQ" id="JNg-KO-8GC"/>
+                <outlet property="labelText" destination="JEF-Fr-X5L" id="Dxf-UT-0lx"/>
+                <outlet property="valueText" destination="JYj-yr-eXa" id="JDe-CV-Uxl"/>
+            </connections>
+            <point key="canvasLocation" x="34" y="89.5"/>
+        </tableViewCell>
+    </objects>
+</document>

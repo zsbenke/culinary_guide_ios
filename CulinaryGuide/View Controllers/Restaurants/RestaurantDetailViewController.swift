@@ -12,7 +12,6 @@ class RestaurantDetailViewController: UITableViewController {
 
     private var restaurant: Restaurant?
     private var restaurantValues = [Restaurant.RestaurantValue]()
-    private var restaurantSections = [Restaurant.RestaurantValue.RestaurantValueSection]()
     private var headerImage: UIImage?
     private var headerView: DetailTitleView!
     private var headerViewHeight: CGFloat {
@@ -25,6 +24,9 @@ class RestaurantDetailViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        let detailTableViewCellNib = UINib(nibName: "DetailTableViewCell", bundle: .main)
+        tableView.register(detailTableViewCellNib, forCellReuseIdentifier: "Detail Table Cell")
 
         navigationItem.largeTitleDisplayMode = .never
         tableView.contentInsetAdjustmentBehavior = .never
@@ -51,32 +53,31 @@ class RestaurantDetailViewController: UITableViewController {
 
 extension RestaurantDetailViewController {
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return restaurantSections.count
+        return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        let section = restaurantSections[section]
-        return restaurantValues.filter { $0.section == section }.count
+        return restaurantValues.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let section = restaurantSections[indexPath.section]
-        let restaurantValueInSection = restaurantValues.filter { $0.section == section }
-        let restaurantValue = restaurantValueInSection[indexPath.row]
+        let actionColumns: [Restaurant.RestaurantValue.RestaurantColumn] = [.website, .address, .phone, .email, .facebookPage]
+        let restaurantValue = restaurantValues[indexPath.row]
+        let cell = tableView.dequeueReusableCell(withIdentifier: "Detail Table Cell") as? DetailTableViewCell
 
-        let cell = dequeueResuableCell(for: restaurantValue)
+        cell?.labelText.text = restaurantValue.column.rawValue
+        cell?.valueText.text = restaurantValue.value
+        cell?.iconImageView.image = restaurantValue.image
 
-        let accessoryIconView = UIImageView(frame: CGRect(x: 0, y: 0, width: 24, height: 24))
-        accessoryIconView.image = restaurantValue.image
-        cell?.textLabel?.text = restaurantValue.value
-        cell?.accessoryView = accessoryIconView
+        if actionColumns.contains(restaurantValue.column) {
+            cell?.valueText.textColor = UIColor.BrandColor.linkText
+        }
+
         return cell!
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let section = restaurantSections[indexPath.section]
-        let restaurantValueInSection = restaurantValues.filter { $0.section == section }
-        let restaurantValue = restaurantValueInSection[indexPath.row]
+        let restaurantValue = restaurantValues[indexPath.row]
 
         defer {
             let cell = tableView.cellForRow(at: indexPath)
@@ -175,12 +176,6 @@ private extension RestaurantDetailViewController {
             DispatchQueue.main.async {
                 guard let restaurant = self.restaurant else { return }
                 self.restaurantValues = restaurant.toDataSource()
-                self.restaurantSections = Array(Set(self.restaurantValues.map({ $0.section })))
-                self.restaurantSections = self.restaurantSections.sorted(by: { (lhs, rhs) -> Bool in
-                    let cases = Array(Restaurant.RestaurantValue.RestaurantValueSection.cases())
-
-                    return cases.index(of: lhs)! < cases.index(of: rhs)!
-                })
 
                 let headerViewFrame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.size.width, height: self.headerViewHeight)
                 self.headerView = DetailTitleView.init(frame: headerViewFrame)
@@ -196,6 +191,7 @@ private extension RestaurantDetailViewController {
 
                 self.tableView.tableHeaderView = nil
                 self.tableView.addSubview(self.headerView)
+                self.tableView.tableFooterView = UIView()
 
                 self.tableView.contentInset = UIEdgeInsets(top: self.headerViewHeight, left: 0, bottom: 0, right: 0)
                 self.tableView.contentOffset = CGPoint(x: 0, y: -self.headerViewHeight)
@@ -280,15 +276,6 @@ private extension RestaurantDetailViewController {
                 }
             }, completion: nil)
         }
-    }
-
-    func dequeueResuableCell(for restaurantValue: Restaurant.RestaurantValue) -> UITableViewCell? {
-        let actionColumns: [Restaurant.RestaurantValue.RestaurantColumn] = [.website, .address, .phone, .email, .facebookPage]
-        if actionColumns.contains(restaurantValue.column) {
-            return tableView.dequeueReusableCell(withIdentifier: "Value Action Cell")
-        }
-
-        return tableView.dequeueReusableCell(withIdentifier: "Value Cell")
     }
 
     func prepareUserActivity() {

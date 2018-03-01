@@ -24,6 +24,22 @@ struct Restaurant: PointOfInterest, Codable {
         return "\(id)"
     }
 
+    var definingPeople: String? {
+        var definingPeopleValues = [String]()
+
+        if let firstDefiningPerson = firstDefiningPerson { definingPeopleValues.append("\(firstDefiningPerson)") }
+        if let secondDefiningPerson = secondDefiningPerson { definingPeopleValues.append("\(secondDefiningPerson)") }
+        if let thirdDefiningPerson = thirdDefiningPerson { definingPeopleValues.append("\(thirdDefiningPerson)") }
+
+        return definingPeopleValues.isEmpty ? nil : definingPeopleValues.joined(separator: "\n")
+    }
+
+    var hours: String? {
+        guard let openResults = openResults else { return nil }
+        let splittedHours = openResults.split(separator: ",").map { $0.trimmingCharacters(in: .whitespacesAndNewlines) }
+        return splittedHours.joined(separator: "\n")
+    }
+
     private let menuPriceInformation: String?
     private let menuPriceRating: Int?
     private let rawEmail: String?
@@ -353,29 +369,18 @@ struct Restaurant: PointOfInterest, Codable {
 
 extension Restaurant {
     struct RestaurantValue {
-        enum RestaurantValueSection: EnumCollection {
-            case hero
-            case contact
-            case people
-            case websites
-            case information
-            case features
-        }
-
         enum RestaurantColumn: String, EnumCollection {
             case title
             case address
             case phone
-            case openResults
-            case firstDefiningPerson
-            case secondDefiningPerson
-            case thirdDefiningPerson
+            case hours = "hours"
+            case definingPeople = "people"
             case website
             case email
-            case facebookPage
+            case facebookPage = "facebook"
             case reservations
             case parking
-            case menuPrice
+            case menuPrice = "menu price"
 
             func toImage() -> UIImage {
                 switch self {
@@ -383,9 +388,9 @@ extension Restaurant {
                     return #imageLiteral(resourceName: "Facet Pin")
                 case .phone:
                     return #imageLiteral(resourceName: "Facet Phone")
-                case .openResults:
+                case .hours:
                     return #imageLiteral(resourceName: "Facet Open")
-                case .firstDefiningPerson, .secondDefiningPerson, .thirdDefiningPerson:
+                case .definingPeople:
                     return #imageLiteral(resourceName: "Facet Chef")
                 case .website:
                     return #imageLiteral(resourceName: "Facet Website")
@@ -410,20 +415,19 @@ extension Restaurant {
         }
         let column: RestaurantColumn
         let value: String
-        let section: RestaurantValueSection
     }
 
     func toDataSource() -> [RestaurantValue] {
         var values = [RestaurantValue]()
 
-        let appendValue: (CustomStringConvertible?, RestaurantValue.RestaurantColumn, RestaurantValue.RestaurantValueSection) -> Void = { value, column, section in
+        let appendValue: (CustomStringConvertible?, RestaurantValue.RestaurantColumn) -> Void = { value, column in
             if let value = value {
                 var restaurantValue: RestaurantValue?
 
                 if let newValue = (value as? URL)?.stringWithoutScheme() {
-                    restaurantValue = RestaurantValue(column: column, value: "\(newValue)", section: section)
+                    restaurantValue = RestaurantValue(column: column, value: "\(newValue)")
                 } else {
-                    restaurantValue = RestaurantValue(column: column, value: "\(value)", section: section)
+                    restaurantValue = RestaurantValue(column: column, value: "\(value)")
                 }
 
                 if let finalRestaurantValue = restaurantValue {
@@ -432,21 +436,19 @@ extension Restaurant {
             }
         }
 
-        appendValue(self.address, .address, .contact)
-        appendValue(self.phone, .phone, .contact)
-        appendValue(self.openResults, .openResults, .contact)
+        appendValue(address, .address)
+        appendValue(phone, .phone)
+        appendValue(hours, .hours)
 
-        appendValue(self.firstDefiningPerson, .firstDefiningPerson, .people)
-        appendValue(self.secondDefiningPerson, .secondDefiningPerson, .people)
-        appendValue(self.thirdDefiningPerson, .thirdDefiningPerson, .people)
+        appendValue(definingPeople, .definingPeople)
 
-        appendValue(self.website, .website, .websites)
-        appendValue(self.email, .email, .websites)
-        appendValue(self.facebookPage, .facebookPage, .websites)
+        appendValue(website, .website)
+        appendValue(email, .email)
+        appendValue(facebookPage, .facebookPage)
 
-        appendValue(self.reservations, .reservations, .information)
-        appendValue(self.parking, .parking, .information)
-        appendValue(self.menuPrice, .menuPrice, .information)
+        appendValue(reservations, .reservations)
+        appendValue(parking, .parking)
+        appendValue(menuPrice, .menuPrice)
 
         return values
     }

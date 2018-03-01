@@ -22,6 +22,10 @@ extension UIColor {
             return UIColor(named: "Separator")!
         }
 
+        static var linkText: UIColor {
+            return UIColor(named: "Link Text")!
+        }
+
         static var primarySplashScreen: UIColor {
             return UIColor(named: "Primary Splash Screen")!
         }

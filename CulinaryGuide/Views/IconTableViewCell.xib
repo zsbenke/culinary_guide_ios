@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14086"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -28,16 +29,16 @@
                         </constraints>
                     </view>
                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="G3f-aH-ruc">
-                        <rect key="frame" x="63" y="5.9999999999999964" width="313" height="55.666666666666657"/>
+                        <rect key="frame" x="61" y="5.9999999999999964" width="305" height="55.666666666666657"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vc8-MD-l4N">
-                                <rect key="frame" x="0.0" y="0.0" width="313" height="28.666666666666668"/>
+                                <rect key="frame" x="0.0" y="0.0" width="305" height="28.666666666666668"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                 <color key="textColor" name="Body Text"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="Detail" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GRY-Zj-tXp">
-                                <rect key="frame" x="0.0" y="33.666666666666664" width="313" height="22"/>
+                                <rect key="frame" x="0.0" y="33.666666666666664" width="305" height="22"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
                                 <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
@@ -47,11 +48,11 @@
                 </subviews>
                 <constraints>
                     <constraint firstItem="Aqh-95-eWf" firstAttribute="centerY" secondItem="e1u-Kt-bY4" secondAttribute="centerY" id="0Y5-aS-wxw"/>
-                    <constraint firstItem="Aqh-95-eWf" firstAttribute="leading" secondItem="e1u-Kt-bY4" secondAttribute="leading" constant="20" id="750-Eg-nv8"/>
+                    <constraint firstItem="Aqh-95-eWf" firstAttribute="leading" secondItem="e1u-Kt-bY4" secondAttribute="leadingMargin" id="750-Eg-nv8"/>
                     <constraint firstAttribute="bottom" secondItem="G3f-aH-ruc" secondAttribute="bottom" constant="6" id="R7G-Rl-OwE"/>
-                    <constraint firstItem="G3f-aH-ruc" firstAttribute="leading" secondItem="Aqh-95-eWf" secondAttribute="trailing" constant="10" id="Ta1-Gb-Pwd"/>
+                    <constraint firstItem="G3f-aH-ruc" firstAttribute="leading" secondItem="Aqh-95-eWf" secondAttribute="trailing" constant="8" id="Ta1-Gb-Pwd"/>
                     <constraint firstItem="G3f-aH-ruc" firstAttribute="top" secondItem="e1u-Kt-bY4" secondAttribute="top" constant="6" id="Z9T-bm-E0Z"/>
-                    <constraint firstAttribute="trailing" secondItem="G3f-aH-ruc" secondAttribute="trailing" constant="10" id="iTu-68-fTw"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="G3f-aH-ruc" secondAttribute="trailing" id="iTu-68-fTw"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
