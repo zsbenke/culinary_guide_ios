@@ -97,8 +97,6 @@
 		989CE4B0200E8E0000BD42D7 /* RestaurantRating.swift in Sources */ = {isa = PBXBuildFile; fileRef = 989CE4AE200E8E0000BD42D7 /* RestaurantRating.swift */; };
 		989CE4B1200E901600BD42D7 /* RestaurantRating.swift in Sources */ = {isa = PBXBuildFile; fileRef = 989CE4AE200E8E0000BD42D7 /* RestaurantRating.swift */; };
 		989CE4B3200E932F00BD42D7 /* Rating.swift in Sources */ = {isa = PBXBuildFile; fileRef = 989CE4B2200E932F00BD42D7 /* Rating.swift */; };
-		98A232D820473D4D00797C20 /* KMNavigationBarTransition.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 989628D62042E0F2004C233B /* KMNavigationBarTransition.framework */; };
-		98A232D920473D4D00797C20 /* KMNavigationBarTransition.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 989628D62042E0F2004C233B /* KMNavigationBarTransition.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		98C8DFBA2003CE1D00BE568C /* RestaurantFilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98C8DFB92003CE1D00BE568C /* RestaurantFilterViewController.swift */; };
 		98C8DFBB2003CE1D00BE568C /* RestaurantFilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98C8DFB92003CE1D00BE568C /* RestaurantFilterViewController.swift */; };
 		98C8DFBC2003CE1D00BE568C /* RestaurantFilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98C8DFB92003CE1D00BE568C /* RestaurantFilterViewController.swift */; };
@@ -181,20 +179,6 @@
 		};
 /* End PBXContainerItemProxy section */
 
-/* Begin PBXCopyFilesBuildPhase section */
-		98A232DA20473D4D00797C20 /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				98A232D920473D4D00797C20 /* KMNavigationBarTransition.framework in Embed Frameworks */,
-			);
-			name = "Embed Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXCopyFilesBuildPhase section */
-
 /* Begin PBXFileReference section */
 		98003FDE2045B2C200FD9F25 /* CoreSpotlight.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreSpotlight.framework; path = System/Library/Frameworks/CoreSpotlight.framework; sourceTree = SDKROOT; };
 		98135E322005477500AB64C4 /* RestaurantsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantsTableViewController.swift; sourceTree = "<group>"; };
@@ -229,7 +213,6 @@
 		9892E81220095728007B7033 /* UserDefault.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefault.swift; sourceTree = "<group>"; };
 		9892E81A200A3BC1007B7033 /* IconTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconTableViewCell.swift; sourceTree = "<group>"; };
 		9892E81E200A3CEE007B7033 /* IconTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = IconTableViewCell.xib; sourceTree = "<group>"; };
-		989628D62042E0F2004C233B /* KMNavigationBarTransition.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = KMNavigationBarTransition.framework; path = Carthage/Build/iOS/KMNavigationBarTransition.framework; sourceTree = "<group>"; };
 		989936452040CD41003B94C2 /* DetailTitleView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailTitleView.xib; sourceTree = "<group>"; };
 		9899364E2040CF0C003B94C2 /* DetailTitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailTitleView.swift; sourceTree = "<group>"; };
 		989CE4AE200E8E0000BD42D7 /* RestaurantRating.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantRating.swift; sourceTree = "<group>"; };
@@ -274,7 +257,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				98003FDF2045B2C200FD9F25 /* CoreSpotlight.framework in Frameworks */,
-				98A232D820473D4D00797C20 /* KMNavigationBarTransition.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -337,7 +319,6 @@
 			isa = PBXGroup;
 			children = (
 				98003FDE2045B2C200FD9F25 /* CoreSpotlight.framework */,
-				989628D62042E0F2004C233B /* KMNavigationBarTransition.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -509,7 +490,6 @@
 				98F6260E2002487600996A91 /* Sources */,
 				98F6260F2002487600996A91 /* Frameworks */,
 				98F626102002487600996A91 /* Resources */,
-				98A232DA20473D4D00797C20 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
