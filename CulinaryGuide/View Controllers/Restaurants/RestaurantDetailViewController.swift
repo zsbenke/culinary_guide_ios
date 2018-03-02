@@ -11,7 +11,7 @@ class RestaurantDetailViewController: UITableViewController {
     }
 
     private var restaurant: Restaurant?
-    private var restaurantValues = [Restaurant.RestaurantValue]()
+    private var restaurantValues = [RestaurantValue]()
     private var headerImage: UIImage?
     private var headerView: DetailTitleView!
     private var headerViewHeight: CGFloat {
@@ -62,7 +62,7 @@ extension RestaurantDetailViewController {
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let actionColumns: [Restaurant.RestaurantValue.RestaurantColumn] = [.website, .address, .phone, .email, .facebookPage]
+        let actionColumns: [RestaurantValue.RestaurantColumn] = [.website, .address, .phone, .email, .facebookPage]
         let restaurantValue = restaurantValues[indexPath.row]
         let cell = tableView.dequeueReusableCell(withIdentifier: "Detail Table Cell") as? DetailTableViewCell
 
@@ -180,7 +180,7 @@ private extension RestaurantDetailViewController {
 
             DispatchQueue.main.async {
                 guard let restaurant = self.restaurant else { return }
-                self.restaurantValues = restaurant.toDataSource()
+                self.restaurantValues = restaurant.values()
 
                 let headerViewFrame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.size.width, height: self.headerViewHeight)
                 self.headerView = DetailTitleView.init(frame: headerViewFrame)

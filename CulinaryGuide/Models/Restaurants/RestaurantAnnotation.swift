@@ -19,3 +19,24 @@ class RestaurantAnnotation: NSObject, MKAnnotation {
         return locationName
     }
 }
+
+extension Restaurant {
+    func toAnnotation() -> RestaurantAnnotation? {
+        guard let title = title else { return nil }
+        guard let address = address else { return nil }
+        guard let coordinate = calculateCoordinate() else { return nil }
+        return RestaurantAnnotation.init(title: title, locationName: title, discipline: address, coordinate: coordinate)
+    }
+
+    func calculateCoordinate() -> CLLocationCoordinate2D? {
+        guard let latitude = latitude else { return nil }
+        guard let longitude = longitude else { return nil }
+
+        let locationLatitude = Double(latitude)
+        let locationLongitude = Double(longitude)
+
+        guard let lat = locationLatitude, let long = locationLongitude else { return nil }
+
+        return CLLocationCoordinate2D(latitude: lat, longitude: long)
+    }
+}
