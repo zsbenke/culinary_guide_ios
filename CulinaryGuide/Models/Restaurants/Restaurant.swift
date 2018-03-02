@@ -18,6 +18,7 @@ struct Restaurant: PointOfInterest, Codable {
     let reservations: String?
     let parking: String?
     let heroImageURL: URL?
+    let reviews: [RestaurantReview]
 
     var uniqueIdentifier: String? {
         guard let id = id  else { return nil }
@@ -149,6 +150,7 @@ struct Restaurant: PointOfInterest, Codable {
         case menuPriceInformation = "price_information"
         case menuPriceRating = "price_information_rating"
         case heroImageURL = "hero_image_url"
+        case reviews = "restaurant_reviews"
     }
 
     init(from decoder: Decoder) throws {
@@ -299,6 +301,13 @@ struct Restaurant: PointOfInterest, Codable {
             heroImageURL = try container.decode(URL.self, forKey: .heroImageURL)
         } catch {
             heroImageURL = nil
+        }
+
+        do {
+            reviews = try container.decode([RestaurantReview].self, forKey: .reviews)
+            print(reviews)
+        } catch {
+            reviews = []
         }
     }
 

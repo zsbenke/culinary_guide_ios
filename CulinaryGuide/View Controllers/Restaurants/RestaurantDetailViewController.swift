@@ -31,7 +31,6 @@ class RestaurantDetailViewController: UITableViewController {
 
         navigationItem.largeTitleDisplayMode = .never
         tableView.contentInsetAdjustmentBehavior = .never
-        headerImage = #imageLiteral(resourceName: "Hero Image Placeholder")
 
         fadeAnimation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
         fadeAnimation.type = kCATransitionFade
@@ -196,7 +195,7 @@ private extension RestaurantDetailViewController {
 
                 self.tableView.tableHeaderView = nil
                 self.tableView.addSubview(self.headerView)
-                self.tableView.tableFooterView = UIView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 180))
+                self.tableView.tableFooterView = UIView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 24))
                 self.tableView.separatorStyle = .singleLine
 
                 self.tableView.contentInset = UIEdgeInsets(top: self.headerViewHeight, left: 0, bottom: 0, right: 0)
