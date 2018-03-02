@@ -11,7 +11,7 @@ class RestaurantDetailViewController: UITableViewController {
     }
 
     private var restaurant: Restaurant?
-    private var restaurantValues = [RestaurantValue]()
+    private var tableViewDataSource: RestaurantDataSource?
     private var headerImage: UIImage?
     private var headerView: DetailTitleView!
     private var headerViewHeight: CGFloat {
@@ -25,8 +25,7 @@ class RestaurantDetailViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        let detailTableViewCellNib = UINib(nibName: "DetailTableViewCell", bundle: .main)
-        tableView.register(detailTableViewCellNib, forCellReuseIdentifier: "Detail Table Cell")
+        tableView.dataSource = tableViewDataSource
         tableView.separatorStyle = .none
 
         navigationItem.largeTitleDisplayMode = .never
@@ -39,7 +38,6 @@ class RestaurantDetailViewController: UITableViewController {
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -52,65 +50,38 @@ class RestaurantDetailViewController: UITableViewController {
 }
 
 extension RestaurantDetailViewController {
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
-    }
-
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return restaurantValues.count
-    }
-
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let actionColumns: [RestaurantValue.RestaurantColumn] = [.website, .address, .phone, .email, .facebookPage]
-        let restaurantValue = restaurantValues[indexPath.row]
-        let cell = tableView.dequeueReusableCell(withIdentifier: "Detail Table Cell") as? DetailTableViewCell
-
-        let paragraphStyle = NSMutableParagraphStyle()
-        paragraphStyle.lineHeightMultiple = 1.15
-        paragraphStyle.lineBreakMode = .byWordWrapping
-
-        cell?.labelText.text = restaurantValue.column.rawValue
-        cell?.iconImageView.image = restaurantValue.image
-        cell?.valueText.attributedText = NSAttributedString(string: restaurantValue.value, attributes: [NSAttributedStringKey.paragraphStyle: paragraphStyle])
-
-        if actionColumns.contains(restaurantValue.column) {
-            cell?.valueText.textColor = UIColor.BrandColor.linkText
-        }
-
-        return cell!
-    }
-
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let restaurantValue = restaurantValues[indexPath.row]
+        let dataSource = tableView.dataSource as? RestaurantDataSource
+        guard let restaurantRow = dataSource?.rows[indexPath.row] else { return }
 
         defer {
             let cell = tableView.cellForRow(at: indexPath)
             cell?.setSelected(false, animated: true)
         }
 
-        if restaurantValue.column == .address {
+        if restaurantRow.column == .address {
             guard let address = restaurant?.address?.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) else { return }
             guard let mapsURL = URL(string: "http://maps.apple.com/?address=\(address)") else { return }
             UIApplication.shared.open(mapsURL, options: [:], completionHandler: nil)
         }
 
-        if restaurantValue.column == .phone {
+        if restaurantRow.column == .phone {
             guard let phone = restaurant?.phone?.filter({ "0123456789".contains($0) }) else { return }
             guard let phoneURL = URL(string: "tel:\(phone)") else { return }
             UIApplication.shared.open(phoneURL, options: [:], completionHandler: nil)
         }
 
-        if restaurantValue.column == .website {
+        if restaurantRow.column == .website {
             guard let website = restaurant?.website else { return }
             UIApplication.shared.open(website, options: [:], completionHandler: nil)
         }
 
-        if restaurantValue.column == .facebookPage {
+        if restaurantRow.column == .facebookPage {
             guard let facebookPage = restaurant?.facebookPage else { return }
             UIApplication.shared.open(facebookPage, options: [:], completionHandler: nil)
         }
 
-        if restaurantValue.column == .email {
+        if restaurantRow.column == .email {
             guard let email = restaurant?.email else { return }
             guard let mailtoURL = URL(string: "mailto:\(email)") else { return }
             UIApplication.shared.open(mailtoURL, options: [:], completionHandler: nil)
@@ -144,7 +115,6 @@ extension RestaurantDetailViewController: NSUserActivityDelegate {
         activity.userInfo = userInfo
 
         activity.contentAttributeSet?.supportsNavigation = true
-        // activity.contentAttributeSet?.supportsPhoneCall = true
 
         super.updateUserActivityState(activity)
     }
@@ -179,7 +149,8 @@ private extension RestaurantDetailViewController {
 
             DispatchQueue.main.async {
                 guard let restaurant = self.restaurant else { return }
-                self.restaurantValues = restaurant.values()
+                self.tableViewDataSource = RestaurantDataSource(restaurant: restaurant)
+                self.tableView.dataSource = self.tableViewDataSource
 
                 let headerViewFrame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.size.width, height: self.headerViewHeight)
                 self.headerView = DetailTitleView.init(frame: headerViewFrame)
