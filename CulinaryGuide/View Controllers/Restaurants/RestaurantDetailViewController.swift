@@ -52,40 +52,41 @@ class RestaurantDetailViewController: UITableViewController {
 extension RestaurantDetailViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let dataSource = tableView.dataSource as? RestaurantDataSource
-        guard let restaurantRow = dataSource?.rows[indexPath.row] else { return }
+        let section = dataSource?.getSection(for: indexPath.section)
 
-        defer {
-            let cell = tableView.cellForRow(at: indexPath)
-            cell?.setSelected(false, animated: true)
+
+        if section == RestaurantDataSource.Section.details, let detailRow = dataSource?.detailRows[indexPath.row] {
+            if detailRow.column == .address {
+                guard let address = restaurant?.address?.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) else { return }
+                guard let mapsURL = URL(string: "http://maps.apple.com/?address=\(address)") else { return }
+                UIApplication.shared.open(mapsURL, options: [:], completionHandler: nil)
+            }
+
+            if detailRow.column == .phone {
+                guard let phone = restaurant?.phone?.filter({ "0123456789".contains($0) }) else { return }
+                guard let phoneURL = URL(string: "tel:\(phone)") else { return }
+                UIApplication.shared.open(phoneURL, options: [:], completionHandler: nil)
+            }
+
+            if detailRow.column == .website {
+                guard let website = restaurant?.website else { return }
+                UIApplication.shared.open(website, options: [:], completionHandler: nil)
+            }
+
+            if detailRow.column == .facebookPage {
+                guard let facebookPage = restaurant?.facebookPage else { return }
+                UIApplication.shared.open(facebookPage, options: [:], completionHandler: nil)
+            }
+
+            if detailRow.column == .email {
+                guard let email = restaurant?.email else { return }
+                guard let mailtoURL = URL(string: "mailto:\(email)") else { return }
+                UIApplication.shared.open(mailtoURL, options: [:], completionHandler: nil)
+            }
         }
 
-        if restaurantRow.column == .address {
-            guard let address = restaurant?.address?.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) else { return }
-            guard let mapsURL = URL(string: "http://maps.apple.com/?address=\(address)") else { return }
-            UIApplication.shared.open(mapsURL, options: [:], completionHandler: nil)
-        }
-
-        if restaurantRow.column == .phone {
-            guard let phone = restaurant?.phone?.filter({ "0123456789".contains($0) }) else { return }
-            guard let phoneURL = URL(string: "tel:\(phone)") else { return }
-            UIApplication.shared.open(phoneURL, options: [:], completionHandler: nil)
-        }
-
-        if restaurantRow.column == .website {
-            guard let website = restaurant?.website else { return }
-            UIApplication.shared.open(website, options: [:], completionHandler: nil)
-        }
-
-        if restaurantRow.column == .facebookPage {
-            guard let facebookPage = restaurant?.facebookPage else { return }
-            UIApplication.shared.open(facebookPage, options: [:], completionHandler: nil)
-        }
-
-        if restaurantRow.column == .email {
-            guard let email = restaurant?.email else { return }
-            guard let mailtoURL = URL(string: "mailto:\(email)") else { return }
-            UIApplication.shared.open(mailtoURL, options: [:], completionHandler: nil)
-        }
+        let cell = tableView.cellForRow(at: indexPath)
+        cell?.setSelected(false, animated: true)
     }
 }
 

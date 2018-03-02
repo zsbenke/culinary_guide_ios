@@ -305,7 +305,6 @@ struct Restaurant: PointOfInterest, Codable {
 
         do {
             reviews = try container.decode([RestaurantReview].self, forKey: .reviews)
-            print(reviews)
         } catch {
             reviews = []
         }

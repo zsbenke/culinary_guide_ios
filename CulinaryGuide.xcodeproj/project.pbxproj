@@ -22,6 +22,7 @@
 		98363152200FD4E1002EBE01 /* ArrayExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9836314F200FD4E1002EBE01 /* ArrayExtensions.swift */; };
 		983A7FF02003E66C00512ED5 /* RestaurantsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98F626172002487600996A91 /* RestaurantsViewController.swift */; };
 		983A7FF12003E66C00512ED5 /* RestaurantsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98F626172002487600996A91 /* RestaurantsViewController.swift */; };
+		983B88E7204A045C000F0641 /* StringExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 983B88E6204A045C000F0641 /* StringExtensions.swift */; };
 		9847A6F4200A4E1200A17247 /* HomeCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9847A6F3200A4E1200A17247 /* HomeCollectionViewController.swift */; };
 		9847A6F5200A4E5600A17247 /* HomeCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9847A6F3200A4E1200A17247 /* HomeCollectionViewController.swift */; };
 		9847A6F6200A4E5600A17247 /* HomeCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9847A6F3200A4E1200A17247 /* HomeCollectionViewController.swift */; };
@@ -209,6 +210,7 @@
 		981769F42049D3FE004C5ED1 /* RestaurantReview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantReview.swift; sourceTree = "<group>"; };
 		981E84CA204211E400835C47 /* CAGradientLayerExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CAGradientLayerExtensions.swift; sourceTree = "<group>"; };
 		9836314F200FD4E1002EBE01 /* ArrayExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArrayExtensions.swift; sourceTree = "<group>"; };
+		983B88E6204A045C000F0641 /* StringExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtensions.swift; sourceTree = "<group>"; };
 		9847A6F3200A4E1200A17247 /* HomeCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCollectionViewController.swift; sourceTree = "<group>"; };
 		9847A6F7200A4F8300A17247 /* TagCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TagCollectionViewCell.xib; sourceTree = "<group>"; };
 		9847A6F9200A4FD100A17247 /* TagCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -326,9 +328,9 @@
 			children = (
 				98F626172002487600996A91 /* RestaurantsViewController.swift */,
 				98135E322005477500AB64C4 /* RestaurantsTableViewController.swift */,
-				98F6267220026CED00996A91 /* RestaurantDetailViewController.swift */,
 				98C8DFB92003CE1D00BE568C /* RestaurantFilterViewController.swift */,
 				98135E362005592500AB64C4 /* RestaurantsMapViewController.swift */,
+				98F6267220026CED00996A91 /* RestaurantDetailViewController.swift */,
 				981769F22049D1C1004C5ED1 /* RestaurantDataSource.swift */,
 			);
 			path = Restaurants;
@@ -480,6 +482,7 @@
 				9849816A2041BF98001B742F /* UIViewExtensions.swift */,
 				981E84CA204211E400835C47 /* CAGradientLayerExtensions.swift */,
 				988EC337204355870076178B /* URLExtensions.swift */,
+				983B88E6204A045C000F0641 /* StringExtensions.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -684,6 +687,7 @@
 				98135E332005477500AB64C4 /* RestaurantsTableViewController.swift in Sources */,
 				98D8696F2008FC4300EC909F /* PartialModalTransitionDelegate.swift in Sources */,
 				98D86973200901D800EC909F /* PartialModalDismissAnimator.swift in Sources */,
+				983B88E7204A045C000F0641 /* StringExtensions.swift in Sources */,
 				981769F32049D1C1004C5ED1 /* RestaurantDataSource.swift in Sources */,
 				98D869512007FA7300EC909F /* EnumCollection.swift in Sources */,
 				98D869332007C62B00EC909F /* Localization.swift in Sources */,

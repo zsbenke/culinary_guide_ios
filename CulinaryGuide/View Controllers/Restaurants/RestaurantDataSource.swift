@@ -2,27 +2,34 @@ import UIKit
 
 class RestaurantDataSource: NSObject {
     var restaurant: Restaurant
-    var rows = [RestaurantRow]()
+    var sections = Array(Section.cases())
+    var detailRows = [DetailRow]()
+    var reviews = [RestaurantReview]()
 
     private let detailTableViewCellNib = UINib(nibName: "DetailTableViewCell", bundle: .main)
+    private var isDetailTableViewCellNibRegistered = false
 
     init(restaurant: Restaurant) {
         self.restaurant = restaurant
         super.init()
 
-        appendToRows(column: .address, value: restaurant.address)
-        appendToRows(column: .phone, value: restaurant.phone)
-        appendToRows(column: .hours, value: restaurant.hours)
-        appendToRows(column: .definingPeople, value: restaurant.definingPeople)
-        appendToRows(column: .website, value: restaurant.website)
-        appendToRows(column: .email, value: restaurant.email)
-        appendToRows(column: .facebookPage, value: restaurant.facebookPage)
-        appendToRows(column: .reservations, value: restaurant.reservations)
-        appendToRows(column: .parking, value: restaurant.parking)
-        appendToRows(column: .menuPrice, value: restaurant.menuPrice)
+        appendToDetails(column: .address, value: restaurant.address)
+        appendToDetails(column: .phone, value: restaurant.phone)
+        appendToDetails(column: .hours, value: restaurant.hours)
+        appendToDetails(column: .definingPeople, value: restaurant.definingPeople)
+        appendToDetails(column: .website, value: restaurant.website)
+        appendToDetails(column: .email, value: restaurant.email)
+        appendToDetails(column: .facebookPage, value: restaurant.facebookPage)
+        appendToDetails(column: .reservations, value: restaurant.reservations)
+        appendToDetails(column: .parking, value: restaurant.parking)
+        appendToDetails(column: .menuPrice, value: restaurant.menuPrice)
+
+        for review in restaurant.reviews {
+            reviews.append(review)
+        }
     }
 
-    enum Column: String, EnumCollection {
+    enum DetailColumn: String, EnumCollection {
         case title
         case address
         case phone
@@ -34,6 +41,7 @@ class RestaurantDataSource: NSObject {
         case reservations
         case parking
         case menuPrice = "menu price"
+        case review
 
         func toImage() -> UIImage {
             switch self {
@@ -63,60 +71,119 @@ class RestaurantDataSource: NSObject {
         }
     }
 
-    struct RestaurantRow {
-        static var actionColumns: [Column] = [.website, .address, .phone, .email, .facebookPage]
+    struct DetailRow {
+        static var actionColumns: [DetailColumn] = [.website, .address, .phone, .email, .facebookPage]
 
-        let column: Column
+        let column: DetailColumn
         let value: String
         var image: UIImage {
             return column.toImage()
         }
     }
+
+    enum Section: EnumCollection {
+        case details
+        case reviews
+    }
 }
 
 extension RestaurantDataSource: UITableViewDataSource {
+    func numberOfSections(in tableView: UITableView) -> Int {
+        var count = 0
+
+        if !detailRows.isEmpty {
+            count += 1
+        }
+
+        if !reviews.isEmpty {
+            count += 1
+        }
+
+        return count
+    }
+
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return rows.count
+        let section = getSection(for: section)
+
+        switch section {
+        case .details:
+            return detailRows.count
+        case .reviews:
+            return reviews.count
+        }
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let restaurantRow = rows[indexPath.row]
-        var cell = tableView.dequeueReusableCell(withIdentifier: "Detail Table Cell") as? DetailTableViewCell
-
-        if cell != nil {
+        if !isDetailTableViewCellNibRegistered {
             tableView.register(detailTableViewCellNib, forCellReuseIdentifier: "Detail Table Cell")
-            cell = tableView.dequeueReusableCell(withIdentifier: "Detail Table Cell") as? DetailTableViewCell
+            isDetailTableViewCellNibRegistered = true
+        }
+
+        var cell: UITableViewCell?
+        let section = getSection(for: indexPath.section)
+
+        if section == .reviews {
+            cell = tableView.dequeueReusableCell(withIdentifier: "Review Table Cell")
+            let restaurantReview = reviews[indexPath.row]
+            configure(tableViewCell: cell, restaurantReview: restaurantReview)
+        } else {
+            cell = tableView.dequeueReusableCell(withIdentifier: "Detail Table Cell")
+            let detailRow = detailRows[indexPath.row]
+            configure(tableViewCell: cell as? DetailTableViewCell, detailRow: detailRow)
+        }
+
+        return cell!
+    }
+
+    func getSection(for sectionIndex: Int) -> Section {
+        return sections[sectionIndex]
+    }
+}
+
+private extension RestaurantDataSource {
+    func appendToDetails(column: DetailColumn, value: CustomStringConvertible?) {
+
+        if let value = value {
+            var detailRow: DetailRow?
+
+            if let newValue = (value as? URL)?.stringWithoutScheme() {
+                detailRow = DetailRow(column: column, value: "\(newValue)")
+            } else {
+                detailRow = DetailRow(column: column, value: "\(value)")
+            }
+
+            guard let finalDetailRow = detailRow else { return }
+            detailRows.append(finalDetailRow)
+        }
+    }
+
+    func configure(tableViewCell cell: DetailTableViewCell?, detailRow: DetailRow) {
+        if DetailRow.actionColumns.contains(detailRow.column) {
+            cell?.selectionStyle = .default
+        } else {
+            cell?.selectionStyle = .none
         }
 
         let paragraphStyle = NSMutableParagraphStyle()
         paragraphStyle.lineHeightMultiple = 1.15
         paragraphStyle.lineBreakMode = .byWordWrapping
 
-        cell?.labelText.text = restaurantRow.column.rawValue
-        cell?.iconImageView.image = restaurantRow.image
-        cell?.valueText.attributedText = NSAttributedString(string: restaurantRow.value, attributes: [NSAttributedStringKey.paragraphStyle: paragraphStyle])
+        cell?.labelText.text = detailRow.column.rawValue
+        cell?.iconImageView.image = detailRow.image
+        cell?.valueText.attributedText = NSAttributedString(string: detailRow.value, attributes: [NSAttributedStringKey.paragraphStyle: paragraphStyle])
 
-        if RestaurantRow.actionColumns.contains(restaurantRow.column) {
+        if DetailRow.actionColumns.contains(detailRow.column) {
             cell?.valueText.textColor = UIColor.BrandColor.linkText
         }
-
-        return cell!
     }
-}
 
-private extension RestaurantDataSource {
-    func appendToRows(column: Column, value: CustomStringConvertible?) {
-        if let value = value {
-            var restaurantRow: RestaurantRow?
+    func configure(tableViewCell cell: UITableViewCell?, restaurantReview: RestaurantReview) {
+        if let text = restaurantReview.text {
+            let paragraphStyle = NSMutableParagraphStyle()
+            paragraphStyle.lineHeightMultiple = 1.15
+            paragraphStyle.lineBreakMode = .byWordWrapping
 
-            if let newValue = (value as? URL)?.stringWithoutScheme() {
-                restaurantRow = RestaurantRow(column: column, value: "\(newValue)")
-            } else {
-                restaurantRow = RestaurantRow(column: column, value: "\(value)")
-            }
-
-            guard let finalRestaurantRow = restaurantRow else { return }
-            rows.append(finalRestaurantRow)
+            cell?.textLabel?.attributedText = NSAttributedString(string: text, attributes: [NSAttributedStringKey.paragraphStyle: paragraphStyle])
         }
     }
 }
