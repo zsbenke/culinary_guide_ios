@@ -69,6 +69,35 @@ class RestaurantDataSource: NSObject {
                 return #imageLiteral(resourceName: "Facet Magnifiying Glass")
             }
         }
+
+        func localized() -> String {
+            switch self {
+            case .address:
+                return NSLocalizedString("cím", comment: "Adat címke az étterem nézeten.")
+            case .phone:
+                return NSLocalizedString("telefon", comment: "Adat címke az étterem nézeten.")
+            case .hours:
+                return NSLocalizedString("nyitvatartás", comment: "Adat címke az étterem nézeten.")
+            case .definingPeople:
+                return NSLocalizedString("kapcsolódó személyek", comment: "Adat címke az étterem nézeten.")
+            case .website:
+                return NSLocalizedString("webhely", comment: "Adat címke az étterem nézeten.")
+            case .email:
+                return NSLocalizedString("e-mail", comment: "Adat címke az étterem nézeten.")
+            case .facebookPage:
+                return NSLocalizedString("facebook", comment: "Adat címke az étterem nézeten.")
+            case .reservations:
+                return NSLocalizedString("foglalás", comment: "Adat címke az étterem nézeten.")
+            case .parking:
+                return NSLocalizedString("parkolás", comment: "Adat címke az étterem nézeten.")
+            case .menuPrice:
+                return NSLocalizedString("menü ára", comment: "Adat címke az étterem nézeten.")
+            case .review:
+                return NSLocalizedString("teszt", comment: "Adat címke az étterem nézeten.")
+            case .title:
+                return NSLocalizedString("neve", comment: "Adat címke az étterem nézeten.")
+            }
+        }
     }
 
     struct DetailRow {
@@ -168,7 +197,7 @@ private extension RestaurantDataSource {
         paragraphStyle.lineHeightMultiple = 1.15
         paragraphStyle.lineBreakMode = .byWordWrapping
 
-        cell?.labelText.text = detailRow.column.rawValue
+        cell?.labelText.text = detailRow.column.localized()
         cell?.iconImageView.image = detailRow.image
         cell?.valueText.attributedText = NSAttributedString(string: detailRow.value, attributes: [NSAttributedStringKey.paragraphStyle: paragraphStyle])
 
