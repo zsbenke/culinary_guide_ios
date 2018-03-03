@@ -16,6 +16,8 @@ class RestaurantsTableViewController: UITableViewController {
 
         let tableCellNib = UINib(nibName: "IconTableViewCell", bundle: nil)
         tableView.register(tableCellNib, forCellReuseIdentifier: "Cell")
+
+        registerForPreviewing(with: self, sourceView: tableView)
     }
 
     override func didReceiveMemoryWarning() {
@@ -24,12 +26,6 @@ class RestaurantsTableViewController: UITableViewController {
 
     override func didMove(toParentViewController parent: UIViewController?) {
         self.restaurantsViewController = parent as? RestaurantsViewController
-    }
-
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-
-        self.registerForPreviewing(with: self, sourceView: tableView)
     }
 
     // MARK: - Segues
@@ -90,21 +86,18 @@ extension RestaurantsTableViewController {
 
 extension RestaurantsTableViewController: UIViewControllerPreviewingDelegate {
     func previewingContext(_ previewingContext: UIViewControllerPreviewing, viewControllerForLocation location: CGPoint) -> UIViewController? {
-        if ((self.presentedViewController?.isKind(of: RestaurantDetailViewController.self)) != nil) {
-            return nil
-        }
-
-        let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
-        let restaurantDetailViewController = storyboard.instantiateViewController(withIdentifier: "RestaurantDetailViewController") as! RestaurantDetailViewController
-        let cellPosition = tableView.convert(location, from: tableView)
-        if let indexPath = tableView.indexPathForRow(at: cellPosition) {
-            print(indexPath.row)
+        if let indexPath = tableView.indexPathForRow(at: location), let cell = tableView.cellForRow(at: indexPath) {
             if let restaurant = restaurants[indexPath.row] {
+                previewingContext.sourceRect = cell.frame
+                let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
+                let restaurantDetailViewController = storyboard.instantiateViewController(withIdentifier: "RestaurantDetailViewController") as! RestaurantDetailViewController
                 restaurantDetailViewController.restaurantID = restaurant.id
+
+                return restaurantDetailViewController
             }
         }
 
-        return restaurantDetailViewController
+        return nil
     }
 
     func previewingContext(_ previewingContext: UIViewControllerPreviewing, commit viewControllerToCommit: UIViewController) {
