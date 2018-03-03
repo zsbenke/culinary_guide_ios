@@ -19,11 +19,16 @@ class RestaurantsTableViewController: UITableViewController {
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
 
     override func didMove(toParentViewController parent: UIViewController?) {
         self.restaurantsViewController = parent as? RestaurantsViewController
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+
+        self.registerForPreviewing(with: self, sourceView: tableView)
     }
 
     // MARK: - Segues
@@ -44,12 +49,14 @@ class RestaurantsTableViewController: UITableViewController {
             controller.filterState = RestaurantFilterState.init(queryTokens: restaurantsViewController.queryTokens)
         }
     }
+}
 
+// MARK: - Table View
+
+extension RestaurantsTableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         performSegue(withIdentifier: "showRestaurant", sender: self)
     }
-
-    // MARK: - Table View
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
@@ -77,5 +84,29 @@ class RestaurantsTableViewController: UITableViewController {
         }
 
         return cell
+    }
+}
+
+extension RestaurantsTableViewController: UIViewControllerPreviewingDelegate {
+    func previewingContext(_ previewingContext: UIViewControllerPreviewing, viewControllerForLocation location: CGPoint) -> UIViewController? {
+        if ((self.presentedViewController?.isKind(of: RestaurantDetailViewController.self)) != nil) {
+            return nil
+        }
+
+        let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
+        let restaurantDetailViewController = storyboard.instantiateViewController(withIdentifier: "RestaurantDetailViewController") as! RestaurantDetailViewController
+        let cellPosition = tableView.convert(location, from: tableView)
+        if let indexPath = tableView.indexPathForRow(at: cellPosition) {
+            print(indexPath.row)
+            if let restaurant = restaurants[indexPath.row] {
+                restaurantDetailViewController.restaurantID = restaurant.id
+            }
+        }
+
+        return restaurantDetailViewController
+    }
+
+    func previewingContext(_ previewingContext: UIViewControllerPreviewing, commit viewControllerToCommit: UIViewController) {
+        self.show(viewControllerToCommit, sender: self)
     }
 }
