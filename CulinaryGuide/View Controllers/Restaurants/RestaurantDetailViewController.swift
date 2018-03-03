@@ -16,7 +16,8 @@ class RestaurantDetailViewController: UITableViewController {
     private var headerView: DetailTitleView!
     private var headerViewHeight: CGFloat {
         let statusBarHeight = UIApplication.shared.statusBarFrame.height
-        let baseHeight: CGFloat = 380.0
+        let ratio = UIScreen.main.bounds.width / 4
+        let baseHeight: CGFloat = ratio * 3.5
         guard statusBarHeight > 20 else { return baseHeight }
         return baseHeight + statusBarHeight
     }
