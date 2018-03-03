@@ -215,7 +215,6 @@
 		984DEA522040A2EC00E1A0EB /* Email.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Email.swift; sourceTree = "<group>"; };
 		985403AF201B96BA006F7103 /* RatingFilterButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatingFilterButton.swift; sourceTree = "<group>"; };
 		98550AA7201928AC006F53A2 /* RestaurantFilterState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = RestaurantFilterState.swift; path = CulinaryGuide/Models/Restaurants/RestaurantFilterState.swift; sourceTree = SOURCE_ROOT; };
-		986D146A2048A1A2007029CE /* KMNavigationBarTransition.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = KMNavigationBarTransition.framework; path = Carthage/Build/iOS/KMNavigationBarTransition.framework; sourceTree = "<group>"; };
 		986E8AD1200E6EA200BA57AA /* RatingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatingView.swift; sourceTree = "<group>"; };
 		986E8AD4200E6FBF00BA57AA /* RestaurantRatingTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantRatingTests.swift; sourceTree = "<group>"; };
 		988EC326204301EF0076178B /* WhiteNavigationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhiteNavigationViewController.swift; sourceTree = "<group>"; };
@@ -332,7 +331,6 @@
 		989628D52042E0F2004C233B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				986D146A2048A1A2007029CE /* KMNavigationBarTransition.framework */,
 				98003FDE2045B2C200FD9F25 /* CoreSpotlight.framework */,
 			);
 			name = Frameworks;
