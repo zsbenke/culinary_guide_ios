@@ -64,10 +64,15 @@ class SplashViewController: UIViewController {
 
     func loadRestaurantsForSelectedCountry() {
         guard let presentingViewController = self.presentingViewController as? UINavigationController else { return }
-        presentingViewController.popToRootViewController(animated: true)
-        if let homeCollectionViewController = presentingViewController.viewControllers.filter({ $0 is HomeCollectionViewController }).first as? HomeCollectionViewController {
-            homeCollectionViewController.configureView()
+
+        for viewController in presentingViewController.viewControllers {
+            if let homeCollectionViewController = viewController as? HomeCollectionViewController {
+                homeCollectionViewController.configureView()
+            } else if let restaurantsViewController = viewController as? RestaurantsViewController {
+                restaurantsViewController.loadAllRestaurants()
+            }
         }
+
         dismiss(animated: true, completion: nil)
     }
 

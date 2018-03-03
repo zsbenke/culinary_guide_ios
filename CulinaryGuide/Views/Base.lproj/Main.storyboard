@@ -163,24 +163,26 @@
                                 <segue destination="X5m-Ia-agx" kind="presentation" identifier="chooseCountry" modalTransitionStyle="flipHorizontal" id="2AC-qG-iZw"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem style="plain" systemItem="flexibleSpace" id="Z3w-Xn-Pwa"/>
-                        <barButtonItem systemItem="search" id="jPM-Bs-qnv">
+                        <barButtonItem style="plain" systemItem="flexibleSpace" id="QAz-xX-xGB"/>
+                        <barButtonItem image="Toolbar Icon Info" id="C10-Qf-LJA"/>
+                    </toolbarItems>
+                    <navigationItem key="navigationItem" title="Ország" largeTitleDisplayMode="always" id="sag-PG-Y6X">
+                        <barButtonItem key="rightBarButtonItem" systemItem="search" id="jPM-Bs-qnv">
                             <connections>
                                 <segue destination="XGQ-ey-PNz" kind="show" identifier="focusOnSearchBar" id="w4D-ht-9Jv"/>
                             </connections>
                         </barButtonItem>
-                    </toolbarItems>
-                    <navigationItem key="navigationItem" title="Ország" largeTitleDisplayMode="always" id="sag-PG-Y6X"/>
+                    </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LVX-8c-5SA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="349.60000000000002" y="88.669950738916256"/>
         </scene>
-        <!--Restaurants View Controller-->
+        <!--Éttermek-->
         <scene sceneID="w03-xF-Ake">
             <objects>
-                <viewController storyboardIdentifier="RestaurantsViewController" id="XGQ-ey-PNz" customClass="RestaurantsViewController" customModule="CulinaryGuide" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="RestaurantsViewController" title="Éttermek" id="XGQ-ey-PNz" customClass="RestaurantsViewController" customModule="CulinaryGuide" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="t4l-t0-adp">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -218,15 +220,42 @@
                             </connections>
                         </barButtonItem>
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="8S9-xY-cZn"/>
-                        <barButtonItem systemItem="search" id="bp1-DV-swT">
+                        <barButtonItem style="plain" id="la4-X9-IDS">
+                            <view key="customView" contentMode="scaleToFill" id="v7Z-wD-5Xq">
+                                <rect key="frame" x="146.5" y="5.5" width="27" height="33"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Éttermek betöltése…" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ssP-XY-R4E">
+                                        <rect key="frame" x="-45.5" y="9.5" width="118" height="14.5"/>
+                                        <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="ssP-XY-R4E" firstAttribute="centerX" secondItem="v7Z-wD-5Xq" secondAttribute="centerX" id="4QE-kt-vbT"/>
+                                    <constraint firstItem="ssP-XY-R4E" firstAttribute="centerY" secondItem="v7Z-wD-5Xq" secondAttribute="centerY" id="SUe-zf-wOO"/>
+                                </constraints>
+                            </view>
+                        </barButtonItem>
+                        <barButtonItem style="plain" systemItem="flexibleSpace" id="asM-iU-PVA"/>
+                        <barButtonItem image="Toolbar Filter Icon" id="JnI-41-CWe">
+                            <attributedString key="userComments">
+                                <fragment content="Az étteremlista címsorában lévő szűrés gomb">
+                                    <attributes>
+                                        <font key="NSFont" metaFont="smallSystem"/>
+                                        <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                    </attributes>
+                                </fragment>
+                            </attributedString>
                             <connections>
-                                <action selector="search:" destination="XGQ-ey-PNz" id="eLp-9S-bTf"/>
+                                <segue destination="CtN-Mf-ayT" kind="presentation" identifier="showFilter" id="vGY-GW-znn"/>
                             </connections>
                         </barButtonItem>
                     </toolbarItems>
                     <navigationItem key="navigationItem" largeTitleDisplayMode="never" id="Zna-k9-7r8">
                         <nil key="title"/>
-                        <barButtonItem key="backBarButtonItem" title="Back" id="yax-xv-Lbs"/>
                         <segmentedControl key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="QBV-aq-E1O">
                             <rect key="frame" x="104.5" y="7" width="111" height="30"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -247,17 +276,9 @@
                                 <action selector="switchContainerViews:" destination="XGQ-ey-PNz" eventType="valueChanged" id="vPG-uv-Hko"/>
                             </connections>
                         </segmentedControl>
-                        <barButtonItem key="rightBarButtonItem" image="Toolbar Filter Icon" id="JnI-41-CWe">
-                            <attributedString key="userComments">
-                                <fragment content="Az étteremlista címsorában lévő szűrés gomb">
-                                    <attributes>
-                                        <font key="NSFont" metaFont="smallSystem"/>
-                                        <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
-                                    </attributes>
-                                </fragment>
-                            </attributedString>
+                        <barButtonItem key="rightBarButtonItem" systemItem="search" id="bp1-DV-swT">
                             <connections>
-                                <segue destination="CtN-Mf-ayT" kind="presentation" identifier="showFilter" id="vGY-GW-znn"/>
+                                <action selector="search:" destination="XGQ-ey-PNz" id="eLp-9S-bTf"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -266,6 +287,7 @@
                         <outlet property="filterBarButton" destination="JnI-41-CWe" id="ZSL-Tu-1vP"/>
                         <outlet property="listContainerView" destination="8dD-nf-xC9" id="cDu-MV-zC6"/>
                         <outlet property="mapContainerView" destination="D5f-pb-XZQ" id="unQ-4E-jEJ"/>
+                        <outlet property="restaurantsCountLabel" destination="ssP-XY-R4E" id="kdQ-8I-KUd"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dO0-Gs-jbi" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -275,7 +297,7 @@
         <!--Restaurant Detail View Controller-->
         <scene sceneID="lCU-tx-FE8">
             <objects>
-                <tableViewController storyboardIdentifier="RestaurantDetailViewController" automaticallyAdjustsScrollViewInsets="NO" id="R3O-2r-uB3" customClass="RestaurantDetailViewController" customModule="CulinaryGuide" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="RestaurantDetailViewController" automaticallyAdjustsScrollViewInsets="NO" hidesBottomBarWhenPushed="YES" id="R3O-2r-uB3" customClass="RestaurantDetailViewController" customModule="CulinaryGuide" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" sectionIndexMinimumDisplayRowCount="-1" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" contentViewInsetsToSafeArea="NO" id="lXP-Du-RjV">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1493,11 +1515,11 @@
             </objects>
             <point key="canvasLocation" x="-669" y="89"/>
         </scene>
-        <!--Országok-->
+        <!--Splash View Controller-->
         <scene sceneID="IVZ-yj-JqA">
             <objects>
                 <viewController storyboardIdentifier="SplashViewController" automaticallyAdjustsScrollViewInsets="NO" id="X5m-Ia-agx" customClass="SplashViewController" customModule="CulinaryGuide" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="ck9-yY-my2">
+                    <view key="view" clipsSubviews="YES" contentMode="scaleToFill" id="ck9-yY-my2">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
@@ -1572,16 +1594,6 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="hHC-qC-JBN"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Országok" id="tYZ-gq-iYF">
-                        <attributedString key="userComments">
-                            <fragment content="Címsor címe az országválasztón">
-                                <attributes>
-                                    <font key="NSFont" metaFont="smallSystem"/>
-                                    <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
-                                </attributes>
-                            </fragment>
-                        </attributedString>
-                    </navigationItem>
                     <connections>
                         <outlet property="aboutButton" destination="lw2-iT-fTC" id="ao7-Sw-EMu"/>
                         <outlet property="chooseCountryButton" destination="m3p-oB-A1c" id="25F-Rw-Iuc"/>
@@ -1646,6 +1658,7 @@
         <image name="Toolbar Country Icon" width="24" height="24"/>
         <image name="Toolbar Dismiss Icon" width="24" height="24"/>
         <image name="Toolbar Filter Icon" width="24" height="24"/>
+        <image name="Toolbar Icon Info" width="24" height="24"/>
         <namedColor name="Light">
             <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

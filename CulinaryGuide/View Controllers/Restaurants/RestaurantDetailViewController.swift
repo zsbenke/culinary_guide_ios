@@ -25,6 +25,9 @@ class RestaurantDetailViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        let backItem = UIBarButtonItem()
+        navigationItem.backBarButtonItem = backItem
+
         tableView.dataSource = tableViewDataSource
         tableView.separatorStyle = .none
 
@@ -38,14 +41,6 @@ class RestaurantDetailViewController: UITableViewController {
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-    }
-
-    override func viewWillAppear(_ animated: Bool) {
-        navigationController?.setToolbarHidden(true, animated: false)
-    }
-
-    override func viewWillDisappear(_ animated: Bool) {
-        navigationController?.setToolbarHidden(false, animated: false)
     }
 }
 

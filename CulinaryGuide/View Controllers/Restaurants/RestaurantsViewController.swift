@@ -4,7 +4,8 @@ class RestaurantsViewController: UIViewController {
     @IBOutlet weak var filterBarButton: UIBarButtonItem!
     @IBOutlet weak var listContainerView: UIView!
     @IBOutlet weak var mapContainerView: UIView!
-
+    @IBOutlet weak var restaurantsCountLabel: UILabel!
+    
     let searchResultsController = UITableViewController.init()
     var searchController: UISearchController?
     var presentSearchController = false
@@ -12,6 +13,7 @@ class RestaurantsViewController: UIViewController {
     var restaurants = [Restaurant?]()
     var initialRestaurants = [Restaurant?]()
     var searchBarText = ""
+    var loadRestaurantsText: String?
     
     var queryTokens = Set<URLQueryToken>() {
         didSet {
@@ -23,7 +25,11 @@ class RestaurantsViewController: UIViewController {
             } else {
                 filterBarButton.image = #imageLiteral(resourceName: "Toolbar Filter Icon Filled")
             }
-            
+
+            print(queryTokens)
+
+            print("éttermek betöltése")
+
             loadRestaurants()
         }
     }
@@ -32,6 +38,8 @@ class RestaurantsViewController: UIViewController {
         super.viewDidLoad()
 
         definesPresentationContext = true
+
+        loadRestaurantsText = restaurantsCountLabel.text
         
         // Setup searchBar
         searchController = UISearchController(searchResultsController: searchResultsController)
@@ -62,6 +70,14 @@ class RestaurantsViewController: UIViewController {
         }
     }
 
+    func loadAllRestaurants() {
+        let backItem = UIBarButtonItem()
+        navigationItem.backBarButtonItem = backItem
+
+        initialRestaurants.removeAll()
+        queryTokens.removeAll()
+    }
+
     @IBAction func search(_ sender: Any) {
         if let searchController = searchController {
             present(searchController, animated: true, completion: nil)
@@ -79,6 +95,8 @@ class RestaurantsViewController: UIViewController {
     }
     
     func loadRestaurants(completionHandler: @escaping () -> Void = { }) {
+        restaurantsCountLabel.text = loadRestaurantsText
+
         let restaurantsTableViewController = childViewControllers.filter {
             $0 is RestaurantsTableViewController
             }.first as? RestaurantsTableViewController
@@ -87,6 +105,18 @@ class RestaurantsViewController: UIViewController {
             }.first as? RestaurantsMapViewController
         
         let prepareRestaurantsToChildViewControllers: () -> Void = {
+            DispatchQueue.main.async {
+                if self.restaurants.count == 0 {
+                    self.restaurantsCountLabel.text = NSLocalizedString("Nincs étterem", comment: "Az étterem lista eszköztár státusz szövege, amikor nincs étterem találat.")
+                } else if self.restaurants.count == 1 {
+                    self.restaurantsCountLabel.text = NSLocalizedString("1 étterem", comment: "Az étterem lista eszköztár státusz szövege, amikor csak étterem a találat.")
+                } else if self.restaurants.count > 1 {
+                    self.restaurantsCountLabel.text = NSLocalizedString("\(self.restaurants.count) étterem", comment: "Az étterem lista eszköztár státusz szövege, több étterem találat.")
+                }
+
+                self.restaurantsCountLabel.sizeToFit()
+            }
+
             if let restaurantsTableViewController = restaurantsTableViewController {
                 restaurantsTableViewController.restaurants = self.restaurants
             }
