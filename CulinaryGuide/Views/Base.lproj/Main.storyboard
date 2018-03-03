@@ -119,7 +119,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VFP-nR-XbU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1346.25" y="1746.1267605633802"/>
+            <point key="canvasLocation" x="302" y="1767"/>
         </scene>
         <!--Ország-->
         <scene sceneID="6pC-sf-yBI">
@@ -186,7 +186,7 @@
         <!--Éttermek-->
         <scene sceneID="w03-xF-Ake">
             <objects>
-                <viewController storyboardIdentifier="RestaurantsViewController" title="Éttermek" id="XGQ-ey-PNz" customClass="RestaurantsViewController" customModule="CulinaryGuide" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="RestaurantsViewController" title="Éttermek" automaticallyAdjustsScrollViewInsets="NO" id="XGQ-ey-PNz" customClass="RestaurantsViewController" customModule="CulinaryGuide" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="t4l-t0-adp">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1479,7 +1479,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lg5-N8-Igx" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3478.125" y="1195.7746478873239"/>
+            <point key="canvasLocation" x="2481" y="1196"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="eoY-xA-TxD">
@@ -1495,12 +1495,12 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lMt-pc-7Zi" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2398.125" y="1195.7746478873239"/>
+            <point key="canvasLocation" x="1401" y="1196"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--Plain Navigation View Controller-->
         <scene sceneID="jJf-j3-izf">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" toolbarHidden="NO" id="zfw-OL-Amf" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" toolbarHidden="NO" id="zfw-OL-Amf" customClass="PlainNavigationViewController" customModule="CulinaryGuide" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="U3U-5e-rzO">
                         <rect key="frame" x="0.0" y="20" width="320" height="93"/>
@@ -1609,7 +1609,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W2Y-Se-37J" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-669" y="950"/>
+            <point key="canvasLocation" x="349" y="952"/>
         </scene>
         <!--Restaurants Map View Controller-->
         <scene sceneID="ilV-MA-Eof">
@@ -1656,7 +1656,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4Yx-If-lCP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="328.125" y="1745.0704225352113"/>
+            <point key="canvasLocation" x="-669" y="1768"/>
         </scene>
     </scenes>
     <resources>
@@ -1692,7 +1692,7 @@
         </namedColor>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="2AC-qG-iZw"/>
+        <segue reference="iWe-mT-Nri"/>
         <segue reference="UUA-Hi-B5W"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" name="Primary"/>

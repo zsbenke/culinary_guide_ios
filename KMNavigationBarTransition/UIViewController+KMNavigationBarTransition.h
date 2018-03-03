@@ -1,5 +1,5 @@
 //
-//  KMNavigationBarTransition.h
+//  UIViewController+KMNavigationBarTransition.h
 //
 //  Copyright (c) 2017 Zhouqi Mo (https://github.com/MoZhouqi)
 //
@@ -23,12 +23,8 @@
 
 #import <UIKit/UIKit.h>
 
-//! Project version number for KMNavigationBarTransition.
-FOUNDATION_EXPORT double KMNavigationBarTransitionVersionNumber;
+@interface UIViewController (KMNavigationBarTransition)
 
-//! Project version string for KMNavigationBarTransition.
-FOUNDATION_EXPORT const unsigned char KMNavigationBarTransitionVersionString[];
+@property (nonatomic, weak) UIScrollView *km_scrollView;
 
-// In this header, you should import all the public headers of your framework using statements like #import <KMNavigationBarTransition/PublicHeader.h>
-
-#import <KMNavigationBarTransition/UINavigationController+KMNavigationBarTransition.h>
+@end

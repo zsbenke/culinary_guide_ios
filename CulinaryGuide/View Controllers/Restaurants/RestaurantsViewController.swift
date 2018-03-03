@@ -39,14 +39,14 @@ class RestaurantsViewController: UIViewController {
         
         // Setup searchBar
         searchController = UISearchController(searchResultsController: searchResultsController)
+        searchController?.searchBar.barTintColor = UIColor.BrandColor.windowBackground
         searchController?.searchResultsUpdater = self
         searchController?.delegate = self
         searchController?.searchBar.delegate = self
 
         searchResultsController.tableView.dataSource = self
         searchResultsController.tableView.delegate = self
-        searchResultsController.tableView.contentInset = UIEdgeInsets(top: -UIApplication.shared.statusBarFrame.height, left: 0, bottom: 0, right: 0)
-        searchResultsController.tableView.contentOffset = CGPoint(x: 0, y: -UIApplication.shared.statusBarFrame.height)
+        searchResultsController.tableView.contentInsetAdjustmentBehavior = .never
         
         setSearchBarText()
         
@@ -63,6 +63,7 @@ class RestaurantsViewController: UIViewController {
 
         if presentSearchController {
             search(self)
+            presentSearchController = false
         }
     }
 

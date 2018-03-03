@@ -100,6 +100,28 @@
 		98B2DC5A204AD39D007903BB /* UIViewControllerExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98B2DC59204AD39D007903BB /* UIViewControllerExtensions.swift */; };
 		98B2DC5B204AD3F4007903BB /* UIViewControllerExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98B2DC59204AD39D007903BB /* UIViewControllerExtensions.swift */; };
 		98B2DC5C204AD3F4007903BB /* UIViewControllerExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98B2DC59204AD39D007903BB /* UIViewControllerExtensions.swift */; };
+		98B2DCBD204AEB16007903BB /* KMNavigationBarTransition.h in Headers */ = {isa = PBXBuildFile; fileRef = 98B2DCBB204AEB16007903BB /* KMNavigationBarTransition.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		98B2DCC0204AEB16007903BB /* KMNavigationBarTransition.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 98B2DCB9204AEB16007903BB /* KMNavigationBarTransition.framework */; };
+		98B2DCC1204AEB16007903BB /* KMNavigationBarTransition.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 98B2DCB9204AEB16007903BB /* KMNavigationBarTransition.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		98B2DCD9204AEB28007903BB /* UINavigationBar+KMNavigationBarTransition_internal.h in Headers */ = {isa = PBXBuildFile; fileRef = 98B2DCC6204AEB25007903BB /* UINavigationBar+KMNavigationBarTransition_internal.h */; };
+		98B2DCDA204AEB28007903BB /* KMSwizzle.h in Headers */ = {isa = PBXBuildFile; fileRef = 98B2DCC7204AEB25007903BB /* KMSwizzle.h */; };
+		98B2DCDB204AEB28007903BB /* UINavigationBar+KMNavigationBarTransition.h in Headers */ = {isa = PBXBuildFile; fileRef = 98B2DCC8204AEB26007903BB /* UINavigationBar+KMNavigationBarTransition.h */; };
+		98B2DCDC204AEB28007903BB /* UIScrollView+KMNavigationBarTransition_internal.h in Headers */ = {isa = PBXBuildFile; fileRef = 98B2DCC9204AEB26007903BB /* UIScrollView+KMNavigationBarTransition_internal.h */; };
+		98B2DCDD204AEB28007903BB /* UIViewController+KMNavigationBarTransition.h in Headers */ = {isa = PBXBuildFile; fileRef = 98B2DCCA204AEB26007903BB /* UIViewController+KMNavigationBarTransition.h */; };
+		98B2DCDE204AEB28007903BB /* KMSwizzle.m in Sources */ = {isa = PBXBuildFile; fileRef = 98B2DCCB204AEB26007903BB /* KMSwizzle.m */; };
+		98B2DCDF204AEB28007903BB /* UINavigationController+KMNavigationBarTransition.h in Headers */ = {isa = PBXBuildFile; fileRef = 98B2DCCC204AEB26007903BB /* UINavigationController+KMNavigationBarTransition.h */; };
+		98B2DCE0204AEB28007903BB /* UINavigationController+KMNavigationBarTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 98B2DCCD204AEB26007903BB /* UINavigationController+KMNavigationBarTransition.m */; };
+		98B2DCE1204AEB28007903BB /* UIViewController+KMNavigationBarTransition_internal.h in Headers */ = {isa = PBXBuildFile; fileRef = 98B2DCCE204AEB26007903BB /* UIViewController+KMNavigationBarTransition_internal.h */; };
+		98B2DCE2204AEB28007903BB /* UIViewController+KMNavigationBarTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 98B2DCCF204AEB26007903BB /* UIViewController+KMNavigationBarTransition.m */; };
+		98B2DCE3204AEB28007903BB /* UIScrollView+KMNavigationBarTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 98B2DCD0204AEB26007903BB /* UIScrollView+KMNavigationBarTransition.m */; };
+		98B2DCE4204AEB28007903BB /* KMWeakObjectContainer.m in Sources */ = {isa = PBXBuildFile; fileRef = 98B2DCD1204AEB27007903BB /* KMWeakObjectContainer.m */; };
+		98B2DCE5204AEB28007903BB /* KMWeakObjectContainer.h in Headers */ = {isa = PBXBuildFile; fileRef = 98B2DCD2204AEB27007903BB /* KMWeakObjectContainer.h */; };
+		98B2DCE6204AEB28007903BB /* NSObject+KMNavigationBarTransition.h in Headers */ = {isa = PBXBuildFile; fileRef = 98B2DCD3204AEB27007903BB /* NSObject+KMNavigationBarTransition.h */; };
+		98B2DCE7204AEB28007903BB /* NSObject+KMNavigationBarTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 98B2DCD4204AEB27007903BB /* NSObject+KMNavigationBarTransition.m */; };
+		98B2DCE8204AEB28007903BB /* UIScrollView+KMNavigationBarTransition.h in Headers */ = {isa = PBXBuildFile; fileRef = 98B2DCD5204AEB27007903BB /* UIScrollView+KMNavigationBarTransition.h */; };
+		98B2DCE9204AEB28007903BB /* UINavigationBar+KMNavigationBarTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 98B2DCD6204AEB28007903BB /* UINavigationBar+KMNavigationBarTransition.m */; };
+		98B2DCEB204AEB28007903BB /* UINavigationController+KMNavigationBarTransition_internal.h in Headers */ = {isa = PBXBuildFile; fileRef = 98B2DCD8204AEB28007903BB /* UINavigationController+KMNavigationBarTransition_internal.h */; };
+		98B2DCED204AF096007903BB /* PlainNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98B2DCEC204AF096007903BB /* PlainNavigationController.swift */; };
 		98B4A13620487D1B002E30F5 /* DetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98B4A13420487D1B002E30F5 /* DetailTableViewCell.swift */; };
 		98B4A13720487D1B002E30F5 /* DetailTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 98B4A13520487D1B002E30F5 /* DetailTableViewCell.xib */; };
 		98BAF5952049DADD0050953A /* RestaurantDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 981769F22049D1C1004C5ED1 /* RestaurantDataSource.swift */; };
@@ -170,6 +192,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		98B2DCBE204AEB16007903BB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 98F6260A2002487600996A91 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 98B2DCB8204AEB16007903BB;
+			remoteInfo = KMNavigationBarTransition;
+		};
 		98F626292002487700996A91 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 98F6260A2002487600996A91 /* Project object */;
@@ -185,6 +214,20 @@
 			remoteInfo = CulinaryGuide;
 		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		98B2DCC5204AEB16007903BB /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				98B2DCC1204AEB16007903BB /* KMNavigationBarTransition.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		98003FDE2045B2C200FD9F25 /* CoreSpotlight.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreSpotlight.framework; path = System/Library/Frameworks/CoreSpotlight.framework; sourceTree = SDKROOT; };
@@ -228,6 +271,28 @@
 		989CE4B2200E932F00BD42D7 /* Rating.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Rating.swift; sourceTree = "<group>"; };
 		989EA00520178A9D00FB2A95 /* Playground.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; name = Playground.playground; path = CulinaryGuide/Playground.playground; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		98B2DC59204AD39D007903BB /* UIViewControllerExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewControllerExtensions.swift; sourceTree = "<group>"; };
+		98B2DCB9204AEB16007903BB /* KMNavigationBarTransition.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = KMNavigationBarTransition.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		98B2DCBB204AEB16007903BB /* KMNavigationBarTransition.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KMNavigationBarTransition.h; sourceTree = "<group>"; };
+		98B2DCBC204AEB16007903BB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		98B2DCC6204AEB25007903BB /* UINavigationBar+KMNavigationBarTransition_internal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINavigationBar+KMNavigationBarTransition_internal.h"; sourceTree = "<group>"; };
+		98B2DCC7204AEB25007903BB /* KMSwizzle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KMSwizzle.h; sourceTree = "<group>"; };
+		98B2DCC8204AEB26007903BB /* UINavigationBar+KMNavigationBarTransition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINavigationBar+KMNavigationBarTransition.h"; sourceTree = "<group>"; };
+		98B2DCC9204AEB26007903BB /* UIScrollView+KMNavigationBarTransition_internal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIScrollView+KMNavigationBarTransition_internal.h"; sourceTree = "<group>"; };
+		98B2DCCA204AEB26007903BB /* UIViewController+KMNavigationBarTransition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+KMNavigationBarTransition.h"; sourceTree = "<group>"; };
+		98B2DCCB204AEB26007903BB /* KMSwizzle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KMSwizzle.m; sourceTree = "<group>"; };
+		98B2DCCC204AEB26007903BB /* UINavigationController+KMNavigationBarTransition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINavigationController+KMNavigationBarTransition.h"; sourceTree = "<group>"; };
+		98B2DCCD204AEB26007903BB /* UINavigationController+KMNavigationBarTransition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINavigationController+KMNavigationBarTransition.m"; sourceTree = "<group>"; };
+		98B2DCCE204AEB26007903BB /* UIViewController+KMNavigationBarTransition_internal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+KMNavigationBarTransition_internal.h"; sourceTree = "<group>"; };
+		98B2DCCF204AEB26007903BB /* UIViewController+KMNavigationBarTransition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+KMNavigationBarTransition.m"; sourceTree = "<group>"; };
+		98B2DCD0204AEB26007903BB /* UIScrollView+KMNavigationBarTransition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+KMNavigationBarTransition.m"; sourceTree = "<group>"; };
+		98B2DCD1204AEB27007903BB /* KMWeakObjectContainer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KMWeakObjectContainer.m; sourceTree = "<group>"; };
+		98B2DCD2204AEB27007903BB /* KMWeakObjectContainer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KMWeakObjectContainer.h; sourceTree = "<group>"; };
+		98B2DCD3204AEB27007903BB /* NSObject+KMNavigationBarTransition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+KMNavigationBarTransition.h"; sourceTree = "<group>"; };
+		98B2DCD4204AEB27007903BB /* NSObject+KMNavigationBarTransition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+KMNavigationBarTransition.m"; sourceTree = "<group>"; };
+		98B2DCD5204AEB27007903BB /* UIScrollView+KMNavigationBarTransition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIScrollView+KMNavigationBarTransition.h"; sourceTree = "<group>"; };
+		98B2DCD6204AEB28007903BB /* UINavigationBar+KMNavigationBarTransition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINavigationBar+KMNavigationBarTransition.m"; sourceTree = "<group>"; };
+		98B2DCD8204AEB28007903BB /* UINavigationController+KMNavigationBarTransition_internal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINavigationController+KMNavigationBarTransition_internal.h"; sourceTree = "<group>"; };
+		98B2DCEC204AF096007903BB /* PlainNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlainNavigationController.swift; sourceTree = "<group>"; };
 		98B4A13420487D1B002E30F5 /* DetailTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailTableViewCell.swift; sourceTree = "<group>"; };
 		98B4A13520487D1B002E30F5 /* DetailTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailTableViewCell.xib; sourceTree = "<group>"; };
 		98C8DFB92003CE1D00BE568C /* RestaurantFilterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantFilterViewController.swift; sourceTree = "<group>"; };
@@ -264,11 +329,19 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		98B2DCB5204AEB16007903BB /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		98F6260F2002487600996A91 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				98003FDF2045B2C200FD9F25 /* CoreSpotlight.framework in Frameworks */,
+				98B2DCC0204AEB16007903BB /* KMNavigationBarTransition.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -349,6 +422,33 @@
 			path = Restaurants;
 			sourceTree = "<group>";
 		};
+		98B2DCBA204AEB16007903BB /* KMNavigationBarTransition */ = {
+			isa = PBXGroup;
+			children = (
+				98B2DCBB204AEB16007903BB /* KMNavigationBarTransition.h */,
+				98B2DCC7204AEB25007903BB /* KMSwizzle.h */,
+				98B2DCCB204AEB26007903BB /* KMSwizzle.m */,
+				98B2DCD2204AEB27007903BB /* KMWeakObjectContainer.h */,
+				98B2DCD1204AEB27007903BB /* KMWeakObjectContainer.m */,
+				98B2DCD3204AEB27007903BB /* NSObject+KMNavigationBarTransition.h */,
+				98B2DCD4204AEB27007903BB /* NSObject+KMNavigationBarTransition.m */,
+				98B2DCC6204AEB25007903BB /* UINavigationBar+KMNavigationBarTransition_internal.h */,
+				98B2DCC8204AEB26007903BB /* UINavigationBar+KMNavigationBarTransition.h */,
+				98B2DCD6204AEB28007903BB /* UINavigationBar+KMNavigationBarTransition.m */,
+				98B2DCD8204AEB28007903BB /* UINavigationController+KMNavigationBarTransition_internal.h */,
+				98B2DCCC204AEB26007903BB /* UINavigationController+KMNavigationBarTransition.h */,
+				98B2DCCD204AEB26007903BB /* UINavigationController+KMNavigationBarTransition.m */,
+				98B2DCC9204AEB26007903BB /* UIScrollView+KMNavigationBarTransition_internal.h */,
+				98B2DCD5204AEB27007903BB /* UIScrollView+KMNavigationBarTransition.h */,
+				98B2DCD0204AEB26007903BB /* UIScrollView+KMNavigationBarTransition.m */,
+				98B2DCCE204AEB26007903BB /* UIViewController+KMNavigationBarTransition_internal.h */,
+				98B2DCCA204AEB26007903BB /* UIViewController+KMNavigationBarTransition.h */,
+				98B2DCCF204AEB26007903BB /* UIViewController+KMNavigationBarTransition.m */,
+				98B2DCBC204AEB16007903BB /* Info.plist */,
+			);
+			path = KMNavigationBarTransition;
+			sourceTree = "<group>";
+		};
 		98D869652008FC3100EC909F /* Partial Modal Controller */ = {
 			isa = PBXGroup;
 			children = (
@@ -366,6 +466,7 @@
 				98F626142002487600996A91 /* CulinaryGuide */,
 				98F6262B2002487700996A91 /* CulinaryGuideTests */,
 				98F626362002487700996A91 /* CulinaryGuideUITests */,
+				98B2DCBA204AEB16007903BB /* KMNavigationBarTransition */,
 				98F626132002487600996A91 /* Products */,
 				989628D52042E0F2004C233B /* Frameworks */,
 			);
@@ -377,6 +478,7 @@
 				98F626122002487600996A91 /* CulinaryGuide.app */,
 				98F626282002487700996A91 /* CulinaryGuideTests.xctest */,
 				98F626332002487700996A91 /* CulinaryGuideUITests.xctest */,
+				98B2DCB9204AEB16007903BB /* KMNavigationBarTransition.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -464,6 +566,7 @@
 				988EC337204355870076178B /* URLExtensions.swift */,
 				983B88E6204A045C000F0641 /* StringExtensions.swift */,
 				98B2DC59204AD39D007903BB /* UIViewControllerExtensions.swift */,
+				98B2DCEC204AF096007903BB /* PlainNavigationController.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -499,7 +602,47 @@
 		};
 /* End PBXGroup section */
 
+/* Begin PBXHeadersBuildPhase section */
+		98B2DCB6204AEB16007903BB /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				98B2DCD9204AEB28007903BB /* UINavigationBar+KMNavigationBarTransition_internal.h in Headers */,
+				98B2DCE6204AEB28007903BB /* NSObject+KMNavigationBarTransition.h in Headers */,
+				98B2DCE5204AEB28007903BB /* KMWeakObjectContainer.h in Headers */,
+				98B2DCDA204AEB28007903BB /* KMSwizzle.h in Headers */,
+				98B2DCDD204AEB28007903BB /* UIViewController+KMNavigationBarTransition.h in Headers */,
+				98B2DCDF204AEB28007903BB /* UINavigationController+KMNavigationBarTransition.h in Headers */,
+				98B2DCE8204AEB28007903BB /* UIScrollView+KMNavigationBarTransition.h in Headers */,
+				98B2DCDC204AEB28007903BB /* UIScrollView+KMNavigationBarTransition_internal.h in Headers */,
+				98B2DCBD204AEB16007903BB /* KMNavigationBarTransition.h in Headers */,
+				98B2DCDB204AEB28007903BB /* UINavigationBar+KMNavigationBarTransition.h in Headers */,
+				98B2DCEB204AEB28007903BB /* UINavigationController+KMNavigationBarTransition_internal.h in Headers */,
+				98B2DCE1204AEB28007903BB /* UIViewController+KMNavigationBarTransition_internal.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
 /* Begin PBXNativeTarget section */
+		98B2DCB8204AEB16007903BB /* KMNavigationBarTransition */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 98B2DCC2204AEB16007903BB /* Build configuration list for PBXNativeTarget "KMNavigationBarTransition" */;
+			buildPhases = (
+				98B2DCB4204AEB16007903BB /* Sources */,
+				98B2DCB5204AEB16007903BB /* Frameworks */,
+				98B2DCB6204AEB16007903BB /* Headers */,
+				98B2DCB7204AEB16007903BB /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = KMNavigationBarTransition;
+			productName = KMNavigationBarTransition;
+			productReference = 98B2DCB9204AEB16007903BB /* KMNavigationBarTransition.framework */;
+			productType = "com.apple.product-type.framework";
+		};
 		98F626112002487600996A91 /* CulinaryGuide */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 98F6263C2002487700996A91 /* Build configuration list for PBXNativeTarget "CulinaryGuide" */;
@@ -507,10 +650,12 @@
 				98F6260E2002487600996A91 /* Sources */,
 				98F6260F2002487600996A91 /* Frameworks */,
 				98F626102002487600996A91 /* Resources */,
+				98B2DCC5204AEB16007903BB /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				98B2DCBF204AEB16007903BB /* PBXTargetDependency */,
 			);
 			name = CulinaryGuide;
 			productName = CulinaryGuide;
@@ -564,6 +709,10 @@
 				LastUpgradeCheck = 0930;
 				ORGANIZATIONNAME = "Benke Zsolt";
 				TargetAttributes = {
+					98B2DCB8204AEB16007903BB = {
+						CreatedOnToolsVersion = 9.3;
+						ProvisioningStyle = Automatic;
+					};
 					98F626112002487600996A91 = {
 						CreatedOnToolsVersion = 9.2;
 						LastSwiftMigration = 0930;
@@ -597,11 +746,19 @@
 				98F626112002487600996A91 /* CulinaryGuide */,
 				98F626272002487700996A91 /* CulinaryGuideTests */,
 				98F626322002487700996A91 /* CulinaryGuideUITests */,
+				98B2DCB8204AEB16007903BB /* KMNavigationBarTransition */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		98B2DCB7204AEB16007903BB /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		98F626102002487600996A91 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -639,6 +796,20 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		98B2DCB4204AEB16007903BB /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				98B2DCE7204AEB28007903BB /* NSObject+KMNavigationBarTransition.m in Sources */,
+				98B2DCE2204AEB28007903BB /* UIViewController+KMNavigationBarTransition.m in Sources */,
+				98B2DCE4204AEB28007903BB /* KMWeakObjectContainer.m in Sources */,
+				98B2DCE9204AEB28007903BB /* UINavigationBar+KMNavigationBarTransition.m in Sources */,
+				98B2DCE0204AEB28007903BB /* UINavigationController+KMNavigationBarTransition.m in Sources */,
+				98B2DCE3204AEB28007903BB /* UIScrollView+KMNavigationBarTransition.m in Sources */,
+				98B2DCDE204AEB28007903BB /* KMSwizzle.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		98F6260E2002487600996A91 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -656,6 +827,7 @@
 				98550AA8201928AC006F53A2 /* RestaurantFilterState.swift in Sources */,
 				9847A6F4200A4E1200A17247 /* HomeCollectionViewController.swift in Sources */,
 				98D869692008FC4300EC909F /* PartialModalPresentationController.swift in Sources */,
+				98B2DCED204AF096007903BB /* PlainNavigationController.swift in Sources */,
 				98F6266020024CA900996A91 /* APIResource.swift in Sources */,
 				9892E81B200A3BC1007B7033 /* IconTableViewCell.swift in Sources */,
 				98D8698320094E2300EC909F /* UIImageExtensions.swift in Sources */,
@@ -809,6 +981,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		98B2DCBF204AEB16007903BB /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 98B2DCB8204AEB16007903BB /* KMNavigationBarTransition */;
+			targetProxy = 98B2DCBE204AEB16007903BB /* PBXContainerItemProxy */;
+		};
 		98F6262A2002487700996A91 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 98F626112002487600996A91 /* CulinaryGuide */;
@@ -841,6 +1018,58 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		98B2DCC3204AEB16007903BB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = WBFWJRBGVH;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = KMNavigationBarTransition/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.enfys.KMNavigationBarTransition;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		98B2DCC4204AEB16007903BB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = WBFWJRBGVH;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = KMNavigationBarTransition/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.enfys.KMNavigationBarTransition;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
 		98F6263A2002487700996A91 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -962,10 +1191,6 @@
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = WBFWJRBGVH;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/Carthage/Build/iOS",
-				);
 				INFOPLIST_FILE = CulinaryGuide/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.enfys.RestaurantsGuide;
@@ -985,10 +1210,6 @@
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = WBFWJRBGVH;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/Carthage/Build/iOS",
-				);
 				INFOPLIST_FILE = CulinaryGuide/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.enfys.RestaurantsGuide;
@@ -1077,6 +1298,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		98B2DCC2204AEB16007903BB /* Build configuration list for PBXNativeTarget "KMNavigationBarTransition" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				98B2DCC3204AEB16007903BB /* Debug */,
+				98B2DCC4204AEB16007903BB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		98F6260D2002487600996A91 /* Build configuration list for PBXProject "CulinaryGuide" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
