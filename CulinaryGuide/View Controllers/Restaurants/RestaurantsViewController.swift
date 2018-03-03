@@ -47,6 +47,7 @@ class RestaurantsViewController: UIViewController {
         searchResultsController.tableView.dataSource = self
         searchResultsController.tableView.delegate = self
         searchResultsController.tableView.contentInsetAdjustmentBehavior = .never
+        searchResultsController.tableView.tableFooterView = UIView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 0))
         
         setSearchBarText()
         

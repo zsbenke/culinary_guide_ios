@@ -4,6 +4,7 @@ class RestaurantsTableViewController: UITableViewController {
     var restaurants = [Restaurant?]() {
         didSet {
             DispatchQueue.main.async {
+                self.tableView.tableFooterView = UIView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 0))
                 self.tableView.reloadData()
             }
         }
