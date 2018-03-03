@@ -15,15 +15,46 @@ struct RestaurantFacet: Facet, Codable {
     var column: String?
     var value: String?
     var icon: UIImage? {
-        if column == "region" && Localization.currentCountry == Localization.Country.Hungary {
-            return #imageLiteral(resourceName: "Facet Region Hungary")
+        if column == "region" && Localization.currentCountry == Localization.Country.CentralEurope {
+            return #imageLiteral(resourceName: "Facet Country Europe")
         }
+
+        if column == "region" && Localization.currentCountry == Localization.Country.Hungary {
+            return #imageLiteral(resourceName: "Facet Country Hungary")
+        }
+
+        if column == "region" && Localization.currentCountry == Localization.Country.CzechRepublic {
+            return #imageLiteral(resourceName: "Facet Country Czech Republic")
+        }
+
+        if column == "region" && Localization.currentCountry == Localization.Country.Slovakia {
+            return #imageLiteral(resourceName: "Facet Country Slovakia")
+        }
+
+        if column == "region" && Localization.currentCountry == Localization.Country.Romania {
+            return #imageLiteral(resourceName: "Facet Country Romania")
+        }
+
+        if column == "region" && Localization.currentCountry == Localization.Country.Serbia {
+            return #imageLiteral(resourceName: "Facet Country Serbia")
+        }
+
+        if column == "region" && Localization.currentCountry == Localization.Country.Croatia {
+            return #imageLiteral(resourceName: "Facet Country Croatia")
+        }
+
+        if column == "region" && Localization.currentCountry == Localization.Country.Slovenia {
+            return #imageLiteral(resourceName: "Facet Country Slovenia")
+        }
+
         if column == "city" || column == "region" {
             return #imageLiteral(resourceName: "Facet Pin")
         }
+
         if column == "title" {
-            return #imageLiteral(resourceName: "Facet Restaurant")
+            return #imageLiteral(resourceName: "Facet Menu Price")
         }
+        
         if  ["open_on_sunday",
              "open_on_monday",
              "open_on_tuesday",
@@ -33,9 +64,11 @@ struct RestaurantFacet: Facet, Codable {
              "open_on_saturday"].contains(column) {
             return #imageLiteral(resourceName: "Facet Open")
         }
+
         if ["def_people_one_name", "def_people_two_name", "def_people_three_name"].contains(column) {
             return #imageLiteral(resourceName: "Facet Chef")
         }
+
         return #imageLiteral(resourceName: "Facet Magnifiying Glass")
     }
     var homeScreenSection: RestaurantHomeScreenSection {
