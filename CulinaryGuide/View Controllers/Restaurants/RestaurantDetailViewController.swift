@@ -23,6 +23,25 @@ class RestaurantDetailViewController: UITableViewController {
     }
     private let fadeAnimation = CATransition()
 
+    lazy var previewActions: [UIPreviewActionItem] = {
+        let openAddressTitle = NSLocalizedString("Megnyitás a Térképekkel", comment: "3D touch action ami megnyitja az éttermet a Térképek alkalmazásban.")
+        let openAddressAction = UIPreviewAction(title: openAddressTitle, style: .default) { (action, viewController) in
+            self.openAddress()
+        }
+
+        let callTitle = NSLocalizedString("Hívás telefonon", comment: "3D touch action ami felhívja az éttermet.")
+        let callAction = UIPreviewAction(title: callTitle, style: .default) { (action, viewController) in
+            self.call()
+        }
+
+        let openWebsiteTitle = NSLocalizedString("Webhely felkeresése", comment: "3D touch action ami megnyitja az éttermet a Térképek alkalmazásban.")
+        let openWebsiteAction = UIPreviewAction(title: openWebsiteTitle, style: .default) { (action, viewController) in
+            self.openWebsite()
+        }
+
+        return [openAddressAction, callAction, openWebsiteAction]
+    }()
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -38,6 +57,10 @@ class RestaurantDetailViewController: UITableViewController {
         fadeAnimation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
         fadeAnimation.type = kCATransitionFade
         fadeAnimation.duration = 0.5
+    }
+
+    override var previewActionItems: [UIPreviewActionItem] {
+        return previewActions
     }
     
     override func didReceiveMemoryWarning() {
@@ -61,20 +84,15 @@ extension RestaurantDetailViewController {
 
         if section == RestaurantDataSource.Section.details, let detailRow = dataSource?.detailRows[indexPath.row] {
             if detailRow.column == .address {
-                guard let address = restaurant?.address?.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) else { return }
-                guard let mapsURL = URL(string: "http://maps.apple.com/?address=\(address)") else { return }
-                UIApplication.shared.open(mapsURL, options: [:], completionHandler: nil)
+                openAddress()
             }
 
             if detailRow.column == .phone {
-                guard let phone = restaurant?.phone?.filter({ "0123456789".contains($0) }) else { return }
-                guard let phoneURL = URL(string: "tel:\(phone)") else { return }
-                UIApplication.shared.open(phoneURL, options: [:], completionHandler: nil)
+                call()
             }
 
             if detailRow.column == .website {
-                guard let website = restaurant?.website else { return }
-                UIApplication.shared.open(website, options: [:], completionHandler: nil)
+                openWebsite()
             }
 
             if detailRow.column == .facebookPage {
@@ -327,5 +345,22 @@ private extension RestaurantDetailViewController {
 
     func stopUserActivity() {
         userActivity?.invalidate()
+    }
+
+    func openAddress() {
+        guard let address = restaurant?.address?.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) else { return }
+        guard let mapsURL = URL(string: "http://maps.apple.com/?address=\(address)") else { return }
+        UIApplication.shared.open(mapsURL, options: [:], completionHandler: nil)
+    }
+
+    func openWebsite() {
+        guard let website = restaurant?.website else { return }
+        UIApplication.shared.open(website, options: [:], completionHandler: nil)
+    }
+
+    func call() {
+        guard let phone = restaurant?.phone?.filter({ "0123456789".contains($0) }) else { return }
+        guard let phoneURL = URL(string: "tel:\(phone)") else { return }
+        UIApplication.shared.open(phoneURL, options: [:], completionHandler: nil)
     }
 }

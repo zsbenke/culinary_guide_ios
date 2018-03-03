@@ -17,7 +17,8 @@ class RestaurantsTableViewController: UITableViewController {
         let tableCellNib = UINib(nibName: "IconTableViewCell", bundle: nil)
         tableView.register(tableCellNib, forCellReuseIdentifier: "Cell")
 
-        registerForPreviewing(with: self, sourceView: tableView)
+
+        registerForPreviewing(with: self, sourceView: view)
     }
 
     override func didReceiveMemoryWarning() {
@@ -101,6 +102,6 @@ extension RestaurantsTableViewController: UIViewControllerPreviewingDelegate {
     }
 
     func previewingContext(_ previewingContext: UIViewControllerPreviewing, commit viewControllerToCommit: UIViewController) {
-        self.show(viewControllerToCommit, sender: self)
+        show(viewControllerToCommit, sender: self)
     }
 }
