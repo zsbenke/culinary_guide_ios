@@ -1,4 +1,5 @@
 import UIKit
+import SafariServices
 
 class SplashViewController: UIViewController {
     var country = Localization.currentCountry {
@@ -74,6 +75,10 @@ class SplashViewController: UIViewController {
         }
 
         dismiss(animated: true, completion: nil)
+    }
+
+    @IBAction func presentAbout(_ sender: UIButton) {
+        presentAboutViewController()
     }
 
     // MARK: - Segues

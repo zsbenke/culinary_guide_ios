@@ -74,6 +74,10 @@ class HomeCollectionViewController: UICollectionViewController {
         Restaurant.indexItems()
     }
     
+    @IBAction func presentAbout(_ sender: Any) {
+        presentAboutViewController()
+    }
+
     // MARK: - Segues
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

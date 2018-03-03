@@ -97,6 +97,9 @@
 		989CE4B0200E8E0000BD42D7 /* RestaurantRating.swift in Sources */ = {isa = PBXBuildFile; fileRef = 989CE4AE200E8E0000BD42D7 /* RestaurantRating.swift */; };
 		989CE4B1200E901600BD42D7 /* RestaurantRating.swift in Sources */ = {isa = PBXBuildFile; fileRef = 989CE4AE200E8E0000BD42D7 /* RestaurantRating.swift */; };
 		989CE4B3200E932F00BD42D7 /* Rating.swift in Sources */ = {isa = PBXBuildFile; fileRef = 989CE4B2200E932F00BD42D7 /* Rating.swift */; };
+		98B2DC5A204AD39D007903BB /* UIViewControllerExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98B2DC59204AD39D007903BB /* UIViewControllerExtensions.swift */; };
+		98B2DC5B204AD3F4007903BB /* UIViewControllerExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98B2DC59204AD39D007903BB /* UIViewControllerExtensions.swift */; };
+		98B2DC5C204AD3F4007903BB /* UIViewControllerExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98B2DC59204AD39D007903BB /* UIViewControllerExtensions.swift */; };
 		98B4A13620487D1B002E30F5 /* DetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98B4A13420487D1B002E30F5 /* DetailTableViewCell.swift */; };
 		98B4A13720487D1B002E30F5 /* DetailTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 98B4A13520487D1B002E30F5 /* DetailTableViewCell.xib */; };
 		98BAF5952049DADD0050953A /* RestaurantDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 981769F22049D1C1004C5ED1 /* RestaurantDataSource.swift */; };
@@ -224,6 +227,7 @@
 		989CE4AE200E8E0000BD42D7 /* RestaurantRating.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantRating.swift; sourceTree = "<group>"; };
 		989CE4B2200E932F00BD42D7 /* Rating.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Rating.swift; sourceTree = "<group>"; };
 		989EA00520178A9D00FB2A95 /* Playground.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; name = Playground.playground; path = CulinaryGuide/Playground.playground; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		98B2DC59204AD39D007903BB /* UIViewControllerExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewControllerExtensions.swift; sourceTree = "<group>"; };
 		98B4A13420487D1B002E30F5 /* DetailTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailTableViewCell.swift; sourceTree = "<group>"; };
 		98B4A13520487D1B002E30F5 /* DetailTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailTableViewCell.xib; sourceTree = "<group>"; };
 		98C8DFB92003CE1D00BE568C /* RestaurantFilterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantFilterViewController.swift; sourceTree = "<group>"; };
@@ -459,6 +463,7 @@
 				981E84CA204211E400835C47 /* CAGradientLayerExtensions.swift */,
 				988EC337204355870076178B /* URLExtensions.swift */,
 				983B88E6204A045C000F0641 /* StringExtensions.swift */,
+				98B2DC59204AD39D007903BB /* UIViewControllerExtensions.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -655,6 +660,7 @@
 				9892E81B200A3BC1007B7033 /* IconTableViewCell.swift in Sources */,
 				98D8698320094E2300EC909F /* UIImageExtensions.swift in Sources */,
 				9899364F2040CF0C003B94C2 /* DetailTitleView.swift in Sources */,
+				98B2DC5A204AD39D007903BB /* UIViewControllerExtensions.swift in Sources */,
 				98F6264B20024BA500996A91 /* API.swift in Sources */,
 				9847A70E200AB66300A17247 /* AlignedLeftFlowLayout.swift in Sources */,
 				984B7129200F80A800822ADF /* Environment.swift in Sources */,
@@ -712,6 +718,7 @@
 				984B7123200F7D1B00822ADF /* PointOfInterest.swift in Sources */,
 				98D8696A2008FC4300EC909F /* PartialModalPresentationController.swift in Sources */,
 				984DEA542040A2EC00E1A0EB /* Email.swift in Sources */,
+				98B2DC5C204AD3F4007903BB /* UIViewControllerExtensions.swift in Sources */,
 				9892E81C200A3BC1007B7033 /* IconTableViewCell.swift in Sources */,
 				98D8698420094E2300EC909F /* UIImageExtensions.swift in Sources */,
 				98F6264C20024BA500996A91 /* API.swift in Sources */,
@@ -792,6 +799,7 @@
 				98F6266220024CA900996A91 /* APIResource.swift in Sources */,
 				98F6265E20024C7100996A91 /* AsyncOperation.swift in Sources */,
 				984DEA552040A2EC00E1A0EB /* Email.swift in Sources */,
+				98B2DC5B204AD3F4007903BB /* UIViewControllerExtensions.swift in Sources */,
 				9847A6FC200A501D00A17247 /* TagCollectionViewCell.swift in Sources */,
 				98F6265120024BE400996A91 /* URLQueryToken.swift in Sources */,
 				98D8696E2008FC4300EC909F /* PartialModalPresentationAnimator.swift in Sources */,
