@@ -16,7 +16,7 @@ class RestaurantDetailViewController: UITableViewController {
     private var headerView: DetailTitleView!
     private var headerViewHeight: CGFloat {
         let statusBarHeight = UIApplication.shared.statusBarFrame.height
-        let baseHeight: CGFloat = 340.0
+        let baseHeight: CGFloat = 380.0
         guard statusBarHeight > 20 else { return baseHeight }
         return baseHeight + statusBarHeight
     }
@@ -40,12 +40,12 @@ class RestaurantDetailViewController: UITableViewController {
         super.didReceiveMemoryWarning()
     }
 
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
+    override func viewWillAppear(_ animated: Bool) {
+        navigationController?.setToolbarHidden(true, animated: false)
+    }
 
-        if let navigationController = self.navigationController as? WhiteNavigationViewController {
-            navigationController.state = .transparent
-        }
+    override func viewWillDisappear(_ animated: Bool) {
+        navigationController?.setToolbarHidden(false, animated: false)
     }
 }
 
@@ -136,9 +136,9 @@ extension RestaurantDetailViewController: NSUserActivityDelegate {
 }
 
 private extension RestaurantDetailViewController {
-    enum NavigationBarAppearance {
-        case `default`
-        case transparent
+    enum NavigationBarTitleState {
+        case titleOff
+        case titleOn
     }
 
     func configureView() {
@@ -193,7 +193,6 @@ private extension RestaurantDetailViewController {
 
                             UIView.animate(withDuration: 0.5, animations: {
                                 self.headerView.heroImageView.image = self.headerImage
-                                self.headerView.heroImageGradient.alpha = 1
                             })
                             self.updateHeaderView()
                         }
@@ -210,47 +209,26 @@ private extension RestaurantDetailViewController {
         if tableView.contentOffset.y <  -headerViewHeight {
             headerViewFrame.origin.y = tableView.contentOffset.y
             headerViewFrame.size.height = -tableView.contentOffset.y
-
-            if headerImage != nil {
-                let heroGradientAlpha = (420 + tableView.contentOffset.y) / 100
-
-                if heroGradientAlpha >= 0 {
-                    headerView.heroImageGradient.alpha = heroGradientAlpha
-                    self.navigationController?.navigationBar.tintColor = UIColor(red: 1, green: 1, blue: 1, alpha: heroGradientAlpha)
-                }
-            }
         } else if tableView.contentOffset.y < -70 {
-            switchNavigationBarAppearance(to: .transparent, updateTitle: true)
+            switchNavigationBar(to: .titleOff)
         } else {
-            switchNavigationBarAppearance(to: .default, updateTitle: true)
+            switchNavigationBar(to: .titleOn)
         }
 
         headerView.frame = headerViewFrame
     }
 
-    func switchNavigationBarAppearance(to appearance: NavigationBarAppearance, updateTitle: Bool = false) {
-        switch appearance {
-        case .default:
+    func switchNavigationBar(to titleState: NavigationBarTitleState) {
+        switch titleState {
+        case .titleOn:
             navigationController?.navigationBar.layer.add(fadeAnimation, forKey: nil)
             UIView.animate(withDuration: 0.4, animations: {
-                if let navigationController = self.navigationController as? WhiteNavigationViewController {
-                    navigationController.state = .default
-
-                    if updateTitle {
-                        navigationController.navigationBar.topItem?.title = self.restaurant?.title
-                    }
-                }
+                self.navigationController?.navigationBar.topItem?.title = self.restaurant?.title
             }, completion: nil)
-        case .transparent:
+        case .titleOff:
             navigationController?.navigationBar.layer.add(fadeAnimation, forKey: nil)
             UIView.animate(withDuration: 0.4, animations: {
-                if let navigationController = self.navigationController as? WhiteNavigationViewController {
-                    navigationController.state = .transparent
-
-                    if updateTitle {
-                        navigationController.navigationBar.topItem?.title = ""
-                    }
-                }
+                self.navigationController?.navigationBar.topItem?.title = ""
             }, completion: nil)
         }
     }

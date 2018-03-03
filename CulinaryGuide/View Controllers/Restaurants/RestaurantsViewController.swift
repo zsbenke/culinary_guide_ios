@@ -7,7 +7,7 @@ class RestaurantsViewController: UIViewController {
 
     let searchResultsController = UITableViewController.init()
     var searchController: UISearchController?
-    var focusSearchBarOnLoad = false
+    var presentSearchController = false
     var restaurantFacets = [RestaurantFacet?]()
     var restaurants = [Restaurant?]()
     var initialRestaurants = [Restaurant?]()
@@ -39,11 +39,10 @@ class RestaurantsViewController: UIViewController {
         searchController?.delegate = self
         searchController?.searchBar.delegate = self
 
-        navigationItem.searchController = searchController
-        navigationItem.hidesSearchBarWhenScrolling = false
-
         searchResultsController.tableView.dataSource = self
         searchResultsController.tableView.delegate = self
+        searchResultsController.tableView.contentInset = UIEdgeInsets(top: -UIApplication.shared.statusBarFrame.height, left: 0, bottom: 0, right: 0)
+        searchResultsController.tableView.contentOffset = CGPoint(x: 0, y: -UIApplication.shared.statusBarFrame.height)
         
         setSearchBarText()
         
@@ -58,8 +57,14 @@ class RestaurantsViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
 
-        if focusSearchBarOnLoad {
-            searchController?.isActive = true
+        if presentSearchController {
+            search(self)
+        }
+    }
+
+    @IBAction func search(_ sender: Any) {
+        if let searchController = searchController {
+            present(searchController, animated: true, completion: nil)
         }
     }
 
@@ -125,16 +130,7 @@ class RestaurantsViewController: UIViewController {
 
 // MARK: - Searching
 
-extension RestaurantsViewController: UISearchControllerDelegate {
-    func didPresentSearchController(_ searchController: UISearchController) {
-        DispatchQueue.main.async {
-            if self.focusSearchBarOnLoad {
-                self.searchController?.searchBar.becomeFirstResponder()
-                self.focusSearchBarOnLoad = false
-            }
-        }
-    }
-}
+extension RestaurantsViewController: UISearchControllerDelegate {}
 
 extension RestaurantsViewController: UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {

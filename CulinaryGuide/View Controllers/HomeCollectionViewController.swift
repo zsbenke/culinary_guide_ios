@@ -49,6 +49,16 @@ class HomeCollectionViewController: UICollectionViewController {
         
         self.sizingCell = ((tagCollectionCellNib.instantiate(withOwner: nil, options: nil) as Array).first as! TagCollectionViewCell)
         
+        configureView()
+    }
+    
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+    }
+
+    func configureView() {
+        guard Localization.currentCountry != Localization.Country.Unknown else { return performSegue(withIdentifier: "chooseCountry", sender: self) }
+
         let currentCountry = Localization.currentCountry.name
         self.navigationItem.title = "\(currentCountry)"
         self.navigationController?.navigationBar.prefersLargeTitles = true
@@ -64,10 +74,6 @@ class HomeCollectionViewController: UICollectionViewController {
         Restaurant.indexItems()
     }
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-    }
-    
     // MARK: - Segues
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -76,7 +82,7 @@ class HomeCollectionViewController: UICollectionViewController {
             restaurantsViewController.queryTokens = selectedQueryTokens
         } else if segue.identifier == "focusOnSearchBar" {
             let restaurantsViewController = segue.destination as! RestaurantsViewController
-            restaurantsViewController.focusSearchBarOnLoad = true
+            restaurantsViewController.presentSearchController = true
         }
     }
     

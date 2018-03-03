@@ -11,7 +11,6 @@ import UIKit
 class DetailTitleView: UIView {
     @IBOutlet var contentView: UIView!
     @IBOutlet weak var heroImageView: UIImageView!
-    @IBOutlet weak var heroImageGradient: UIImageView!
     @IBOutlet weak var ratingContainerView: UIView!
     @IBOutlet weak var ratingView: UIView!
     @IBOutlet weak var yearLabel: UILabel!

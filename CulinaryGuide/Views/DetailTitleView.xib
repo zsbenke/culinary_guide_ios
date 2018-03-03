@@ -14,7 +14,6 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="DetailTitleView" customModule="CulinaryGuide" customModuleProvider="target">
             <connections>
                 <outlet property="contentView" destination="LZi-k1-Exk" id="eV6-GZ-VbU"/>
-                <outlet property="heroImageGradient" destination="nwa-vW-wJg" id="yCg-Kp-fSQ"/>
                 <outlet property="heroImageView" destination="Z9E-hB-e9P" id="2Uy-1G-9H0"/>
                 <outlet property="ratingContainerView" destination="osB-rK-ymF" id="4Xm-KT-svx"/>
                 <outlet property="ratingView" destination="ZQk-IB-ks2" id="hL4-D8-mnI"/>
@@ -32,12 +31,6 @@
                     <color key="backgroundColor" name="Body Text"/>
                     <constraints>
                         <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="60" id="XgQ-fo-bpw"/>
-                    </constraints>
-                </imageView>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Hero Image Gradient" translatesAutoresizingMaskIntoConstraints="NO" id="nwa-vW-wJg">
-                    <rect key="frame" x="0.0" y="0.0" width="454" height="279"/>
-                    <constraints>
-                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="60" id="LJ2-u4-z0k"/>
                     </constraints>
                 </imageView>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="osB-rK-ymF">
@@ -110,16 +103,12 @@
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
-                <constraint firstAttribute="bottom" secondItem="nwa-vW-wJg" secondAttribute="bottom" constant="110" id="0tA-5e-git"/>
                 <constraint firstItem="osB-rK-ymF" firstAttribute="top" secondItem="mPy-zU-UD5" secondAttribute="bottom" constant="-151" id="0tO-NH-qGh"/>
                 <constraint firstItem="dyt-Is-pmh" firstAttribute="leading" secondItem="mPy-zU-UD5" secondAttribute="leading" constant="16" id="61V-eC-cgv"/>
                 <constraint firstItem="mPy-zU-UD5" firstAttribute="trailing" secondItem="dyt-Is-pmh" secondAttribute="trailing" constant="16" id="DZF-EC-Xpa"/>
-                <constraint firstItem="nwa-vW-wJg" firstAttribute="trailing" secondItem="LZi-k1-Exk" secondAttribute="trailing" id="Ena-ym-LTv"/>
                 <constraint firstAttribute="bottom" secondItem="Z9E-hB-e9P" secondAttribute="bottom" constant="110" id="HEY-K7-c1e"/>
                 <constraint firstItem="Z9E-hB-e9P" firstAttribute="leading" secondItem="LZi-k1-Exk" secondAttribute="leading" id="hnf-ik-vbj"/>
                 <constraint firstItem="Z9E-hB-e9P" firstAttribute="top" secondItem="LZi-k1-Exk" secondAttribute="top" id="kpu-pI-3nT"/>
-                <constraint firstItem="nwa-vW-wJg" firstAttribute="leading" secondItem="LZi-k1-Exk" secondAttribute="leading" id="kzv-FH-yaO"/>
-                <constraint firstItem="nwa-vW-wJg" firstAttribute="top" secondItem="LZi-k1-Exk" secondAttribute="top" id="puW-67-Ir3"/>
                 <constraint firstItem="osB-rK-ymF" firstAttribute="centerX" secondItem="LZi-k1-Exk" secondAttribute="centerX" id="s2L-vk-77T"/>
                 <constraint firstItem="Z9E-hB-e9P" firstAttribute="trailing" secondItem="LZi-k1-Exk" secondAttribute="trailing" id="w3q-9e-x0a"/>
                 <constraint firstItem="dyt-Is-pmh" firstAttribute="top" relation="greaterThanOrEqual" secondItem="osB-rK-ymF" secondAttribute="bottom" constant="16" id="ybn-hf-VY4"/>
@@ -133,7 +122,6 @@
         </view>
     </objects>
     <resources>
-        <image name="Hero Image Gradient" width="16" height="230"/>
         <namedColor name="Body Text">
             <color red="0.0" green="0.25098039215686274" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

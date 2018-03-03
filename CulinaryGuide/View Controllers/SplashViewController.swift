@@ -63,7 +63,12 @@ class SplashViewController: UIViewController {
     }
 
     func loadRestaurantsForSelectedCountry() {
-        performSegue(withIdentifier: "loadRestaurantsForCountry", sender: self)
+        guard let presentingViewController = self.presentingViewController as? UINavigationController else { return }
+        presentingViewController.popToRootViewController(animated: true)
+        if let homeCollectionViewController = presentingViewController.viewControllers.filter({ $0 is HomeCollectionViewController }).first as? HomeCollectionViewController {
+            homeCollectionViewController.configureView()
+        }
+        dismiss(animated: true, completion: nil)
     }
 
     // MARK: - Segues

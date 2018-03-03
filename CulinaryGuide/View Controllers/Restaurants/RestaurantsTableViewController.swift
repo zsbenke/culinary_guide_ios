@@ -36,7 +36,7 @@ class RestaurantsTableViewController: UITableViewController {
                 if let restaurant = restaurants[indexPath.row] {
                     let controller = segue.destination as! RestaurantDetailViewController
                     controller.restaurantID = restaurant.id
-                    restaurantsViewController.focusSearchBarOnLoad = false
+                    restaurantsViewController.presentSearchController = false
                 }
             }
         } else if segue.identifier == "showFilter" {

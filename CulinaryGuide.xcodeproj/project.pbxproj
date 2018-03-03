@@ -80,9 +80,6 @@
 		986E8AD5200E6FBF00BA57AA /* RestaurantRatingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 986E8AD4200E6FBF00BA57AA /* RestaurantRatingTests.swift */; };
 		986E8AD6200E708400BA57AA /* RatingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 986E8AD1200E6EA200BA57AA /* RatingView.swift */; };
 		986E8AD7200E72E700BA57AA /* RatingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 986E8AD1200E6EA200BA57AA /* RatingView.swift */; };
-		988EC327204301EF0076178B /* WhiteNavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 988EC326204301EF0076178B /* WhiteNavigationViewController.swift */; };
-		988EC328204304FB0076178B /* WhiteNavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 988EC326204301EF0076178B /* WhiteNavigationViewController.swift */; };
-		988EC329204304FB0076178B /* WhiteNavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 988EC326204301EF0076178B /* WhiteNavigationViewController.swift */; };
 		988EC338204355870076178B /* URLExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 988EC337204355870076178B /* URLExtensions.swift */; };
 		9892E80F2009530A007B7033 /* BrandColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9892E80E2009530A007B7033 /* BrandColor.swift */; };
 		9892E81320095728007B7033 /* UserDefault.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9892E81220095728007B7033 /* UserDefault.swift */; };
@@ -217,7 +214,6 @@
 		98550AA7201928AC006F53A2 /* RestaurantFilterState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = RestaurantFilterState.swift; path = CulinaryGuide/Models/Restaurants/RestaurantFilterState.swift; sourceTree = SOURCE_ROOT; };
 		986E8AD1200E6EA200BA57AA /* RatingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatingView.swift; sourceTree = "<group>"; };
 		986E8AD4200E6FBF00BA57AA /* RestaurantRatingTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantRatingTests.swift; sourceTree = "<group>"; };
-		988EC326204301EF0076178B /* WhiteNavigationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhiteNavigationViewController.swift; sourceTree = "<group>"; };
 		988EC337204355870076178B /* URLExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLExtensions.swift; sourceTree = "<group>"; };
 		9892E80E2009530A007B7033 /* BrandColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrandColor.swift; sourceTree = "<group>"; };
 		9892E81220095728007B7033 /* UserDefault.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefault.swift; sourceTree = "<group>"; };
@@ -441,7 +437,6 @@
 		98F6264820024A3700996A91 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				988EC326204301EF0076178B /* WhiteNavigationViewController.swift */,
 				98D869612008FBE300EC909F /* SplashViewController.swift */,
 				98D8694C2007F9C900EC909F /* CountriesViewController.swift */,
 				9847A6F3200A4E1200A17247 /* HomeCollectionViewController.swift */,
@@ -694,7 +689,6 @@
 				98F626162002487600996A91 /* AppDelegate.swift in Sources */,
 				98D8696C2008FC4300EC909F /* PartialModalPresentationAnimator.swift in Sources */,
 				981E84CB204211E400835C47 /* CAGradientLayerExtensions.swift in Sources */,
-				988EC327204301EF0076178B /* WhiteNavigationViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -736,7 +730,6 @@
 				98135E382005592500AB64C4 /* RestaurantsMapViewController.swift in Sources */,
 				98F6265820024C2000996A91 /* Router.swift in Sources */,
 				98F6262D2002487700996A91 /* CulinaryGuideTests.swift in Sources */,
-				988EC328204304FB0076178B /* WhiteNavigationViewController.swift in Sources */,
 				983A7FF02003E66C00512ED5 /* RestaurantsViewController.swift in Sources */,
 				9847CAE5202E512C00FAC5B6 /* RestaurantRouterTests.swift in Sources */,
 				984B711D200F7D1B00822ADF /* Localization.swift in Sources */,
@@ -758,7 +751,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				98F6267120024ED800996A91 /* Restaurant.swift in Sources */,
-				988EC329204304FB0076178B /* WhiteNavigationViewController.swift in Sources */,
 				98E2D1C82029FA9200B6D480 /* CALayerExtensions.swift in Sources */,
 				98D8694F2007F9C900EC909F /* CountriesViewController.swift in Sources */,
 				984B711C200F7D1B00822ADF /* Localization.swift in Sources */,

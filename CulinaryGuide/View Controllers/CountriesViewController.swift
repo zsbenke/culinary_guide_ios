@@ -10,9 +10,7 @@ class CountriesViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.splashViewController = presentingViewController?.childViewControllers.filter {
-            $0 is SplashViewController
-            }.first as? SplashViewController
+        self.splashViewController = presentingViewController as? SplashViewController
         UserDefaults.standard.set("\(Localization.Country.Unknown)", forKey: "\(UserDefaultKey.country)")
     }
 
