@@ -26,10 +26,6 @@ class RestaurantsViewController: UIViewController {
                 filterBarButton.image = #imageLiteral(resourceName: "Toolbar Filter Icon Filled")
             }
 
-            print(queryTokens)
-
-            print("éttermek betöltése")
-
             loadRestaurants()
         }
     }
@@ -39,7 +35,7 @@ class RestaurantsViewController: UIViewController {
 
         definesPresentationContext = true
 
-        loadRestaurantsText = restaurantsCountLabel.text
+        restaurantsCountLabel.text = NSLocalizedString("Nincs étterem", comment: "Az étterem lista eszköztár státusz szövege, amikor nincs étterem találat.")
         
         // Setup searchBar
         searchController = UISearchController(searchResultsController: searchResultsController)
@@ -76,6 +72,18 @@ class RestaurantsViewController: UIViewController {
 
         initialRestaurants.removeAll()
         queryTokens.removeAll()
+
+        setSearchBarText()
+
+        let restaurantsTableViewController = childViewControllers.filter {
+            $0 is RestaurantsTableViewController
+            }.first as? RestaurantsTableViewController
+        let restaurantsMapViewController = childViewControllers.filter {
+            $0 is RestaurantsMapViewController
+            }.first as? RestaurantsMapViewController
+
+        restaurantsTableViewController?.restaurants.removeAll()
+        restaurantsMapViewController?.restaurants.removeAll()
     }
 
     @IBAction func search(_ sender: Any) {
@@ -95,7 +103,7 @@ class RestaurantsViewController: UIViewController {
     }
     
     func loadRestaurants(completionHandler: @escaping () -> Void = { }) {
-        restaurantsCountLabel.text = loadRestaurantsText
+        restaurantsCountLabel.text = NSLocalizedString("Éttermek betöltése…", comment: "Az étterem lista eszköztár státusz szövege, miközben az étterem listátát tölti be.")
 
         let restaurantsTableViewController = childViewControllers.filter {
             $0 is RestaurantsTableViewController
@@ -198,6 +206,9 @@ extension RestaurantsViewController: UISearchBarDelegate {
         if let searchToken = queryTokens.searchToken() {
             searchController?.searchBar.text = searchToken.value
             self.searchBarText = searchToken.value
+        } else {
+            searchController?.searchBar.text = ""
+            self.searchBarText = ""
         }
     }
 }
