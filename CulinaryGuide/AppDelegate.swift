@@ -3,11 +3,31 @@ import CoreSpotlight
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
-
     var window: UIWindow?
 
+    enum ShortcutItemType: String {
+        case search
+        case nearby
+        case restaurant
+    }
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+        let searchAction = UIMutableApplicationShortcutItem(type: "\(ShortcutItemType.search)",
+            localizedTitle: NSLocalizedString("Keresés", comment: "3D touch shortcut action"),
+            localizedSubtitle: nil,
+            icon: UIApplicationShortcutIcon(type: .search),
+            userInfo: nil
+        )
+
+//        let nearbyAction = UIMutableApplicationShortcutItem(type: "\(ShortcutItemType.nearby)",
+//            localizedTitle: NSLocalizedString("Éttermek a környéken", comment: "3D touch shortcut action"),
+//            localizedSubtitle: nil,
+//            icon: UIApplicationShortcutIcon(type: .location),
+//            userInfo: nil
+//        )
+
+        application.shortcutItems = [searchAction]
+
         return true
     }
 
@@ -34,7 +54,36 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func application(_ application: UIApplication, continue userActivity: NSUserActivity, restorationHandler: @escaping ([Any]?) -> Void) -> Bool {
-        guard Localization.currentCountry != Localization.Country.Unknown else { return true }
+        popRestaurantDetailViewController { viewController in
+            viewController.restoreUserActivityState(userActivity)
+        }
+
+        return true
+    }
+
+    func application(_ application: UIApplication, performActionFor shortcutItem: UIApplicationShortcutItem, completionHandler: @escaping (Bool) -> Void) {
+        switch shortcutItem.type {
+        case "\(ShortcutItemType.search)":
+            let rootViewController = self.window!.rootViewController as! UINavigationController
+            rootViewController.popToRootViewController(animated: false)
+
+            if let homeCollectionViewController = rootViewController.topViewController as? HomeCollectionViewController {
+                homeCollectionViewController.performSegue(withIdentifier: "focusOnSearchBar", sender: self)
+            }
+        case "\(ShortcutItemType.restaurant)":
+            guard let userInfo = shortcutItem.userInfo else { return completionHandler(true) }
+            popRestaurantDetailViewController { viewController in
+                viewController.setRestaurantID(from: userInfo)
+            }
+        default:
+            break
+        }
+        completionHandler(true)
+    }
+}
+
+private extension AppDelegate {
+    func popRestaurantDetailViewController(completionHandler: (RestaurantDetailViewController) -> Void) {
         let rootViewController = self.window!.rootViewController as! UINavigationController
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let restaurantDetailViewController = storyboard.instantiateViewController(withIdentifier: "RestaurantDetailViewController") as! RestaurantDetailViewController
@@ -42,8 +91,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             rootViewController.popViewController(animated: false)
         }
         rootViewController.pushViewController(restaurantDetailViewController, animated: true)
-        restaurantDetailViewController.restoreUserActivityState(userActivity)
-
-        return true
+        completionHandler(restaurantDetailViewController)
     }
 }

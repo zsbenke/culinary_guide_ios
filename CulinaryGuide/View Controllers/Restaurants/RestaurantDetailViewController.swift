@@ -74,6 +74,12 @@ class RestaurantDetailViewController: UITableViewController {
             navigationController.state = .transparent
         }
     }
+
+    func setRestaurantID(from userInfo: [AnyHashable: Any]) {
+        if let selectedRstaurantID = userInfo["id"] as? Int {
+            restaurantID = selectedRstaurantID
+        }
+    }
 }
 
 extension RestaurantDetailViewController {
@@ -150,9 +156,7 @@ extension RestaurantDetailViewController: NSUserActivityDelegate {
                 restaurantID = Int(selectedRestaurantID)
             }
         } else if activity.activityType == "com.enfys.Restaurants.Detail" {
-            if let selectedRstaurantID = userInfo["id"] as? Int {
-                restaurantID = selectedRstaurantID
-            }
+            setRestaurantID(from: userInfo)
         }
     }
 }
@@ -198,6 +202,24 @@ private extension RestaurantDetailViewController {
                 self.updateHeaderView()
 
                 self.tableView.reloadData()
+
+                if let title = restaurant.title {
+                    let shortcuts = UIApplication.shared.shortcutItems
+                    var userInfo = [String: AnyObject]()
+                    userInfo["id"] = restaurantID as AnyObject?
+
+                    let restaurantShortcut = UIApplicationShortcutItem(
+                        type: "\(AppDelegate.ShortcutItemType.restaurant)",
+                        localizedTitle: NSLocalizedString("Legutóbbi étterem", comment: "3D touch shortcut action"),
+                        localizedSubtitle: title,
+                        icon: UIApplicationShortcutIcon(type: .bookmark),
+                        userInfo: userInfo
+                    )
+
+                    if let searchShortcut = shortcuts?.first {
+                        UIApplication.shared.shortcutItems = [searchShortcut, restaurantShortcut]
+                    }
+                }
 
                 if let heroImageURL = restaurant.heroImageURL {
                     let operationQueue = OperationQueue()
