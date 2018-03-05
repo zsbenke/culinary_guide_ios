@@ -1503,7 +1503,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" toolbarHidden="NO" id="zfw-OL-Amf" customClass="PlainNavigationViewController" customModule="CulinaryGuide" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="U3U-5e-rzO">
-                        <rect key="frame" x="0.0" y="20" width="320" height="93"/>
+                        <rect key="frame" x="0.0" y="20" width="320" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -1527,9 +1527,13 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Splash View Background" translatesAutoresizingMaskIntoConstraints="NO" id="y8g-j8-bJT">
+                            <imageView contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Splash View Background" translatesAutoresizingMaskIntoConstraints="NO" id="y8g-j8-bJT">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <color key="backgroundColor" name="Secondary"/>
+                                <gestureRecognizers/>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="5Vo-n5-Oof" appends="YES" id="UuE-V0-ZpY"/>
+                                </connections>
                             </imageView>
                             <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="m3p-oB-A1c">
                                 <rect key="frame" x="16" y="448" width="288" height="50"/>
@@ -1608,6 +1612,11 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W2Y-Se-37J" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="5Vo-n5-Oof">
+                    <connections>
+                        <action selector="chooseCountry:" destination="X5m-Ia-agx" id="9g7-CU-61s"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="349" y="952"/>
         </scene>
