@@ -2,21 +2,21 @@ import MapKit
 
 class RestaurantAnnotation: NSObject, MKAnnotation {
     let title: String?
-    let locationName: String
-    let discipline: String
+    let address: String
     let coordinate: CLLocationCoordinate2D
+    let restaurant: Restaurant
 
-    init(title: String, locationName: String, discipline: String, coordinate: CLLocationCoordinate2D) {
+    init(title: String, address: String, coordinate: CLLocationCoordinate2D, restaurant: Restaurant) {
         self.title = title
-        self.locationName = locationName
-        self.discipline = discipline
         self.coordinate = coordinate
+        self.address = address
+        self.restaurant = restaurant
 
         super.init()
     }
 
     var subtitle: String? {
-        return locationName
+        return address
     }
 }
 
@@ -25,7 +25,7 @@ extension Restaurant {
         guard let title = title else { return nil }
         guard let address = address else { return nil }
         guard let coordinate = calculateCoordinate() else { return nil }
-        return RestaurantAnnotation.init(title: title, locationName: title, discipline: address, coordinate: coordinate)
+        return RestaurantAnnotation.init(title: title, address: address, coordinate: coordinate, restaurant: self)
     }
 
     func calculateCoordinate() -> CLLocationCoordinate2D? {

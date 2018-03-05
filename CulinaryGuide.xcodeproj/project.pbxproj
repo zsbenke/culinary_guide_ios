@@ -129,6 +129,8 @@
 		98C8DFBA2003CE1D00BE568C /* RestaurantFilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98C8DFB92003CE1D00BE568C /* RestaurantFilterViewController.swift */; };
 		98C8DFBB2003CE1D00BE568C /* RestaurantFilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98C8DFB92003CE1D00BE568C /* RestaurantFilterViewController.swift */; };
 		98C8DFBC2003CE1D00BE568C /* RestaurantFilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98C8DFB92003CE1D00BE568C /* RestaurantFilterViewController.swift */; };
+		98C9EB1E204DF454001EC8C1 /* RestaurantMarkerAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98C9EB1D204DF454001EC8C1 /* RestaurantMarkerAnnotationView.swift */; };
+		98C9EB20204DFB16001EC8C1 /* RestaurantClusterAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98C9EB1F204DFB16001EC8C1 /* RestaurantClusterAnnotationView.swift */; };
 		98D869332007C62B00EC909F /* Localization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98D869322007C62B00EC909F /* Localization.swift */; };
 		98D8694D2007F9C900EC909F /* CountriesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98D8694C2007F9C900EC909F /* CountriesViewController.swift */; };
 		98D8694E2007F9C900EC909F /* CountriesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98D8694C2007F9C900EC909F /* CountriesViewController.swift */; };
@@ -296,6 +298,8 @@
 		98B4A13420487D1B002E30F5 /* DetailTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailTableViewCell.swift; sourceTree = "<group>"; };
 		98B4A13520487D1B002E30F5 /* DetailTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailTableViewCell.xib; sourceTree = "<group>"; };
 		98C8DFB92003CE1D00BE568C /* RestaurantFilterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantFilterViewController.swift; sourceTree = "<group>"; };
+		98C9EB1D204DF454001EC8C1 /* RestaurantMarkerAnnotationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantMarkerAnnotationView.swift; sourceTree = "<group>"; };
+		98C9EB1F204DFB16001EC8C1 /* RestaurantClusterAnnotationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantClusterAnnotationView.swift; sourceTree = "<group>"; };
 		98D869322007C62B00EC909F /* Localization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Localization.swift; sourceTree = "<group>"; };
 		98D8694C2007F9C900EC909F /* CountriesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountriesViewController.swift; sourceTree = "<group>"; };
 		98D869502007FA7300EC909F /* EnumCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnumCollection.swift; sourceTree = "<group>"; };
@@ -536,6 +540,8 @@
 				98B4A13520487D1B002E30F5 /* DetailTableViewCell.xib */,
 				98B4A13420487D1B002E30F5 /* DetailTableViewCell.swift */,
 				9847A711200BA5EC00A17247 /* UIBezierPath Tap.playground */,
+				98C9EB1D204DF454001EC8C1 /* RestaurantMarkerAnnotationView.swift */,
+				98C9EB1F204DFB16001EC8C1 /* RestaurantClusterAnnotationView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -816,6 +822,7 @@
 			files = (
 				9847CAE9202F36EA00FAC5B6 /* RestaurantFacet.swift in Sources */,
 				988EC338204355870076178B /* URLExtensions.swift in Sources */,
+				98C9EB20204DFB16001EC8C1 /* RestaurantClusterAnnotationView.swift in Sources */,
 				98F6264F20024BE400996A91 /* URLQueryToken.swift in Sources */,
 				98E2D1C62029F7CE00B6D480 /* CALayerExtensions.swift in Sources */,
 				98D8694D2007F9C900EC909F /* CountriesViewController.swift in Sources */,
@@ -838,6 +845,7 @@
 				984B7129200F80A800822ADF /* Environment.swift in Sources */,
 				9892E80F2009530A007B7033 /* BrandColor.swift in Sources */,
 				98135E332005477500AB64C4 /* RestaurantsTableViewController.swift in Sources */,
+				98C9EB1E204DF454001EC8C1 /* RestaurantMarkerAnnotationView.swift in Sources */,
 				98D8696F2008FC4300EC909F /* PartialModalTransitionDelegate.swift in Sources */,
 				98D86973200901D800EC909F /* PartialModalDismissAnimator.swift in Sources */,
 				983B88E7204A045C000F0641 /* StringExtensions.swift in Sources */,
