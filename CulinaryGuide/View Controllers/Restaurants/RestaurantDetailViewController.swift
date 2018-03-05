@@ -255,14 +255,14 @@ private extension RestaurantDetailViewController {
             headerViewFrame.size.height = -tableView.contentOffset.y
 
             if headerImage != nil {
-                let heroGradientAlpha = (420 + tableView.contentOffset.y) / 100
+                let heroGradientAlpha = 1 - abs(headerViewHeight + tableView.contentOffset.y) / 100
 
                 if heroGradientAlpha >= 0 {
                     headerView.heroImageGradient.alpha = heroGradientAlpha
                     self.navigationController?.navigationBar.tintColor = UIColor(red: 1, green: 1, blue: 1, alpha: heroGradientAlpha)
                 }
             }
-        } else if tableView.contentOffset.y < -70 {
+        } else if tableView.contentOffset.y < -65 {
             switchNavigationBarAppearance(to: .transparent, updateTitle: true)
         } else {
             switchNavigationBarAppearance(to: .default, updateTitle: true)
