@@ -3,6 +3,7 @@ import UIKit
 struct RestaurantFacet: Facet, Codable {
     enum RestaurantHomeScreenSection: String, HomeScreenSection, Codable {
         case what = "what"
+        case whatKindOf = "what_kind_of"
         case when = "when"
         case `where` = "where"
         case none

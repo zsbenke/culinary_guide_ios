@@ -84,7 +84,6 @@ extension RestaurantsMapViewController: MKMapViewDelegate {
     }
 
     func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
-        print("tapped")
         guard let annotation = view.annotation as? RestaurantAnnotation else { return }
 
         let restaurant = annotation.restaurant

@@ -78,7 +78,6 @@ class SplashViewController: UIViewController {
     }
 
     @IBAction func chooseCountry(_ sender: Any) {
-        print("tapped")
         performSegue(withIdentifier: "chooseCountry", sender: sender)
     }
 

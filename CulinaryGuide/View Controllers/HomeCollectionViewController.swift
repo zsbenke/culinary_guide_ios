@@ -4,6 +4,7 @@ class HomeCollectionViewController: UICollectionViewController {
     enum HomeCollectionHeader: String, EnumCollection {
         case all
         case what
+        case whatKindOf = "what_kind_of"
         case when
         case `where`
 
@@ -11,7 +12,7 @@ class HomeCollectionViewController: UICollectionViewController {
             switch self {
                 case .all:
                     return true
-                case .what, .when, .where:
+                case .what, .when, .where, .whatKindOf:
                 guard let homeScreenSection = RestaurantFacet.RestaurantHomeScreenSection(rawValue: self.rawValue) else { break }
                 let facetsInSection = facets.filter(homeScreenSection: homeScreenSection)
                 return facetsInSection.count == 0
@@ -30,6 +31,8 @@ class HomeCollectionViewController: UICollectionViewController {
                 return NSLocalizedString("Mikor?", comment: "A főscreenen megjelenő mikor szekció címe.")
             case .where:
                 return NSLocalizedString("Hol?", comment: "A főscreenen megjelenő mit szekció címe.")
+            case .whatKindOf:
+                return NSLocalizedString("Milyet?", comment: "A főscreenen megjelenő mit szekció címe.")
             }
         }
     }
@@ -99,7 +102,7 @@ class HomeCollectionViewController: UICollectionViewController {
         case .all:
             cell.labelView.text = headerTitle.asLocalized()
             cell.labelView.textAlignment = .center
-        case .what, .when, .where:
+        case .what, .when, .where, .whatKindOf:
             guard let homeScreenSection = RestaurantFacet.RestaurantHomeScreenSection(rawValue: headerTitle.rawValue) else { break }
             let facetsInSection = restaurantFacets.filter(homeScreenSection: homeScreenSection)
 
@@ -118,7 +121,7 @@ class HomeCollectionViewController: UICollectionViewController {
         switch headerTitle {
         case .all:
             return 1
-        case .what, .when, .where:
+        case .what, .when, .where, .whatKindOf:
             guard let homeScreenSection = RestaurantFacet.RestaurantHomeScreenSection(rawValue: headerTitle.rawValue) else { return 0 }
             let facetsInSection = restaurantFacets.filter(homeScreenSection: homeScreenSection)
             return facetsInSection.count
@@ -151,7 +154,7 @@ class HomeCollectionViewController: UICollectionViewController {
         case .all:
             self.selectedQueryTokens.removeAll()
             performSegue(withIdentifier: "searchRestaurants", sender: self)
-        case .what, .when, .where:
+        case .what, .when, .where, .whatKindOf:
             guard let homeScreenSection = RestaurantFacet.RestaurantHomeScreenSection(rawValue: headerTitle.rawValue) else { break }
             let facetsInSection = restaurantFacets.filter(homeScreenSection: homeScreenSection)
             if let facet = facetsInSection[indexPath.row], let facetValue = facet.value {

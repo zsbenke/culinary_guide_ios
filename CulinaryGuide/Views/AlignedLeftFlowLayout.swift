@@ -10,8 +10,9 @@ class AlignedLeftFlowLayout: UICollectionViewFlowLayout {
         var leftMargin : CGFloat = 0.0
         
         for layoutAttributesSet in layoutAttributes {
+            let referenceAttributesSet = layoutAttributesSet
+
             if layoutAttributesSet.representedElementCategory == .cell {
-                let referenceAttributesSet = layoutAttributesSet
                 let rightMargin = leftMargin + referenceAttributesSet.frame.width
                 
                 if referenceAttributesSet.frame.origin.x == self.sectionInset.left ||
@@ -27,10 +28,10 @@ class AlignedLeftFlowLayout: UICollectionViewFlowLayout {
                 leftMargin += referenceAttributesSet.frame.size.width + 16
                 newLayoutAttributes.append(referenceAttributesSet)
                 
-                sectionsToAdd.add(layoutAttributesSet.indexPath.section)
+                sectionsToAdd.add(referenceAttributesSet.indexPath.section)
                 
             } else if layoutAttributesSet.representedElementCategory == .supplementaryView {
-                sectionsToAdd.add(layoutAttributesSet.indexPath.section)
+                sectionsToAdd.add(referenceAttributesSet.indexPath.section)
             }
         }
         
