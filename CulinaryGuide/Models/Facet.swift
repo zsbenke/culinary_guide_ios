@@ -1,8 +1,6 @@
 import UIKit
 
-protocol HomeScreenSection: CustomStringConvertible {}
-
-protocol Facet {
+protocol Facet: Equatable {
     var column: String? { get }
     var value: String? { get }
     var icon: UIImage? { get }

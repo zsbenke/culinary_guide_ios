@@ -13,7 +13,7 @@ class HomeCollectionViewController: UICollectionViewController {
                 case .all:
                     return true
                 case .what, .when, .where, .whatKindOf:
-                guard let homeScreenSection = RestaurantFacet.RestaurantHomeScreenSection(rawValue: self.rawValue) else { break }
+                guard let homeScreenSection = RestaurantFacet.HomeScreenSection(rawValue: self.rawValue) else { break }
                 let facetsInSection = facets.filter(homeScreenSection: homeScreenSection)
                 return facetsInSection.count == 0
             }
@@ -38,19 +38,16 @@ class HomeCollectionViewController: UICollectionViewController {
     }
 
     var selectedQueryTokens = Set<URLQueryToken>()
-    var headerTitles = Array(HomeCollectionHeader.cases())
-    var restaurantFacets = [RestaurantFacet?]()
     var sizingCell: TagCollectionViewCell?
+
+    private var collectionViewDataSource: HomeCollectionViewDataSource?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        let tagCollectionCellNib = UINib(nibName: "TagCollectionViewCell", bundle: nil)
-        let tagCollectionHeaderNib = UINib(nibName: "TagCollectionHeaderView", bundle: nil)
-        collectionView!.register(tagCollectionCellNib, forCellWithReuseIdentifier: "TagCell")
-        collectionView?.register(tagCollectionHeaderNib, forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: "TagHeader")
-        
-        self.sizingCell = ((tagCollectionCellNib.instantiate(withOwner: nil, options: nil) as Array).first as! TagCollectionViewCell)
+
+        collectionView?.dataSource = collectionViewDataSource
+
+        sizingCell = ((UINib(nibName: "TagCollectionViewCell", bundle: nil).instantiate(withOwner: nil, options: nil) as Array).first as! TagCollectionViewCell)
         
         configureView()
     }
@@ -67,8 +64,9 @@ class HomeCollectionViewController: UICollectionViewController {
         self.navigationController?.navigationBar.prefersLargeTitles = true
 
         Restaurant.facets { (facets) in
-            self.restaurantFacets = facets
             DispatchQueue.main.async {
+                self.collectionViewDataSource = HomeCollectionViewDataSource(facets: facets)
+                self.collectionView?.dataSource = self.collectionViewDataSource
                 self.collectionView?.collectionViewLayout.invalidateLayout()
                 self.collectionView?.reloadData()
             }
@@ -92,72 +90,25 @@ class HomeCollectionViewController: UICollectionViewController {
             restaurantsViewController.presentSearchController = true
         }
     }
-    
-    // MARK: UICollectionView
-    
-    
-    func configureCell(cell: TagCollectionViewCell, forIndexPath indexPath: IndexPath) {
-        let headerTitle = headerTitles[indexPath.section]
-        switch headerTitle {
-        case .all:
-            cell.labelView.text = headerTitle.asLocalized()
-            cell.labelView.textAlignment = .center
-        case .what, .when, .where, .whatKindOf:
-            guard let homeScreenSection = RestaurantFacet.RestaurantHomeScreenSection(rawValue: headerTitle.rawValue) else { break }
-            let facetsInSection = restaurantFacets.filter(homeScreenSection: homeScreenSection)
+}
 
-            guard let facet = facetsInSection[indexPath.row] else { break }
-            cell.labelView.text = facet.value
-        }
-    }
-    
-    override func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return headerTitles.count
-    }
-    
-    
-    override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        let headerTitle = headerTitles[section]
-        switch headerTitle {
-        case .all:
-            return 1
-        case .what, .when, .where, .whatKindOf:
-            guard let homeScreenSection = RestaurantFacet.RestaurantHomeScreenSection(rawValue: headerTitle.rawValue) else { return 0 }
-            let facetsInSection = restaurantFacets.filter(homeScreenSection: homeScreenSection)
-            return facetsInSection.count
-        }
-    }
-    
-    override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> TagCollectionHeaderView {
-        let facetHeaderCell = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "TagHeader", for: indexPath) as? TagCollectionHeaderView
-        let headerTitle = headerTitles[indexPath.section]
-        facetHeaderCell?.titleLabel.text = headerTitle.asLocalized()
+// MARK: UICollectionViev
 
-        if headerTitle.isEmpty(for: restaurantFacets) {
-            facetHeaderCell?.isHidden = true
-
-        }
-        return facetHeaderCell!
-    }
-    
-    override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell: TagCollectionViewCell = collectionView.dequeueReusableCell(withReuseIdentifier: "TagCell", for: indexPath) as! TagCollectionViewCell
-        
-        configureCell(cell: cell, forIndexPath: indexPath)
-        return cell
-    }
-    
+extension HomeCollectionViewController {
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let headerTitle = headerTitles[indexPath.section]
+        guard let collectionViewDataSource = collectionViewDataSource else { return }
 
-        switch headerTitle {
+        let facetSection = collectionViewDataSource.sections[indexPath.section]
+
+        switch facetSection {
         case .all:
             self.selectedQueryTokens.removeAll()
             performSegue(withIdentifier: "searchRestaurants", sender: self)
         case .what, .when, .where, .whatKindOf:
-            guard let homeScreenSection = RestaurantFacet.RestaurantHomeScreenSection(rawValue: headerTitle.rawValue) else { break }
-            let facetsInSection = restaurantFacets.filter(homeScreenSection: homeScreenSection)
-            if let facet = facetsInSection[indexPath.row], let facetValue = facet.value {
+            guard let facets = collectionViewDataSource.facetDictionary[facetSection] else { return }
+            let facet = facets[indexPath.row]
+
+            if let facetValue = facet.value {
                 let queryToken = URLQueryToken.init(column: "search", value: facetValue)
                 self.selectedQueryTokens = [queryToken]
                 performSegue(withIdentifier: "searchRestaurants", sender: self)
@@ -168,9 +119,13 @@ class HomeCollectionViewController: UICollectionViewController {
 
 extension HomeCollectionViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let headerTitle = headerTitles[indexPath.section]
-        self.configureCell(cell: sizingCell!, forIndexPath: indexPath)
-        switch headerTitle {
+        guard let collectionViewDataSource = collectionViewDataSource else { return CGSize(width: 0, height: 0) }
+
+        let facetSection = collectionViewDataSource.sections[indexPath.section]
+
+        collectionViewDataSource.configureCell(cell: sizingCell!, forIndexPath: indexPath)
+
+        switch facetSection {
         case .all:
             var width = UIScreen.main.bounds.width
             if let cellMaxWidth = sizingCell?.labelViewMaxWidthConstraint.constant {
@@ -184,9 +139,11 @@ extension HomeCollectionViewController: UICollectionViewDelegateFlowLayout {
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
-        let headerTitle = headerTitles[section]
+        guard let collectionViewDataSource = collectionViewDataSource else { return CGSize(width: 0, height: 0) }
 
-        if headerTitle.isEmpty(for: restaurantFacets) {
+        let facetSection = collectionViewDataSource.sections[section]
+
+        if facetSection.isEmpty(for: collectionViewDataSource.facetDictionary) {
             return CGSize(width: UIScreen.main.bounds.width, height: 0)
         }
 
@@ -194,17 +151,21 @@ extension HomeCollectionViewController: UICollectionViewDelegateFlowLayout {
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        let headerTitle = headerTitles[section]
+        let defaultInsets = UIEdgeInsets(top: 8, left: 16, bottom: 16, right: 16)
 
-        if headerTitle == .all {
+        guard let collectionViewDataSource = collectionViewDataSource else { return defaultInsets }
+
+        let facetSection = collectionViewDataSource.sections[section]
+
+        if facetSection == .all {
             return UIEdgeInsets(top: 16, left: 16, bottom: 16, right: 16)
         }
 
-        if headerTitle.isEmpty(for: restaurantFacets) {
+        if facetSection.isEmpty(for: collectionViewDataSource.facetDictionary) {
             return UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         }
 
-        return UIEdgeInsets(top: 8, left: 16, bottom: 16, right: 16)
+        return defaultInsets
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {

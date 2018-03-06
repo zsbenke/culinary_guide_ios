@@ -1,7 +1,7 @@
 import UIKit
 
 struct RestaurantFacet: Facet, Codable {
-    enum RestaurantHomeScreenSection: String, HomeScreenSection, Codable {
+    enum HomeScreenSection: String, Codable {
         case what = "what"
         case whatKindOf = "what_kind_of"
         case when = "when"
@@ -72,12 +72,12 @@ struct RestaurantFacet: Facet, Codable {
 
         return #imageLiteral(resourceName: "Facet Magnifiying Glass")
     }
-    var homeScreenSection: RestaurantHomeScreenSection {
+    var homeScreenSection: HomeScreenSection {
         guard let homeScreenSectionRawValue = homeScreenSectionRawValue else {
-            return RestaurantHomeScreenSection.none
+            return HomeScreenSection.none
         }
-        guard let section = RestaurantHomeScreenSection.init(rawValue: homeScreenSectionRawValue) else {
-            return RestaurantHomeScreenSection.none
+        guard let section = HomeScreenSection.init(rawValue: homeScreenSectionRawValue) else {
+            return HomeScreenSection.none
         }
         return section
     }
@@ -92,7 +92,7 @@ struct RestaurantFacet: Facet, Codable {
 }
 
 extension Array where Iterator.Element == RestaurantFacet? {
-    func filter(homeScreenSection: RestaurantFacet.RestaurantHomeScreenSection) -> [RestaurantFacet?] {
+    func filter(homeScreenSection: RestaurantFacet.HomeScreenSection) -> [RestaurantFacet?] {
         return filter { (facet) -> Bool in
             guard let facet = facet else { return false }
             return facet.homeScreenSection == homeScreenSection
