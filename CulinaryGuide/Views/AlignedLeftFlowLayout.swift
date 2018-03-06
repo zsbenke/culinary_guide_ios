@@ -10,7 +10,7 @@ class AlignedLeftFlowLayout: UICollectionViewFlowLayout {
         var leftMargin : CGFloat = 0.0
         
         for layoutAttributesSet in layoutAttributes {
-            let referenceAttributesSet = layoutAttributesSet
+            let referenceAttributesSet = layoutAttributesSet.copy() as! UICollectionViewLayoutAttributes
 
             if layoutAttributesSet.representedElementCategory == .cell {
                 let rightMargin = leftMargin + referenceAttributesSet.frame.width
