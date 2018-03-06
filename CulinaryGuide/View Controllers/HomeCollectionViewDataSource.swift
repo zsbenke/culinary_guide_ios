@@ -109,7 +109,6 @@ extension HomeCollectionViewDataSource: UICollectionViewDataSource {
     }
 
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-        print(#function)
         if !isTagCollectionHeaderCellNibRegistered {
             collectionView.register(tagCollectionHeaderNib, forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: "TagHeader")
             isTagCollectionHeaderCellNibRegistered = true
