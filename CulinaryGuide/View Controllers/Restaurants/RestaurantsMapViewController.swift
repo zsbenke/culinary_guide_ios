@@ -93,12 +93,6 @@ extension RestaurantsMapViewController: MKMapViewDelegate {
         controller.restaurantID = restaurant.id
         navigationController?.pushViewController(controller, animated: true)
     }
-
-    // TODO: törölni a map nézet értéklogolást
-    func mapViewDidFinishRenderingMap(_ mapView: MKMapView, fullyRendered: Bool) {
-        print("center: \(mapView.region.center)")
-        print("span: \(mapView.region.span)")
-    }
 }
 
 private extension RestaurantsMapViewController {
