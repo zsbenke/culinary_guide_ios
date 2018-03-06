@@ -38,7 +38,8 @@ class HomeCollectionViewController: UICollectionViewController {
     }
 
     var selectedQueryTokens = Set<URLQueryToken>()
-    var sizingCell: TagCollectionViewCell?
+    private var sizingCell: TagCollectionViewCell?
+    private var cellSizes = [Int: [CGSize]]()
 
     private var collectionViewDataSource: HomeCollectionViewDataSource?
     
@@ -123,6 +124,10 @@ extension HomeCollectionViewController: UICollectionViewDelegateFlowLayout {
 
         let facetSection = collectionViewDataSource.sections[indexPath.section]
 
+        if let section = cellSizes[indexPath.section], section.indices.contains(indexPath.row) {
+            return section[indexPath.row]
+        }
+
         collectionViewDataSource.configureCell(cell: sizingCell!, forIndexPath: indexPath)
 
         switch facetSection {
@@ -132,9 +137,25 @@ extension HomeCollectionViewController: UICollectionViewDelegateFlowLayout {
                 width = cellMaxWidth
             }
 
-            return CGSize(width: width, height: 44)
+            let size = CGSize(width: width, height: 44)
+            if cellSizes[indexPath.section] != nil {
+                cellSizes[indexPath.section]?.insert(size, at: indexPath.row)
+            } else {
+                cellSizes[indexPath.section] = [size]
+            }
+
+            return size
         default:
-            return sizingCell!.systemLayoutSizeFitting(UILayoutFittingCompressedSize)
+            let size = sizingCell!.systemLayoutSizeFitting(UILayoutFittingCompressedSize)
+            cellSizes[indexPath.section]?.insert(size, at: indexPath.row)
+            if cellSizes[indexPath.section] != nil {
+                cellSizes[indexPath.section]?.insert(size, at: indexPath.row)
+            } else {
+                cellSizes[indexPath.section] = [size]
+            }
+
+            print(cellSizes)
+            return size
         }
     }
     
