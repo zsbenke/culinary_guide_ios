@@ -1,4 +1,5 @@
 import Foundation
+import MapKit
 
 struct Localization {
     enum Country: String, CustomStringConvertible, EnumCollection {
@@ -37,6 +38,43 @@ struct Localization {
                 return NSLocalizedString("Horvátország", comment: "országválasztó és toolbar cím")
             case .Slovenia:
                 return NSLocalizedString("Szlovénia", comment: "országválasztó és toolbar cím")
+            }
+        }
+
+        var defaultRegion: MKCoordinateRegion {
+            switch self {
+            case .Hungary:
+                let center = CLLocationCoordinate2D(latitude: 47.162494, longitude: 19.50330400000007)
+                let span = MKCoordinateSpan(latitudeDelta: 7.7, longitudeDelta: 0)
+                return MKCoordinateRegion(center: center, span: span)
+            case .CzechRepublic:
+                let center = CLLocationCoordinate2D(latitude: 49.81749199999999, longitude: 15.472962000000052)
+                let span = MKCoordinateSpan(latitudeDelta: 7.7, longitudeDelta: 0)
+                return MKCoordinateRegion(center: center, span: span)
+            case .Slovakia:
+                let center = CLLocationCoordinate2D(latitude: 48.669026, longitude: 19.69902400000001)
+                let span = MKCoordinateSpan(latitudeDelta: 6.25, longitudeDelta: 0)
+                return MKCoordinateRegion(center: center, span: span)
+            case .Romania:
+                let center = CLLocationCoordinate2D(latitude: 45.943161, longitude: 24.966760000000022)
+                let span = MKCoordinateSpan(latitudeDelta: 10, longitudeDelta: 0)
+                return MKCoordinateRegion(center: center, span: span)
+            case .Serbia:
+                let center = CLLocationCoordinate2D(latitude: 44.016521, longitude: 21.005858999999987)
+                let span = MKCoordinateSpan(latitudeDelta: 0, longitudeDelta: 6)
+                return MKCoordinateRegion(center: center, span: span)
+            case .Croatia:
+                let center = CLLocationCoordinate2D(latitude: 44.779378823315433, longitude: 16.474812199573179)
+                let span = MKCoordinateSpan(latitudeDelta: 7.7, longitudeDelta: 0)
+                return MKCoordinateRegion(center: center, span: span)
+            case .Slovenia:
+                let center = CLLocationCoordinate2D(latitude: 46.151241, longitude: 14.995462999999972)
+                let span = MKCoordinateSpan(latitudeDelta: 4.5, longitudeDelta: 0)
+                return MKCoordinateRegion(center: center, span: span)
+            default:
+                let center = CLLocationCoordinate2D(latitude: 46.253560162029316, longitude: 19.71885626901096)
+                let span = MKCoordinateSpan(latitudeDelta: 19.2, longitudeDelta: 0)
+                return MKCoordinateRegion(center: center, span: span)
             }
         }
     }

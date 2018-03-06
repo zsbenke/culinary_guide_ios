@@ -27,7 +27,7 @@ private extension RestaurantClusterAnnotationView {
         let renderer = UIGraphicsImageRenderer(size: CGSize(width: 40.0, height: 40.0))
         let count = annotation.memberAnnotations.count
         image = renderer.image { _ in
-            UIColor.BrandColor.secondary.setFill()
+            UIColor.BrandColor.primary.setFill()
             UIBezierPath(ovalIn: CGRect(x: 0.0, y: 0.0, width: 40.0, height: 40.0)).fill()
             let attributes = [
                 NSAttributedStringKey.foregroundColor: UIColor.white,

@@ -131,6 +131,7 @@
 		98C8DFBC2003CE1D00BE568C /* RestaurantFilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98C8DFB92003CE1D00BE568C /* RestaurantFilterViewController.swift */; };
 		98C9EB1E204DF454001EC8C1 /* RestaurantMarkerAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98C9EB1D204DF454001EC8C1 /* RestaurantMarkerAnnotationView.swift */; };
 		98C9EB20204DFB16001EC8C1 /* RestaurantClusterAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98C9EB1F204DFB16001EC8C1 /* RestaurantClusterAnnotationView.swift */; };
+		98C9EB22204E075D001EC8C1 /* MKMapViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98C9EB21204E075D001EC8C1 /* MKMapViewExtensions.swift */; };
 		98D869332007C62B00EC909F /* Localization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98D869322007C62B00EC909F /* Localization.swift */; };
 		98D8694D2007F9C900EC909F /* CountriesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98D8694C2007F9C900EC909F /* CountriesViewController.swift */; };
 		98D8694E2007F9C900EC909F /* CountriesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98D8694C2007F9C900EC909F /* CountriesViewController.swift */; };
@@ -300,6 +301,7 @@
 		98C8DFB92003CE1D00BE568C /* RestaurantFilterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantFilterViewController.swift; sourceTree = "<group>"; };
 		98C9EB1D204DF454001EC8C1 /* RestaurantMarkerAnnotationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantMarkerAnnotationView.swift; sourceTree = "<group>"; };
 		98C9EB1F204DFB16001EC8C1 /* RestaurantClusterAnnotationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantClusterAnnotationView.swift; sourceTree = "<group>"; };
+		98C9EB21204E075D001EC8C1 /* MKMapViewExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MKMapViewExtensions.swift; path = CulinaryGuide/Utils/MKMapViewExtensions.swift; sourceTree = SOURCE_ROOT; };
 		98D869322007C62B00EC909F /* Localization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Localization.swift; sourceTree = "<group>"; };
 		98D8694C2007F9C900EC909F /* CountriesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountriesViewController.swift; sourceTree = "<group>"; };
 		98D869502007FA7300EC909F /* EnumCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnumCollection.swift; sourceTree = "<group>"; };
@@ -389,6 +391,7 @@
 				98135E322005477500AB64C4 /* RestaurantsTableViewController.swift */,
 				98C8DFB92003CE1D00BE568C /* RestaurantFilterViewController.swift */,
 				98135E362005592500AB64C4 /* RestaurantsMapViewController.swift */,
+				98C9EB21204E075D001EC8C1 /* MKMapViewExtensions.swift */,
 				98F6267220026CED00996A91 /* RestaurantDetailViewController.swift */,
 				981769F22049D1C1004C5ED1 /* RestaurantDataSource.swift */,
 			);
@@ -857,6 +860,7 @@
 				98135E372005592500AB64C4 /* RestaurantsMapViewController.swift in Sources */,
 				984B712D200F80DF00822ADF /* RestaurantRouter.swift in Sources */,
 				98B4A13620487D1B002E30F5 /* DetailTableViewCell.swift in Sources */,
+				98C9EB22204E075D001EC8C1 /* MKMapViewExtensions.swift in Sources */,
 				98F6267320026CED00996A91 /* RestaurantDetailViewController.swift in Sources */,
 				98F6266720024D3800996A91 /* APIRequestOperation.swift in Sources */,
 				986E8AD2200E6EA200BA57AA /* RatingView.swift in Sources */,

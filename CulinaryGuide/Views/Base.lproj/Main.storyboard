@@ -1628,16 +1628,16 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" pitchEnabled="NO" showsCompass="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JC6-Ku-CB8">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" rotateEnabled="NO" pitchEnabled="NO" showsCompass="NO" showsPointsOfInterest="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JC6-Ku-CB8">
+                                <rect key="frame" x="0.0" y="20" width="320" height="548"/>
                             </mapView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="JC6-Ku-CB8" firstAttribute="trailing" secondItem="MkG-gy-ELz" secondAttribute="trailing" id="AJM-La-oBU"/>
-                            <constraint firstItem="JC6-Ku-CB8" firstAttribute="leading" secondItem="MkG-gy-ELz" secondAttribute="leading" id="AWo-7R-0DU"/>
-                            <constraint firstItem="JC6-Ku-CB8" firstAttribute="bottom" secondItem="MkG-gy-ELz" secondAttribute="bottom" id="QrP-Sp-qu5"/>
-                            <constraint firstItem="JC6-Ku-CB8" firstAttribute="top" secondItem="MkG-gy-ELz" secondAttribute="top" id="ZSN-4e-sJn"/>
+                            <constraint firstItem="JC6-Ku-CB8" firstAttribute="trailing" secondItem="nCz-9k-DIM" secondAttribute="trailing" id="AJM-La-oBU"/>
+                            <constraint firstItem="JC6-Ku-CB8" firstAttribute="leading" secondItem="nCz-9k-DIM" secondAttribute="leading" id="AWo-7R-0DU"/>
+                            <constraint firstItem="JC6-Ku-CB8" firstAttribute="bottom" secondItem="nCz-9k-DIM" secondAttribute="bottom" id="QrP-Sp-qu5"/>
+                            <constraint firstItem="JC6-Ku-CB8" firstAttribute="top" secondItem="nCz-9k-DIM" secondAttribute="top" id="ZSN-4e-sJn"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="nCz-9k-DIM"/>
                     </view>

@@ -222,10 +222,12 @@ extension RestaurantsViewController: UITableViewDelegate, UITableViewDataSource 
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = UITableViewCell(style: .default, reuseIdentifier: "FacetCell")
-        if let restaurantFacet = restaurantFacets[indexPath.row] {
-            cell.tintColor = .black
-            cell.textLabel?.text = restaurantFacet.value
-            cell.imageView?.image = restaurantFacet.icon
+        if restaurantFacets.indices.contains(indexPath.row) {
+            if let restaurantFacet = restaurantFacets[indexPath.row] {
+                cell.tintColor = .black
+                cell.textLabel?.text = restaurantFacet.value
+                cell.imageView?.image = restaurantFacet.icon
+            }
         }
         return cell
     }
