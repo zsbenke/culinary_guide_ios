@@ -18,8 +18,7 @@ class RatingView: UIView {
         }
 
         super.init(frame: frameFromSize)
-
-        self.backgroundColor = .white
+        backgroundColor = UIColor(red: 1, green: 1, blue: 1, alpha: 0.0)
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -29,7 +28,7 @@ class RatingView: UIView {
 
     override func draw(_ rect: CGRect) {
         let imageView = UIImageView.init(image: rating.image)
-        imageView.backgroundColor = .white
+        imageView.backgroundColor = UIColor(red: 1, green: 1, blue: 1, alpha: 0.0)
         imageView.tintColor = rating.color
         imageView.contentMode = .scaleAspectFit
         imageView.frame = frameFromSize
