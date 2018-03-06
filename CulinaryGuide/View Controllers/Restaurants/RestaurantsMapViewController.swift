@@ -20,21 +20,26 @@ class RestaurantsMapViewController: UIViewController {
                 if let navigationController = self.navigationController {
                     edgePadding = UIEdgeInsets(
                         top: navigationController.navigationBar.frame.height,
-                        left: 0,
+                        left: 32,
                         bottom: navigationController.toolbar.frame.height,
-                        right: 0
+                        right: 32
                     )
                 } else {
-                    edgePadding = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+                    edgePadding = UIEdgeInsets(
+                        top: 0,
+                        left: 32,
+                        bottom: 0,
+                        right: 32
+                    )
                 }
-
-                self.mapView.setDefaultMapRect(byUnioningUserLocation: false, edgePadding: edgePadding, animated: false)
 
                 guard let restaurantsViewController = self.restaurantsViewController else { return }
 
                 if self.restaurants.isEmpty || restaurantsViewController.queryTokens.isEmpty {
                     self.mapView.setRegion(Localization.currentCountry.defaultRegion, animated: false)
-                } 
+                } else {
+                    self.mapView.setDefaultMapRect(byUnioningUserLocation: false, edgePadding: edgePadding, animated: true)
+                }
             }
         }
     }
