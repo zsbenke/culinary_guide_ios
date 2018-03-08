@@ -17,7 +17,6 @@ class RestaurantsTableViewController: UITableViewController {
         let tableCellNib = UINib(nibName: "IconTableViewCell", bundle: nil)
         tableView.register(tableCellNib, forCellReuseIdentifier: "Cell")
 
-
         registerForPreviewing(with: self, sourceView: view)
     }
 

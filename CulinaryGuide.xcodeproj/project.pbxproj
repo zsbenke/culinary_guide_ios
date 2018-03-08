@@ -17,6 +17,8 @@
 		981769F32049D1C1004C5ED1 /* RestaurantDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 981769F22049D1C1004C5ED1 /* RestaurantDataSource.swift */; };
 		981769F52049D3FE004C5ED1 /* RestaurantReview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 981769F42049D3FE004C5ED1 /* RestaurantReview.swift */; };
 		981E84CB204211E400835C47 /* CAGradientLayerExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 981E84CA204211E400835C47 /* CAGradientLayerExtensions.swift */; };
+		9822D2D0205177560082C739 /* MKMapViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98C9EB21204E075D001EC8C1 /* MKMapViewExtensions.swift */; };
+		9822D2D1205177560082C739 /* MKMapViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98C9EB21204E075D001EC8C1 /* MKMapViewExtensions.swift */; };
 		98363150200FD4E1002EBE01 /* ArrayExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9836314F200FD4E1002EBE01 /* ArrayExtensions.swift */; };
 		98363151200FD4E1002EBE01 /* ArrayExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9836314F200FD4E1002EBE01 /* ArrayExtensions.swift */; };
 		98363152200FD4E1002EBE01 /* ArrayExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9836314F200FD4E1002EBE01 /* ArrayExtensions.swift */; };
@@ -391,9 +393,8 @@
 			children = (
 				98F626172002487600996A91 /* RestaurantsViewController.swift */,
 				98135E322005477500AB64C4 /* RestaurantsTableViewController.swift */,
-				98C8DFB92003CE1D00BE568C /* RestaurantFilterViewController.swift */,
 				98135E362005592500AB64C4 /* RestaurantsMapViewController.swift */,
-				98C9EB21204E075D001EC8C1 /* MKMapViewExtensions.swift */,
+				98C8DFB92003CE1D00BE568C /* RestaurantFilterViewController.swift */,
 				98F6267220026CED00996A91 /* RestaurantDetailViewController.swift */,
 				981769F22049D1C1004C5ED1 /* RestaurantDataSource.swift */,
 			);
@@ -575,6 +576,7 @@
 				984DEA522040A2EC00E1A0EB /* Email.swift */,
 				9849816A2041BF98001B742F /* UIViewExtensions.swift */,
 				981E84CA204211E400835C47 /* CAGradientLayerExtensions.swift */,
+				98C9EB21204E075D001EC8C1 /* MKMapViewExtensions.swift */,
 				988EC337204355870076178B /* URLExtensions.swift */,
 				983B88E6204A045C000F0641 /* StringExtensions.swift */,
 				98B2DC59204AD39D007903BB /* UIViewControllerExtensions.swift */,
@@ -899,6 +901,7 @@
 				984B712E200F80DF00822ADF /* RestaurantRouter.swift in Sources */,
 				98D8694E2007F9C900EC909F /* CountriesViewController.swift in Sources */,
 				98C8DFBB2003CE1D00BE568C /* RestaurantFilterViewController.swift in Sources */,
+				9822D2D1205177560082C739 /* MKMapViewExtensions.swift in Sources */,
 				98BAF5962049DADD0050953A /* RestaurantDataSource.swift in Sources */,
 				98F6266820024D3800996A91 /* APIRequestOperation.swift in Sources */,
 				98F6267420026CED00996A91 /* RestaurantDetailViewController.swift in Sources */,
@@ -953,6 +956,7 @@
 				989CE4B1200E901600BD42D7 /* RestaurantRating.swift in Sources */,
 				98C8DFBC2003CE1D00BE568C /* RestaurantFilterViewController.swift in Sources */,
 				98550AAA201928AC006F53A2 /* RestaurantFilterState.swift in Sources */,
+				9822D2D0205177560082C739 /* MKMapViewExtensions.swift in Sources */,
 				98F6266920024D3800996A91 /* APIRequestOperation.swift in Sources */,
 				98F6267520026CED00996A91 /* RestaurantDetailViewController.swift in Sources */,
 				9847A6F6200A4E5600A17247 /* HomeCollectionViewController.swift in Sources */,

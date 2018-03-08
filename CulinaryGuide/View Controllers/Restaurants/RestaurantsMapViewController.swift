@@ -80,6 +80,8 @@ extension RestaurantsMapViewController: MKMapViewDelegate {
             annotationView = RestaurantMarkerAnnotationView(annotation: annotation, reuseIdentifier: identifier)
         }
 
+        registerForPreviewing(with: self, sourceView: annotationView)
+
         return annotationView
     }
 
@@ -101,5 +103,53 @@ private extension RestaurantsMapViewController {
         } else {
             locationManager.requestWhenInUseAuthorization()
         }
+    }
+}
+
+extension RestaurantsMapViewController: UIViewControllerPreviewingDelegate {
+    func previewingContext(_ previewingContext: UIViewControllerPreviewing, viewControllerForLocation location: CGPoint) -> UIViewController? {
+        guard let annotationView = previewingContext.sourceView as? RestaurantMarkerAnnotationView else { return nil }
+        guard let annotation = annotationView.annotation as? RestaurantAnnotation else { return nil }
+
+        let restaurant = annotation.restaurant
+
+        if let popoverFrame = rectForAnnotationViewWithPopover(view: annotationView) {
+            previewingContext.sourceRect = popoverFrame
+        }
+        
+        let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
+        let restaurantDetailViewController = storyboard.instantiateViewController(withIdentifier: "RestaurantDetailViewController") as! RestaurantDetailViewController
+        restaurantDetailViewController.restaurantID = restaurant.id
+
+        return restaurantDetailViewController
+    }
+
+    func previewingContext(_ previewingContext: UIViewControllerPreviewing, commit viewControllerToCommit: UIViewController) {
+        show(viewControllerToCommit, sender: self)
+    }
+}
+
+private extension RestaurantsMapViewController {
+    func rectForAnnotationViewWithPopover(view: MKAnnotationView) -> CGRect? {
+        var popover: UIView?
+
+        for view in view.subviews {
+            for view in view.subviews {
+                for view in view.subviews {
+                    popover = view
+                }
+            }
+        }
+
+        if let popover = popover, let frame = popover.superview?.convert(popover.frame, to: view) {
+            return CGRect(
+                x: frame.origin.x,
+                y: frame.origin.y,
+                width: frame.width,
+                height: frame.height + view.frame.height
+            )
+        }
+
+        return nil
     }
 }
