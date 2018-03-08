@@ -1,6 +1,11 @@
 import UIKit
 
 class HomeCollectionViewController: UICollectionViewController {
+    var selectedQueryTokens = Set<URLQueryToken>()
+    private var sizingCell: TagCollectionViewCell?
+    private var cellSizes = [Int: [CGSize]]()
+    private var collectionViewDataSource: HomeCollectionViewDataSource?
+
     enum HomeCollectionHeader: String, EnumCollection {
         case all
         case what
@@ -36,12 +41,6 @@ class HomeCollectionViewController: UICollectionViewController {
             }
         }
     }
-
-    var selectedQueryTokens = Set<URLQueryToken>()
-    private var sizingCell: TagCollectionViewCell?
-    private var cellSizes = [Int: [CGSize]]()
-
-    private var collectionViewDataSource: HomeCollectionViewDataSource?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -120,13 +119,14 @@ extension HomeCollectionViewController {
 
 extension HomeCollectionViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        guard let collectionViewDataSource = collectionViewDataSource else { return CGSize(width: 0, height: 0) }
-
-        let facetSection = collectionViewDataSource.sections[indexPath.section]
-
         if let section = cellSizes[indexPath.section], section.indices.contains(indexPath.row) {
             return section[indexPath.row]
         }
+
+        guard let collectionViewDataSource = collectionViewDataSource else { return CGSize(width: 0, height: 0) }
+
+        let facetSection = collectionViewDataSource.sections[indexPath.section]
+        var size = CGSize()
 
         collectionViewDataSource.configureCell(cell: sizingCell!, forIndexPath: indexPath)
 
@@ -137,26 +137,18 @@ extension HomeCollectionViewController: UICollectionViewDelegateFlowLayout {
                 width = cellMaxWidth
             }
 
-            let size = CGSize(width: width, height: 44)
-            if cellSizes[indexPath.section] != nil {
-                cellSizes[indexPath.section]?.insert(size, at: indexPath.row)
-            } else {
-                cellSizes[indexPath.section] = [size]
-            }
-
-            return size
+            size = CGSize(width: width, height: 44)
         default:
-            let size = sizingCell!.systemLayoutSizeFitting(UILayoutFittingCompressedSize)
-            cellSizes[indexPath.section]?.insert(size, at: indexPath.row)
-            if cellSizes[indexPath.section] != nil {
-                cellSizes[indexPath.section]?.insert(size, at: indexPath.row)
-            } else {
-                cellSizes[indexPath.section] = [size]
-            }
-
-            print(cellSizes)
-            return size
+            size = sizingCell!.systemLayoutSizeFitting(UILayoutFittingCompressedSize)
         }
+
+        if cellSizes[indexPath.section] != nil {
+            cellSizes[indexPath.section]?.insert(size, at: indexPath.row)
+        } else {
+            cellSizes[indexPath.section] = [size]
+        }
+
+        return size
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
