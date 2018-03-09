@@ -19,11 +19,9 @@ class APIRequestOperation: AsyncOperation {
 
 private extension APIRequestOperation {
     func request(_ apiRequest: URLRequest, completionHandler: @escaping (_ data: Data?) -> Void) {
-        // TODO: visszakapcsolni a felhasználói azonosítást
-        // Ez az auth token egy ideiglenesen használt felhasználó JWT tokenje.
-        // let authToken = "Token token=eyJhbGciOiJIUzI1NiJ9.eyJ1bmlxdWVfaGFzaCI6InRlc3QifQ.9RwhNNuROSt_DpadCdGhSICbp0HSceu6Nv1u3sn5q-E"
+        let authToken = "Token token=eyJhbGciOiJIUzI1NiJ9.eyJ1bmlxdWVfaGFzaCI6InRlc3QxMjM0In0.JKKHSuIHcxefvRChB3s0PS_xTDH6w0N5c_OFZOAe9yg"
         let sessionConfiguration = URLSessionConfiguration.ephemeral
-        // sessionConfiguration.httpAdditionalHeaders = ["Authorization": authToken]
+        sessionConfiguration.httpAdditionalHeaders = ["Authorization": authToken]
         let session = URLSession(configuration: sessionConfiguration)
 
         let dataTask = session.dataTask(with: apiRequest) { data, response, error in
