@@ -65,6 +65,7 @@ class HomeCollectionViewController: UICollectionViewController {
 
         Restaurant.facets { (facets) in
             DispatchQueue.main.async {
+                self.cellSizes.removeAll()
                 self.collectionViewDataSource = HomeCollectionViewDataSource(facets: facets)
                 self.collectionView?.dataSource = self.collectionViewDataSource
                 self.collectionView?.collectionViewLayout.invalidateLayout()
