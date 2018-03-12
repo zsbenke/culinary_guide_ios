@@ -170,10 +170,10 @@
             </objects>
             <point key="canvasLocation" x="349.60000000000002" y="88.669950738916256"/>
         </scene>
-        <!--Éttermek-->
+        <!--Restaurants View Controller-->
         <scene sceneID="w03-xF-Ake">
             <objects>
-                <viewController storyboardIdentifier="RestaurantsViewController" title="Éttermek" automaticallyAdjustsScrollViewInsets="NO" id="XGQ-ey-PNz" customClass="RestaurantsViewController" customModule="CulinaryGuide" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="RestaurantsViewController" automaticallyAdjustsScrollViewInsets="NO" id="XGQ-ey-PNz" customClass="RestaurantsViewController" customModule="CulinaryGuide" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="t4l-t0-adp">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

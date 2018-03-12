@@ -102,6 +102,8 @@
 		98C9EB20204DFB16001EC8C1 /* RestaurantClusterAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98C9EB1F204DFB16001EC8C1 /* RestaurantClusterAnnotationView.swift */; };
 		98C9EB22204E075D001EC8C1 /* MKMapViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98C9EB21204E075D001EC8C1 /* MKMapViewExtensions.swift */; };
 		98CAFA982056B88F0000BD94 /* Localizable.stringsdict in Resources */ = {isa = PBXBuildFile; fileRef = 98CAFA9A2056B88F0000BD94 /* Localizable.stringsdict */; };
+		98CAFABD2056C6860000BD94 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 98CAFABB2056C6860000BD94 /* InfoPlist.strings */; };
+		98CAFAC02056C6860000BD94 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 98CAFABE2056C6860000BD94 /* Localizable.strings */; };
 		98D869332007C62B00EC909F /* Localization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98D869322007C62B00EC909F /* Localization.swift */; };
 		98D8694D2007F9C900EC909F /* CountriesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98D8694C2007F9C900EC909F /* CountriesViewController.swift */; };
 		98D8694E2007F9C900EC909F /* CountriesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98D8694C2007F9C900EC909F /* CountriesViewController.swift */; };
@@ -273,6 +275,8 @@
 		98CAFAB82056C1E60000BD94 /* sl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sl; path = sl.lproj/Main.strings; sourceTree = "<group>"; };
 		98CAFAB92056C1E60000BD94 /* sl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sl; path = sl.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		98CAFABA2056C1E70000BD94 /* sl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = sl; path = sl.lproj/Localizable.stringsdict; sourceTree = "<group>"; };
+		98CAFABC2056C6860000BD94 /* hu */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = hu; path = hu.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		98CAFABF2056C6860000BD94 /* hu */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = hu; path = hu.lproj/Localizable.strings; sourceTree = "<group>"; };
 		98D869322007C62B00EC909F /* Localization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Localization.swift; sourceTree = "<group>"; };
 		98D8694C2007F9C900EC909F /* CountriesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountriesViewController.swift; sourceTree = "<group>"; };
 		98D869502007FA7300EC909F /* EnumCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnumCollection.swift; sourceTree = "<group>"; };
@@ -453,6 +457,8 @@
 			children = (
 				98F626152002487600996A91 /* AppDelegate.swift */,
 				98F626232002487700996A91 /* Info.plist */,
+				98CAFABE2056C6860000BD94 /* Localizable.strings */,
+				98CAFABB2056C6860000BD94 /* InfoPlist.strings */,
 				98CAFA9A2056B88F0000BD94 /* Localizable.stringsdict */,
 				989EA00520178A9D00FB2A95 /* Playground.playground */,
 				98F6264820024A3700996A91 /* View Controllers */,
@@ -709,6 +715,7 @@
 			files = (
 				98F626222002487700996A91 /* LaunchScreen.storyboard in Resources */,
 				98CAFA982056B88F0000BD94 /* Localizable.stringsdict in Resources */,
+				98CAFAC02056C6860000BD94 /* Localizable.strings in Resources */,
 				98F6261F2002487700996A91 /* Assets.xcassets in Resources */,
 				9847A6F8200A4F8300A17247 /* TagCollectionViewCell.xib in Resources */,
 				989936462040CD41003B94C2 /* DetailTitleView.xib in Resources */,
@@ -716,6 +723,7 @@
 				9892E81F200A3CEE007B7033 /* IconTableViewCell.xib in Resources */,
 				98B4A13720487D1B002E30F5 /* DetailTableViewCell.xib in Resources */,
 				98F6261D2002487700996A91 /* Main.storyboard in Resources */,
+				98CAFABD2056C6860000BD94 /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -893,6 +901,22 @@
 				98CAFABA2056C1E70000BD94 /* sl */,
 			);
 			name = Localizable.stringsdict;
+			sourceTree = "<group>";
+		};
+		98CAFABB2056C6860000BD94 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				98CAFABC2056C6860000BD94 /* hu */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		98CAFABE2056C6860000BD94 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				98CAFABF2056C6860000BD94 /* hu */,
+			);
+			name = Localizable.strings;
 			sourceTree = "<group>";
 		};
 		98F6261B2002487700996A91 /* Main.storyboard */ = {
