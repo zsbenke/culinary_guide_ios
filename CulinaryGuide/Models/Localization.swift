@@ -18,26 +18,26 @@ struct Localization {
         }
         
         var name: String {
-            let unknownCountry = NSLocalizedString("Ismeretlen", comment: "Ismeretlen ország neve, nem jelenik meg a felhasználói felületben")
+            let unknownCountry = NSLocalizedString("Unknown", comment: "Ismeretlen ország neve, nem jelenik meg a felhasználói felületben")
             switch self {
             case .Unknown:
                 return unknownCountry
             case .CentralEurope:
-                return NSLocalizedString("Közép-Európa", comment: "országválasztó és toolbar cím")
+                return NSLocalizedString("Central Europe", comment: "országválasztó és toolbar cím")
             case .Hungary:
-                return NSLocalizedString("Magyarország", comment: "országválasztó és toolbar cím")
+                return NSLocalizedString("Hungary", comment: "országválasztó és toolbar cím")
             case .CzechRepublic:
-                return NSLocalizedString("Csehország", comment: "országválasztó és toolbar cím")
+                return NSLocalizedString("Czech Republic", comment: "országválasztó és toolbar cím")
             case .Slovakia:
-                return NSLocalizedString("Szlovákia", comment: "országválasztó és toolbar cím")
+                return NSLocalizedString("Slovakia", comment: "országválasztó és toolbar cím")
             case .Romania:
-                return NSLocalizedString("Románia", comment: "országválasztó és toolbar cím")
+                return NSLocalizedString("Romania", comment: "országválasztó és toolbar cím")
             case .Serbia:
-                return NSLocalizedString("Szerbia", comment: "országválasztó és toolbar cím")
+                return NSLocalizedString("Serbia", comment: "országválasztó és toolbar cím")
             case .Croatia:
-                return NSLocalizedString("Horvátország", comment: "országválasztó és toolbar cím")
+                return NSLocalizedString("Croatia", comment: "országválasztó és toolbar cím")
             case .Slovenia:
-                return NSLocalizedString("Szlovénia", comment: "országválasztó és toolbar cím")
+                return NSLocalizedString("Slovenia", comment: "országválasztó és toolbar cím")
             }
         }
 

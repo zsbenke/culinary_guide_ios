@@ -13,14 +13,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         let searchAction = UIMutableApplicationShortcutItem(type: "\(ShortcutItemType.search)",
-            localizedTitle: NSLocalizedString("Keresés", comment: "3D touch shortcut action"),
+            localizedTitle: NSLocalizedString("Search", comment: "3D touch shortcut action"),
             localizedSubtitle: nil,
             icon: UIApplicationShortcutIcon(type: .search),
             userInfo: nil
         )
 
 //        let nearbyAction = UIMutableApplicationShortcutItem(type: "\(ShortcutItemType.nearby)",
-//            localizedTitle: NSLocalizedString("Éttermek a környéken", comment: "3D touch shortcut action"),
+//            localizedTitle: NSLocalizedString("Restaurants Nearby", comment: "3D touch shortcut action"),
 //            localizedSubtitle: nil,
 //            icon: UIApplicationShortcutIcon(type: .location),
 //            userInfo: nil

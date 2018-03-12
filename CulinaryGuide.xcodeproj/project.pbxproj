@@ -306,6 +306,24 @@
 		98C9EB1D204DF454001EC8C1 /* RestaurantMarkerAnnotationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantMarkerAnnotationView.swift; sourceTree = "<group>"; };
 		98C9EB1F204DFB16001EC8C1 /* RestaurantClusterAnnotationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantClusterAnnotationView.swift; sourceTree = "<group>"; };
 		98C9EB21204E075D001EC8C1 /* MKMapViewExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MKMapViewExtensions.swift; path = CulinaryGuide/Utils/MKMapViewExtensions.swift; sourceTree = SOURCE_ROOT; };
+		98CAFA6F2056AAC60000BD94 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Main.strings; sourceTree = "<group>"; };
+		98CAFA702056AAC60000BD94 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
+		98CAFA712056AACE0000BD94 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Main.strings; sourceTree = "<group>"; };
+		98CAFA722056AACE0000BD94 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
+		98CAFA732056AAE70000BD94 /* hu */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = hu; path = hu.lproj/Main.strings; sourceTree = "<group>"; };
+		98CAFA742056AAE80000BD94 /* hu */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = hu; path = hu.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
+		98CAFA752056AAF00000BD94 /* cs */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = cs; path = cs.lproj/Main.strings; sourceTree = "<group>"; };
+		98CAFA762056AAF00000BD94 /* cs */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = cs; path = cs.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
+		98CAFA772056AAF90000BD94 /* sk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sk; path = sk.lproj/Main.strings; sourceTree = "<group>"; };
+		98CAFA782056AAF90000BD94 /* sk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sk; path = sk.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
+		98CAFA792056AB030000BD94 /* ro */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ro; path = ro.lproj/Main.strings; sourceTree = "<group>"; };
+		98CAFA7A2056AB030000BD94 /* ro */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ro; path = ro.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
+		98CAFA7B2056AB1C0000BD94 /* sr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sr; path = sr.lproj/Main.strings; sourceTree = "<group>"; };
+		98CAFA7C2056AB1C0000BD94 /* sr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sr; path = sr.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
+		98CAFA7D2056AB270000BD94 /* hr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = hr; path = hr.lproj/Main.strings; sourceTree = "<group>"; };
+		98CAFA7E2056AB270000BD94 /* hr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = hr; path = hr.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
+		98CAFA7F2056AB380000BD94 /* sl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sl; path = sl.lproj/Main.strings; sourceTree = "<group>"; };
+		98CAFA802056AB380000BD94 /* sl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sl; path = sl.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		98D869322007C62B00EC909F /* Localization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Localization.swift; sourceTree = "<group>"; };
 		98D8694C2007F9C900EC909F /* CountriesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountriesViewController.swift; sourceTree = "<group>"; };
 		98D869502007FA7300EC909F /* EnumCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnumCollection.swift; sourceTree = "<group>"; };
@@ -747,7 +765,7 @@
 			};
 			buildConfigurationList = 98F6260D2002487600996A91 /* Build configuration list for PBXProject "CulinaryGuide" */;
 			compatibilityVersion = "Xcode 8.0";
-			developmentRegion = hu;
+			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				Base,
@@ -1023,6 +1041,15 @@
 			isa = PBXVariantGroup;
 			children = (
 				9847A71A200BA85700A17247 /* Base */,
+				98CAFA6F2056AAC60000BD94 /* en */,
+				98CAFA712056AACE0000BD94 /* de */,
+				98CAFA732056AAE70000BD94 /* hu */,
+				98CAFA752056AAF00000BD94 /* cs */,
+				98CAFA772056AAF90000BD94 /* sk */,
+				98CAFA792056AB030000BD94 /* ro */,
+				98CAFA7B2056AB1C0000BD94 /* sr */,
+				98CAFA7D2056AB270000BD94 /* hr */,
+				98CAFA7F2056AB380000BD94 /* sl */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -1031,6 +1058,15 @@
 			isa = PBXVariantGroup;
 			children = (
 				9847A71B200BA85700A17247 /* Base */,
+				98CAFA702056AAC60000BD94 /* en */,
+				98CAFA722056AACE0000BD94 /* de */,
+				98CAFA742056AAE80000BD94 /* hu */,
+				98CAFA762056AAF00000BD94 /* cs */,
+				98CAFA782056AAF90000BD94 /* sk */,
+				98CAFA7A2056AB030000BD94 /* ro */,
+				98CAFA7C2056AB1C0000BD94 /* sr */,
+				98CAFA7E2056AB270000BD94 /* hr */,
+				98CAFA802056AB380000BD94 /* sl */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";

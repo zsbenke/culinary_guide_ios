@@ -73,29 +73,29 @@ class RestaurantDataSource: NSObject {
         func localized() -> String {
             switch self {
             case .address:
-                return NSLocalizedString("cím", comment: "Adat címke az étterem nézeten.")
+                return NSLocalizedString("Address", comment: "Adat címke az étterem nézeten.")
             case .phone:
-                return NSLocalizedString("telefon", comment: "Adat címke az étterem nézeten.")
+                return NSLocalizedString("Phone", comment: "Adat címke az étterem nézeten.")
             case .hours:
-                return NSLocalizedString("nyitvatartás", comment: "Adat címke az étterem nézeten.")
+                return NSLocalizedString("Hours", comment: "Adat címke az étterem nézeten.")
             case .definingPeople:
-                return NSLocalizedString("kapcsolódó személyek", comment: "Adat címke az étterem nézeten.")
+                return NSLocalizedString("Peoople", comment: "Adat címke az étterem nézeten.")
             case .website:
-                return NSLocalizedString("webhely", comment: "Adat címke az étterem nézeten.")
+                return NSLocalizedString("Website", comment: "Adat címke az étterem nézeten.")
             case .email:
-                return NSLocalizedString("e-mail", comment: "Adat címke az étterem nézeten.")
+                return NSLocalizedString("Email", comment: "Adat címke az étterem nézeten.")
             case .facebookPage:
-                return NSLocalizedString("facebook", comment: "Adat címke az étterem nézeten.")
+                return NSLocalizedString("Facebook", comment: "Adat címke az étterem nézeten.")
             case .reservations:
-                return NSLocalizedString("foglalás", comment: "Adat címke az étterem nézeten.")
+                return NSLocalizedString("Reservation", comment: "Adat címke az étterem nézeten.")
             case .parking:
-                return NSLocalizedString("parkolás", comment: "Adat címke az étterem nézeten.")
+                return NSLocalizedString("Parking", comment: "Adat címke az étterem nézeten.")
             case .menuPrice:
-                return NSLocalizedString("menü ára", comment: "Adat címke az étterem nézeten.")
+                return NSLocalizedString("Menu Price", comment: "Adat címke az étterem nézeten.")
             case .review:
-                return NSLocalizedString("teszt", comment: "Adat címke az étterem nézeten.")
+                return NSLocalizedString("Review", comment: "Adat címke az étterem nézeten.")
             case .title:
-                return NSLocalizedString("neve", comment: "Adat címke az étterem nézeten.")
+                return NSLocalizedString("Name", comment: "Adat címke az étterem nézeten.")
             }
         }
     }

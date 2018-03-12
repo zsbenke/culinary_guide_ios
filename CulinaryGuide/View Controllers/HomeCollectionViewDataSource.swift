@@ -23,15 +23,15 @@ class HomeCollectionViewDataSource: NSObject {
         func asLocalized() -> String {
             switch self {
             case .all:
-                return NSLocalizedString("Összes étterem…", comment: "Az főscreenen megjelenő összes étterem szekció címe.")
+                return NSLocalizedString("All Restaurants…", comment: "Az főscreenen megjelenő összes étterem szekció címe.")
             case .what:
-                return NSLocalizedString("Mit?", comment: "A főscreenen megjelenő mit szekció címe.")
+                return NSLocalizedString("What?", comment: "A főscreenen megjelenő mit szekció címe.")
             case .when:
-                return NSLocalizedString("Mikor?", comment: "A főscreenen megjelenő mikor szekció címe.")
+                return NSLocalizedString("When?", comment: "A főscreenen megjelenő mikor szekció címe.")
             case .where:
-                return NSLocalizedString("Hol?", comment: "A főscreenen megjelenő mit szekció címe.")
+                return NSLocalizedString("Where?", comment: "A főscreenen megjelenő mit szekció címe.")
             case .whatKindOf:
-                return NSLocalizedString("Milyet?", comment: "A főscreenen megjelenő mit szekció címe.")
+                return NSLocalizedString("What Kind Of?", comment: "A főscreenen megjelenő mit szekció címe.")
             }
         }
     }

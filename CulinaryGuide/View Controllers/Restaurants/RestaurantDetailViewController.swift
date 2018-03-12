@@ -24,17 +24,17 @@ class RestaurantDetailViewController: UITableViewController {
     private let fadeAnimation = CATransition()
 
     lazy var previewActions: [UIPreviewActionItem] = {
-        let openAddressTitle = NSLocalizedString("Megnyitás a Térképekkel", comment: "3D touch action ami megnyitja az éttermet a Térképek alkalmazásban.")
+        let openAddressTitle = NSLocalizedString("Open in Maps", comment: "3D touch action ami megnyitja az éttermet a Térképek alkalmazásban.")
         let openAddressAction = UIPreviewAction(title: openAddressTitle, style: .default) { (action, viewController) in
             self.openAddress()
         }
 
-        let callTitle = NSLocalizedString("Hívás telefonon", comment: "3D touch action ami felhívja az éttermet.")
+        let callTitle = NSLocalizedString("Call", comment: "3D touch action ami felhívja az éttermet.")
         let callAction = UIPreviewAction(title: callTitle, style: .default) { (action, viewController) in
             self.call()
         }
 
-        let openWebsiteTitle = NSLocalizedString("Webhely felkeresése", comment: "3D touch action ami megnyitja az éttermet a Térképek alkalmazásban.")
+        let openWebsiteTitle = NSLocalizedString("Open Website", comment: "3D touch action ami megnyitja az éttermet a Térképek alkalmazásban.")
         let openWebsiteAction = UIPreviewAction(title: openWebsiteTitle, style: .default) { (action, viewController) in
             self.openWebsite()
         }

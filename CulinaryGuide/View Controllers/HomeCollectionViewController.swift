@@ -5,42 +5,6 @@ class HomeCollectionViewController: UICollectionViewController {
     private var sizingCell: TagCollectionViewCell?
     private var cellSizes = [Int: [CGSize]]()
     private var collectionViewDataSource: HomeCollectionViewDataSource?
-
-    enum HomeCollectionHeader: String, EnumCollection {
-        case all
-        case what
-        case whatKindOf = "what_kind_of"
-        case when
-        case `where`
-
-        func isEmpty(for facets: [RestaurantFacet?]) -> Bool {
-            switch self {
-                case .all:
-                    return true
-                case .what, .when, .where, .whatKindOf:
-                guard let homeScreenSection = RestaurantFacet.HomeScreenSection(rawValue: self.rawValue) else { break }
-                let facetsInSection = facets.filter(homeScreenSection: homeScreenSection)
-                return facetsInSection.count == 0
-            }
-
-            return true
-        }
-
-        func asLocalized() -> String {
-            switch self {
-            case .all:
-                return NSLocalizedString("Összes étterem…", comment: "Az főscreenen megjelenő összes étterem szekció címe.")
-            case .what:
-                return NSLocalizedString("Mit?", comment: "A főscreenen megjelenő mit szekció címe.")
-            case .when:
-                return NSLocalizedString("Mikor?", comment: "A főscreenen megjelenő mikor szekció címe.")
-            case .where:
-                return NSLocalizedString("Hol?", comment: "A főscreenen megjelenő mit szekció címe.")
-            case .whatKindOf:
-                return NSLocalizedString("Milyet?", comment: "A főscreenen megjelenő mit szekció címe.")
-            }
-        }
-    }
     
     override func viewDidLoad() {
         super.viewDidLoad()

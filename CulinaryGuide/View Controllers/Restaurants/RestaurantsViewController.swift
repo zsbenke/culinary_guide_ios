@@ -35,7 +35,7 @@ class RestaurantsViewController: UIViewController {
 
         definesPresentationContext = true
 
-        restaurantsCountLabel.text = NSLocalizedString("Nincs étterem", comment: "Az étterem lista eszköztár státusz szövege, amikor nincs étterem találat.")
+        restaurantsCountLabel.text = NSLocalizedString("No restaurant", comment: "Az étterem lista eszköztár státusz szövege, amikor nincs étterem találat.")
         
         // Setup searchBar
         searchController = UISearchController(searchResultsController: searchResultsController)
@@ -105,7 +105,7 @@ class RestaurantsViewController: UIViewController {
     }
     
     func loadRestaurants(completionHandler: @escaping () -> Void = { }) {
-        restaurantsCountLabel.text = NSLocalizedString("Éttermek betöltése…", comment: "Az étterem lista eszköztár státusz szövege, miközben az étterem listátát tölti be.")
+        restaurantsCountLabel.text = NSLocalizedString("Loading restaurants…", comment: "Az étterem lista eszköztár státusz szövege, miközben az étterem listátát tölti be.")
 
         let restaurantsTableViewController = childViewControllers.filter {
             $0 is RestaurantsTableViewController
@@ -117,11 +117,11 @@ class RestaurantsViewController: UIViewController {
         let prepareRestaurantsToChildViewControllers: () -> Void = {
             DispatchQueue.main.async {
                 if self.restaurants.count == 0 {
-                    self.restaurantsCountLabel.text = NSLocalizedString("Nincs étterem", comment: "Az étterem lista eszköztár státusz szövege, amikor nincs étterem találat.")
+                    self.restaurantsCountLabel.text = NSLocalizedString("No restaurant", comment: "Az étterem lista eszköztár státusz szövege, amikor nincs étterem találat.")
                 } else if self.restaurants.count == 1 {
-                    self.restaurantsCountLabel.text = NSLocalizedString("1 étterem", comment: "Az étterem lista eszköztár státusz szövege, amikor csak étterem a találat.")
+                    self.restaurantsCountLabel.text = NSLocalizedString("1 restaurant", comment: "Az étterem lista eszköztár státusz szövege, amikor csak étterem a találat.")
                 } else if self.restaurants.count > 1 {
-                    self.restaurantsCountLabel.text = NSLocalizedString("\(self.restaurants.count) étterem", comment: "Az étterem lista eszköztár státusz szövege, több étterem találat.")
+                    self.restaurantsCountLabel.text = NSLocalizedString("\(self.restaurants.count) restaurants", comment: "Az étterem lista eszköztár státusz szövege, több étterem találat.")
                 }
 
                 self.restaurantsCountLabel.sizeToFit()
