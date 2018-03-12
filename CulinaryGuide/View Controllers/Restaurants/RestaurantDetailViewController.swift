@@ -210,7 +210,7 @@ private extension RestaurantDetailViewController {
 
                     let restaurantShortcut = UIApplicationShortcutItem(
                         type: "\(AppDelegate.ShortcutItemType.restaurant)",
-                        localizedTitle: NSLocalizedString("Legutóbbi étterem", comment: "3D touch shortcut action"),
+                        localizedTitle: NSLocalizedString("Last viewed", comment: "3D touch shortcut action"),
                         localizedSubtitle: title,
                         icon: UIApplicationShortcutIcon(type: .bookmark),
                         userInfo: userInfo

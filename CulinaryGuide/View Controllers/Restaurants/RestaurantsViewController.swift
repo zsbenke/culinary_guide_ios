@@ -118,10 +118,8 @@ class RestaurantsViewController: UIViewController {
             DispatchQueue.main.async {
                 if self.restaurants.count == 0 {
                     self.restaurantsCountLabel.text = NSLocalizedString("No restaurant", comment: "Az étterem lista eszköztár státusz szövege, amikor nincs étterem találat.")
-                } else if self.restaurants.count == 1 {
-                    self.restaurantsCountLabel.text = NSLocalizedString("1 restaurant", comment: "Az étterem lista eszköztár státusz szövege, amikor csak étterem a találat.")
-                } else if self.restaurants.count > 1 {
-                    self.restaurantsCountLabel.text = NSLocalizedString("\(self.restaurants.count) restaurants", comment: "Az étterem lista eszköztár státusz szövege, több étterem találat.")
+                } else {
+                    self.restaurantsCountLabel.text = String.localizedStringWithFormat(NSLocalizedString("%d restaurant(s)", comment: "Az étterem lista eszköztár státusz szövege, amikor csak étterem a találat."), self.restaurants.count)
                 }
 
                 self.restaurantsCountLabel.sizeToFit()

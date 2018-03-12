@@ -79,7 +79,7 @@ class RestaurantDataSource: NSObject {
             case .hours:
                 return NSLocalizedString("Hours", comment: "Adat címke az étterem nézeten.")
             case .definingPeople:
-                return NSLocalizedString("Peoople", comment: "Adat címke az étterem nézeten.")
+                return NSLocalizedString("People", comment: "Adat címke az étterem nézeten.")
             case .website:
                 return NSLocalizedString("Website", comment: "Adat címke az étterem nézeten.")
             case .email:
