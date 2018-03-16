@@ -196,7 +196,6 @@ private extension RestaurantDataSource {
         let paragraphStyle = NSMutableParagraphStyle()
         paragraphStyle.lineHeightMultiple = 1.15
         paragraphStyle.lineBreakMode = .byWordWrapping
-
         var attributedString = NSMutableAttributedString(string: detailRow.value, attributes: [NSAttributedStringKey.paragraphStyle: paragraphStyle])
 
         if detailRow.column == .menuPrice {
@@ -206,15 +205,14 @@ private extension RestaurantDataSource {
                 NSAttributedStringKey.foregroundColor: UIColor.lightGray
             ])
             attributedString.addAttribute(NSAttributedStringKey.foregroundColor, value: UIColor.black, range: range)
+        } else if DetailRow.actionColumns.contains(detailRow.column) {
+            let range = (detailRow.value as NSString).range(of: detailRow.value)
+            attributedString.addAttribute(NSAttributedStringKey.foregroundColor, value: UIColor.BrandColor.linkText, range: range)
         }
 
         cell?.labelText.text = detailRow.column.localized()
         cell?.iconImageView.image = detailRow.image
         cell?.valueText.attributedText = attributedString
-
-        if DetailRow.actionColumns.contains(detailRow.column) {
-            cell?.valueText.textColor = UIColor.BrandColor.linkText
-        }
     }
 
     func configure(tableViewCell cell: UITableViewCell?, restaurantReview: RestaurantReview) {
