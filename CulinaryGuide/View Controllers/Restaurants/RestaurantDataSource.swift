@@ -197,9 +197,20 @@ private extension RestaurantDataSource {
         paragraphStyle.lineHeightMultiple = 1.15
         paragraphStyle.lineBreakMode = .byWordWrapping
 
+        var attributedString = NSMutableAttributedString(string: detailRow.value, attributes: [NSAttributedStringKey.paragraphStyle: paragraphStyle])
+
+        if detailRow.column == .menuPrice {
+            let range = ("€€€€€" as NSString).range(of: detailRow.value)
+            attributedString = NSMutableAttributedString(string: "€€€€€", attributes: [
+                NSAttributedStringKey.paragraphStyle: paragraphStyle,
+                NSAttributedStringKey.foregroundColor: UIColor.lightGray
+            ])
+            attributedString.addAttribute(NSAttributedStringKey.foregroundColor, value: UIColor.black, range: range)
+        }
+
         cell?.labelText.text = detailRow.column.localized()
         cell?.iconImageView.image = detailRow.image
-        cell?.valueText.attributedText = NSAttributedString(string: detailRow.value, attributes: [NSAttributedStringKey.paragraphStyle: paragraphStyle])
+        cell?.valueText.attributedText = attributedString
 
         if DetailRow.actionColumns.contains(detailRow.column) {
             cell?.valueText.textColor = UIColor.BrandColor.linkText
