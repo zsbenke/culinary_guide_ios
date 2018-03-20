@@ -5,14 +5,27 @@ class HomeCollectionViewController: UICollectionViewController {
     private var sizingCell: TagCollectionViewCell?
     private var cellSizes = [Int: [CGSize]]()
     private var collectionViewDataSource: HomeCollectionViewDataSource?
+    private var headerView: HomeTitleView!
+    private var headerViewHeight: CGFloat {
+        let statusBarHeight = UIApplication.shared.statusBarFrame.height
+        let ratio = UIScreen.main.bounds.width / 4
+        let baseHeight: CGFloat = ratio * 2.25
+        guard statusBarHeight > 20 else { return baseHeight }
+        return baseHeight + statusBarHeight
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        navigationItem.largeTitleDisplayMode = .never
+        navigationController?.navigationBar.topItem?.title = ""
+
         collectionView?.dataSource = collectionViewDataSource
+        collectionView?.contentInsetAdjustmentBehavior = .never
 
         sizingCell = ((UINib(nibName: "TagCollectionViewCell", bundle: nil).instantiate(withOwner: nil, options: nil) as Array).first as! TagCollectionViewCell)
-        
+
+        setCurrentCountryHeroImage()
         configureView()
     }
     
@@ -20,12 +33,20 @@ class HomeCollectionViewController: UICollectionViewController {
         super.didReceiveMemoryWarning()
     }
 
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+
+        updateNavigationBarAppearance(animated: false)
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+
+        updateNavigationBarAppearance(animated: false)
+    }
+
     func configureView() {
         guard Localization.currentCountry != Localization.Country.Unknown else { return performSegue(withIdentifier: "chooseCountry", sender: self) }
-
-        let currentCountry = Localization.currentCountry.name
-        self.navigationItem.title = "\(currentCountry)"
-        self.navigationController?.navigationBar.prefersLargeTitles = true
 
         Restaurant.facets { (facets) in
             DispatchQueue.main.async {
@@ -33,6 +54,9 @@ class HomeCollectionViewController: UICollectionViewController {
                 self.collectionViewDataSource = HomeCollectionViewDataSource(facets: facets)
                 self.collectionView?.dataSource = self.collectionViewDataSource
                 self.collectionView?.collectionViewLayout.invalidateLayout()
+
+                self.setCurrentCountryHeroImage()
+
                 self.collectionView?.reloadData()
             }
         }
@@ -152,5 +176,84 @@ extension HomeCollectionViewController: UICollectionViewDelegateFlowLayout {
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
         return 16
+    }
+}
+
+extension HomeCollectionViewController {
+    override func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        updateHeaderView()
+    }
+}
+
+private extension HomeCollectionViewController {
+    func setCurrentCountryHeroImage() {
+        if headerView == nil {
+            let headerViewFrame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.size.width, height: self.headerViewHeight)
+            headerView = HomeTitleView.init(frame: headerViewFrame)
+        }
+
+        headerView.heroImageView.image = Localization.currentCountry.homeHeroImage
+        headerView.countryNameLabel.text = Localization.currentCountry.name
+
+        collectionView?.subviews.filter { $0.isKind(of: HomeTitleView.self) }.first?.removeFromSuperview()
+        collectionView?.addSubview(headerView)
+        collectionView?.contentInset = UIEdgeInsets(top: self.headerViewHeight, left: 0, bottom: self.navigationController?.toolbar.frame.height ?? 0, right: 0)
+    }
+
+    func updateHeaderView(animated: Bool = true) {
+        guard let collectionView = collectionView else { return }
+        var headerViewFrame = CGRect(x: 0, y: -headerViewHeight, width: collectionView.bounds.width, height: headerViewHeight)
+
+        if collectionView.contentOffset.y <  -headerViewHeight {
+            headerViewFrame.origin.y = collectionView.contentOffset.y
+            headerViewFrame.size.height = -collectionView.contentOffset.y
+
+            let heroGradientAlpha = 1 - abs(headerViewHeight + collectionView.contentOffset.y) / 100
+
+            if heroGradientAlpha >= 0 {
+                headerView.heroImageGradient.alpha = heroGradientAlpha
+                self.navigationController?.navigationBar.tintColor = UIColor(red: 1, green: 1, blue: 1, alpha: heroGradientAlpha)
+            }
+        } else {
+            updateNavigationBarAppearance(animated: animated)
+        }
+
+        headerView.frame = headerViewFrame
+    }
+
+    func updateNavigationBarAppearance(animated: Bool) {
+        guard let collectionView = collectionView else { return }
+
+        func setNavigationBarToDefault() {
+            if let navigationController = self.navigationController as? PlainNavigationViewController {
+                navigationController.state = .default
+                navigationController.navigationBar.topItem?.title = "\(Localization.currentCountry.name)"
+            }
+        }
+
+        func setNavigationBarToTransparent() {
+            if let navigationController = self.navigationController as? PlainNavigationViewController {
+                navigationController.state = .transparent
+                navigationController.navigationBar.topItem?.title = ""
+            }
+        }
+
+        if collectionView.contentOffset.y < -65 {
+            if animated {
+                UIView.animate(withDuration: 0.4, animations: {
+                    setNavigationBarToTransparent()
+                }, completion: nil)
+            } else {
+                setNavigationBarToTransparent()
+            }
+        } else {
+            if animated {
+                UIView.animate(withDuration: 0.4, animations: {
+                    setNavigationBarToDefault()
+                }, completion: nil)
+            } else {
+                setNavigationBarToDefault()
+            }
+        }
     }
 }

@@ -77,6 +77,15 @@ struct Localization {
                 return MKCoordinateRegion(center: center, span: span)
             }
         }
+
+        var homeHeroImage: UIImage {
+            switch self {
+            case .Hungary:
+                return #imageLiteral(resourceName: "Home Title Image Hungary")
+            default:
+                return #imageLiteral(resourceName: "Home Title Image Hungary")
+            }
+        }
     }
     
     enum Language: String, CustomStringConvertible {

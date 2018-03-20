@@ -33,6 +33,9 @@ class RestaurantsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        let backItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
+        navigationController?.navigationBar.topItem?.backBarButtonItem = backItem
+
         definesPresentationContext = true
 
         restaurantsCountLabel.text = NSLocalizedString("No restaurant", comment: "Az étterem lista eszköztár státusz szövege, amikor nincs étterem találat.")
@@ -66,12 +69,17 @@ class RestaurantsViewController: UIViewController {
             search(self)
             presentSearchController = false
         }
+
+        setNavigationBarAppearance()
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+
+        setNavigationBarAppearance()
     }
 
     func loadAllRestaurants() {
-        let backItem = UIBarButtonItem()
-        navigationItem.backBarButtonItem = backItem
-
         initialRestaurants.removeAll()
         queryTokens.removeAll()
 
@@ -244,5 +252,11 @@ private extension RestaurantsViewController {
         newTokens.removeSearchTokens()
         newTokens.insert(URLQueryToken.init(column: "search", value: query))
         self.queryTokens = newTokens
+    }
+
+    func setNavigationBarAppearance() {
+        if let navigationController = self.navigationController as? PlainNavigationViewController {
+            navigationController.state = .default
+        }
     }
 }

@@ -21,7 +21,6 @@ class RestaurantDetailViewController: UITableViewController {
         guard statusBarHeight > 20 else { return baseHeight }
         return baseHeight + statusBarHeight
     }
-    private let fadeAnimation = CATransition()
 
     lazy var previewActions: [UIPreviewActionItem] = {
         let openAddressTitle = NSLocalizedString("Open in Maps", comment: "3D touch action ami megnyitja az éttermet a Térképek alkalmazásban.")
@@ -45,18 +44,14 @@ class RestaurantDetailViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        let backItem = UIBarButtonItem()
-        navigationItem.backBarButtonItem = backItem
+        let backItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
+        navigationController?.navigationBar.topItem?.backBarButtonItem = backItem
 
         tableView.dataSource = tableViewDataSource
         tableView.separatorStyle = .none
 
         navigationItem.largeTitleDisplayMode = .never
         tableView.contentInsetAdjustmentBehavior = .never
-
-        fadeAnimation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
-        fadeAnimation.type = kCATransitionFade
-        fadeAnimation.duration = 0.5
     }
 
     override var previewActionItems: [UIPreviewActionItem] {
@@ -70,9 +65,13 @@ class RestaurantDetailViewController: UITableViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
 
-        if let navigationController = self.navigationController as? PlainNavigationViewController {
-            navigationController.state = .transparent
-        }
+        setNavigationBarAppearance()
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+
+        setNavigationBarAppearance()
     }
 
     func setRestaurantID(from userInfo: [AnyHashable: Any]) {
@@ -86,7 +85,6 @@ extension RestaurantDetailViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let dataSource = tableView.dataSource as? RestaurantDataSource
         let section = dataSource?.getSection(for: indexPath.section)
-
 
         if section == RestaurantDataSource.Section.details, let detailRow = dataSource?.detailRows[indexPath.row] {
             if detailRow.column == .address {
@@ -199,9 +197,9 @@ private extension RestaurantDetailViewController {
                 self.tableView.contentInset = UIEdgeInsets(top: self.headerViewHeight, left: 0, bottom: 0, right: 0)
                 self.tableView.contentOffset = CGPoint(x: 0, y: -self.headerViewHeight)
 
-                self.updateHeaderView()
-
                 self.tableView.reloadData()
+
+                self.updateHeaderView()
 
                 if let title = restaurant.title {
                     let shortcuts = UIApplication.shared.shortcutItems
@@ -233,7 +231,6 @@ private extension RestaurantDetailViewController {
                         DispatchQueue.main.async {
                             let heroImage = UIImage(data: data)
                             self.headerImage = heroImage
-                            self.headerView.layer.add(self.fadeAnimation, forKey: nil)
 
                             UIView.animate(withDuration: 0.5, animations: {
                                 self.headerView.heroImageView.image = self.headerImage
@@ -274,7 +271,6 @@ private extension RestaurantDetailViewController {
     func switchNavigationBarAppearance(to appearance: PlainNavigationViewController.NavigationBarState, updateTitle: Bool = false) {
         switch appearance {
         case .default:
-            navigationController?.navigationBar.layer.add(fadeAnimation, forKey: nil)
             UIView.animate(withDuration: 0.4, animations: {
                 if let navigationController = self.navigationController as? PlainNavigationViewController {
                     navigationController.state = .default
@@ -285,7 +281,6 @@ private extension RestaurantDetailViewController {
                 }
             }, completion: nil)
         case .transparent:
-            navigationController?.navigationBar.layer.add(fadeAnimation, forKey: nil)
             UIView.animate(withDuration: 0.4, animations: {
                 if let navigationController = self.navigationController as? PlainNavigationViewController {
                     navigationController.state = .transparent
@@ -384,5 +379,11 @@ private extension RestaurantDetailViewController {
         guard let phone = restaurant?.phone?.filter({ "0123456789".contains($0) }) else { return }
         guard let phoneURL = URL(string: "tel:\(phone)") else { return }
         UIApplication.shared.open(phoneURL, options: [:], completionHandler: nil)
+    }
+
+    func setNavigationBarAppearance() {
+        if let navigationController = self.navigationController as? PlainNavigationViewController {
+            navigationController.state = .transparent
+        }
     }
 }

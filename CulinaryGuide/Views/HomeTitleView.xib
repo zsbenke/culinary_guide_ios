@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14105" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="HomeTitleView" customModule="CulinaryGuide" customModuleProvider="target">
+            <connections>
+                <outlet property="contentView" destination="S7h-MO-FmV" id="Sdw-Zn-1eN"/>
+                <outlet property="countryNameLabel" destination="Uzs-Mc-ciy" id="MOn-Ji-SVa"/>
+                <outlet property="heroImageGradient" destination="JaG-BM-eZ7" id="zAY-AL-oTI"/>
+                <outlet property="heroImageView" destination="A9Z-uz-hb6" id="fVX-YJ-Zd8"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="S7h-MO-FmV">
+            <rect key="frame" x="0.0" y="0.0" width="436" height="352"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Home Title Image Hungary" translatesAutoresizingMaskIntoConstraints="NO" id="A9Z-uz-hb6">
+                    <rect key="frame" x="0.0" y="0.0" width="436" height="352"/>
+                    <color key="backgroundColor" name="Body Text"/>
+                </imageView>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Hero Image Gradient" translatesAutoresizingMaskIntoConstraints="NO" id="JaG-BM-eZ7">
+                    <rect key="frame" x="0.0" y="0.0" width="436" height="352"/>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Country Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Uzs-Mc-ciy">
+                    <rect key="frame" x="97.5" y="293" width="241.5" height="43"/>
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="36"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="JaG-BM-eZ7" firstAttribute="leading" secondItem="S7h-MO-FmV" secondAttribute="leading" id="5e5-m1-Osc"/>
+                <constraint firstAttribute="bottom" secondItem="JaG-BM-eZ7" secondAttribute="bottom" id="Mm4-A6-V0h"/>
+                <constraint firstAttribute="trailing" secondItem="JaG-BM-eZ7" secondAttribute="trailing" id="QzU-oS-Abs"/>
+                <constraint firstAttribute="bottom" secondItem="A9Z-uz-hb6" secondAttribute="bottom" id="XOu-9A-Rxj"/>
+                <constraint firstItem="A9Z-uz-hb6" firstAttribute="leading" secondItem="S7h-MO-FmV" secondAttribute="leading" id="aVB-JZ-XNj"/>
+                <constraint firstItem="Uzs-Mc-ciy" firstAttribute="centerX" secondItem="S7h-MO-FmV" secondAttribute="centerX" id="dGP-fs-rBI"/>
+                <constraint firstAttribute="trailing" secondItem="A9Z-uz-hb6" secondAttribute="trailing" id="gT3-l8-fwo"/>
+                <constraint firstAttribute="top" secondItem="JaG-BM-eZ7" secondAttribute="top" id="h7B-cv-Wh4"/>
+                <constraint firstItem="Uzs-Mc-ciy" firstAttribute="bottom" secondItem="A9Z-uz-hb6" secondAttribute="bottom" constant="-16" id="uLT-3x-oll"/>
+                <constraint firstItem="A9Z-uz-hb6" firstAttribute="top" secondItem="S7h-MO-FmV" secondAttribute="top" id="uuB-mB-kRC"/>
+            </constraints>
+            <nil key="simulatedTopBarMetrics"/>
+            <nil key="simulatedBottomBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="4hy-dM-JEv"/>
+            <point key="canvasLocation" x="-240" y="-6"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="Hero Image Gradient" width="16" height="230"/>
+        <image name="Home Title Image Hungary" width="533" height="400"/>
+        <namedColor name="Body Text">
+            <color red="0.0" green="0.25098039215686274" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>

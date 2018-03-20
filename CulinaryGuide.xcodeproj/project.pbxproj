@@ -54,6 +54,8 @@
 		98550AA8201928AC006F53A2 /* RestaurantFilterState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98550AA7201928AC006F53A2 /* RestaurantFilterState.swift */; };
 		98550AA9201928AC006F53A2 /* RestaurantFilterState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98550AA7201928AC006F53A2 /* RestaurantFilterState.swift */; };
 		985DA7BB204EFE2700F1F79B /* HomeCollectionViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 985DA7BA204EFE2700F1F79B /* HomeCollectionViewDataSource.swift */; };
+		986471AD2061785600869A16 /* HomeTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 986471AC2061785600869A16 /* HomeTitleView.swift */; };
+		986471AF2061787900869A16 /* HomeTitleView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 986471AE2061787900869A16 /* HomeTitleView.xib */; };
 		986E8AD2200E6EA200BA57AA /* RatingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 986E8AD1200E6EA200BA57AA /* RatingView.swift */; };
 		986E8AD5200E6FBF00BA57AA /* RestaurantRatingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 986E8AD4200E6FBF00BA57AA /* RestaurantRatingTests.swift */; };
 		986E8AD6200E708400BA57AA /* RatingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 986E8AD1200E6EA200BA57AA /* RatingView.swift */; };
@@ -209,6 +211,8 @@
 		985403AF201B96BA006F7103 /* RatingFilterButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatingFilterButton.swift; sourceTree = "<group>"; };
 		98550AA7201928AC006F53A2 /* RestaurantFilterState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = RestaurantFilterState.swift; path = CulinaryGuide/Models/Restaurants/RestaurantFilterState.swift; sourceTree = SOURCE_ROOT; };
 		985DA7BA204EFE2700F1F79B /* HomeCollectionViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCollectionViewDataSource.swift; sourceTree = "<group>"; };
+		986471AC2061785600869A16 /* HomeTitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTitleView.swift; sourceTree = "<group>"; };
+		986471AE2061787900869A16 /* HomeTitleView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeTitleView.xib; sourceTree = "<group>"; };
 		986E8AD1200E6EA200BA57AA /* RatingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatingView.swift; sourceTree = "<group>"; };
 		986E8AD4200E6FBF00BA57AA /* RestaurantRatingTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantRatingTests.swift; sourceTree = "<group>"; };
 		988EC337204355870076178B /* URLExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLExtensions.swift; sourceTree = "<group>"; };
@@ -496,6 +500,8 @@
 				9847A70D200AB66300A17247 /* AlignedLeftFlowLayout.swift */,
 				989936452040CD41003B94C2 /* DetailTitleView.xib */,
 				9899364E2040CF0C003B94C2 /* DetailTitleView.swift */,
+				986471AE2061787900869A16 /* HomeTitleView.xib */,
+				986471AC2061785600869A16 /* HomeTitleView.swift */,
 				98B4A13520487D1B002E30F5 /* DetailTableViewCell.xib */,
 				98B4A13420487D1B002E30F5 /* DetailTableViewCell.swift */,
 				9847A711200BA5EC00A17247 /* UIBezierPath Tap.playground */,
@@ -717,6 +723,7 @@
 				98CAFA982056B88F0000BD94 /* Localizable.stringsdict in Resources */,
 				98CAFAC02056C6860000BD94 /* Localizable.strings in Resources */,
 				98F6261F2002487700996A91 /* Assets.xcassets in Resources */,
+				986471AF2061787900869A16 /* HomeTitleView.xib in Resources */,
 				9847A6F8200A4F8300A17247 /* TagCollectionViewCell.xib in Resources */,
 				989936462040CD41003B94C2 /* DetailTitleView.xib in Resources */,
 				9847A702200A99C400A17247 /* TagCollectionHeaderView.xib in Resources */,
@@ -775,6 +782,7 @@
 				98B2DCED204AF096007903BB /* PlainNavigationController.swift in Sources */,
 				98F6266020024CA900996A91 /* APIResource.swift in Sources */,
 				9892E81B200A3BC1007B7033 /* IconTableViewCell.swift in Sources */,
+				986471AD2061785600869A16 /* HomeTitleView.swift in Sources */,
 				98D8698320094E2300EC909F /* UIImageExtensions.swift in Sources */,
 				9899364F2040CF0C003B94C2 /* DetailTitleView.swift in Sources */,
 				98B2DC5A204AD39D007903BB /* UIViewControllerExtensions.swift in Sources */,
