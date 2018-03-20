@@ -82,8 +82,20 @@ struct Localization {
             switch self {
             case .Hungary:
                 return #imageLiteral(resourceName: "Home Title Image Hungary")
+            case .CzechRepublic:
+                return #imageLiteral(resourceName: "Home Title Image Czech Republic")
+            case .Slovakia:
+                return #imageLiteral(resourceName: "Home Title Image Slovakia")
+            case .Romania:
+                return #imageLiteral(resourceName: "Home Title Image Romania")
+            case .Serbia:
+                return #imageLiteral(resourceName: "Home Title Image Serbia")
+            case .Croatia:
+                return #imageLiteral(resourceName: "Home Title Image Croatia")
+            case .Slovenia:
+                return #imageLiteral(resourceName: "Home Title Image Slovenia")
             default:
-                return #imageLiteral(resourceName: "Home Title Image Hungary")
+                return #imageLiteral(resourceName: "Home Title Image Central Europe")
             }
         }
     }

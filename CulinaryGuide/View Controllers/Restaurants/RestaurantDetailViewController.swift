@@ -21,6 +21,7 @@ class RestaurantDetailViewController: UITableViewController {
         guard statusBarHeight > 20 else { return baseHeight }
         return baseHeight + statusBarHeight
     }
+    private let fadeAnimation = CATransition()
 
     lazy var previewActions: [UIPreviewActionItem] = {
         let openAddressTitle = NSLocalizedString("Open in Maps", comment: "3D touch action ami megnyitja az éttermet a Térképek alkalmazásban.")
@@ -52,6 +53,10 @@ class RestaurantDetailViewController: UITableViewController {
 
         navigationItem.largeTitleDisplayMode = .never
         tableView.contentInsetAdjustmentBehavior = .never
+
+        fadeAnimation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
+        fadeAnimation.type = kCATransitionFade
+        fadeAnimation.duration = 0.5
     }
 
     override var previewActionItems: [UIPreviewActionItem] {
@@ -231,6 +236,7 @@ private extension RestaurantDetailViewController {
                         DispatchQueue.main.async {
                             let heroImage = UIImage(data: data)
                             self.headerImage = heroImage
+                            self.headerView.layer.add(self.fadeAnimation, forKey: nil)
 
                             UIView.animate(withDuration: 0.5, animations: {
                                 self.headerView.heroImageView.image = self.headerImage
