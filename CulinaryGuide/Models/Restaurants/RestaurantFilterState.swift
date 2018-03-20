@@ -107,10 +107,10 @@ struct RestaurantFilterState {
         }
     }
     
-    var priceInformationRating: String? {
+    var priceInformationRating: Int? {
         get {
             guard let priceInformationRatingQueryToken = queryTokens.filter(column: Column.priceInformationRating).first else { return nil }
-            return priceInformationRatingQueryToken.value.isEmpty ? nil : priceInformationRatingQueryToken.value
+            return priceInformationRatingQueryToken.value.isEmpty ? nil : Int(priceInformationRatingQueryToken.value)
         }
         
         set(newValue) {

@@ -174,7 +174,7 @@ class RestaurantFilterViewController: UITableViewController {
     }
 
     @IBAction func priceInformationRatingValueChanged(_ sender: UISegmentedControl) {
-        filterState.priceInformationRating = sender.titleForSegment(at: sender.selectedSegmentIndex)
+        filterState.priceInformationRating = sender.selectedSegmentIndex + 1
     }
     
     @IBAction func creditCardValueChanged(_ sender: UISwitch) {
@@ -232,20 +232,7 @@ private extension RestaurantFilterViewController {
         wifiSwitch.setOn(filterState.wifi, animated: true)
 
         if filterState.priceInformationRating != nil, let priceInformationRating = filterState.priceInformationRating {
-            switch priceInformationRating {
-            case "€":
-                priceInformationRatingSegmentedControl.selectedSegmentIndex = 0
-            case "€€":
-                priceInformationRatingSegmentedControl.selectedSegmentIndex = 1
-            case "€€€":
-                priceInformationRatingSegmentedControl.selectedSegmentIndex = 2
-            case "€€€€":
-                priceInformationRatingSegmentedControl.selectedSegmentIndex = 3
-            case "€€€€€":
-                priceInformationRatingSegmentedControl.selectedSegmentIndex = 4
-            default:
-                priceInformationRatingSegmentedControl.selectedSegmentIndex = UISegmentedControlNoSegment
-            }
+            priceInformationRatingSegmentedControl.selectedSegmentIndex = priceInformationRating - 1
         } else {
             priceInformationRatingSegmentedControl.selectedSegmentIndex = UISegmentedControlNoSegment
         }
