@@ -7,11 +7,11 @@ struct API {
         case .development:
             return "http://culinary-guide-api.test"
         case .production:
-            return "http://enfys.com"
+            return "http://api.enfys.com"
         case .staging:
             return "http://enfys-staging.decoding.io"
         }
     }
     
-    static let baseURL = "\(domain)/api/v1"
+    static let baseURL = "\(domain)/v1"
 }
