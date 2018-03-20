@@ -10,7 +10,7 @@ class HomeCollectionViewController: UICollectionViewController {
     private var headerViewHeight: CGFloat {
         let statusBarHeight = UIApplication.shared.statusBarFrame.height
         let ratio = UIScreen.main.bounds.width / 4
-        let baseHeight: CGFloat = ratio * 3
+        let baseHeight: CGFloat = ratio * 3.5
         guard statusBarHeight > 20 else { return baseHeight }
         return baseHeight + statusBarHeight
     }
