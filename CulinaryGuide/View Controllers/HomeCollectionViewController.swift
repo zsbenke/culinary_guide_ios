@@ -4,12 +4,13 @@ class HomeCollectionViewController: UICollectionViewController {
     var selectedQueryTokens = Set<URLQueryToken>()
     private var sizingCell: TagCollectionViewCell?
     private var cellSizes = [Int: [CGSize]]()
+    private var restaurants = [Restaurant?]()
     private var collectionViewDataSource: HomeCollectionViewDataSource?
     private var headerView: HomeTitleView!
     private var headerViewHeight: CGFloat {
         let statusBarHeight = UIApplication.shared.statusBarFrame.height
         let ratio = UIScreen.main.bounds.width / 4
-        let baseHeight: CGFloat = ratio * 2.25
+        let baseHeight: CGFloat = ratio * 3
         guard statusBarHeight > 20 else { return baseHeight }
         return baseHeight + statusBarHeight
     }
@@ -54,14 +55,16 @@ class HomeCollectionViewController: UICollectionViewController {
                 self.collectionViewDataSource = HomeCollectionViewDataSource(facets: facets)
                 self.collectionView?.dataSource = self.collectionViewDataSource
                 self.collectionView?.collectionViewLayout.invalidateLayout()
-
-                self.setCurrentCountryHeroImage()
-
                 self.collectionView?.reloadData()
+
+                Restaurant.index { restaurants in
+                    self.restaurants = restaurants
+                    Restaurant.updateSpotlightIndex(items: restaurants)
+
+                    self.setCurrentCountryHeroImage()
+                }
             }
         }
-
-        Restaurant.indexItems()
     }
     
     @IBAction func presentAbout(_ sender: Any) {
@@ -187,17 +190,35 @@ extension HomeCollectionViewController {
 
 private extension HomeCollectionViewController {
     func setCurrentCountryHeroImage() {
-        if headerView == nil {
-            let headerViewFrame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.size.width, height: self.headerViewHeight)
-            headerView = HomeTitleView.init(frame: headerViewFrame)
+        DispatchQueue.main.async {
+            if self.headerView == nil {
+                let headerViewFrame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.size.width, height: self.headerViewHeight)
+                self.headerView = HomeTitleView.init(frame: headerViewFrame)
+            }
+
+            self.headerView.heroImageView.image = Localization.currentCountry.homeHeroImage
+            self.headerView.countryNameLabel.text = Localization.currentCountry.name
+
+            self.collectionView?.subviews.filter { $0.isKind(of: HomeTitleView.self) }.first?.removeFromSuperview()
+            self.collectionView?.addSubview(self.headerView)
+            self.collectionView?.contentInset = UIEdgeInsets(top: self.headerViewHeight, left: 0, bottom: self.navigationController?.toolbar.frame.height ?? 0, right: 0)
+            self.collectionView?.contentOffset = CGPoint(x: 0, y: -self.headerViewHeight)
+            self.updateHeaderView(animated: false)
+
+            if !self.restaurants.isEmpty {
+                if let maxRating = self.restaurants.compactMap({ $0 }).maxRating() {
+                    let ratingView = RatingView.init(rating: maxRating)
+
+                    for view in self.headerView.bestRatingView.subviews {
+                        view.removeFromSuperview()
+                    }
+                    self.headerView.bestRatingView.addSubview(ratingView)
+                }
+
+                self.headerView.ratedLabel.text = String(describing: self.restaurants.compactMap { $0 }.filter { $0.rating != "pop" }.count)
+                self.headerView.alternativeLabel.text = String(describing: self.restaurants.compactMap { $0 }.filter { $0.rating == "pop" }.count)
+            }
         }
-
-        headerView.heroImageView.image = Localization.currentCountry.homeHeroImage
-        headerView.countryNameLabel.text = Localization.currentCountry.name
-
-        collectionView?.subviews.filter { $0.isKind(of: HomeTitleView.self) }.first?.removeFromSuperview()
-        collectionView?.addSubview(headerView)
-        collectionView?.contentInset = UIEdgeInsets(top: self.headerViewHeight, left: 0, bottom: self.navigationController?.toolbar.frame.height ?? 0, right: 0)
     }
 
     func updateHeaderView(animated: Bool = true) {
@@ -214,10 +235,9 @@ private extension HomeCollectionViewController {
                 headerView.heroImageGradient.alpha = heroGradientAlpha
                 self.navigationController?.navigationBar.tintColor = UIColor(red: 1, green: 1, blue: 1, alpha: heroGradientAlpha)
             }
-        } else {
-            updateNavigationBarAppearance(animated: animated)
         }
 
+        updateNavigationBarAppearance(animated: animated)
         headerView.frame = headerViewFrame
     }
 
@@ -238,7 +258,7 @@ private extension HomeCollectionViewController {
             }
         }
 
-        if collectionView.contentOffset.y < -65 {
+        if collectionView.contentOffset.y < -151 {
             if animated {
                 UIView.animate(withDuration: 0.4, animations: {
                     setNavigationBarToTransparent()

@@ -312,49 +312,47 @@ struct Restaurant: PointOfInterest, Codable {
 
     // MARK: Spotlight indexing
 
-    static func indexItems() {
+    static func updateSpotlightIndex(items: [Restaurant?]) {
         let lastIndexedKey = "lastIndexedTimeIntervalFor\(Localization.currentCountry)"
         let indexingInterval = Double(604800) // egy hét unix timestampben
         let currentTime = Double(Date().timeIntervalSince1970)
 
-        let indexSearchableItems: () -> Void = {
+        func prepareSpotlightIndex(items: [Restaurant?]) {
             var searchableItems = [CSSearchableItem]()
 
-            self.index(completionHandler: { restaurants in
-                for restaurant in restaurants {
-                    guard let restaurant = restaurant else { continue }
-                    let searchableItemAttributeSet = CSSearchableItemAttributeSet(itemContentType: kUTTypeText as String)
-                    searchableItemAttributeSet.title = restaurant.title
-                    searchableItemAttributeSet.contentDescription = restaurant.address
+            for item in items {
+                guard let item = item else { continue }
+                let searchableItemAttributeSet = CSSearchableItemAttributeSet(itemContentType: kUTTypeText as String)
+                searchableItemAttributeSet.title = item.title
+                searchableItemAttributeSet.contentDescription = item.address
 
-                    if let phone = restaurant.phone { searchableItemAttributeSet.phoneNumbers = [phone] }
-                    if let coordinate = restaurant.calculateCoordinate() {
-                        searchableItemAttributeSet.latitude = NSNumber(value: Double(coordinate.latitude))
-                        searchableItemAttributeSet.longitude = NSNumber(value: Double(coordinate.longitude))
-                        searchableItemAttributeSet.supportsNavigation = true
-                    }
-
-                    let searchableItem = CSSearchableItem(uniqueIdentifier: restaurant.uniqueIdentifier, domainIdentifier: "restaurants", attributeSet: searchableItemAttributeSet)
-                    searchableItems.append(searchableItem)
+                if let phone = item.phone { searchableItemAttributeSet.phoneNumbers = [phone] }
+                if let coordinate = item.calculateCoordinate() {
+                    searchableItemAttributeSet.latitude = NSNumber(value: Double(coordinate.latitude))
+                    searchableItemAttributeSet.longitude = NSNumber(value: Double(coordinate.longitude))
+                    searchableItemAttributeSet.supportsNavigation = true
                 }
 
-                CSSearchableIndex.default().indexSearchableItems(searchableItems) { (error) in
-                    if error == nil {
-                        print("indexed \(searchableItems.count) restaurants for \(Localization.currentCountry) at \(currentTime)")
-                    }
-                }
+                let searchableItem = CSSearchableItem(uniqueIdentifier: item.uniqueIdentifier, domainIdentifier: "restaurants", attributeSet: searchableItemAttributeSet)
+                searchableItems.append(searchableItem)
+            }
 
-                UserDefaults.standard.set(currentTime, forKey: lastIndexedKey)
-            })
+            CSSearchableIndex.default().indexSearchableItems(searchableItems) { (error) in
+                if error == nil {
+                    print("indexed \(searchableItems.count) restaurants for \(Localization.currentCountry) at \(currentTime)")
+                }
+            }
+
+            UserDefaults.standard.set(currentTime, forKey: lastIndexedKey)
         }
 
         guard let lastIndexed = UserDefaults.standard.value(forKey: lastIndexedKey) as? Double else {
-            indexSearchableItems()
+            prepareSpotlightIndex(items: items)
             return
         }
         guard currentTime - indexingInterval > lastIndexed else { return }
 
-        indexSearchableItems()
+        prepareSpotlightIndex(items: items)
     }
 }
 // MARK: APIResource methods
@@ -436,5 +434,21 @@ extension Restaurant: APIResource {
             }
         }
         operationQueue.addOperation(requestOperation)
+    }
+}
+
+extension Array where Iterator.Element == Restaurant {
+    func maxRating() -> RestaurantRating? {
+        let ratedMax = self.max { lhs, rhs in
+            guard let lhsPoints = lhs.rating, let rhsPoints = rhs.rating else { return false }
+            let lhsRating = RestaurantRating(points: lhsPoints)
+            let rhsRating = RestaurantRating(points: rhsPoints)
+
+            return lhsRating < rhsRating
+        }
+
+        guard let ratedMaxPoints = ratedMax?.rating else { return nil }
+
+        return RestaurantRating(points: ratedMaxPoints)
     }
 }
