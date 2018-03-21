@@ -14,16 +14,16 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="HomeTitleView" customModule="CulinaryGuide" customModuleProvider="target">
             <connections>
                 <outlet property="alternativeLabel" destination="PLN-2h-T5B" id="Qyz-fc-yqL"/>
-                <outlet property="alternativeStatView" destination="YeY-Pq-hhb" id="De9-Jb-MAt"/>
-                <outlet property="bestRatingStatView" destination="3H1-ae-YOA" id="dkO-bm-uOu"/>
                 <outlet property="bestRatingView" destination="9jH-Sv-MgR" id="0RX-wK-TiI"/>
                 <outlet property="contentView" destination="S7h-MO-FmV" id="Sdw-Zn-1eN"/>
                 <outlet property="countryNameLabel" destination="Uzs-Mc-ciy" id="MOn-Ji-SVa"/>
                 <outlet property="heroImageGradient" destination="JaG-BM-eZ7" id="zAY-AL-oTI"/>
                 <outlet property="heroImageView" destination="A9Z-uz-hb6" id="fVX-YJ-Zd8"/>
+                <outlet property="leftSeparatorView" destination="o3o-o5-Rx4" id="Be2-Qr-kbE"/>
+                <outlet property="leftSeparatorWidthConstraint" destination="FRt-pG-qEb" id="6dQ-6O-rGZ"/>
                 <outlet property="ratedLabel" destination="nfG-NE-hZA" id="4xc-Mc-Uga"/>
-                <outlet property="ratedStatView" destination="oI4-66-JFY" id="pSs-bo-Z6r"/>
-                <outlet property="statStackView" destination="qsW-Dc-KNW" id="eGf-pj-RTr"/>
+                <outlet property="rightSeparatorView" destination="EUb-eI-1kq" id="LJw-x1-ovZ"/>
+                <outlet property="rightSeparatorWidthConstraint" destination="Bmd-Bq-60D" id="MZM-vc-2FL"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -62,12 +62,22 @@
                                     <color key="textColor" name="Facet Selected"/>
                                     <nil key="highlightedColor"/>
                                 </label>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="o3o-o5-Rx4">
+                                    <rect key="frame" x="144.5" y="15" width="1" height="50"/>
+                                    <color key="backgroundColor" name="Separator"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="1" id="FRt-pG-qEb"/>
+                                        <constraint firstAttribute="height" constant="50" id="fdM-kq-g55"/>
+                                    </constraints>
+                                </view>
                             </subviews>
                             <constraints>
                                 <constraint firstItem="hFF-Ty-gFM" firstAttribute="centerX" secondItem="oI4-66-JFY" secondAttribute="centerX" id="01H-1F-9op"/>
                                 <constraint firstAttribute="bottom" secondItem="hFF-Ty-gFM" secondAttribute="bottom" constant="16" id="CJ0-Ck-hD8"/>
                                 <constraint firstItem="nfG-NE-hZA" firstAttribute="top" secondItem="oI4-66-JFY" secondAttribute="top" constant="16" id="IZu-0z-QZr"/>
                                 <constraint firstItem="nfG-NE-hZA" firstAttribute="centerX" secondItem="oI4-66-JFY" secondAttribute="centerX" id="NUm-4p-dnW"/>
+                                <constraint firstItem="o3o-o5-Rx4" firstAttribute="trailing" secondItem="oI4-66-JFY" secondAttribute="trailing" id="rxw-CO-IPu"/>
+                                <constraint firstItem="o3o-o5-Rx4" firstAttribute="centerY" secondItem="oI4-66-JFY" secondAttribute="centerY" id="xR3-sc-ULI"/>
                             </constraints>
                         </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3H1-ae-YOA">
@@ -109,10 +119,20 @@
                                     <color key="textColor" name="Facet Selected"/>
                                     <nil key="highlightedColor"/>
                                 </label>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EUb-eI-1kq">
+                                    <rect key="frame" x="0.0" y="15" width="1" height="50"/>
+                                    <color key="backgroundColor" name="Separator"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="1" id="Bmd-Bq-60D"/>
+                                        <constraint firstAttribute="height" constant="50" id="rXa-hX-bkt"/>
+                                    </constraints>
+                                </view>
                             </subviews>
                             <constraints>
+                                <constraint firstItem="EUb-eI-1kq" firstAttribute="leading" secondItem="YeY-Pq-hhb" secondAttribute="leading" id="3OW-hC-epR"/>
                                 <constraint firstItem="PLN-2h-T5B" firstAttribute="centerX" secondItem="YeY-Pq-hhb" secondAttribute="centerX" id="5dU-Ek-vte"/>
                                 <constraint firstItem="PLN-2h-T5B" firstAttribute="top" secondItem="YeY-Pq-hhb" secondAttribute="top" constant="16" id="GdK-5m-4Wo"/>
+                                <constraint firstItem="EUb-eI-1kq" firstAttribute="centerY" secondItem="YeY-Pq-hhb" secondAttribute="centerY" id="Jl1-3l-epz"/>
                                 <constraint firstAttribute="bottom" secondItem="9l4-3J-TgI" secondAttribute="bottom" constant="16" id="QX5-lG-388"/>
                                 <constraint firstItem="9l4-3J-TgI" firstAttribute="centerX" secondItem="YeY-Pq-hhb" secondAttribute="centerX" id="j1l-nJ-ykT"/>
                             </constraints>

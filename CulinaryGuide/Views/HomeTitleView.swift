@@ -9,10 +9,10 @@ class HomeTitleView: UIView {
     @IBOutlet weak var alternativeLabel: UILabel!
     @IBOutlet weak var bestRatingView: UIView!
 
-    @IBOutlet weak private var statStackView: UIStackView!
-    @IBOutlet weak private var ratedStatView: UIView!
-    @IBOutlet weak private var bestRatingStatView: UIView!
-    @IBOutlet weak private var alternativeStatView: UIView!
+    @IBOutlet weak var leftSeparatorView: UIView!
+    @IBOutlet weak var leftSeparatorWidthConstraint: NSLayoutConstraint!
+    @IBOutlet weak var rightSeparatorView: UIView!
+    @IBOutlet weak var rightSeparatorWidthConstraint: NSLayoutConstraint!
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -25,9 +25,16 @@ class HomeTitleView: UIView {
     }
 
     private func loadViewFromNib() {
+        let borderThickness = 1 / UIScreen.main.scale
         Bundle.main.loadNibNamed("HomeTitleView", owner: self, options: nil)
         addSubview(contentView)
         contentView.frame = self.bounds
         contentView.autoresizingMask = [.flexibleHeight, .flexibleWidth]
+
+        leftSeparatorWidthConstraint.constant = borderThickness
+        rightSeparatorWidthConstraint.constant = borderThickness
+        leftSeparatorView.layoutIfNeeded()
+        rightSeparatorView.layoutIfNeeded()
+
     }
 }
