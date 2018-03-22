@@ -16,6 +16,7 @@
 		981769F52049D3FE004C5ED1 /* RestaurantReview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 981769F42049D3FE004C5ED1 /* RestaurantReview.swift */; };
 		981E84CB204211E400835C47 /* CAGradientLayerExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 981E84CA204211E400835C47 /* CAGradientLayerExtensions.swift */; };
 		9822D2D1205177560082C739 /* MKMapViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98C9EB21204E075D001EC8C1 /* MKMapViewExtensions.swift */; };
+		982CB4042063DB7D00DC8C1E /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 982CB4032063DB7D00DC8C1E /* CloudKit.framework */; };
 		98363150200FD4E1002EBE01 /* ArrayExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9836314F200FD4E1002EBE01 /* ArrayExtensions.swift */; };
 		98363151200FD4E1002EBE01 /* ArrayExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9836314F200FD4E1002EBE01 /* ArrayExtensions.swift */; };
 		983A7FF02003E66C00512ED5 /* RestaurantsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98F626172002487600996A91 /* RestaurantsViewController.swift */; };
@@ -188,6 +189,8 @@
 		981769F22049D1C1004C5ED1 /* RestaurantDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantDataSource.swift; sourceTree = "<group>"; };
 		981769F42049D3FE004C5ED1 /* RestaurantReview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantReview.swift; sourceTree = "<group>"; };
 		981E84CA204211E400835C47 /* CAGradientLayerExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CAGradientLayerExtensions.swift; sourceTree = "<group>"; };
+		982CB4022063DB7A00DC8C1E /* CulinaryGuide.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = CulinaryGuide.entitlements; sourceTree = "<group>"; };
+		982CB4032063DB7D00DC8C1E /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
 		9836314F200FD4E1002EBE01 /* ArrayExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArrayExtensions.swift; sourceTree = "<group>"; };
 		983B88E6204A045C000F0641 /* StringExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtensions.swift; sourceTree = "<group>"; };
 		9847A6F3200A4E1200A17247 /* HomeCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCollectionViewController.swift; sourceTree = "<group>"; };
@@ -322,6 +325,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				982CB4042063DB7D00DC8C1E /* CloudKit.framework in Frameworks */,
 				98003FDF2045B2C200FD9F25 /* CoreSpotlight.framework in Frameworks */,
 				98B2DCC0204AEB16007903BB /* KMNavigationBarTransition.framework in Frameworks */,
 			);
@@ -379,6 +383,7 @@
 		989628D52042E0F2004C233B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				982CB4032063DB7D00DC8C1E /* CloudKit.framework */,
 				98003FDE2045B2C200FD9F25 /* CoreSpotlight.framework */,
 			);
 			name = Frameworks;
@@ -459,6 +464,7 @@
 		98F626142002487600996A91 /* CulinaryGuide */ = {
 			isa = PBXGroup;
 			children = (
+				982CB4022063DB7A00DC8C1E /* CulinaryGuide.entitlements */,
 				98F626152002487600996A91 /* AppDelegate.swift */,
 				98F626232002487700996A91 /* Info.plist */,
 				98CAFABE2056C6860000BD94 /* Localizable.strings */,
@@ -672,6 +678,11 @@
 						CreatedOnToolsVersion = 9.2;
 						LastSwiftMigration = 0930;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.iCloud = {
+								enabled = 1;
+							};
+						};
 					};
 					98F626272002487700996A91 = {
 						CreatedOnToolsVersion = 9.2;
@@ -1133,6 +1144,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_WEAK = YES;
+				CODE_SIGN_ENTITLEMENTS = CulinaryGuide/CulinaryGuide.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = WBFWJRBGVH;
 				INFOPLIST_FILE = CulinaryGuide/Info.plist;
@@ -1152,6 +1164,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_WEAK = YES;
+				CODE_SIGN_ENTITLEMENTS = CulinaryGuide/CulinaryGuide.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = WBFWJRBGVH;
 				INFOPLIST_FILE = CulinaryGuide/Info.plist;
