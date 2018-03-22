@@ -1,4 +1,5 @@
 import UIKit
+import JSONWebToken
 
 class APIRequestOperation: AsyncOperation {
     let urlRequest: URLRequest
