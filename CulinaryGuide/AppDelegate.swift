@@ -28,6 +28,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         application.shortcutItems = [searchAction]
 
+        APIRequestOperation.authenticate()
+        
+        NotificationCenter.default.addObserver(forName: NSNotification.Name.NSUbiquityIdentityDidChange, object: nil, queue: OperationQueue.main) { _ in
+            APIRequestOperation.authenticate()
+        }
+
         return true
     }
 

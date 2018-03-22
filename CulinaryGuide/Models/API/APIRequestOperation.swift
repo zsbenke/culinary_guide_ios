@@ -1,5 +1,8 @@
 import UIKit
+import CloudKit
 import JSONWebToken
+
+let publicUniqueHash = "public"
 
 class APIRequestOperation: AsyncOperation {
     let urlRequest: URLRequest
@@ -16,14 +19,43 @@ class APIRequestOperation: AsyncOperation {
             self.state = .Finished
         }
     }
+
+    static func authenticate() {
+        func store(uniqueHash: String) {
+            UserDefaults.standard.set("\(uniqueHash)", forKey: "uniqueHash")
+            let payload = APIRequestOperation.encodePayload(uniqueHash: uniqueHash)
+            print("Session started: \(payload)")
+        }
+
+        let container = CKContainer.default()
+        container.fetchUserRecordID { (record, error) in
+            var uniqueHash = publicUniqueHash
+            if error != nil {
+                print(error!.localizedDescription)
+            }
+
+            if let record = record {
+                uniqueHash = record.recordName
+            }
+
+            guard let previousUnqiueHash = UserDefaults.standard.string(forKey: "uniqueHash") else { return store(uniqueHash: uniqueHash) }
+            guard previousUnqiueHash == uniqueHash else { return store(uniqueHash: uniqueHash) }
+            let payload = APIRequestOperation.encodePayload(uniqueHash: uniqueHash)
+            print("Resume session: \(payload)")
+        }
+    }
 }
 
 private extension APIRequestOperation {
     func request(_ apiRequest: URLRequest, completionHandler: @escaping (_ data: Data?) -> Void) {
-        let authToken = "Token token=eyJhbGciOiJIUzI1NiJ9.eyJ1bmlxdWVfaGFzaCI6InRlc3QxMjM0In0.JKKHSuIHcxefvRChB3s0PS_xTDH6w0N5c_OFZOAe9yg"
+        let uniqueHash = UserDefaults.standard.string(forKey: "uniqueHash") ?? publicUniqueHash
+        let payload = APIRequestOperation.encodePayload(uniqueHash: uniqueHash)
+        let authToken = "Token token=\(payload)"
         let sessionConfiguration = URLSessionConfiguration.ephemeral
         sessionConfiguration.httpAdditionalHeaders = ["Authorization": authToken]
         let session = URLSession(configuration: sessionConfiguration)
+
+        print("Active session: \(payload)")
 
         let dataTask = session.dataTask(with: apiRequest) { data, response, error in
             if (error != nil) {
@@ -50,6 +82,7 @@ private extension APIRequestOperation {
                 }
             }
         }
+
         dataTask.resume()
     }
 
@@ -62,5 +95,9 @@ private extension APIRequestOperation {
 
         let viewController = UIApplication.shared.delegate?.window!?.rootViewController
         viewController?.present(alertController, animated: true, completion: nil)
+    }
+
+    static func encodePayload(uniqueHash: String) -> String {
+        return JSONWebToken.encode(["unique_hash": uniqueHash], algorithm: .hs256(APIKey.secret))
     }
 }
