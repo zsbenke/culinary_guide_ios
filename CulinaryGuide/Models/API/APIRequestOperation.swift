@@ -2,11 +2,11 @@ import UIKit
 import CloudKit
 import JSONWebToken
 
-let publicUniqueHash = "public"
-
 class APIRequestOperation: AsyncOperation {
     let urlRequest: URLRequest
     var data: Data?
+
+    private static let publicUniqueHash = "public"
     
     init(urlRequest: URLRequest) {
         self.urlRequest = urlRequest
@@ -48,7 +48,7 @@ class APIRequestOperation: AsyncOperation {
 
 private extension APIRequestOperation {
     func request(_ apiRequest: URLRequest, completionHandler: @escaping (_ data: Data?) -> Void) {
-        let uniqueHash = UserDefaults.standard.string(forKey: "uniqueHash") ?? publicUniqueHash
+        let uniqueHash = UserDefaults.standard.string(forKey: "uniqueHash") ?? APIRequestOperation.publicUniqueHash
         let payload = APIRequestOperation.encodePayload(uniqueHash: uniqueHash)
         let authToken = "Token token=\(payload)"
         let sessionConfiguration = URLSessionConfiguration.ephemeral
