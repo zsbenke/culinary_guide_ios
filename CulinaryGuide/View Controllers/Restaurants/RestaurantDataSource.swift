@@ -23,6 +23,8 @@ class RestaurantDataSource: NSObject {
         appendToDetails(column: .reservations, value: restaurant.reservations)
         appendToDetails(column: .parking, value: restaurant.parking)
         appendToDetails(column: .menuPrice, value: restaurant.menuPrice)
+        appendToDetails(column: .creditCard, value: restaurant.creditCard)
+        appendToDetails(column: .wifi, value: restaurant.wifi)
 
         for review in restaurant.reviews {
             reviews.append(review)
@@ -41,6 +43,8 @@ class RestaurantDataSource: NSObject {
         case reservations
         case parking
         case menuPrice = "menu price"
+        case creditCard = "credit card"
+        case wifi
         case review
 
         func toImage() -> UIImage {
@@ -65,6 +69,10 @@ class RestaurantDataSource: NSObject {
                 return #imageLiteral(resourceName: "Facet Parking")
             case .menuPrice:
                 return #imageLiteral(resourceName: "Facet Menu Price")
+            case .creditCard:
+                return #imageLiteral(resourceName: "Facet Credit Card")
+            case .wifi:
+                return #imageLiteral(resourceName: "Facet Wi-Fi")
             default:
                 return #imageLiteral(resourceName: "Facet Magnifiying Glass")
             }
@@ -96,6 +104,10 @@ class RestaurantDataSource: NSObject {
                 return NSLocalizedString("Review", comment: "Adat címke az étterem nézeten.")
             case .title:
                 return NSLocalizedString("Name", comment: "Adat címke az étterem nézeten.")
+            case .creditCard:
+                return NSLocalizedString("Credit Card", comment: "Adat címke az étterem nézeten.")
+            case .wifi:
+                return NSLocalizedString("Wi-Fi", comment: "Adat címke az étterem nézeten.")
             }
         }
     }
@@ -177,7 +189,7 @@ private extension RestaurantDataSource {
 
             if let newValue = (value as? URL)?.stringWithoutScheme() {
                 detailRow = DetailRow(column: column, value: "\(newValue)")
-            } else {
+            } else if let value = value as? String, !value.isEmpty {
                 detailRow = DetailRow(column: column, value: "\(value)")
             }
 

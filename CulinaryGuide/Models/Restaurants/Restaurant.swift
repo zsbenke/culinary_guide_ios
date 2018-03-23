@@ -17,6 +17,8 @@ struct Restaurant: PointOfInterest, Codable {
     let facebookPage: URL?
     let reservations: String?
     let parking: String?
+    let creditCard: String?
+    let wifi: String?
     let heroImageURL: URL?
     let reviews: [RestaurantReview]
 
@@ -149,6 +151,8 @@ struct Restaurant: PointOfInterest, Codable {
         case parking = "has_parking"
         case menuPriceInformation = "price_information"
         case menuPriceRating = "price_information_rating"
+        case creditCard = "credit_card"
+        case wifi
         case heroImageURL = "hero_image_url"
         case reviews = "restaurant_reviews"
     }
@@ -295,6 +299,18 @@ struct Restaurant: PointOfInterest, Codable {
             thirdDefiningPersonTitle = try container.decode(String.self, forKey: .thirdDefiningPersonTitle)
         } catch {
             thirdDefiningPersonTitle = nil
+        }
+
+        do {
+            creditCard = try container.decode(String.self, forKey: .creditCard)
+        } catch {
+            creditCard = nil
+        }
+
+        do {
+            wifi = try container.decode(String.self, forKey: .wifi)
+        } catch {
+            wifi = nil
         }
 
         do {
