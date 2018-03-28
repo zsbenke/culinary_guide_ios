@@ -16,6 +16,10 @@ struct RestaurantFacet: Facet, Codable {
     var column: String?
     var value: String?
     var icon: UIImage? {
+        if homeScreenSection == .whatKindOf {
+            return #imageLiteral(resourceName: "Facet Menu Price")
+        }
+
         if column == "region" && Localization.currentCountry == Localization.Country.CentralEurope {
             return #imageLiteral(resourceName: "Facet Country Europe")
         }

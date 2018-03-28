@@ -99,19 +99,14 @@ extension HomeCollectionViewController {
 
         let facetSection = collectionViewDataSource.sections[indexPath.section]
 
-        switch facetSection {
-        case .all:
-            self.selectedQueryTokens.removeAll()
-            performSegue(withIdentifier: "searchRestaurants", sender: self)
-        case .what, .when, .where, .whatKindOf:
-            guard let facets = collectionViewDataSource.facetDictionary[facetSection] else { return }
-            let facet = facets[indexPath.row]
+        guard let facets = collectionViewDataSource.facetDictionary[facetSection] else { return }
 
-            if let facetValue = facet.value {
-                let queryToken = URLQueryToken.init(column: "search", value: facetValue)
-                self.selectedQueryTokens = [queryToken]
-                performSegue(withIdentifier: "searchRestaurants", sender: self)
-            }
+        let facet = facets[indexPath.row]
+
+        if let facetValue = facet.value {
+            let queryToken = URLQueryToken.init(column: "search", value: facetValue)
+            self.selectedQueryTokens = [queryToken]
+            performSegue(withIdentifier: "searchRestaurants", sender: self)
         }
     }
 }
@@ -124,22 +119,9 @@ extension HomeCollectionViewController: UICollectionViewDelegateFlowLayout {
 
         guard let collectionViewDataSource = collectionViewDataSource else { return CGSize(width: 0, height: 0) }
 
-        let facetSection = collectionViewDataSource.sections[indexPath.section]
-        var size = CGSize()
-
         collectionViewDataSource.configureCell(cell: sizingCell!, forIndexPath: indexPath)
 
-        switch facetSection {
-        case .all:
-            var width = UIScreen.main.bounds.width
-            if let cellMaxWidth = sizingCell?.labelViewMaxWidthConstraint.constant {
-                width = cellMaxWidth
-            }
-
-            size = CGSize(width: width, height: 44)
-        default:
-            size = sizingCell!.systemLayoutSizeFitting(UILayoutFittingCompressedSize)
-        }
+        let size = sizingCell!.systemLayoutSizeFitting(UILayoutFittingCompressedSize)
 
         if cellSizes[indexPath.section] != nil {
             cellSizes[indexPath.section]?.insert(size, at: indexPath.row)
@@ -168,10 +150,6 @@ extension HomeCollectionViewController: UICollectionViewDelegateFlowLayout {
         guard let collectionViewDataSource = collectionViewDataSource else { return defaultInsets }
 
         let facetSection = collectionViewDataSource.sections[section]
-
-        if facetSection == .all {
-            return UIEdgeInsets(top: 16, left: 16, bottom: 16, right: 16)
-        }
 
         if facetSection.isEmpty(for: collectionViewDataSource.facetDictionary) {
             return UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
@@ -204,6 +182,7 @@ private extension HomeCollectionViewController {
                 self.headerView.ratedTapGestureRecognizer.addTarget(self, action: #selector(self.tappedRatedStatisics(_:)))
                 self.headerView.bestRatingGestureRecognizer.addTarget(self, action: #selector(self.tappedBestRatingStatistics(_:)))
                 self.headerView.alternativeGestureRecognizer.addTarget(self, action: #selector(self.tappedAlternativeStatistics(_:)))
+                self.headerView.allRestaurantsButton.addTarget(self, action: #selector(self.tappedAllRestaurantsButton(_:)), for: .touchUpInside)
             }
 
             self.headerView.heroImageView.image = Localization.currentCountry.homeHeroImage
@@ -289,6 +268,14 @@ private extension HomeCollectionViewController {
 
     @objc func tappedRatedStatisics(_ sender: Any) {
         setHighlightAppearance(headerView.ratedView, highlighted: true)
+
+        var queryTokens = Set<URLQueryToken>()
+
+        for rating in 1...5 {
+            queryTokens.insert(URLQueryToken.init(column: "rating", value: "\(rating)"))
+        }
+
+        selectedQueryTokens = queryTokens
         performSegue(withIdentifier: "searchRestaurants", sender: self)
     }
 
@@ -297,14 +284,19 @@ private extension HomeCollectionViewController {
 
         setHighlightAppearance(headerView.bestRatingView, highlighted: true)
         let queryToken = URLQueryToken.init(column: "rating", value: maxRating.points)
-        self.selectedQueryTokens = [queryToken]
+        selectedQueryTokens = [queryToken]
         performSegue(withIdentifier: "searchRestaurants", sender: self)
     }
 
     @objc func tappedAlternativeStatistics(_ sender: Any) {
         setHighlightAppearance(headerView.alternativeView, highlighted: true)
         let queryToken = URLQueryToken.init(column: "rating", value: "pop")
-        self.selectedQueryTokens = [queryToken]
+        selectedQueryTokens = [queryToken]
+        performSegue(withIdentifier: "searchRestaurants", sender: self)
+    }
+
+    @objc func tappedAllRestaurantsButton(_ sender: Any) {
+        selectedQueryTokens.removeAll()
         performSegue(withIdentifier: "searchRestaurants", sender: self)
     }
 

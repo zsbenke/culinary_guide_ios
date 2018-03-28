@@ -8,6 +8,7 @@ class HomeTitleView: UIView {
     @IBOutlet weak var ratedLabel: UILabel!
     @IBOutlet weak var alternativeLabel: UILabel!
     @IBOutlet weak var bestRatingBadgeView: UIView!
+    @IBOutlet weak var allRestaurantsButton: UIButton!
 
     @IBOutlet weak var ratedView: UIView!
     @IBOutlet weak var bestRatingView: UIView!

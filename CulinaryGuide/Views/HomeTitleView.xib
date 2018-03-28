@@ -13,6 +13,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="HomeTitleView" customModule="CulinaryGuide" customModuleProvider="target">
             <connections>
+                <outlet property="allRestaurantsButton" destination="b2Z-cS-iuo" id="dRd-LF-KcY"/>
                 <outlet property="alternativeGestureRecognizer" destination="uBF-C9-HRO" id="dj9-lr-u1l"/>
                 <outlet property="alternativeLabel" destination="PLN-2h-T5B" id="Qyz-fc-yqL"/>
                 <outlet property="alternativeView" destination="YeY-Pq-hhb" id="hqb-eo-Xd9"/>
@@ -38,20 +39,20 @@
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Home Title Image Hungary" translatesAutoresizingMaskIntoConstraints="NO" id="A9Z-uz-hb6">
-                    <rect key="frame" x="0.0" y="0.0" width="436" height="280"/>
+                    <rect key="frame" x="0.0" y="0.0" width="436" height="228"/>
                     <color key="backgroundColor" name="Body Text"/>
                 </imageView>
                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Hero Image Gradient" translatesAutoresizingMaskIntoConstraints="NO" id="JaG-BM-eZ7">
-                    <rect key="frame" x="0.0" y="0.0" width="436" height="280"/>
+                    <rect key="frame" x="0.0" y="0.0" width="436" height="228"/>
                 </imageView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Country Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Uzs-Mc-ciy">
-                    <rect key="frame" x="97.5" y="221" width="241.5" height="43"/>
+                    <rect key="frame" x="97.5" y="169" width="241.5" height="43"/>
                     <fontDescription key="fontDescription" type="boldSystem" pointSize="36"/>
                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="qsW-Dc-KNW">
-                    <rect key="frame" x="0.0" y="280" width="436" height="80"/>
+                    <rect key="frame" x="0.0" y="228" width="436" height="80"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oI4-66-JFY">
                             <rect key="frame" x="0.0" y="0.0" width="145.5" height="80"/>
@@ -160,23 +161,44 @@
                         <constraint firstAttribute="height" constant="80" id="9fB-JU-Osr"/>
                     </constraints>
                 </stackView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="b2Z-cS-iuo">
+                    <rect key="frame" x="16" y="308" width="404" height="44"/>
+                    <color key="backgroundColor" name="Primary"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="44" id="jOx-Uf-fB2"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
+                    <inset key="contentEdgeInsets" minX="15" minY="15" maxX="15" maxY="15"/>
+                    <state key="normal" title="All Restaurants">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </state>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                            <real key="value" value="5"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                </button>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
                 <constraint firstItem="JaG-BM-eZ7" firstAttribute="leading" secondItem="S7h-MO-FmV" secondAttribute="leading" id="5e5-m1-Osc"/>
                 <constraint firstItem="4hy-dM-JEv" firstAttribute="trailing" secondItem="qsW-Dc-KNW" secondAttribute="trailing" id="Dej-Rm-Ofs"/>
+                <constraint firstItem="4hy-dM-JEv" firstAttribute="bottom" secondItem="b2Z-cS-iuo" secondAttribute="bottom" constant="8" id="I9L-YF-PVQ"/>
                 <constraint firstItem="qsW-Dc-KNW" firstAttribute="top" secondItem="JaG-BM-eZ7" secondAttribute="bottom" id="Mm4-A6-V0h"/>
-                <constraint firstAttribute="bottom" secondItem="qsW-Dc-KNW" secondAttribute="bottom" id="Ola-dB-mIc"/>
                 <constraint firstAttribute="trailing" secondItem="JaG-BM-eZ7" secondAttribute="trailing" id="QzU-oS-Abs"/>
                 <constraint firstItem="qsW-Dc-KNW" firstAttribute="leading" secondItem="4hy-dM-JEv" secondAttribute="leading" id="S9R-K5-5Dp"/>
                 <constraint firstItem="qsW-Dc-KNW" firstAttribute="top" secondItem="JaG-BM-eZ7" secondAttribute="bottom" id="V7l-oq-KFH"/>
                 <constraint firstItem="qsW-Dc-KNW" firstAttribute="top" secondItem="A9Z-uz-hb6" secondAttribute="bottom" id="XOu-9A-Rxj"/>
+                <constraint firstItem="b2Z-cS-iuo" firstAttribute="centerX" secondItem="S7h-MO-FmV" secondAttribute="centerX" id="a8F-z7-XH1"/>
                 <constraint firstItem="A9Z-uz-hb6" firstAttribute="leading" secondItem="S7h-MO-FmV" secondAttribute="leading" id="aVB-JZ-XNj"/>
                 <constraint firstItem="Uzs-Mc-ciy" firstAttribute="centerX" secondItem="S7h-MO-FmV" secondAttribute="centerX" id="dGP-fs-rBI"/>
+                <constraint firstItem="4hy-dM-JEv" firstAttribute="trailing" secondItem="b2Z-cS-iuo" secondAttribute="trailing" constant="16" id="fOU-Bs-dQj"/>
                 <constraint firstAttribute="trailing" secondItem="A9Z-uz-hb6" secondAttribute="trailing" id="gT3-l8-fwo"/>
                 <constraint firstAttribute="top" secondItem="JaG-BM-eZ7" secondAttribute="top" id="h7B-cv-Wh4"/>
                 <constraint firstItem="Uzs-Mc-ciy" firstAttribute="bottom" secondItem="A9Z-uz-hb6" secondAttribute="bottom" constant="-16" id="uLT-3x-oll"/>
+                <constraint firstItem="b2Z-cS-iuo" firstAttribute="leading" secondItem="4hy-dM-JEv" secondAttribute="leading" constant="16" id="uQK-1B-PAG"/>
                 <constraint firstItem="A9Z-uz-hb6" firstAttribute="top" secondItem="S7h-MO-FmV" secondAttribute="top" id="uuB-mB-kRC"/>
+                <constraint firstItem="b2Z-cS-iuo" firstAttribute="top" secondItem="qsW-Dc-KNW" secondAttribute="bottom" id="yu0-Fm-EWL"/>
             </constraints>
             <nil key="simulatedTopBarMetrics"/>
             <nil key="simulatedBottomBarMetrics"/>
@@ -196,6 +218,9 @@
         </namedColor>
         <namedColor name="Facet Selected">
             <color red="0.76078431372549016" green="0.7803921568627451" blue="0.78823529411764703" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="Primary">
+            <color red="0.0" green="0.52941176470588236" blue="0.89411764705882357" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="Primary">
             <color red="0.0" green="0.52941176470588236" blue="0.89411764705882357" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
