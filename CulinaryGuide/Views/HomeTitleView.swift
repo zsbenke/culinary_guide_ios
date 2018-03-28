@@ -7,12 +7,20 @@ class HomeTitleView: UIView {
     @IBOutlet weak var countryNameLabel: UILabel!
     @IBOutlet weak var ratedLabel: UILabel!
     @IBOutlet weak var alternativeLabel: UILabel!
-    @IBOutlet weak var bestRatingView: UIView!
+    @IBOutlet weak var bestRatingBadgeView: UIView!
 
-    @IBOutlet weak var leftSeparatorView: UIView!
-    @IBOutlet weak var leftSeparatorWidthConstraint: NSLayoutConstraint!
-    @IBOutlet weak var rightSeparatorView: UIView!
-    @IBOutlet weak var rightSeparatorWidthConstraint: NSLayoutConstraint!
+    @IBOutlet weak var ratedView: UIView!
+    @IBOutlet weak var bestRatingView: UIView!
+    @IBOutlet weak var alternativeView: UIView!
+    
+    @IBOutlet weak private var leftSeparatorView: UIView!
+    @IBOutlet weak private var leftSeparatorWidthConstraint: NSLayoutConstraint!
+    @IBOutlet weak private var rightSeparatorView: UIView!
+    @IBOutlet weak private var rightSeparatorWidthConstraint: NSLayoutConstraint!
+
+    @IBOutlet var ratedTapGestureRecognizer: UITapGestureRecognizer!
+    @IBOutlet var bestRatingGestureRecognizer: UITapGestureRecognizer!
+    @IBOutlet var alternativeGestureRecognizer: UITapGestureRecognizer!
 
     override init(frame: CGRect) {
         super.init(frame: frame)

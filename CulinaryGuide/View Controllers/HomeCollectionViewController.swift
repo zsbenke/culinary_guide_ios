@@ -44,6 +44,13 @@ class HomeCollectionViewController: UICollectionViewController {
         super.viewWillAppear(animated)
 
         updateNavigationBarAppearance(animated: false)
+
+        if let headerView = headerView {
+            for view in [headerView.ratedView, headerView.bestRatingView, headerView.alternativeView] {
+                guard let view = view else { continue }
+                setHighlightAppearance(view, highlighted: false)
+            }
+        }
     }
 
     func configureView() {
@@ -194,6 +201,9 @@ private extension HomeCollectionViewController {
             if self.headerView == nil {
                 let headerViewFrame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.size.width, height: self.headerViewHeight)
                 self.headerView = HomeTitleView.init(frame: headerViewFrame)
+                self.headerView.ratedTapGestureRecognizer.addTarget(self, action: #selector(self.tappedRatedStatisics(_:)))
+                self.headerView.bestRatingGestureRecognizer.addTarget(self, action: #selector(self.tappedBestRatingStatistics(_:)))
+                self.headerView.alternativeGestureRecognizer.addTarget(self, action: #selector(self.tappedAlternativeStatistics(_:)))
             }
 
             self.headerView.heroImageView.image = Localization.currentCountry.homeHeroImage
@@ -209,10 +219,10 @@ private extension HomeCollectionViewController {
                 if let maxRating = self.restaurants.compactMap({ $0 }).maxRating() {
                     let ratingView = RatingView.init(rating: maxRating)
 
-                    for view in self.headerView.bestRatingView.subviews {
+                    for view in self.headerView.bestRatingBadgeView.subviews {
                         view.removeFromSuperview()
                     }
-                    self.headerView.bestRatingView.addSubview(ratingView)
+                    self.headerView.bestRatingBadgeView.addSubview(ratingView)
                 }
 
                 self.headerView.ratedLabel.text = String(describing: self.restaurants.compactMap { $0 }.filter { $0.rating != "pop" }.count)
@@ -275,5 +285,30 @@ private extension HomeCollectionViewController {
                 setNavigationBarToDefault()
             }
         }
+    }
+
+    @objc func tappedRatedStatisics(_ sender: Any) {
+        setHighlightAppearance(headerView.ratedView, highlighted: true)
+        performSegue(withIdentifier: "searchRestaurants", sender: self)
+    }
+
+    @objc func tappedBestRatingStatistics(_ sender: Any) {
+        guard let maxRating = restaurants.compactMap({ $0 }).maxRating() else { return }
+
+        setHighlightAppearance(headerView.bestRatingView, highlighted: true)
+        let queryToken = URLQueryToken.init(column: "rating", value: maxRating.points)
+        self.selectedQueryTokens = [queryToken]
+        performSegue(withIdentifier: "searchRestaurants", sender: self)
+    }
+
+    @objc func tappedAlternativeStatistics(_ sender: Any) {
+        setHighlightAppearance(headerView.alternativeView, highlighted: true)
+        let queryToken = URLQueryToken.init(column: "rating", value: "pop")
+        self.selectedQueryTokens = [queryToken]
+        performSegue(withIdentifier: "searchRestaurants", sender: self)
+    }
+
+    func setHighlightAppearance(_ view: UIView, highlighted: Bool) {
+        view.backgroundColor = highlighted ? UIColor.BrandColor.facet : .white
     }
 }

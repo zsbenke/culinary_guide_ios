@@ -13,8 +13,12 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="HomeTitleView" customModule="CulinaryGuide" customModuleProvider="target">
             <connections>
+                <outlet property="alternativeGestureRecognizer" destination="uBF-C9-HRO" id="dj9-lr-u1l"/>
                 <outlet property="alternativeLabel" destination="PLN-2h-T5B" id="Qyz-fc-yqL"/>
-                <outlet property="bestRatingView" destination="9jH-Sv-MgR" id="0RX-wK-TiI"/>
+                <outlet property="alternativeView" destination="YeY-Pq-hhb" id="hqb-eo-Xd9"/>
+                <outlet property="bestRatingBadgeView" destination="9jH-Sv-MgR" id="0RX-wK-TiI"/>
+                <outlet property="bestRatingGestureRecognizer" destination="jji-fL-fct" id="xr6-gN-UAI"/>
+                <outlet property="bestRatingView" destination="3H1-ae-YOA" id="GeT-9L-2ll"/>
                 <outlet property="contentView" destination="S7h-MO-FmV" id="Sdw-Zn-1eN"/>
                 <outlet property="countryNameLabel" destination="Uzs-Mc-ciy" id="MOn-Ji-SVa"/>
                 <outlet property="heroImageGradient" destination="JaG-BM-eZ7" id="zAY-AL-oTI"/>
@@ -22,6 +26,8 @@
                 <outlet property="leftSeparatorView" destination="o3o-o5-Rx4" id="Be2-Qr-kbE"/>
                 <outlet property="leftSeparatorWidthConstraint" destination="FRt-pG-qEb" id="6dQ-6O-rGZ"/>
                 <outlet property="ratedLabel" destination="nfG-NE-hZA" id="4xc-Mc-Uga"/>
+                <outlet property="ratedTapGestureRecognizer" destination="E9G-tg-oWv" id="Sg3-1F-T0S"/>
+                <outlet property="ratedView" destination="oI4-66-JFY" id="TP9-f1-4Ty"/>
                 <outlet property="rightSeparatorView" destination="EUb-eI-1kq" id="LJw-x1-ovZ"/>
                 <outlet property="rightSeparatorWidthConstraint" destination="Bmd-Bq-60D" id="MZM-vc-2FL"/>
             </connections>
@@ -32,20 +38,20 @@
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Home Title Image Hungary" translatesAutoresizingMaskIntoConstraints="NO" id="A9Z-uz-hb6">
-                    <rect key="frame" x="0.0" y="0.0" width="436" height="250"/>
+                    <rect key="frame" x="0.0" y="0.0" width="436" height="280"/>
                     <color key="backgroundColor" name="Body Text"/>
                 </imageView>
                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Hero Image Gradient" translatesAutoresizingMaskIntoConstraints="NO" id="JaG-BM-eZ7">
-                    <rect key="frame" x="0.0" y="0.0" width="436" height="250"/>
+                    <rect key="frame" x="0.0" y="0.0" width="436" height="280"/>
                 </imageView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Country Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Uzs-Mc-ciy">
-                    <rect key="frame" x="97.5" y="191" width="241.5" height="43"/>
+                    <rect key="frame" x="97.5" y="221" width="241.5" height="43"/>
                     <fontDescription key="fontDescription" type="boldSystem" pointSize="36"/>
                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="qsW-Dc-KNW">
-                    <rect key="frame" x="0.0" y="250" width="436" height="80"/>
+                    <rect key="frame" x="0.0" y="280" width="436" height="80"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oI4-66-JFY">
                             <rect key="frame" x="0.0" y="0.0" width="145.5" height="80"/>
@@ -71,6 +77,7 @@
                                     </constraints>
                                 </view>
                             </subviews>
+                            <gestureRecognizers/>
                             <constraints>
                                 <constraint firstItem="hFF-Ty-gFM" firstAttribute="centerX" secondItem="oI4-66-JFY" secondAttribute="centerX" id="01H-1F-9op"/>
                                 <constraint firstAttribute="bottom" secondItem="hFF-Ty-gFM" secondAttribute="bottom" constant="16" id="CJ0-Ck-hD8"/>
@@ -79,6 +86,9 @@
                                 <constraint firstItem="o3o-o5-Rx4" firstAttribute="trailing" secondItem="oI4-66-JFY" secondAttribute="trailing" id="rxw-CO-IPu"/>
                                 <constraint firstItem="o3o-o5-Rx4" firstAttribute="centerY" secondItem="oI4-66-JFY" secondAttribute="centerY" id="xR3-sc-ULI"/>
                             </constraints>
+                            <connections>
+                                <outletCollection property="gestureRecognizers" destination="E9G-tg-oWv" appends="YES" id="lk5-YQ-FTu"/>
+                            </connections>
                         </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3H1-ae-YOA">
                             <rect key="frame" x="145.5" y="0.0" width="145" height="80"/>
@@ -97,12 +107,16 @@
                                     <nil key="highlightedColor"/>
                                 </label>
                             </subviews>
+                            <gestureRecognizers/>
                             <constraints>
                                 <constraint firstItem="9jH-Sv-MgR" firstAttribute="centerX" secondItem="3H1-ae-YOA" secondAttribute="centerX" id="JRu-jI-frn"/>
                                 <constraint firstAttribute="bottom" secondItem="FdC-yJ-Xfs" secondAttribute="bottom" constant="16" id="fWP-4w-b04"/>
                                 <constraint firstItem="FdC-yJ-Xfs" firstAttribute="centerX" secondItem="3H1-ae-YOA" secondAttribute="centerX" id="gQx-BL-ei9"/>
                                 <constraint firstItem="9jH-Sv-MgR" firstAttribute="top" secondItem="3H1-ae-YOA" secondAttribute="top" constant="16" id="sUT-aJ-uph"/>
                             </constraints>
+                            <connections>
+                                <outletCollection property="gestureRecognizers" destination="jji-fL-fct" appends="YES" id="cOW-AJ-BDu"/>
+                            </connections>
                         </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YeY-Pq-hhb">
                             <rect key="frame" x="290.5" y="0.0" width="145.5" height="80"/>
@@ -128,6 +142,7 @@
                                     </constraints>
                                 </view>
                             </subviews>
+                            <gestureRecognizers/>
                             <constraints>
                                 <constraint firstItem="EUb-eI-1kq" firstAttribute="leading" secondItem="YeY-Pq-hhb" secondAttribute="leading" id="3OW-hC-epR"/>
                                 <constraint firstItem="PLN-2h-T5B" firstAttribute="centerX" secondItem="YeY-Pq-hhb" secondAttribute="centerX" id="5dU-Ek-vte"/>
@@ -136,28 +151,22 @@
                                 <constraint firstAttribute="bottom" secondItem="9l4-3J-TgI" secondAttribute="bottom" constant="16" id="QX5-lG-388"/>
                                 <constraint firstItem="9l4-3J-TgI" firstAttribute="centerX" secondItem="YeY-Pq-hhb" secondAttribute="centerX" id="j1l-nJ-ykT"/>
                             </constraints>
+                            <connections>
+                                <outletCollection property="gestureRecognizers" destination="uBF-C9-HRO" appends="YES" id="Qsw-rL-3gY"/>
+                            </connections>
                         </view>
                     </subviews>
                     <constraints>
                         <constraint firstAttribute="height" constant="80" id="9fB-JU-Osr"/>
                     </constraints>
                 </stackView>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Decorative Separator" translatesAutoresizingMaskIntoConstraints="NO" id="16s-cw-LO9">
-                    <rect key="frame" x="194" y="338" width="48" height="14"/>
-                    <color key="tintColor" name="Separator"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="14" id="bmv-jG-nqi"/>
-                        <constraint firstAttribute="width" constant="48" id="nlc-1H-Ze2"/>
-                    </constraints>
-                </imageView>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
-                <constraint firstAttribute="bottom" secondItem="16s-cw-LO9" secondAttribute="bottom" constant="8" id="3gb-eI-t8x"/>
                 <constraint firstItem="JaG-BM-eZ7" firstAttribute="leading" secondItem="S7h-MO-FmV" secondAttribute="leading" id="5e5-m1-Osc"/>
                 <constraint firstItem="4hy-dM-JEv" firstAttribute="trailing" secondItem="qsW-Dc-KNW" secondAttribute="trailing" id="Dej-Rm-Ofs"/>
-                <constraint firstItem="16s-cw-LO9" firstAttribute="top" secondItem="qsW-Dc-KNW" secondAttribute="bottom" constant="8" id="Ifr-UT-UQm"/>
                 <constraint firstItem="qsW-Dc-KNW" firstAttribute="top" secondItem="JaG-BM-eZ7" secondAttribute="bottom" id="Mm4-A6-V0h"/>
+                <constraint firstAttribute="bottom" secondItem="qsW-Dc-KNW" secondAttribute="bottom" id="Ola-dB-mIc"/>
                 <constraint firstAttribute="trailing" secondItem="JaG-BM-eZ7" secondAttribute="trailing" id="QzU-oS-Abs"/>
                 <constraint firstItem="qsW-Dc-KNW" firstAttribute="leading" secondItem="4hy-dM-JEv" secondAttribute="leading" id="S9R-K5-5Dp"/>
                 <constraint firstItem="qsW-Dc-KNW" firstAttribute="top" secondItem="JaG-BM-eZ7" secondAttribute="bottom" id="V7l-oq-KFH"/>
@@ -166,7 +175,6 @@
                 <constraint firstItem="Uzs-Mc-ciy" firstAttribute="centerX" secondItem="S7h-MO-FmV" secondAttribute="centerX" id="dGP-fs-rBI"/>
                 <constraint firstAttribute="trailing" secondItem="A9Z-uz-hb6" secondAttribute="trailing" id="gT3-l8-fwo"/>
                 <constraint firstAttribute="top" secondItem="JaG-BM-eZ7" secondAttribute="top" id="h7B-cv-Wh4"/>
-                <constraint firstItem="16s-cw-LO9" firstAttribute="centerX" secondItem="S7h-MO-FmV" secondAttribute="centerX" id="peq-QP-a0V"/>
                 <constraint firstItem="Uzs-Mc-ciy" firstAttribute="bottom" secondItem="A9Z-uz-hb6" secondAttribute="bottom" constant="-16" id="uLT-3x-oll"/>
                 <constraint firstItem="A9Z-uz-hb6" firstAttribute="top" secondItem="S7h-MO-FmV" secondAttribute="top" id="uuB-mB-kRC"/>
             </constraints>
@@ -176,9 +184,11 @@
             <viewLayoutGuide key="safeArea" id="4hy-dM-JEv"/>
             <point key="canvasLocation" x="-229" y="14"/>
         </view>
+        <tapGestureRecognizer id="E9G-tg-oWv"/>
+        <tapGestureRecognizer id="jji-fL-fct"/>
+        <tapGestureRecognizer id="uBF-C9-HRO"/>
     </objects>
     <resources>
-        <image name="Decorative Separator" width="48" height="14"/>
         <image name="Hero Image Gradient" width="16" height="230"/>
         <image name="Home Title Image Hungary" width="533" height="400"/>
         <namedColor name="Body Text">
