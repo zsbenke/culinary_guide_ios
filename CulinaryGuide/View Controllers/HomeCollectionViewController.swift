@@ -247,7 +247,7 @@ private extension HomeCollectionViewController {
             }
         }
 
-        if collectionView.contentOffset.y < -151 {
+        if collectionView.contentOffset.y < -196 {
             if animated {
                 UIView.animate(withDuration: 0.4, animations: {
                     setNavigationBarToTransparent()
