@@ -1491,7 +1491,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" toolbarHidden="NO" id="zfw-OL-Amf" customClass="PlainNavigationViewController" customModule="CulinaryGuide" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="U3U-5e-rzO">
-                        <rect key="frame" x="0.0" y="20" width="320" height="96"/>
+                        <rect key="frame" x="0.0" y="20" width="320" height="93"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -1525,7 +1525,7 @@
                             </imageView>
                             <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="m3p-oB-A1c">
                                 <rect key="frame" x="16" y="448" width="288" height="50"/>
-                                <color key="backgroundColor" name="Primary Splash Screen"/>
+                                <color key="backgroundColor" name="Primary"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
                                 <inset key="contentEdgeInsets" minX="25" minY="15" maxX="25" maxY="15"/>
                                 <state key="normal" title="Choose a Country">
@@ -1574,7 +1574,7 @@
                             </button>
                         </subviews>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
-                        <color key="tintColor" name="Primary Splash Screen"/>
+                        <color key="tintColor" name="Primary"/>
                         <constraints>
                             <constraint firstItem="lw2-iT-fTC" firstAttribute="top" secondItem="m3p-oB-A1c" secondAttribute="bottom" constant="20" id="2jh-7M-hQq"/>
                             <constraint firstItem="y8g-j8-bJT" firstAttribute="leading" secondItem="ck9-yY-my2" secondAttribute="leading" id="3qk-MF-0Ty"/>
@@ -1672,8 +1672,8 @@
         <namedColor name="Primary">
             <color red="0.0" green="0.52941176470588236" blue="0.89411764705882357" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
-        <namedColor name="Primary Splash Screen">
-            <color red="0.0" green="0.396078431372549" blue="0.6705882352941176" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        <namedColor name="Primary">
+            <color red="0.0" green="0.52941176470588236" blue="0.89411764705882357" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="Rating Filter Off">
             <color red="0.67799997329711914" green="0.74099999666213989" blue="0.77999997138977051" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

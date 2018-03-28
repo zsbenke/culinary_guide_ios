@@ -26,14 +26,6 @@ extension UIColor {
             return UIColor(named: "Link Text")!
         }
 
-        static var primarySplashScreen: UIColor {
-            return UIColor(named: "Primary Splash Screen")!
-        }
-
-        static var primarySplashScreenHighlighted: UIColor {
-            return UIColor(named: "Primary Splash Screen Highlighted")!
-        }
-
         static var primaryRating: UIColor {
             return UIColor(named: "Primary Rating")!
         }
